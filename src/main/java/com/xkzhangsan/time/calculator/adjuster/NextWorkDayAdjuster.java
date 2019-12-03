@@ -6,7 +6,15 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjuster;
 
-public final class NextWorkDay implements TemporalAdjuster{
+/**
+ * 
+* @ClassName: NextWorkDayAdjuster 
+* @Description: 计算下一个工作日
+* @author xkzhangsan
+* @date 2019年12月1日
+*
+ */
+public final class NextWorkDayAdjuster implements TemporalAdjuster{
 
 	@Override
 	public Temporal adjustInto(Temporal temporal) {

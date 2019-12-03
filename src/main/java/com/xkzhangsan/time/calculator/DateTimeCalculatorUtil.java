@@ -13,9 +13,17 @@ import java.time.temporal.TemporalUnit;
 import java.util.Date;
 import java.util.Objects;
 
-import com.xkzhangsan.time.calculator.adjuster.NextWorkDay;
+import com.xkzhangsan.time.calculator.adjuster.NextWorkDayAdjuster;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 
+/**
+ * 
+* @ClassName: DateTimeCalculatorUtil 
+* @Description:  DateTime Calculator
+* @author xkzhangsan
+* @date 2019年12月1日
+*
+ */
 public class DateTimeCalculatorUtil {
 	
 	public static int getYear(Date date){
@@ -193,16 +201,16 @@ public class DateTimeCalculatorUtil {
 	
 	public static LocalDate nextWorkDay(LocalDate localDate){
 		Objects.requireNonNull(localDate, "localDate");
-		return localDate.with(new NextWorkDay());
+		return localDate.with(new NextWorkDayAdjuster());
 	}
 	
 	public static LocalDateTime nextWorkDay(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
-		return localDateTime.with(new NextWorkDay());
+		return localDateTime.with(new NextWorkDayAdjuster());
 	}
 	
 	public static Date nextWorkDay(Date date){
-		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(new NextWorkDay()));
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(new NextWorkDayAdjuster()));
 	}
 	
 	

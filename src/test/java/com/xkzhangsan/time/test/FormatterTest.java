@@ -8,6 +8,11 @@ import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 public class FormatterTest {
 
 	public static void main(String[] args) {
+		Date d = DateTimeFormatterUtil.parseDateTimeStrToDate("2019-12-01 17:03:03");
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(d));//2019-12-01 17:03:03
+		System.out.println(DateTimeFormatterUtil.formatToDateStr(d));//2019-12-01
+		System.out.println(DateTimeFormatterUtil.formatToTimeStr(d));//17:03:03
+		
 		System.out.println("==============Date Formatter===============");
 		Date date = new Date();
 		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_SS_FMT));//1
@@ -84,5 +89,6 @@ public class FormatterTest {
 		System.out.println(DateTimeFormatterUtil.parseToLocalDateTime("2019-12-01 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT));
 		System.out.println("=============parseToInstant================");
 		System.out.println(DateTimeFormatterUtil.parseToInstant("2019年12月01日 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_FMT));
+		
 	}
 }
