@@ -33,9 +33,9 @@ public class DateTimeConverterUtil {
 		return Date.from(instant);
 	}
 	
-	public static Date toDate(Long milliseconds){
-		Objects.requireNonNull(milliseconds, "milliseconds");
-		return new Date(milliseconds);
+	public static Date toDate(Long epochMilli){
+		Objects.requireNonNull(epochMilli, "epochMilli");
+		return new Date(epochMilli);
 	}
 
 	public static LocalDateTime toLocalDateTime(Date date) {
@@ -52,9 +52,9 @@ public class DateTimeConverterUtil {
 		return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 	}
 	
-	public static LocalDateTime toLocalDateTime(Long milliseconds) {
-		Objects.requireNonNull(milliseconds, "milliseconds");
-		return LocalDateTime.ofInstant(Instant.ofEpochMilli(milliseconds), ZoneId.systemDefault());
+	public static LocalDateTime toLocalDateTime(Long epochMilli) {
+		Objects.requireNonNull(epochMilli, "epochMilli");
+		return LocalDateTime.ofInstant(Instant.ofEpochMilli(epochMilli), ZoneId.systemDefault());
 	}
 	
 	public static LocalDateTime toLocalDateTime(TemporalAccessor temporal) {
@@ -109,25 +109,25 @@ public class DateTimeConverterUtil {
 		return toLocalDateTime(localDate).atZone(ZoneId.systemDefault()).toInstant();
 	}
 	
-	public static Instant toInstant(Long milliseconds) {
-		Objects.requireNonNull(milliseconds, "milliseconds");
-		return Instant.ofEpochMilli(milliseconds);
+	public static Instant toInstant(Long epochMilli) {
+		Objects.requireNonNull(epochMilli, "epochMilli");
+		return Instant.ofEpochMilli(epochMilli);
 	}
 	
 	public static Instant toInstant(TemporalAccessor temporal) {
 		return Instant.from(temporal);
 	}
 	
-	public static Long toMilliseconds(Date date){
+	public static Long toEpochMilli(Date date){
 		Objects.requireNonNull(date, "date");
 		return date.getTime();
 	}
 	
-	public static Long toMilliseconds(LocalDateTime localDateTime){
+	public static Long toEpochMilli(LocalDateTime localDateTime){
 		return toInstant(localDateTime).toEpochMilli();
 	}
 	
-	public static Long toMilliseconds(Instant instant){
+	public static Long toEpochMilli(Instant instant){
 		Objects.requireNonNull(instant, "instant");
 		return instant.toEpochMilli();
 	}

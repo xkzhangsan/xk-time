@@ -15,6 +15,7 @@ public class CalculatorTest {
 		System.out.println("==============Date Calculator===============");
 		Date date = new Date();
 		System.out.println(date);
+		System.out.println(DateTimeCalculatorUtil.plusDay(date, 1));
 		System.out.println(DateTimeCalculatorUtil.plus(date, ChronoUnit.DAYS, 1));
 		System.out.println(DateTimeCalculatorUtil.minus(date, ChronoUnit.DAYS, 3));
 		System.out.println(DateTimeCalculatorUtil.setField(date, ChronoField.DAY_OF_MONTH, 15));
