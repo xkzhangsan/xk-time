@@ -189,56 +189,115 @@ public class DateTimeFormatterUtil {
     
     //  =============================format===========================
     
+    /**
+     * 格式化，返回日期部分，如：yyyy-MM-dd
+     * @param date
+     * @return
+     */
     public static String formatToDateStr(Date date){
     	return DateTimeConverterUtil.toLocalDateTime(date).format(YYYY_MM_DD_FMT);
     }
     
+    /**
+     * 格式化，返回日期部分，如：yyyy-MM-dd
+     * @param localDateTime
+     * @return
+     */
     public static String formatToDateStr(LocalDateTime localDateTime){
     	Objects.requireNonNull(localDateTime, "localDateTime");
     	return localDateTime.format(YYYY_MM_DD_FMT);
     }
     
+    /**
+     * 格式化，返回完整日期时间，如：yyyy-MM-dd HH:mm:ss
+     * @param date
+     * @return
+     */
     public static String formatToDateTimeStr(Date date){
     	return DateTimeConverterUtil.toLocalDateTime(date).format(YYYY_MM_DD_HH_MM_SS_FMT);
     }
     
+    /**
+     * 格式化，返回完整日期时间，如：yyyy-MM-dd HH:mm:ss
+     * @param localDateTime
+     * @return
+     */
     public static String formatToDateTimeStr(LocalDateTime localDateTime){
     	Objects.requireNonNull(localDateTime, "localDateTime");
     	return localDateTime.format(YYYY_MM_DD_HH_MM_SS_FMT);
     }
     
+    /**
+     * 格式化，返回时间部分，如：HH:mm:ss
+     * @param date
+     * @return
+     */
     public static String formatToTimeStr(Date date){
     	return DateTimeConverterUtil.toLocalDateTime(date).format(HH_MM_SS_FMT);
     }
     
+    /**
+     * 格式化，返回时间部分，如：HH:mm:ss
+     * @param localDateTime
+     * @return
+     */
     public static String formatToTimeStr(LocalDateTime localDateTime){
     	Objects.requireNonNull(localDateTime, "localDateTime");
     	return localDateTime.format(HH_MM_SS_FMT);
     }
     
+    /**
+     * 根据 formatter格式化 date
+     * @param date
+     * @param formatter
+     * @return
+     */
     public static String format(Date date, DateTimeFormatter formatter){
     	Objects.requireNonNull(formatter, "formatter");
     	return DateTimeConverterUtil.toLocalDateTime(date).format(formatter);
     }
     
-    
+    /**
+     * 根据 formatter格式化 localDateTime
+     * @param localDateTime
+     * @param formatter
+     * @return
+     */
     public static String format(LocalDateTime localDateTime, DateTimeFormatter formatter){
     	Objects.requireNonNull(localDateTime, "localDateTime");
     	Objects.requireNonNull(formatter, "formatter");
     	return localDateTime.format(formatter);
     }
     
+    /**
+     * 根据 formatter格式化 localDate
+     * @param localDate
+     * @param formatter
+     * @return
+     */
     public static String format(LocalDate localDate, DateTimeFormatter formatter){
     	Objects.requireNonNull(formatter, "formatter");
     	return DateTimeConverterUtil.toLocalDateTime(localDate).format(formatter);
     }
     
+    /**
+     * 根据 formatter格式化 localTime
+     * @param localTime
+     * @param formatter
+     * @return
+     */
     public static String format(LocalTime localTime, DateTimeFormatter formatter){
     	Objects.requireNonNull(localTime, "localTime");
     	Objects.requireNonNull(formatter, "formatter");
     	return localTime.format(formatter);
     }
     
+    /**
+     * 根据 formatter格式化 instant
+     * @param instant
+     * @param formatter
+     * @return
+     */
     public static String format(Instant instant, DateTimeFormatter formatter){
     	Objects.requireNonNull(instant, "instant");
     	Objects.requireNonNull(formatter, "formatter");
@@ -253,38 +312,86 @@ public class DateTimeFormatterUtil {
     
     //  ============================parse============================
 
+    /**
+     * 解析日期yyyy-MM-dd，返回Date
+     * @param str
+     * @return
+     */
     public static Date parseDateStrToDate(String str){
     	return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(YYYY_MM_DD_FMT.parse(str)));
     }
     
+    /**
+     * 解析日期yyyy-MM-dd，返回LocalDateTime
+     * @param str
+     * @return
+     */
     public static LocalDateTime parseDateStrToLocalDateTime(String str){
     	return DateTimeConverterUtil.toLocalDateTime(YYYY_MM_DD_FMT.parse(str));
     }
     
+    /**
+     * 解析日期yyyy-MM-dd，返回Instant
+     * @param str
+     * @return
+     */
     public static Instant parseDateStrToInstant(String str){
     	return DateTimeConverterUtil.toInstant(YYYY_MM_DD_FMT.parse(str));
     }
     
+    /**
+     * 解析日期yyyy-MM-dd HH:mm:ss，返回Date
+     * @param str
+     * @return
+     */
     public static Date parseDateTimeStrToDate(String str){
     	return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(YYYY_MM_DD_HH_MM_SS_FMT.parse(str)));
     }
     
+    /**
+     * 解析日期yyyy-MM-dd HH:mm:ss，返回LocalDateTime
+     * @param str
+     * @return
+     */
     public static LocalDateTime parseDateTimeStrToLocalDateTime(String str){
     	return DateTimeConverterUtil.toLocalDateTime(YYYY_MM_DD_HH_MM_SS_FMT.parse(str));
     }
     
+    /**
+     * 解析日期yyyy-MM-dd HH:mm:ss，返回Instant
+     * @param str
+     * @return
+     */
     public static Instant parseDateTimeStrToInstant(String str){
     	return DateTimeConverterUtil.toInstant(YYYY_MM_DD_HH_MM_SS_FMT.parse(str));
     }
     
+    /**
+     * 根据 formatter解析为 Date
+     * @param str
+     * @param formatter
+     * @return
+     */
     public static Date parseToDate(String str, DateTimeFormatter formatter){
     	return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(formatter.parse(str)));
     }
     
+    /**
+     * 根据 formatter解析为 LocalDateTime
+     * @param str
+     * @param formatter
+     * @return
+     */
     public static LocalDateTime parseToLocalDateTime(String str, DateTimeFormatter formatter){
     	return DateTimeConverterUtil.toLocalDateTime(formatter.parse(str));
     }
     
+    /**
+     * 根据 formatter解析为 Instant
+     * @param str
+     * @param formatter
+     * @return
+     */
     public static Instant parseToInstant(String str, DateTimeFormatter formatter){
     	return DateTimeConverterUtil.toInstant(formatter.parse(str));
     }

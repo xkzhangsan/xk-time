@@ -11,6 +11,7 @@
 	<properties>
 		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+		<junit.version>4.12</junit.version>
 	</properties>
 
 	<dependencies>
@@ -19,6 +20,12 @@
 			<artifactId>maven-javadoc-plugin</artifactId>
 			<version>2.7</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

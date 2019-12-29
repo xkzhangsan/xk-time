@@ -106,44 +106,89 @@ public class DateTimeCalculatorUtil {
 		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusters.lastDayOfMonth()));
 	}	
 	
+	/**
+	 * 判断是否闰年
+	 * @param localDate
+	 * @return
+	 */
 	public boolean isLeapYear(LocalDate localDate){
 		Objects.requireNonNull(localDate, "localDate");
 		return localDate.isLeapYear();
 	}
 	
+	/**
+	 * 判断是否闰年
+	 * @param localDateTime
+	 * @return
+	 */
 	public boolean isLeapYear(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return localDateTime.toLocalDate().isLeapYear();
 	}
 	
+	/**
+	 * 判断是否闰年
+	 * @param date
+	 * @return
+	 */
 	public boolean isLeapYear(Date date){
 		return DateTimeConverterUtil.toLocalDateTime(date).toLocalDate().isLeapYear();
 	}
 	
+	/**
+	 * 获取月的天数
+	 * @param localDate
+	 * @return
+	 */
 	public int lengthOfMonth(LocalDate localDate){
 		Objects.requireNonNull(localDate, "localDate");
 		return localDate.lengthOfMonth();
 	}
 	
+	/**
+	 * 获取月的天数
+	 * @param localDateTime
+	 * @return
+	 */
 	public int lengthOfMonth(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return localDateTime.toLocalDate().lengthOfMonth();
 	}
 	
+	/**
+	 * 获取月的天数
+	 * @param date
+	 * @return
+	 */
 	public int lengthOfMonth(Date date){
 		return DateTimeConverterUtil.toLocalDateTime(date).toLocalDate().lengthOfMonth();
 	}
 	
+	/**
+	 *  获取年的天数
+	 * @param localDate
+	 * @return
+	 */
 	public int lengthOfYear(LocalDate localDate){
 		Objects.requireNonNull(localDate, "localDate");
 		return localDate.lengthOfYear();
 	}
 	
+	/**
+	 * 获取年的天数
+	 * @param localDateTime
+	 * @return
+	 */
 	public int lengthOfYear(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return localDateTime.toLocalDate().lengthOfYear();
 	}
 	
+	/**
+	 * 获取年的天数
+	 * @param date
+	 * @return
+	 */
 	public int lengthOfYear(Date date){
 		return DateTimeConverterUtil.toLocalDateTime(date).toLocalDate().lengthOfYear();
 	}	
@@ -171,94 +216,117 @@ public class DateTimeCalculatorUtil {
 		return localDate.with(new NextWorkDayAdjuster());
 	}
 	
+	/**
+	 * 获下一个工作日
+	 * @param localDateTime
+	 * @return
+	 */
 	public static LocalDateTime nextWorkDay(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return localDateTime.with(new NextWorkDayAdjuster());
 	}
 	
+	/**
+	 * 获下一个工作日
+	 * @param date
+	 * @return
+	 */
 	public static Date nextWorkDay(Date date){
 		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(new NextWorkDayAdjuster()));
 	}
 	
 	// plus two times
 	
-	public static Date plusDay(Date date, long amountToAdd){
+	public static Date plusDays(Date date, long amountToAdd){
 		return plus(date, ChronoUnit.DAYS, amountToAdd);
 	}
 	
-	public static LocalDateTime plusDay(LocalDateTime localDateTime, long amountToAdd){
+	public static LocalDateTime plusDays(LocalDateTime localDateTime, long amountToAdd){
 		return (LocalDateTime) plus(localDateTime, ChronoUnit.DAYS, amountToAdd);
 	}
 	
-	public static LocalDate plusDay(LocalDate localDate, long amountToAdd){
+	public static LocalDate plusDays(LocalDate localDate, long amountToAdd){
 		return (LocalDate) plus(localDate, ChronoUnit.DAYS, amountToAdd);
 	}
 	
-	public static Date plusHour(Date date, long amountToAdd){
+	public static Date plusHours(Date date, long amountToAdd){
 		return plus(date, ChronoUnit.HOURS, amountToAdd);
 	}
 	
-	public static LocalDateTime plusHour(LocalDateTime localDateTime, long amountToAdd){
+	public static LocalDateTime plusHours(LocalDateTime localDateTime, long amountToAdd){
 		return (LocalDateTime) plus(localDateTime, ChronoUnit.HOURS, amountToAdd);
 	}
 	
-	public static LocalTime plusHour(LocalTime localTime, long amountToAdd){
+	public static LocalTime plusHours(LocalTime localTime, long amountToAdd){
 		return (LocalTime) plus(localTime, ChronoUnit.HOURS, amountToAdd);
 	}
 	
-	public static Date plusMinute(Date date, long amountToAdd){
+	public static Date plusMinutes(Date date, long amountToAdd){
 		return plus(date, ChronoUnit.MINUTES, amountToAdd);
 	}
 	
-	public static LocalDateTime plusMinute(LocalDateTime localDateTime, long amountToAdd){
+	public static LocalDateTime plusMinutes(LocalDateTime localDateTime, long amountToAdd){
 		return (LocalDateTime) plus(localDateTime, ChronoUnit.MINUTES, amountToAdd);
 	}
 	
-	public static LocalTime plusMinute(LocalTime localTime, long amountToAdd){
+	public static LocalTime plusMinutes(LocalTime localTime, long amountToAdd){
 		return (LocalTime) plus(localTime, ChronoUnit.MINUTES, amountToAdd);
 	}
 	
 	// get the difference between two times
 	
+	/**
+	 * 获取2个日期的相差毫秒值
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
 	public static long betweenMilliseconds(LocalDateTime startInclusive, LocalDateTime endExclusive){
-		return betweenDuration(startInclusive, endExclusive).toMillis();
-	}
-	
-	public static long betweenMilliseconds(Date date1, Date date2){
-		Objects.requireNonNull(date1, "date1");
-		Objects.requireNonNull(date2, "date2");
-		return betweenDuration(DateTimeConverterUtil.toLocalDateTime(date1), DateTimeConverterUtil.toLocalDateTime(date2)).toMillis();
+		return durationBetween(startInclusive, endExclusive).toMillis();
 	}
 	
 	/**
-	 * @Title: betweenDays
-	 * @Description: 更准确的天数计算，包括时间部分
+	 * 获取2个日期的相差毫秒值
+	 * @param date1
+	 * @param date2
+	 * @return
+	 */
+	public static long betweenMilliseconds(Date date1, Date date2){
+		Objects.requireNonNull(date1, "date1");
+		Objects.requireNonNull(date2, "date2");
+		return durationBetween(DateTimeConverterUtil.toLocalDateTime(date1), DateTimeConverterUtil.toLocalDateTime(date2)).toMillis();
+	}
+	
+	/**
+	 * 获取2个日期的相差天数，更准确的天数计算，包括时间部分
 	 * @param startInclusive
 	 * @param endExclusive
-	 * @return long
-	 * @throws
+	 * @return
 	 */
 	public static long betweenDays(LocalDateTime startInclusive, LocalDateTime endExclusive){
 		return Duration.between(startInclusive, endExclusive).toDays();
 	}
 	
+	/**
+	 * 获取2个日期的相差天数，更准确的天数计算，包括时间部分
+	 * @param date1
+	 * @param date2
+	 * @return
+	 */
 	public static long betweenDays(Date date1, Date date2){
 		Objects.requireNonNull(date1, "date1");
 		Objects.requireNonNull(date2, "date2");
-		return betweenDuration(DateTimeConverterUtil.toLocalDateTime(date1), DateTimeConverterUtil.toLocalDateTime(date2)).toDays();
+		return durationBetween(DateTimeConverterUtil.toLocalDateTime(date1), DateTimeConverterUtil.toLocalDateTime(date2)).toDays();
 	}	
 	
 	/**
-	 * 
-	 * @Title: betweenDays
-	 * @Description: 粗略计算天数，不关心时间部分
+	 * 获取2个日期的相差年月天的天数部分，粗略计算天数，不关心时间部分
 	 * @param startDateInclusive
 	 * @param endDateExclusive
-	 * @return int
-	 * @throws
+	 * @return
 	 */
 	public static int betweenDays(LocalDate startDateInclusive, LocalDate endDateExclusive){
-		return betweenPeriod(startDateInclusive, endDateExclusive).getDays();
+		return periodBetween(startDateInclusive, endDateExclusive).getDays();
 	}
 	
 	// base operation
@@ -281,38 +349,46 @@ public class DateTimeCalculatorUtil {
 		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(date).minus(amountToSubtract, unit));
 	}
 	
-	public static Temporal setField(Temporal temporal, TemporalField field, long newValue) {
+	/**
+	 * 根据field修改属性
+	 * @param temporal
+	 * @param field
+	 * @param newValue
+	 * @return
+	 */
+	public static Temporal with(Temporal temporal, TemporalField field, long newValue) {
 		Objects.requireNonNull(temporal, "temporal");
 		return temporal.with(field, newValue);
 	}
 	
-	public static Date setField(Date date, TemporalField field, long newValue) {
+	/**
+	 * 根据field修改属性
+	 * @param date
+	 * @param field
+	 * @param newValue
+	 * @return
+	 */
+	public static Date with(Date date, TemporalField field, long newValue) {
 		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(date).with(field, newValue));
 	}
 	
 	/**
-	 * 
-	 * @Title: betweenDuration
-	 * @Description: day hour minute milliseconds nanoseconds
+	 * 获取2个日期的相差，时间部分
 	 * @param startInclusive
 	 * @param endExclusive
 	 * @return Duration
-	 * @throws
 	 */
-	public static Duration betweenDuration(Temporal startInclusive, Temporal endExclusive){
+	public static Duration durationBetween(Temporal startInclusive, Temporal endExclusive){
 		return Duration.between(startInclusive, endExclusive);
 	}
 	
 	/**
-	 * 
-	 * @Title: betweenPeriod
-	 * @Description: year month day,such as '2 years, 3 months and 4 days' 粗略计算天数，不关心时间部分
+	 * 获取2个日期的相差，日期部分
 	 * @param startDateInclusive
 	 * @param endDateExclusive
 	 * @return Period
-	 * @throws
 	 */
-	public static Period betweenPeriod(LocalDate startDateInclusive, LocalDate endDateExclusive){
+	public static Period periodBetween(LocalDate startDateInclusive, LocalDate endDateExclusive){
 		return Period.between(startDateInclusive, endDateExclusive);
 	}	
 	

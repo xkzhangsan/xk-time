@@ -118,15 +118,33 @@ public class DateTimeConverterUtil {
 		return Instant.from(temporal);
 	}
 	
+	/**
+	 * 转换为毫秒值
+	 * 从1970-01-01T00:00:00Z开始的毫秒值
+	 * @param date
+	 * @return
+	 */
 	public static Long toEpochMilli(Date date){
 		Objects.requireNonNull(date, "date");
 		return date.getTime();
 	}
 	
+	/**
+	 * 转换为毫秒值
+	 * 从1970-01-01T00:00:00Z开始的毫秒值
+	 * @param localDateTime
+	 * @return
+	 */
 	public static Long toEpochMilli(LocalDateTime localDateTime){
 		return toInstant(localDateTime).toEpochMilli();
 	}
 	
+	/**
+	 * 转换为毫秒值
+	 * 从1970-01-01T00:00:00Z开始的毫秒值
+	 * @param instant
+	 * @return
+	 */
 	public static Long toEpochMilli(Instant instant){
 		Objects.requireNonNull(instant, "instant");
 		return instant.toEpochMilli();

@@ -3,17 +3,22 @@ package com.xkzhangsan.time.test;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import org.junit.Test;
+
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 
 public class FormatterTest {
-
-	public static void main(String[] args) {
+	
+	@Test
+	public void simpleFormatTest(){
 		Date d = DateTimeFormatterUtil.parseDateTimeStrToDate("2019-12-01 17:03:03");
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(d));//2019-12-01 17:03:03
 		System.out.println(DateTimeFormatterUtil.formatToDateStr(d));//2019-12-01
 		System.out.println(DateTimeFormatterUtil.formatToTimeStr(d));//17:03:03
-		
-		System.out.println("==============Date Formatter===============");
+	}
+	
+	@Test
+	public void dateFormatTest(){
 		Date date = new Date();
 		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_SS_FMT));//1
 		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HHMMSS_FMT));//2
@@ -45,9 +50,11 @@ public class FormatterTest {
 		System.out.println("=============================");
 		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMM_FMT));//21
 		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMMSS_FMT));//22
-		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMMSSSSS_FMT));//23		
-		
-		System.out.println("==============LocalDateTime Formatter===============");		
+		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMMSSSSS_FMT));//23
+	}
+	
+	@Test
+	public void localDateTimeFormatTest(){
 		LocalDateTime lss = LocalDateTime.now();
 		System.out.println(DateTimeFormatterUtil.format(lss, DateTimeFormatterUtil.HH_MM_SS_FMT));//1
 		System.out.println(DateTimeFormatterUtil.format(lss, DateTimeFormatterUtil.HHMMSS_FMT));//2
@@ -80,15 +87,23 @@ public class FormatterTest {
 		System.out.println(DateTimeFormatterUtil.format(lss, DateTimeFormatterUtil.YYYYMMDDHHMM_FMT));//21
 		System.out.println(DateTimeFormatterUtil.format(lss, DateTimeFormatterUtil.YYYYMMDDHHMMSS_FMT));//22
 		System.out.println(DateTimeFormatterUtil.format(lss, DateTimeFormatterUtil.YYYYMMDDHHMMSSSSS_FMT));//23
-		
-		System.out.println("=============parseToDate================");
+	}
+	
+	@Test
+	public void parseToDateTest(){
 		System.out.println(DateTimeFormatterUtil.parseToDate("2019年12月01日 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_FMT));
 		System.out.println(DateTimeFormatterUtil.parseToDate("2019-12-01 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT));
-		System.out.println("=============parseToLocalDateTime================");
+	}
+	
+	@Test
+	public void parseToLocalDateTimeTest(){
 		System.out.println(DateTimeFormatterUtil.parseToLocalDateTime("2019年12月01日 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_FMT));
 		System.out.println(DateTimeFormatterUtil.parseToLocalDateTime("2019-12-01 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT));
-		System.out.println("=============parseToInstant================");
+	}
+	
+	@Test
+	public void parseToInstantTest(){
 		System.out.println(DateTimeFormatterUtil.parseToInstant("2019年12月01日 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_FMT));
-		
+		System.out.println(DateTimeFormatterUtil.parseToInstant("2019-12-01 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT));
 	}
 }
