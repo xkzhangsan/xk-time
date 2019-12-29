@@ -142,6 +142,16 @@ public class DateTimeConverterUtil {
 	/**
 	 * 转换为毫秒值
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
+	 * @param localDate
+	 * @return
+	 */
+	public static Long toEpochMilli(LocalDate localDate){
+		return toInstant(localDate).toEpochMilli();
+	}
+	
+	/**
+	 * 转换为毫秒值
+	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * @param instant
 	 * @return
 	 */
