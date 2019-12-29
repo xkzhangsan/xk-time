@@ -476,7 +476,7 @@ public final class LunarDate {
 
 	@Override
 	public String toString() {
-		return "LunarDate [lDateCn=" + lDateCn + ", suiCi=" + suiCi + ", lAnimal=" + lAnimal + ", lYear=" + lYear
+		return "LunarDate [localDate=" + localDate + ",lDateCn=" + lDateCn + ", suiCi=" + suiCi + ", lAnimal=" + lAnimal + ", lYear=" + lYear
 				+ ", lMonth=" + lMonth + ", lDay=" + lDay + ", lYearCn=" + lYearCn + ", lMonthCn=" + lMonthCn
 				+ ", lDayCn=" + lDayCn + ", weekCn=" + weekCn + "]";
 	}
