@@ -9,8 +9,8 @@ import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 
 /**
  * 农历日期
-* @ClassName: DateTimeCalculatorUtil 
-* @Description:  DateTime Calculator
+* @ClassName: LunarDate 
+* @Description: LunarDate
 * @author xkzhangsan
 * @date 2019年12月30日
 * @version 0.1 ，初版，谨慎试用
