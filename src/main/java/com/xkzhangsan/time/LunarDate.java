@@ -13,7 +13,7 @@ import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 * @Description: LunarDate
 * @author xkzhangsan
 * @date 2019年12月30日
-* @version 0.1 ，初版，谨慎试用
+* @version 0.1 ，初版，试用
  */
 public final class LunarDate {
 	
@@ -333,6 +333,11 @@ public final class LunarDate {
 		return nongDate;
 	}
 
+	/**
+	 * 获取农历中文年
+	 * @param year
+	 * @return
+	 */
 	public final static String getChinaYear(int year) {
 		String ge = numStr[year % 10];
 		String shi = numStr[year / 10 % 10];
@@ -340,7 +345,11 @@ public final class LunarDate {
 		String qian = numStr[year / 1000 % 10];
 		return qian + bai + shi + ge;
 	}
-
+	/**
+	 * 获取农历中文日期
+	 * @param day
+	 * @return
+	 */
 	public final static String getChinaDay(int day) {
 		String a = "";
 		if (day == 10)
@@ -394,6 +403,11 @@ public final class LunarDate {
 		return a;
 	}
 	
+	/**
+	 * 获取中文星期
+	 * @param week
+	 * @return
+	 */
 	public final static String getWeekCn(int week) {
 		String weekCn = "";
 		switch (week) {
@@ -425,7 +439,11 @@ public final class LunarDate {
 		return weekCn;
 	}
 
-	public static LunarDate today() {
+	/**
+	 * 以当前时间创建农历日期LunarDate
+	 * @return
+	 */
+	public static LunarDate now() {
 		LocalDate today = LocalDate.now();
 		return new LunarDate(today);
 	}
@@ -434,7 +452,7 @@ public final class LunarDate {
 		return localDate;
 	}
 
-	public String getDateCn() {
+	public String getlDateCn() {
 		return lDateCn;
 	}
 
@@ -442,7 +460,7 @@ public final class LunarDate {
 		return suiCi;
 	}
 
-	public String getlAnimalCn() {
+	public String getlAnimal() {
 		return lAnimal;
 	}
 
@@ -480,10 +498,19 @@ public final class LunarDate {
 				+ ", lMonth=" + lMonth + ", lDay=" + lDay + ", lYearCn=" + lYearCn + ", lMonthCn=" + lMonthCn
 				+ ", lDayCn=" + lDayCn + ", weekCn=" + weekCn + "]";
 	}
+	
+	/**
+	 * 格式化输出，如： 庚子鼠年 二〇一九年腊月初七 星期三
+	 * @return
+	 */
+	public String format(){
+		return suiCi + lAnimal + "年 " + lDateCn + " " + weekCn;
+	}
 
 
 	public static void main(String[] args) {
-		String str =LunarDate.today().toString();
+		String str =LunarDate.now().toString();
 		System.out.println(str);
+		System.out.println(LunarDate.now().format());
 	}
 }

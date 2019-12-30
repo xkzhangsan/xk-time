@@ -42,6 +42,8 @@ public class DateTimeFormatterUtil {
     
 	private static final String YYYY_MM_DD_EN = "yyyy/MM/dd";
 	
+	private static final String YYYY_MM_DD_E = "yyyy-MM-dd E";
+	
 	private static final String YYYYMMDDHHMM = "yyyyMMddHHmm";
   
 	private static final String YYYY_MM_DD_HH_MM = "yyyy-MM-dd HH:mm";
@@ -51,6 +53,8 @@ public class DateTimeFormatterUtil {
 	private static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
     
 	private static final String YYYY_MM_DD_HH_MM_SS_CN = "yyyy年MM月dd日 HH:mm:ss";
+	
+	private static final String YYYY_MM_DD_HH_MM_SS_A_CN = "yyyy年MM月dd日 HH:mm:ss a";	
     
 	private static final String YYYYMMDDHHMMSSSSS = "yyyyMMddHHmmssSSS";
     
@@ -63,8 +67,12 @@ public class DateTimeFormatterUtil {
 	private static String HHMMSS = "HHmmss";
     
 	private static String HH_MM_SS = "HH:mm:ss";
+	
+	private static final String MM_DD = "MM-dd";
     
 	private static final String MM_DD_CN = "MM月dd日";
+	
+	private static final String MM_DD_HH_MM_SS = "MM-dd HH:mm:ss";	
     
 	private static final String MM_DD_HH_MM_SS_CN = "MM月dd日 HH:mm:ss";
     
@@ -121,6 +129,11 @@ public class DateTimeFormatterUtil {
      * such as 2019/12/03
      */    
     public static final DateTimeFormatter YYYY_MM_DD_EN_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_EN).withZone(ZONE);
+    
+    /**
+     * such as 2020-01-01 星期三
+     */
+    public static final DateTimeFormatter YYYY_MM_DD_E_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_E).withZone(ZONE);
 	
     /**
      * such as 201912032147
@@ -146,6 +159,11 @@ public class DateTimeFormatterUtil {
      * such as 2019年12月03日 21:47:31
      */    
     public static final DateTimeFormatter YYYY_MM_DD_HH_MM_SS_CN_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_SS_CN).withZone(ZONE);
+    
+    /**
+     * such as 2020年01月01日 00:00:00 上午
+     */
+    public static final DateTimeFormatter YYYY_MM_DD_HH_MM_SS_A_CN_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_SS_A_CN).withZone(ZONE);
     
     /**
      * such as 20191203214731714
@@ -183,9 +201,19 @@ public class DateTimeFormatterUtil {
     public static final DateTimeFormatter MM_DD_CN_FMT = DateTimeFormatter.ofPattern(MM_DD_CN).withZone(ZONE);
     
     /**
+     * such as 01-01
+     */
+    public static final DateTimeFormatter MM_DD_FMT = DateTimeFormatter.ofPattern(MM_DD).withZone(ZONE);
+    
+    /**
      * such as 12月03日 21:47:31
      */    
     public static final DateTimeFormatter MM_DD_HH_MM_SS_CN_FMT = DateTimeFormatter.ofPattern(MM_DD_HH_MM_SS_CN).withZone(ZONE);
+    
+    /**
+     * such as 01-01 00:00:00
+     */
+    public static final DateTimeFormatter MM_DD_HH_MM_SS_FMT = DateTimeFormatter.ofPattern(MM_DD_HH_MM_SS).withZone(ZONE);
     
     //  =============================format===========================
     
