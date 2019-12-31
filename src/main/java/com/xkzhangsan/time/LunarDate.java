@@ -129,12 +129,13 @@ public final class LunarDate {
 		int day = localDate.getDayOfMonth();
 		long[] l = calElement(year, month, day);
 		
-		this.suiCi = cyclical(year);
-		this.lAnimal = animalsYear(year);
-
 		this.lYear = (int) l[0];
 		this.lMonth = (int) l[1];
 		this.lDay = (int) l[2];
+		
+		this.suiCi = cyclical(this.lYear);
+		this.lAnimal = animalsYear(this.lYear);
+
 
 		this.lYearCn = getChinaYear(this.lYear);
 		this.lMonthCn = lunarMonth[this.lMonth];
@@ -500,7 +501,7 @@ public final class LunarDate {
 	}
 	
 	/**
-	 * 格式化输出，如： 庚子鼠年 二〇一九年腊月初七 星期三
+	 * 格式化输出，如： 己亥猪年 二〇一九年腊月初六 星期二
 	 * @return
 	 */
 	public String format(){
@@ -509,8 +510,12 @@ public final class LunarDate {
 
 
 	public static void main(String[] args) {
-		String str =LunarDate.now().toString();
-		System.out.println(str);
-		System.out.println(LunarDate.now().format());
+		LunarDate now =  LunarDate.now();
+		System.out.println(now.toString());
+		System.out.println(now.format());
+		
+		LunarDate date = LunarDate.from(LocalDate.of(2021, 5, 10));
+		System.out.println(date.toString());
+		System.out.println(date.format());
 	}
 }
