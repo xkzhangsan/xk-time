@@ -15,7 +15,7 @@ import java.time.temporal.TemporalUnit;
 import java.util.Date;
 import java.util.Objects;
 
-import com.xkzhangsan.time.calculator.adjuster.NextWorkDayAdjuster;
+import com.xkzhangsan.time.TemporalAdjusterExtension;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 
 /**
@@ -213,7 +213,7 @@ public class DateTimeCalculatorUtil {
 	
 	public static LocalDate nextWorkDay(LocalDate localDate){
 		Objects.requireNonNull(localDate, "localDate");
-		return localDate.with(new NextWorkDayAdjuster());
+		return localDate.with(TemporalAdjusterExtension.nextWorkDay());
 	}
 	
 	/**
@@ -223,7 +223,7 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static LocalDateTime nextWorkDay(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
-		return localDateTime.with(new NextWorkDayAdjuster());
+		return localDateTime.with(TemporalAdjusterExtension.nextWorkDay());
 	}
 	
 	/**
@@ -232,7 +232,7 @@ public class DateTimeCalculatorUtil {
 	 * @return
 	 */
 	public static Date nextWorkDay(Date date){
-		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(new NextWorkDayAdjuster()));
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusterExtension.nextWorkDay()));
 	}
 	
 	// plus two times

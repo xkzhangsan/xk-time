@@ -27,6 +27,8 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.getMonth(date));
 		// 获取星期的值，从1开始，对应从周一开始
 		System.out.println(DateTimeCalculatorUtil.getDayOfWeek(date));
+		// 下一个工作日
+		System.out.println(DateTimeCalculatorUtil.nextWorkDay(date));
 	}
 	
 	@Test
@@ -41,6 +43,8 @@ public class CalculatorTest {
 		System.out.println(ldt.getMonthValue());
 		// 获取星期的值，从1开始，对应从周一开始
 		System.out.println(ldt.getDayOfWeek());
+		// 下一个工作日
+		System.out.println(DateTimeCalculatorUtil.nextWorkDay(ldt));
 	}
 	
 	@Test

@@ -3,6 +3,9 @@ package com.xkzhangsan.time;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalField;
+import java.time.temporal.TemporalUnit;
 import java.util.Date;
 
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
@@ -15,7 +18,7 @@ import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 * @date 2019年12月30日
 * @version 0.1 ，初版，试用
  */
-public final class LunarDate {
+public final class LunarDate implements Temporal{
 	
 	/**
 	 * 农历信息
@@ -508,14 +511,33 @@ public final class LunarDate {
 		return suiCi + lAnimal + "年 " + lDateCn + " " + weekCn;
 	}
 
+	@Override
+	public boolean isSupported(TemporalField field) {
+		return localDate.isSupported(field);
+	}
 
-	public static void main(String[] args) {
-		LunarDate now =  LunarDate.now();
-		System.out.println(now.toString());
-		System.out.println(now.format());
-		
-		LunarDate date = LunarDate.from(LocalDate.of(2021, 5, 10));
-		System.out.println(date.toString());
-		System.out.println(date.format());
+	@Override
+	public long getLong(TemporalField field) {
+		return localDate.getLong(field);
+	}
+
+	@Override
+	public boolean isSupported(TemporalUnit unit) {
+		return localDate.isSupported(unit);
+	}
+
+	@Override
+	public Temporal with(TemporalField field, long newValue) {
+		return localDate.with(field, newValue);
+	}
+
+	@Override
+	public Temporal plus(long amountToAdd, TemporalUnit unit) {
+		return localDate.plus(amountToAdd, unit);
+	}
+
+	@Override
+	public long until(Temporal endExclusive, TemporalUnit unit) {
+		return localDate.until(endExclusive, unit);
 	}
 }
