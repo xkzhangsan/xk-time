@@ -183,6 +183,10 @@ public final class LunarDate implements Temporal{
 	public static LunarDate from(Date date) {
 		return new LunarDate(DateTimeConverterUtil.toLocalDate(date));
 	}
+	
+	public static LunarDate from(Temporal temporal) {
+		return new LunarDate(DateTimeConverterUtil.toLocalDate(temporal));
+	}
 
 	/**
 	 * 传回农历year年的总天数
@@ -507,9 +511,17 @@ public final class LunarDate implements Temporal{
 	 * 格式化输出，如： 己亥猪年 二〇一九年腊月初六 星期二
 	 * @return
 	 */
-	public String format(){
+	public String formatLongCn(){
 		return suiCi + lAnimal + "年 " + lDateCn + " " + weekCn;
 	}
+	
+	/**
+	 * 格式化输出，如： 0101
+	 * @return
+	 */
+	public String formatShort(){
+		return String.format("%02d", lMonth) + String.format("%02d", lDay);
+	}	
 
 	@Override
 	public boolean isSupported(TemporalField field) {
@@ -540,4 +552,5 @@ public final class LunarDate implements Temporal{
 	public long until(Temporal endExclusive, TemporalUnit unit) {
 		return localDate.until(endExclusive, unit);
 	}
+	
 }

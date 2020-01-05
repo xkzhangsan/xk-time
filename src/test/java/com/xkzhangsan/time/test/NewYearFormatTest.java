@@ -1,6 +1,7 @@
 package com.xkzhangsan.time.test;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import com.xkzhangsan.time.LunarDate;
@@ -14,7 +15,10 @@ public class NewYearFormatTest {
 		Date date = DateTimeConverterUtil.toDate(localDateTime);
 		LunarDate lunarDate = LunarDate.from(localDateTime);
 		System.out.println("=============================");
-		System.out.println("Hello " + lunarDate.format());
+		System.out.println("Hello " + lunarDate.formatLongCn());
+		LocalDateTime localDateTime2 = LocalDateTime.of(2019, 12, 29, 0, 0);
+		DateTimeFormatter df = DateTimeFormatter.ofPattern("YYYY-MM-dd");
+		System.out.println(df.format(localDateTime2));
 		
 		System.out.println("=============================");
 		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_FMT));

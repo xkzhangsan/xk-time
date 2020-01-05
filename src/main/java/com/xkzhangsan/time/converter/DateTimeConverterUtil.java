@@ -28,6 +28,16 @@ public class DateTimeConverterUtil {
 		Objects.requireNonNull(localDate, "localDate");
 		return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 	}
+	
+	/**
+	 * 以当天的日期+LocalTime组成新的LocalDateTime转换为Date
+	 * @param localTime
+	 * @return
+	 */
+	public static Date toDate(LocalTime localTime) {
+		Objects.requireNonNull(localTime, "localTime");
+		return Date.from(LocalDate.now().atTime(localTime).atZone(ZoneId.systemDefault()).toInstant());
+	}	
 
 	public static Date toDate(Instant instant) {
 		return Date.from(instant);
@@ -46,6 +56,16 @@ public class DateTimeConverterUtil {
 	public static LocalDateTime toLocalDateTime(LocalDate localDate) {
 		Objects.requireNonNull(localDate, "localDate");
 		return localDate.atStartOfDay();
+	}
+	
+	/**
+	 * 以当天的日期+LocalTime组成新的LocalDateTime
+	 * @param localTime
+	 * @return
+	 */
+	public static LocalDateTime toLocalDateTime(LocalTime localTime) {
+		Objects.requireNonNull(localTime, "localTime");
+		return LocalDate.now().atTime(localTime);
 	}
 
 	public static LocalDateTime toLocalDateTime(Instant instant) {
@@ -107,6 +127,15 @@ public class DateTimeConverterUtil {
 
 	public static Instant toInstant(LocalDate localDate) {
 		return toLocalDateTime(localDate).atZone(ZoneId.systemDefault()).toInstant();
+	}
+	
+	/**
+	 * 以当天的日期+LocalTime组成新的LocalDateTime转换为Instant
+	 * @param localTime
+	 * @return
+	 */
+	public static Instant toInstant(LocalTime localTime) {
+		return toLocalDateTime(localTime).atZone(ZoneId.systemDefault()).toInstant();
 	}
 	
 	public static Instant toInstant(Long epochMilli) {

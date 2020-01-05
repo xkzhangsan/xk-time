@@ -69,6 +69,8 @@ public class DateTimeFormatterUtil {
 	private static String HH_MM_SS = "HH:mm:ss";
 	
 	private static final String MM_DD = "MM-dd";
+	
+	private static final String MMDD = "MMdd";	
     
 	private static final String MM_DD_CN = "MM月dd日";
 	
@@ -204,6 +206,11 @@ public class DateTimeFormatterUtil {
      * such as 01-01
      */
     public static final DateTimeFormatter MM_DD_FMT = DateTimeFormatter.ofPattern(MM_DD).withZone(ZONE);
+
+    /**
+     * such as 0101
+     */
+    public static final DateTimeFormatter MMDD_FMT = DateTimeFormatter.ofPattern(MMDD).withZone(ZONE);
     
     /**
      * such as 12月03日 21:47:31
