@@ -12,6 +12,7 @@ import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 
 /**
  * 农历日期
+ * 仅支持公历1901-1950年的农历转换
 * @ClassName: LunarDate 
 * @Description: LunarDate
 * @author xkzhangsan
