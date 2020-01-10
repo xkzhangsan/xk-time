@@ -1,7 +1,16 @@
 package com.xkzhangsan.time.holiday;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
+import java.util.Objects;
 
+import com.xkzhangsan.time.LunarDate;
+/**
+ * 农历节日
+ * 使用LunarDate处理日历，所有仅支持公历1901-1950年的农历节日
+ *
+ */
 public enum ChineseHolidayEnum implements Holiday{
 	
 	CHUNJIE("春节", "0101"),
@@ -14,7 +23,11 @@ public enum ChineseHolidayEnum implements Holiday{
 	LABAJIE(" 腊八节", "1208"),
 	XIAONIANNORTH("北方小年", "1223"),
 	XIAONIANSOUTH("南方小年", "1224"),
-	CHUXI("除夕", "12-M-L"),;
+	CHUXI("除夕", "CHUXI"),
+    /**
+     * 默认值
+     */
+    DEFAULT_HOLIDAY("", ""),;
 	
 	private ChineseHolidayEnum(String name, String pattern) {
 		this.name = name;
@@ -28,10 +41,27 @@ public enum ChineseHolidayEnum implements Holiday{
 	public String getPattern() {
 		return pattern;
 	}
-	@Override
-	public Holiday getHoliday(Temporal temporal) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
+	public static ChineseHolidayEnum getHoliday(Temporal temporal) {
+		Objects.requireNonNull(temporal, "temporal");
+		LunarDate lunarDate = LunarDate.from(temporal);
+		String monthDayStr = lunarDate.formatShort();
+		//对比枚举日期，返回假日
+		for (ChineseHolidayEnum chineseHolidayEnum : ChineseHolidayEnum.values()) {
+			if (chineseHolidayEnum.getPattern().equals(monthDayStr)) {
+				return chineseHolidayEnum;
+			}
+			//如果为特殊节日除夕
+			if (chineseHolidayEnum.getPattern().equals(CHUXI.getPattern())) {
+				LocalDate tempLocalDate = lunarDate.getLocalDate();
+				LocalDate targetLocalDate = tempLocalDate.plus(1, ChronoUnit.DAYS);
+				LunarDate targetLunarDate = LunarDate.from(targetLocalDate);
+				String targetMonthDayStr = targetLunarDate.formatShort();
+				if(CHUNJIE.getPattern().equals(targetMonthDayStr)){
+					return CHUXI;
+				}
+			}
+		}
+		return DEFAULT_HOLIDAY;
+	}	
 }

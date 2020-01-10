@@ -9,6 +9,7 @@ import java.time.temporal.TemporalUnit;
 import java.util.Date;
 
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
+import com.xkzhangsan.time.holiday.ChineseHolidayEnum;
 
 /**
  * 农历日期
@@ -507,6 +508,14 @@ public final class LunarDate implements Temporal{
 				+ ", lMonth=" + lMonth + ", lDay=" + lDay + ", lYearCn=" + lYearCn + ", lMonthCn=" + lMonthCn
 				+ ", lDayCn=" + lDayCn + ", weekCn=" + weekCn + "]";
 	}
+
+	/**
+	 * 格式化输出，如：庚子鼠年 二〇二〇年正月初一 星期六 春节
+	 * @return
+	 */
+	public String formatLongCnWithChineseHoliday(){
+		return suiCi + lAnimal + "年 " + lDateCn + " " + weekCn + " " + ChineseHolidayEnum.getHoliday(localDate).getName();
+	}	
 	
 	/**
 	 * 格式化输出，如： 己亥猪年 二〇一九年腊月初六 星期二
@@ -522,7 +531,7 @@ public final class LunarDate implements Temporal{
 	 */
 	public String formatShort(){
 		return String.format("%02d", lMonth) + String.format("%02d", lDay);
-	}	
+	}
 
 	@Override
 	public boolean isSupported(TemporalField field) {

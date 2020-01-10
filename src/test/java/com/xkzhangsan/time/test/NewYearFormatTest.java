@@ -11,11 +11,11 @@ import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 public class NewYearFormatTest {
 
 	public static void main(String[] args) {
-		LocalDateTime localDateTime = LocalDateTime.of(2020, 1, 1, 0, 0);
+		LocalDateTime localDateTime = LocalDateTime.of(2020, 1, 25, 0, 0);
 		Date date = DateTimeConverterUtil.toDate(localDateTime);
 		LunarDate lunarDate = LunarDate.from(localDateTime);
 		System.out.println("=============================");
-		System.out.println("Hello " + lunarDate.formatLongCn());
+		System.out.println("Hello " + lunarDate.formatLongCnWithChineseHoliday());
 		LocalDateTime localDateTime2 = LocalDateTime.of(2019, 12, 29, 0, 0);
 		DateTimeFormatter df = DateTimeFormatter.ofPattern("YYYY-MM-dd");
 		System.out.println(df.format(localDateTime2));
