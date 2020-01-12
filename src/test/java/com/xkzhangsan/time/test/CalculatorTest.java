@@ -11,9 +11,23 @@ import java.util.Date;
 import org.junit.Test;
 
 import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
+import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 
 public class CalculatorTest {
+	
+	@Test
+	public void dateCalculatorGetTest(){
+		Date date = new Date();
+		System.out.println(date);
+		System.out.println(DateTimeConverterUtil.toLocalDateTime(date));
+		System.out.println(DateTimeCalculatorUtil.getYear(date));
+		System.out.println(DateTimeCalculatorUtil.getMonth(date));
+		System.out.println(DateTimeCalculatorUtil.getDayOfMonth(date));
+		System.out.println(DateTimeCalculatorUtil.getHour(date));
+		System.out.println(DateTimeCalculatorUtil.getMinute(date));
+		System.out.println(DateTimeCalculatorUtil.getSecond(date));
+	}
 	
 	@Test
 	public void dateCalculatorTest(){
