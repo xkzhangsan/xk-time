@@ -10,7 +10,7 @@ import com.xkzhangsan.time.holiday.LocalHolidayEnum;
 public class HolidayTest {
 
 	/**
-	 * 公历节日
+	 * 公历节日，母亲节
 	 */
 	@Test
 	public void localHolidayEnumTest(){
@@ -20,7 +20,7 @@ public class HolidayTest {
 	}
 	
 	/**
-	 * 农历节日
+	 * 农历节日，除夕
 	 */
 	@Test
 	public void chineseHolidayEnumTest(){
