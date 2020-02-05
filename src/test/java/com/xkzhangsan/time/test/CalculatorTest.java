@@ -16,6 +16,9 @@ import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 
 public class CalculatorTest {
 	
+	/**
+	 * 获取时间年月日时分秒
+	 */
 	@Test
 	public void dateCalculatorGetTest(){
 		Date date = new Date();
@@ -29,6 +32,9 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.getSecond(date));
 	}
 	
+	/**
+	 * date年月日时分秒增加
+	 */
 	@Test
 	public void dateCalculatorPlusTest(){
 		Date date = new Date();
@@ -44,6 +50,9 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.plusSeconds(date, 1));
 	}
 	
+	/**
+	 * date年月日时分秒减少
+	 */
 	@Test
 	public void dateCalculatorMinusTest(){
 		Date date = new Date();
@@ -59,6 +68,9 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.minusSeconds(date, 1));
 	}
 	
+	/**
+	 * LocalDateTime年月日时分秒增加
+	 */
 	@Test
 	public void dateCalculatorPlusTest2(){
 		LocalDateTime ldt = LocalDateTime.now();
@@ -73,6 +85,9 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.plusSeconds(ldt, 1));
 	}
 	
+	/**
+	 * LocalDateTime年月日时分秒减少
+	 */
 	@Test
 	public void dateCalculatorMinusTest2(){
 		LocalDateTime ldt = LocalDateTime.now();
@@ -87,6 +102,9 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.minusSeconds(ldt, 1));
 	}
 	
+	/**
+	 * Date年月日时分秒属性值修改
+	 */
 	@Test
 	public void dateCalculatorWithTest(){
 		Date date = new Date();
@@ -103,6 +121,9 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.withSecond(date, 30));
 	}
 	
+	/**
+	 * LocalDateTime年月日时分秒属性值修改
+	 */
 	@Test
 	public void dateCalculatorWithTest2(){
 		LocalDateTime ldt = LocalDateTime.now();
