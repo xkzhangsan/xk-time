@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Period;
+import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjusters;
@@ -52,7 +53,15 @@ public class DateTimeCalculatorUtil {
 	
 	public static int getDayOfMonth(Instant instant){
 		return DateTimeConverterUtil.toLocalDateTime(instant).getDayOfMonth();
-	}	
+	}
+	
+	public static int getDayOfYear(Date date){
+		return DateTimeConverterUtil.toLocalDateTime(date).getDayOfYear();
+	}
+	
+	public static int getDayOfYear(Instant instant){
+		return DateTimeConverterUtil.toLocalDateTime(instant).getDayOfYear();
+	}
 	
 	public static int getHour(Date date){
 		return DateTimeConverterUtil.toLocalDateTime(date).getHour();
@@ -405,6 +414,92 @@ public class DateTimeCalculatorUtil {
 	
 	public static LocalTime minusSeconds(LocalTime localTime, long amountToAdd){
 		return (LocalTime) minus(localTime, ChronoUnit.SECONDS, amountToAdd);
+	}
+	
+	// modify property
+	
+	public static Date withYear(Date date, long newValue){
+		return with(date, ChronoField.YEAR, newValue);
+	}
+	
+	public static LocalDateTime withYear(LocalDateTime localDateTime, long newValue){
+		return (LocalDateTime) with(localDateTime, ChronoField.YEAR, newValue);
+	}
+	
+	public static LocalDate withYear(LocalDate localDate, long newValue){
+		return (LocalDate) with(localDate, ChronoField.YEAR, newValue);
+	}
+	
+	public static Date withMonth(Date date, long newValue){
+		return with(date, ChronoField.MONTH_OF_YEAR, newValue);
+	}
+	
+	public static LocalDateTime withMonth(LocalDateTime localDateTime, long newValue){
+		return (LocalDateTime) with(localDateTime, ChronoField.MONTH_OF_YEAR, newValue);
+	}
+	
+	public static LocalDate withMonth(LocalDate localDate, long newValue){
+		return (LocalDate) with(localDate, ChronoField.MONTH_OF_YEAR, newValue);
+	}
+	
+	public static Date withDayOfMonth(Date date, long newValue){
+		return with(date, ChronoField.DAY_OF_MONTH, newValue);
+	}
+	
+	public static LocalDateTime withDayOfMonth(LocalDateTime localDateTime, long newValue){
+		return (LocalDateTime) with(localDateTime, ChronoField.DAY_OF_MONTH, newValue);
+	}
+	
+	public static LocalDate withDayOfMonth(LocalDate localDate, long newValue){
+		return (LocalDate) with(localDate, ChronoField.DAY_OF_MONTH, newValue);
+	}	
+	
+	public static Date withDayOfYear(Date date, long newValue){
+		return with(date, ChronoField.DAY_OF_YEAR, newValue);
+	}
+	
+	public static LocalDateTime withDayOfYear(LocalDateTime localDateTime, long newValue){
+		return (LocalDateTime) with(localDateTime, ChronoField.DAY_OF_YEAR, newValue);
+	}
+	
+	public static LocalDate withDayOfYear(LocalDate localDate, long newValue){
+		return (LocalDate) with(localDate, ChronoField.DAY_OF_YEAR, newValue);
+	}
+	
+	public static Date withHour(Date date, long newValue){
+		return with(date, ChronoField.HOUR_OF_DAY, newValue);
+	}
+	
+	public static LocalDateTime withHour(LocalDateTime localDateTime, long newValue){
+		return (LocalDateTime) with(localDateTime, ChronoField.HOUR_OF_DAY, newValue);
+	}
+	
+	public static LocalTime withHour(LocalTime localTime, long newValue){
+		return (LocalTime) with(localTime, ChronoField.HOUR_OF_DAY, newValue);
+	}
+	
+	public static Date withMinute(Date date, long newValue){
+		return with(date, ChronoField.MINUTE_OF_HOUR, newValue);
+	}
+	
+	public static LocalDateTime withMinute(LocalDateTime localDateTime, long newValue){
+		return (LocalDateTime) with(localDateTime, ChronoField.MINUTE_OF_HOUR, newValue);
+	}
+	
+	public static LocalTime withMinute(LocalTime localTime, long newValue){
+		return (LocalTime) with(localTime, ChronoField.MINUTE_OF_HOUR, newValue);
+	}
+	
+	public static Date withSecond(Date date, long newValue){
+		return with(date, ChronoField.SECOND_OF_MINUTE, newValue);
+	}
+	
+	public static LocalDateTime withSecond(LocalDateTime localDateTime, long newValue){
+		return (LocalDateTime) with(localDateTime, ChronoField.SECOND_OF_MINUTE, newValue);
+	}
+	
+	public static LocalTime withSecond(LocalTime localTime, long newValue){
+		return (LocalTime) with(localTime, ChronoField.SECOND_OF_MINUTE, newValue);
 	}
 	
 	// get the difference between two times

@@ -85,6 +85,37 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.minusHours(ldt, 1));
 		System.out.println(DateTimeCalculatorUtil.minusMinutes(ldt, 1));
 		System.out.println(DateTimeCalculatorUtil.minusSeconds(ldt, 1));
+	}
+	
+	@Test
+	public void dateCalculatorWithTest(){
+		Date date = new Date();
+		System.out.println(date);
+		System.out.println(DateTimeConverterUtil.toLocalDateTime(date));
+		System.out.println(DateTimeCalculatorUtil.getDayOfYear(date));
+		
+		System.out.println(DateTimeCalculatorUtil.withYear(date, 2021));
+		System.out.println(DateTimeCalculatorUtil.withMonth(date, 3));
+		System.out.println(DateTimeCalculatorUtil.withDayOfMonth(date, 6));
+		System.out.println(DateTimeCalculatorUtil.withDayOfYear(date, 37));
+		System.out.println(DateTimeCalculatorUtil.withHour(date, 17));
+		System.out.println(DateTimeCalculatorUtil.withMinute(date, 30));
+		System.out.println(DateTimeCalculatorUtil.withSecond(date, 30));
+	}
+	
+	@Test
+	public void dateCalculatorWithTest2(){
+		LocalDateTime ldt = LocalDateTime.now();
+		System.out.println(ldt);
+		System.out.println(ldt.getDayOfYear());
+		
+		System.out.println(DateTimeCalculatorUtil.withYear(ldt, 2021));
+		System.out.println(DateTimeCalculatorUtil.withMonth(ldt, 3));
+		System.out.println(DateTimeCalculatorUtil.withDayOfMonth(ldt, 6));
+		System.out.println(DateTimeCalculatorUtil.withDayOfYear(ldt, 37));
+		System.out.println(DateTimeCalculatorUtil.withHour(ldt, 17));
+		System.out.println(DateTimeCalculatorUtil.withMinute(ldt, 30));
+		System.out.println(DateTimeCalculatorUtil.withSecond(ldt, 30));
 	}	
 	
 	@Test
