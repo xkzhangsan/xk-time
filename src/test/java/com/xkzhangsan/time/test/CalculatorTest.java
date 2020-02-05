@@ -30,6 +30,64 @@ public class CalculatorTest {
 	}
 	
 	@Test
+	public void dateCalculatorPlusTest(){
+		Date date = new Date();
+		System.out.println(date);
+		System.out.println(DateTimeConverterUtil.toLocalDateTime(date));
+		
+		System.out.println(DateTimeCalculatorUtil.plusYears(date, 1));
+		System.out.println(DateTimeCalculatorUtil.plusMonths(date, 1));
+		System.out.println(DateTimeCalculatorUtil.plusWeeks(date, 1));
+		System.out.println(DateTimeCalculatorUtil.plusDays(date, 1));
+		System.out.println(DateTimeCalculatorUtil.plusHours(date, 1));
+		System.out.println(DateTimeCalculatorUtil.plusMinutes(date, 1));
+		System.out.println(DateTimeCalculatorUtil.plusSeconds(date, 1));
+	}
+	
+	@Test
+	public void dateCalculatorMinusTest(){
+		Date date = new Date();
+		System.out.println(date);
+		System.out.println(DateTimeConverterUtil.toLocalDateTime(date));
+		
+		System.out.println(DateTimeCalculatorUtil.minusYears(date, 1));
+		System.out.println(DateTimeCalculatorUtil.minusMonths(date, 1));
+		System.out.println(DateTimeCalculatorUtil.minusWeeks(date, 1));
+		System.out.println(DateTimeCalculatorUtil.minusDays(date, 1));
+		System.out.println(DateTimeCalculatorUtil.minusHours(date, 1));
+		System.out.println(DateTimeCalculatorUtil.minusMinutes(date, 1));
+		System.out.println(DateTimeCalculatorUtil.minusSeconds(date, 1));
+	}
+	
+	@Test
+	public void dateCalculatorPlusTest2(){
+		LocalDateTime ldt = LocalDateTime.now();
+		System.out.println(ldt);
+		
+		System.out.println(DateTimeCalculatorUtil.plusYears(ldt, 1));
+		System.out.println(DateTimeCalculatorUtil.plusMonths(ldt, 1));
+		System.out.println(DateTimeCalculatorUtil.plusWeeks(ldt, 1));
+		System.out.println(DateTimeCalculatorUtil.plusDays(ldt, 1));
+		System.out.println(DateTimeCalculatorUtil.plusHours(ldt, 1));
+		System.out.println(DateTimeCalculatorUtil.plusMinutes(ldt, 1));
+		System.out.println(DateTimeCalculatorUtil.plusSeconds(ldt, 1));
+	}
+	
+	@Test
+	public void dateCalculatorMinusTest2(){
+		LocalDateTime ldt = LocalDateTime.now();
+		System.out.println(ldt);
+		
+		System.out.println(DateTimeCalculatorUtil.minusYears(ldt, 1));
+		System.out.println(DateTimeCalculatorUtil.minusMonths(ldt, 1));
+		System.out.println(DateTimeCalculatorUtil.minusWeeks(ldt, 1));
+		System.out.println(DateTimeCalculatorUtil.minusDays(ldt, 1));
+		System.out.println(DateTimeCalculatorUtil.minusHours(ldt, 1));
+		System.out.println(DateTimeCalculatorUtil.minusMinutes(ldt, 1));
+		System.out.println(DateTimeCalculatorUtil.minusSeconds(ldt, 1));
+	}	
+	
+	@Test
 	public void dateCalculatorTest(){
 		Date date = new Date();
 		System.out.println(date);

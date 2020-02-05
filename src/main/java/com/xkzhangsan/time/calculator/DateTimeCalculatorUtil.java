@@ -237,6 +237,42 @@ public class DateTimeCalculatorUtil {
 	
 	// plus two times
 	
+	public static Date plusYears(Date date, long amountToAdd){
+		return plus(date, ChronoUnit.YEARS, amountToAdd);
+	}
+	
+	public static LocalDateTime plusYears(LocalDateTime localDateTime, long amountToAdd){
+		return (LocalDateTime) plus(localDateTime, ChronoUnit.YEARS, amountToAdd);
+	}
+	
+	public static LocalDate plusYears(LocalDate localDate, long amountToAdd){
+		return (LocalDate) plus(localDate, ChronoUnit.YEARS, amountToAdd);
+	}
+	
+	public static Date plusMonths(Date date, long amountToAdd){
+		return plus(date, ChronoUnit.MONTHS, amountToAdd);
+	}
+	
+	public static LocalDateTime plusMonths(LocalDateTime localDateTime, long amountToAdd){
+		return (LocalDateTime) plus(localDateTime, ChronoUnit.MONTHS, amountToAdd);
+	}
+	
+	public static LocalDate plusMonths(LocalDate localDate, long amountToAdd){
+		return (LocalDate) plus(localDate, ChronoUnit.MONTHS, amountToAdd);
+	}
+	
+	public static Date plusWeeks(Date date, long amountToAdd){
+		return plus(date, ChronoUnit.WEEKS, amountToAdd);
+	}
+	
+	public static LocalDateTime plusWeeks(LocalDateTime localDateTime, long amountToAdd){
+		return (LocalDateTime) plus(localDateTime, ChronoUnit.WEEKS, amountToAdd);
+	}
+	
+	public static LocalDate plusWeeks(LocalDate localDate, long amountToAdd){
+		return (LocalDate) plus(localDate, ChronoUnit.WEEKS, amountToAdd);
+	}	
+	
 	public static Date plusDays(Date date, long amountToAdd){
 		return plus(date, ChronoUnit.DAYS, amountToAdd);
 	}
@@ -271,6 +307,104 @@ public class DateTimeCalculatorUtil {
 	
 	public static LocalTime plusMinutes(LocalTime localTime, long amountToAdd){
 		return (LocalTime) plus(localTime, ChronoUnit.MINUTES, amountToAdd);
+	}
+	
+	public static Date plusSeconds(Date date, long amountToAdd){
+		return plus(date, ChronoUnit.SECONDS, amountToAdd);
+	}
+	
+	public static LocalDateTime plusSeconds(LocalDateTime localDateTime, long amountToAdd){
+		return (LocalDateTime) plus(localDateTime, ChronoUnit.SECONDS, amountToAdd);
+	}
+	
+	public static LocalTime plusSeconds(LocalTime localTime, long amountToAdd){
+		return (LocalTime) plus(localTime, ChronoUnit.SECONDS, amountToAdd);
+	}	
+	
+	// minus two times
+	
+	public static Date minusYears(Date date, long amountToAdd){
+		return minus(date, ChronoUnit.YEARS, amountToAdd);
+	}
+	
+	public static LocalDateTime minusYears(LocalDateTime localDateTime, long amountToAdd){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.YEARS, amountToAdd);
+	}
+	
+	public static LocalDate minusYears(LocalDate localDate, long amountToAdd){
+		return (LocalDate) minus(localDate, ChronoUnit.YEARS, amountToAdd);
+	}
+	
+	public static Date minusMonths(Date date, long amountToAdd){
+		return minus(date, ChronoUnit.MONTHS, amountToAdd);
+	}
+	
+	public static LocalDateTime minusMonths(LocalDateTime localDateTime, long amountToAdd){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.MONTHS, amountToAdd);
+	}
+	
+	public static LocalDate minusMonths(LocalDate localDate, long amountToAdd){
+		return (LocalDate) minus(localDate, ChronoUnit.MONTHS, amountToAdd);
+	}
+	
+	public static Date minusWeeks(Date date, long amountToAdd){
+		return minus(date, ChronoUnit.WEEKS, amountToAdd);
+	}
+	
+	public static LocalDateTime minusWeeks(LocalDateTime localDateTime, long amountToAdd){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.WEEKS, amountToAdd);
+	}
+	
+	public static LocalDate minusWeeks(LocalDate localDate, long amountToAdd){
+		return (LocalDate) minus(localDate, ChronoUnit.WEEKS, amountToAdd);
+	}	
+	
+	public static Date minusDays(Date date, long amountToAdd){
+		return minus(date, ChronoUnit.DAYS, amountToAdd);
+	}
+	
+	public static LocalDateTime minusDays(LocalDateTime localDateTime, long amountToAdd){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.DAYS, amountToAdd);
+	}
+	
+	public static LocalDate minusDays(LocalDate localDate, long amountToAdd){
+		return (LocalDate) minus(localDate, ChronoUnit.DAYS, amountToAdd);
+	}
+	
+	public static Date minusHours(Date date, long amountToAdd){
+		return minus(date, ChronoUnit.HOURS, amountToAdd);
+	}
+	
+	public static LocalDateTime minusHours(LocalDateTime localDateTime, long amountToAdd){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.HOURS, amountToAdd);
+	}
+	
+	public static LocalTime minusHours(LocalTime localTime, long amountToAdd){
+		return (LocalTime) minus(localTime, ChronoUnit.HOURS, amountToAdd);
+	}
+	
+	public static Date minusMinutes(Date date, long amountToAdd){
+		return minus(date, ChronoUnit.MINUTES, amountToAdd);
+	}
+	
+	public static LocalDateTime minusMinutes(LocalDateTime localDateTime, long amountToAdd){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.MINUTES, amountToAdd);
+	}
+	
+	public static LocalTime minusMinutes(LocalTime localTime, long amountToAdd){
+		return (LocalTime) minus(localTime, ChronoUnit.MINUTES, amountToAdd);
+	}
+	
+	public static Date minusSeconds(Date date, long amountToAdd){
+		return minus(date, ChronoUnit.SECONDS, amountToAdd);
+	}
+	
+	public static LocalDateTime minusSeconds(LocalDateTime localDateTime, long amountToAdd){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.SECONDS, amountToAdd);
+	}
+	
+	public static LocalTime minusSeconds(LocalTime localTime, long amountToAdd){
+		return (LocalTime) minus(localTime, ChronoUnit.SECONDS, amountToAdd);
 	}
 	
 	// get the difference between two times
