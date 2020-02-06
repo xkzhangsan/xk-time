@@ -137,7 +137,76 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.withHour(ldt, 17));
 		System.out.println(DateTimeCalculatorUtil.withMinute(ldt, 30));
 		System.out.println(DateTimeCalculatorUtil.withSecond(ldt, 30));
+	}
+	
+	/**
+	 * 使用Period比较2个LocalDate
+	 */
+	@Test
+	public void dateCalculatorPeriodBetweenTest(){
+		LocalDate localDate = LocalDate.now();
+		LocalDate localDate2 = LocalDate.of(2021, 3, 7);
+		System.out.println(localDate);
+		System.out.println(localDate2);
+		
+		System.out.println(DateTimeCalculatorUtil.betweenYears(localDate, localDate2));
+		System.out.println(DateTimeCalculatorUtil.betweenMonths(localDate, localDate2));
+		System.out.println(DateTimeCalculatorUtil.betweenDays(localDate, localDate2));
+	}
+	
+	/**
+	 * 使用Period比较2个Date
+	 */
+	@Test
+	public void dateCalculatorPeriodBetweenTest2(){
+		Date date = new Date();
+		LocalDate localDate2 = LocalDate.of(2021, 3, 7);
+		Date date2 = DateTimeConverterUtil.toDate(localDate2);
+		System.out.println(date);
+		System.out.println(date2);
+		
+		System.out.println(DateTimeCalculatorUtil.betweenYears(date, date2));
+		System.out.println(DateTimeCalculatorUtil.betweenMonths(date, date2));
+		System.out.println(DateTimeCalculatorUtil.betweenDays(date, date2));
+	}
+	
+	/**
+	 * 使用Duration比较2个LocalDateTime
+	 */
+	@Test
+	public void dateCalculatorDurationBetweenTest(){
+		LocalDateTime localDateTime = LocalDateTime.now();
+		LocalDateTime localDateTime2 = LocalDateTime.of(2021, 3, 7, 22, 10, 10);
+		System.out.println(localDateTime);
+		System.out.println(localDateTime2);
+		
+		System.out.println(DateTimeCalculatorUtil.betweenTotalDays(localDateTime, localDateTime2));
+		System.out.println(DateTimeCalculatorUtil.betweenTotalHours(localDateTime, localDateTime2));
+		System.out.println(DateTimeCalculatorUtil.betweenTotalMinutes(localDateTime, localDateTime2));
+		System.out.println(DateTimeCalculatorUtil.betweenTotalSeconds(localDateTime, localDateTime2));
+		System.out.println(DateTimeCalculatorUtil.betweenTotalMillis(localDateTime, localDateTime2));
+		System.out.println(DateTimeCalculatorUtil.betweenTotalNanos(localDateTime, localDateTime2));
+	}
+	
+	/**
+	 * 使用Duration比较2个Date
+	 */
+	@Test
+	public void dateCalculatorDurationBetweenTest2(){
+		Date date = new Date();
+		LocalDate localDate2 = LocalDate.of(2021, 3, 7);
+		Date date2 = DateTimeConverterUtil.toDate(localDate2);
+		System.out.println(date);
+		System.out.println(date2);
+		
+		System.out.println(DateTimeCalculatorUtil.betweenTotalDays(date, date2));
+		System.out.println(DateTimeCalculatorUtil.betweenTotalHours(date, date2));
+		System.out.println(DateTimeCalculatorUtil.betweenTotalMinutes(date, date2));
+		System.out.println(DateTimeCalculatorUtil.betweenTotalSeconds(date, date2));
+		System.out.println(DateTimeCalculatorUtil.betweenTotalMillis(date, date2));
+		System.out.println(DateTimeCalculatorUtil.betweenTotalNanos(date, date2));
 	}	
+	
 	
 	@Test
 	public void dateCalculatorTest(){

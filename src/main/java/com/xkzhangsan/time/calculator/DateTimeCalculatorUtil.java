@@ -505,57 +505,293 @@ public class DateTimeCalculatorUtil {
 	// get the difference between two times
 	
 	/**
-	 * 获取2个日期的相差毫秒值
+	 * 获取2个日期的相差年月天的年数部分
 	 * @param startInclusive
 	 * @param endExclusive
 	 * @return
 	 */
-	public static long betweenMilliseconds(LocalDateTime startInclusive, LocalDateTime endExclusive){
-		return durationBetween(startInclusive, endExclusive).toMillis();
+	public static long betweenYears(LocalDateTime startInclusive, LocalDateTime endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return Period.between(DateTimeConverterUtil.toLocalDate(startInclusive),
+				DateTimeConverterUtil.toLocalDate(endExclusive)).getYears();
 	}
 	
 	/**
-	 * 获取2个日期的相差毫秒值
-	 * @param date1
-	 * @param date2
+	 * 获取2个日期的相差年月天的年数部分
+	 * @param startInclusive
+	 * @param endExclusive
 	 * @return
 	 */
-	public static long betweenMilliseconds(Date date1, Date date2){
-		Objects.requireNonNull(date1, "date1");
-		Objects.requireNonNull(date2, "date2");
-		return durationBetween(DateTimeConverterUtil.toLocalDateTime(date1), DateTimeConverterUtil.toLocalDateTime(date2)).toMillis();
+	public static long betweenYears(Date startInclusive, Date endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return Period.between(DateTimeConverterUtil.toLocalDate(startInclusive),
+				DateTimeConverterUtil.toLocalDate(endExclusive)).getYears();
 	}
 	
 	/**
-	 * 获取2个日期的相差天数，更准确的天数计算，包括时间部分
+	 * 获取2个日期的相差年月天的年数部分
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenYears(LocalDate startInclusive, LocalDate endExclusive){
+		return Period.between(startInclusive, endExclusive).getYears();
+	}
+	
+	/**
+	 * 获取2个日期的相差年月天的月数部分
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenMonths(LocalDateTime startInclusive, LocalDateTime endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return Period.between(DateTimeConverterUtil.toLocalDate(startInclusive),
+				DateTimeConverterUtil.toLocalDate(endExclusive)).getMonths();
+	}
+	
+	/**
+	 * 获取2个日期的相差年月天的月数部分
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenMonths(Date startInclusive, Date endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return Period.between(DateTimeConverterUtil.toLocalDate(startInclusive),
+				DateTimeConverterUtil.toLocalDate(endExclusive)).getMonths();
+	}
+	
+	/**
+	 * 获取2个日期的相差年月天的月数部分
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenMonths(LocalDate startInclusive, LocalDate endExclusive){
+		return Period.between(startInclusive, endExclusive).getMonths();
+	}
+	
+	/**
+	 * 获取2个日期的相差年月天的天数部分
 	 * @param startInclusive
 	 * @param endExclusive
 	 * @return
 	 */
 	public static long betweenDays(LocalDateTime startInclusive, LocalDateTime endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return Period.between(DateTimeConverterUtil.toLocalDate(startInclusive),
+				DateTimeConverterUtil.toLocalDate(endExclusive)).getDays();
+	}
+	
+	/**
+	 * 获取2个日期的相差年月天的天数部分
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenDays(Date startInclusive, Date endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return Period.between(DateTimeConverterUtil.toLocalDate(startInclusive),
+				DateTimeConverterUtil.toLocalDate(endExclusive)).getDays();
+	}
+	
+	/**
+	 * 获取2个日期的相差年月天的天数部分
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenDays(LocalDate startInclusive, LocalDate endExclusive){
+		return Period.between(startInclusive, endExclusive).getDays();
+	}
+	
+	/**
+	 * 获取2个日期的相差总天数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalDays(LocalDateTime startInclusive, LocalDateTime endExclusive){
 		return Duration.between(startInclusive, endExclusive).toDays();
 	}
 	
 	/**
-	 * 获取2个日期的相差天数，更准确的天数计算，包括时间部分
-	 * @param date1
-	 * @param date2
+	 * 获取2个日期的相差总天数
+	 * @param startInclusive
+	 * @param endExclusive
 	 * @return
 	 */
-	public static long betweenDays(Date date1, Date date2){
-		Objects.requireNonNull(date1, "date1");
-		Objects.requireNonNull(date2, "date2");
-		return durationBetween(DateTimeConverterUtil.toLocalDateTime(date1), DateTimeConverterUtil.toLocalDateTime(date2)).toDays();
+	public static long betweenTotalDays(Date startInclusive, Date endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return durationBetween(DateTimeConverterUtil.toLocalDateTime(startInclusive), DateTimeConverterUtil.toLocalDateTime(endExclusive)).toDays();
+	}
+	
+	/**
+	 * 获取2个日期的相差总小时数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalHours(LocalDateTime startInclusive, LocalDateTime endExclusive){
+		return Duration.between(startInclusive, endExclusive).toHours();
+	}
+	
+	/**
+	 * 获取2个日期的相差总小时数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalHours(LocalTime startInclusive, LocalTime endExclusive){
+		return Duration.between(startInclusive, endExclusive).toHours();
+	}
+	
+	/**
+	 * 获取2个日期的相差总小时数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalHours(Date startInclusive, Date endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return durationBetween(DateTimeConverterUtil.toLocalDateTime(startInclusive), DateTimeConverterUtil.toLocalDateTime(endExclusive)).toHours();
+	}
+	
+	/**
+	 * 获取2个日期的相差总分钟数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalMinutes(LocalDateTime startInclusive, LocalDateTime endExclusive){
+		return Duration.between(startInclusive, endExclusive).toMinutes();
+	}
+	
+	/**
+	 * 获取2个日期的相差总分钟数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalMinutes(LocalTime startInclusive, LocalTime endExclusive){
+		return Duration.between(startInclusive, endExclusive).toMinutes();
+	}
+	
+	/**
+	 * 获取2个日期的相差总分钟数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalMinutes(Date startInclusive, Date endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return durationBetween(DateTimeConverterUtil.toLocalDateTime(startInclusive), DateTimeConverterUtil.toLocalDateTime(endExclusive)).toMinutes();
+	}
+	
+	/**
+	 * 获取2个日期的相差总秒数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalSeconds(LocalDateTime startInclusive, LocalDateTime endExclusive){
+		return Duration.between(startInclusive, endExclusive).getSeconds();
+	}
+	
+	/**
+	 * 获取2个日期的相差总秒数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalSeconds(LocalTime startInclusive, LocalTime endExclusive){
+		return Duration.between(startInclusive, endExclusive).getSeconds();
+	}
+	
+	/**
+	 * 获取2个日期的相差总秒数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalSeconds(Date startInclusive, Date endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return durationBetween(DateTimeConverterUtil.toLocalDateTime(startInclusive), DateTimeConverterUtil.toLocalDateTime(endExclusive)).getSeconds();
+	}
+	
+	/**
+	 * 获取2个日期的相差总毫秒数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalMillis(LocalDateTime startInclusive, LocalDateTime endExclusive){
+		return Duration.between(startInclusive, endExclusive).toMillis();
+	}
+	
+	/**
+	 * 获取2个日期的相差总毫秒数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalMillis(LocalTime startInclusive, LocalTime endExclusive){
+		return Duration.between(startInclusive, endExclusive).toMillis();
+	}
+	
+	/**
+	 * 获取2个日期的相差总毫秒数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalMillis(Date startInclusive, Date endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return durationBetween(DateTimeConverterUtil.toLocalDateTime(startInclusive), DateTimeConverterUtil.toLocalDateTime(endExclusive)).toMillis();
 	}	
 	
 	/**
-	 * 获取2个日期的相差年月天的天数部分，粗略计算天数，不关心时间部分
-	 * @param startDateInclusive
-	 * @param endDateExclusive
+	 * 获取2个日期的相差总纳秒数
+	 * @param startInclusive
+	 * @param endExclusive
 	 * @return
 	 */
-	public static int betweenDays(LocalDate startDateInclusive, LocalDate endDateExclusive){
-		return periodBetween(startDateInclusive, endDateExclusive).getDays();
+	public static long betweenTotalNanos(LocalDateTime startInclusive, LocalDateTime endExclusive){
+		return Duration.between(startInclusive, endExclusive).toNanos();
+	}
+	
+	/**
+	 * 获取2个日期的相差总纳秒数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalNanos(LocalTime startInclusive, LocalTime endExclusive){
+		return Duration.between(startInclusive, endExclusive).toNanos();
+	}
+	
+	/**
+	 * 获取2个日期的相差总纳秒数
+	 * @param startInclusive
+	 * @param endExclusive
+	 * @return
+	 */
+	public static long betweenTotalNanos(Date startInclusive, Date endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return durationBetween(DateTimeConverterUtil.toLocalDateTime(startInclusive), DateTimeConverterUtil.toLocalDateTime(endExclusive)).toNanos();
 	}
 	
 	// base operation
