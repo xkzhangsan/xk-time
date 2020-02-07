@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.xkzhangsan</groupId>
 	<artifactId>xk-time</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 	<name>xk-time</name>
 	<url>https://github.com/xkzhangsan/xk-time</url>
@@ -78,6 +78,15 @@
 			<properties>
 				<profiles.active>beta</profiles.active>
 			</properties>
+		</profile>
+		<profile>
+		        <id>disable-java8-doclint</id>
+		        <activation>
+		            <jdk>[1.8,)</jdk>
+		        </activation>
+		        <properties>
+		            <additionalparam>-Xdoclint:none</additionalparam>
+		        </properties>
 		</profile>
 	</profiles>
 	<build>

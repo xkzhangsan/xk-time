@@ -3,6 +3,13 @@ xk-time is a datetime converter calculator and formatter tool set, based on java
 
 datetime转换，计算，格式化，解析的工具，使用java8，线程安全，简单易用，多达20几种常用日期格式化模板。  
 
+0.依赖  
+    <dependency>  
+      <groupId>com.github.xkzhangsan</groupId>    
+      <artifactId>xk-time</artifactId>       
+      <version>0.0.1</version>    
+    </dependency>    
+
 1.日期转换  
 包含Date、LocalDate、LocalDateTime、LocalTime和Instant的互相转换。  
 
