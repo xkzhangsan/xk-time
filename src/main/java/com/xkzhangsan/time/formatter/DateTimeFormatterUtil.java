@@ -13,6 +13,11 @@ import java.util.Objects;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 
 /**
+ * 日期格式化和解析
+ * 包含常用日期格式如：
+ * yyyy-MM-dd
+ * HH:mm:ss
+ * yyyy-MM-dd HH:mm:ss等等
  * 
 * @ClassName: DateTimeFormatterUtil 
 * @Description: DateTime Formatter

@@ -11,6 +11,7 @@ import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 
 /**
  * 公历常见假日
+ * @version 0.1 ，初版，试用
  */
 public enum LocalHolidayEnum implements Holiday{
 

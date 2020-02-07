@@ -1,5 +1,6 @@
 package com.xkzhangsan.time.test;
 
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -207,6 +208,58 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.betweenTotalNanos(date, date2));
 	}	
 	
+	
+	/**
+	 * Date其他常用计算
+	 */
+	@Test
+	public void dateCalculatorOtherTest(){
+		Date date = new Date();
+		System.out.println(date);
+		System.out.println(DateTimeConverterUtil.toLocalDateTime(date));
+		//获取星期值
+		System.out.println(DateTimeCalculatorUtil.getDayOfWeek(date));
+		//获取星期值当前月的最后一天
+		System.out.println(DateTimeCalculatorUtil.lastDayOfMonth(date));
+		//判断是否闰年
+		System.out.println(DateTimeCalculatorUtil.isLeapYear(date));
+		//获取月的天数
+		System.out.println(DateTimeCalculatorUtil.lengthOfMonth(date));
+		//获取月的天数
+		System.out.println(DateTimeCalculatorUtil.lengthOfYear(date));
+		//下一个星期一
+		System.out.println(DateTimeCalculatorUtil.next(date, DayOfWeek.MONDAY));
+		//上一个星期一
+		System.out.println(DateTimeCalculatorUtil.previous(date, DayOfWeek.MONDAY));
+		//获下一个工作日
+		System.out.println(DateTimeCalculatorUtil.nextWorkDay(date));
+	}
+	
+	/**
+	 * LocalDateTime其他常用计算
+	 */
+	@Test
+	public void dateCalculatorOtherTest2(){
+		LocalDateTime ldt = LocalDateTime.now();
+		System.out.println(ldt);
+		
+		//获取星期值
+		System.out.println(DateTimeCalculatorUtil.getDayOfWeek(ldt));
+		//获取星期值当前月的最后一天
+		System.out.println(DateTimeCalculatorUtil.lastDayOfMonth(ldt));
+		//判断是否闰年
+		System.out.println(DateTimeCalculatorUtil.isLeapYear(ldt));
+		//获取月的天数
+		System.out.println(DateTimeCalculatorUtil.lengthOfMonth(ldt));
+		//获取月的天数
+		System.out.println(DateTimeCalculatorUtil.lengthOfYear(ldt));
+		//下一个星期一
+		System.out.println(DateTimeCalculatorUtil.next(ldt, DayOfWeek.MONDAY));
+		//上一个星期一
+		System.out.println(DateTimeCalculatorUtil.previous(ldt, DayOfWeek.MONDAY));
+		//获下一个工作日
+		System.out.println(DateTimeCalculatorUtil.nextWorkDay(ldt));
+	}	
 	
 	@Test
 	public void dateCalculatorTest(){

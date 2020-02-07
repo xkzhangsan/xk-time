@@ -21,6 +21,14 @@ import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 
 /**
  * 日期计算工具类
+ * 包括：
+ * 1.获取时间属性方法，get* 比如getYear(Date date) 获取年部分
+ * 2.获取时间加操作方法，plus* 比如plusYears(Date date, long amountToAdd) 当前时间年增加amountToAdd值
+ * 3.获取时间减操作方法，minus* 比如minusYears(Date date, long amountToAdd) 当前时间年减少amountToAdd值
+ * 4.获取时间修改属性方法，with* 比如withYear(Date date, long newValue) 修改当前时间年值为newValue
+ * 5.获取比较2个时间方法，between* 比如betweenYears(Date startInclusive, Date endExclusive) 比较2个时间，获取年部分
+ * 6.其他常用方法，比如isLeapYear(Date date) 判断是否闰年
+ * 
 * @ClassName: DateTimeCalculatorUtil 
 * @Description:  DateTime Calculator
 * @author xkzhangsan
@@ -89,159 +97,6 @@ public class DateTimeCalculatorUtil {
 	
 	public static long getEpochMilli(){
 		return Instant.now().toEpochMilli();
-	}
-	
-	// get other properties
-	
-	public static int getDayOfWeek(Date date){
-		return DateTimeConverterUtil.toLocalDateTime(date).getDayOfWeek().getValue();
-	}
-	
-	public static int getDayOfWeek(Instant instant){
-		return DateTimeConverterUtil.toLocalDateTime(instant).getDayOfWeek().getValue();
-	}
-	
-	public static LocalDate lastDayOfMonth(LocalDate localDate){
-		Objects.requireNonNull(localDate, "localDate");
-		return localDate.with(TemporalAdjusters.lastDayOfMonth());
-	}
-	
-	public static LocalDateTime lastDayOfMonth(LocalDateTime localDateTime){
-		Objects.requireNonNull(localDateTime, "localDateTime");
-		return localDateTime.with(TemporalAdjusters.lastDayOfMonth());
-	}	
-	
-	public static Date lastDayOfMonth(Date date){
-		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusters.lastDayOfMonth()));
-	}	
-	
-	/**
-	 * 判断是否闰年
-	 * @param localDate
-	 * @return
-	 */
-	public boolean isLeapYear(LocalDate localDate){
-		Objects.requireNonNull(localDate, "localDate");
-		return localDate.isLeapYear();
-	}
-	
-	/**
-	 * 判断是否闰年
-	 * @param localDateTime
-	 * @return
-	 */
-	public boolean isLeapYear(LocalDateTime localDateTime){
-		Objects.requireNonNull(localDateTime, "localDateTime");
-		return localDateTime.toLocalDate().isLeapYear();
-	}
-	
-	/**
-	 * 判断是否闰年
-	 * @param date
-	 * @return
-	 */
-	public boolean isLeapYear(Date date){
-		return DateTimeConverterUtil.toLocalDateTime(date).toLocalDate().isLeapYear();
-	}
-	
-	/**
-	 * 获取月的天数
-	 * @param localDate
-	 * @return
-	 */
-	public int lengthOfMonth(LocalDate localDate){
-		Objects.requireNonNull(localDate, "localDate");
-		return localDate.lengthOfMonth();
-	}
-	
-	/**
-	 * 获取月的天数
-	 * @param localDateTime
-	 * @return
-	 */
-	public int lengthOfMonth(LocalDateTime localDateTime){
-		Objects.requireNonNull(localDateTime, "localDateTime");
-		return localDateTime.toLocalDate().lengthOfMonth();
-	}
-	
-	/**
-	 * 获取月的天数
-	 * @param date
-	 * @return
-	 */
-	public int lengthOfMonth(Date date){
-		return DateTimeConverterUtil.toLocalDateTime(date).toLocalDate().lengthOfMonth();
-	}
-	
-	/**
-	 *  获取年的天数
-	 * @param localDate
-	 * @return
-	 */
-	public int lengthOfYear(LocalDate localDate){
-		Objects.requireNonNull(localDate, "localDate");
-		return localDate.lengthOfYear();
-	}
-	
-	/**
-	 * 获取年的天数
-	 * @param localDateTime
-	 * @return
-	 */
-	public int lengthOfYear(LocalDateTime localDateTime){
-		Objects.requireNonNull(localDateTime, "localDateTime");
-		return localDateTime.toLocalDate().lengthOfYear();
-	}
-	
-	/**
-	 * 获取年的天数
-	 * @param date
-	 * @return
-	 */
-	public int lengthOfYear(Date date){
-		return DateTimeConverterUtil.toLocalDateTime(date).toLocalDate().lengthOfYear();
-	}	
-	
-	public static LocalDate next(LocalDate localDate, DayOfWeek dayOfWeek){
-		Objects.requireNonNull(localDate, "localDate");
-		return localDate.with(TemporalAdjusters.next(dayOfWeek));
-	}
-	
-	public static LocalDateTime next(LocalDateTime localDateTime, DayOfWeek dayOfWeek){
-		return localDateTime.with(TemporalAdjusters.next(dayOfWeek));
-	}
-
-	public static Date next(Date date, DayOfWeek dayOfWeek){
-		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusters.next(dayOfWeek)));
-	}
-	
-	public static LocalDate previous(LocalDate localDate, DayOfWeek dayOfWeek){
-		Objects.requireNonNull(localDate, "localDate");
-		return localDate.with(TemporalAdjusters.previous(dayOfWeek));
-	}
-	
-	public static LocalDate nextWorkDay(LocalDate localDate){
-		Objects.requireNonNull(localDate, "localDate");
-		return localDate.with(TemporalAdjusterExtension.nextWorkDay());
-	}
-	
-	/**
-	 * 获下一个工作日
-	 * @param localDateTime
-	 * @return
-	 */
-	public static LocalDateTime nextWorkDay(LocalDateTime localDateTime){
-		Objects.requireNonNull(localDateTime, "localDateTime");
-		return localDateTime.with(TemporalAdjusterExtension.nextWorkDay());
-	}
-	
-	/**
-	 * 获下一个工作日
-	 * @param date
-	 * @return
-	 */
-	public static Date nextWorkDay(Date date){
-		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusterExtension.nextWorkDay()));
 	}
 	
 	// plus two times
@@ -794,22 +649,289 @@ public class DateTimeCalculatorUtil {
 		return durationBetween(DateTimeConverterUtil.toLocalDateTime(startInclusive), DateTimeConverterUtil.toLocalDateTime(endExclusive)).toNanos();
 	}
 	
+	
+	// get other properties
+	
+	/**
+	 * 获取星期值 1-7，星期一到星期日
+	 * @param date
+	 * @return
+	 */
+	public static int getDayOfWeek(Date date){
+		return DateTimeConverterUtil.toLocalDateTime(date).getDayOfWeek().getValue();
+	}
+	
+	/**
+	 * 获取星期值 1-7，星期一到星期日
+	 * @param localDateTime
+	 * @return
+	 */
+	public static int getDayOfWeek(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.getDayOfWeek().getValue();
+	}
+	
+	/**
+	 * 获取星期值 1-7，星期一到星期日
+	 * @param instant
+	 * @return
+	 */
+	public static int getDayOfWeek(Instant instant){
+		return DateTimeConverterUtil.toLocalDateTime(instant).getDayOfWeek().getValue();
+	}
+	
+	/**
+	 * 获取星期值当前月的最后一天
+	 * @param localDate
+	 * @return
+	 */
+	public static LocalDate lastDayOfMonth(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.with(TemporalAdjusters.lastDayOfMonth());
+	}
+	
+	/**
+	 * 获取星期值当前月的最后一天
+	 * @param localDateTime
+	 * @return
+	 */
+	public static LocalDateTime lastDayOfMonth(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.with(TemporalAdjusters.lastDayOfMonth());
+	}	
+	
+	/**
+	 * 获取星期值当前月的最后一天
+	 * @param date
+	 * @return
+	 */
+	public static Date lastDayOfMonth(Date date){
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusters.lastDayOfMonth()));
+	}	
+	
+	/**
+	 * 判断是否闰年
+	 * @param localDate
+	 * @return
+	 */
+	public static boolean isLeapYear(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.isLeapYear();
+	}
+	
+	/**
+	 * 判断是否闰年
+	 * @param localDateTime
+	 * @return
+	 */
+	public static boolean isLeapYear(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.toLocalDate().isLeapYear();
+	}
+	
+	/**
+	 * 判断是否闰年
+	 * @param date
+	 * @return
+	 */
+	public static boolean isLeapYear(Date date){
+		return DateTimeConverterUtil.toLocalDateTime(date).toLocalDate().isLeapYear();
+	}
+	
+	/**
+	 * 获取月的天数
+	 * @param localDate
+	 * @return
+	 */
+	public static int lengthOfMonth(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.lengthOfMonth();
+	}
+	
+	/**
+	 * 获取月的天数
+	 * @param localDateTime
+	 * @return
+	 */
+	public static int lengthOfMonth(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.toLocalDate().lengthOfMonth();
+	}
+	
+	/**
+	 * 获取月的天数
+	 * @param date
+	 * @return
+	 */
+	public static int lengthOfMonth(Date date){
+		return DateTimeConverterUtil.toLocalDateTime(date).toLocalDate().lengthOfMonth();
+	}
+	
+	/**
+	 *  获取年的天数
+	 * @param localDate
+	 * @return
+	 */
+	public static int lengthOfYear(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.lengthOfYear();
+	}
+	
+	/**
+	 * 获取年的天数
+	 * @param localDateTime
+	 * @return
+	 */
+	public static int lengthOfYear(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.toLocalDate().lengthOfYear();
+	}
+	
+	/**
+	 * 获取年的天数
+	 * @param date
+	 * @return
+	 */
+	public static int lengthOfYear(Date date){
+		return DateTimeConverterUtil.toLocalDateTime(date).toLocalDate().lengthOfYear();
+	}	
+	
+	/**
+	 * 下一个星期几
+	 * @param localDate
+	 * @param dayOfWeek
+	 * @return
+	 */
+	public static LocalDate next(LocalDate localDate, DayOfWeek dayOfWeek){
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.with(TemporalAdjusters.next(dayOfWeek));
+	}
+	
+	/**
+	 * 下一个星期几
+	 * @param localDateTime
+	 * @param dayOfWeek
+	 * @return
+	 */
+	public static LocalDateTime next(LocalDateTime localDateTime, DayOfWeek dayOfWeek){
+		return localDateTime.with(TemporalAdjusters.next(dayOfWeek));
+	}
+
+	/**
+	 * 下一个星期几
+	 * @param date
+	 * @param dayOfWeek
+	 * @return
+	 */
+	public static Date next(Date date, DayOfWeek dayOfWeek){
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusters.next(dayOfWeek)));
+	}
+	
+	
+	/**
+	 * 上一个星期几
+	 * @param localDate
+	 * @param dayOfWeek
+	 * @return
+	 */
+	public static LocalDate previous(LocalDate localDate, DayOfWeek dayOfWeek){
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.with(TemporalAdjusters.previous(dayOfWeek));
+	}
+	
+	/**
+	 * 上一个星期几
+	 * @param localDateTime
+	 * @param dayOfWeek
+	 * @return
+	 */
+	public static LocalDateTime previous(LocalDateTime localDateTime, DayOfWeek dayOfWeek){
+		return localDateTime.with(TemporalAdjusters.previous(dayOfWeek));
+	}
+
+	/**
+	 * 上一个星期几
+	 * @param date
+	 * @param dayOfWeek
+	 * @return
+	 */
+	public static Date previous(Date date, DayOfWeek dayOfWeek){
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusters.previous(dayOfWeek)));
+	}
+	
+	/**
+	 * 获下一个工作日
+	 * @param localDate
+	 * @return
+	 */
+	public static LocalDate nextWorkDay(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.with(TemporalAdjusterExtension.nextWorkDay());
+	}
+	
+	/**
+	 * 获下一个工作日
+	 * @param localDateTime
+	 * @return
+	 */
+	public static LocalDateTime nextWorkDay(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.with(TemporalAdjusterExtension.nextWorkDay());
+	}
+	
+	/**
+	 * 获下一个工作日
+	 * @param date
+	 * @return
+	 */
+	public static Date nextWorkDay(Date date){
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusterExtension.nextWorkDay()));
+	}	
+	
 	// base operation
 	
+	/**
+	 * 日期加操作
+	 * @param temporal
+	 * @param unit
+	 * @param amountToAdd
+	 * @return
+	 */
 	public static Temporal plus(Temporal temporal, TemporalUnit unit, long amountToAdd) {
 		Objects.requireNonNull(temporal, "temporal");
 		return temporal.plus(amountToAdd, unit);
 	}
 	
+	/**
+	 * date日期加操作
+	 * @param date
+	 * @param unit
+	 * @param amountToAdd
+	 * @return
+	 */
 	public static Date plus(Date date, TemporalUnit unit, long amountToAdd) {
 		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(date).plus(amountToAdd, unit));
 	}
 	
+	/**
+	 * 日期减操作
+	 * @param temporal
+	 * @param unit
+	 * @param amountToSubtract
+	 * @return
+	 */
 	public static Temporal minus(Temporal temporal, TemporalUnit unit, long amountToSubtract) {
 		Objects.requireNonNull(temporal, "temporal");
 		return temporal.minus(amountToSubtract, unit);
 	}
 	
+	/**
+	 * date日期减操作
+	 * @param date
+	 * @param unit
+	 * @param amountToSubtract
+	 * @return
+	 */
 	public static Date minus(Date date, TemporalUnit unit, long amountToSubtract) {
 		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(date).minus(amountToSubtract, unit));
 	}
@@ -838,7 +960,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取2个日期的相差，时间部分
+	 * 获取2个日期的总的天时分秒毫秒纳秒
 	 * @param startInclusive
 	 * @param endExclusive
 	 * @return Duration
@@ -848,7 +970,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取2个日期的相差，日期部分
+	 * 获取2个日期的相差年月日部分属性
 	 * @param startDateInclusive
 	 * @param endDateExclusive
 	 * @return Period

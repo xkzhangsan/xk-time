@@ -9,7 +9,7 @@ import com.xkzhangsan.time.LunarDate;
 /**
  * 农历节日
  * 使用LunarDate处理日历，所有仅支持公历1901-1950年的农历节日
- *
+ *@version 0.1 ，初版，试用
  */
 public enum ChineseHolidayEnum implements Holiday{
 	
