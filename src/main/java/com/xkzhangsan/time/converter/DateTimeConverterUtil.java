@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.Objects;
@@ -45,9 +46,19 @@ public class DateTimeConverterUtil {
 		return Date.from(instant);
 	}
 	
-	public static Date toDate(Long epochMilli){
+	public static Date toDate(long epochMilli){
 		Objects.requireNonNull(epochMilli, "epochMilli");
 		return new Date(epochMilli);
+	}
+	
+	/**
+	 * 注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
+	 * @param zonedDateTime
+	 * @return
+	 */
+	public static Date toDate(ZonedDateTime zonedDateTime) {
+		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+		return Date.from(zonedDateTime.toInstant());
 	}
 
 	public static LocalDateTime toLocalDateTime(Date date) {
@@ -74,14 +85,24 @@ public class DateTimeConverterUtil {
 		return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 	}
 	
-	public static LocalDateTime toLocalDateTime(Long epochMilli) {
+	public static LocalDateTime toLocalDateTime(long epochMilli) {
 		Objects.requireNonNull(epochMilli, "epochMilli");
 		return LocalDateTime.ofInstant(Instant.ofEpochMilli(epochMilli), ZoneId.systemDefault());
 	}
 	
 	public static LocalDateTime toLocalDateTime(TemporalAccessor temporal) {
 		return LocalDateTime.from(temporal);
-	}	
+	}
+	
+	/**
+	 * 注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
+	 * @param zonedDateTime
+	 * @return
+	 */
+	public static LocalDateTime toLocalDateTime(ZonedDateTime zonedDateTime) {
+		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+		return zonedDateTime.toLocalDateTime();
+	}
 
 	public static LocalDate toLocalDate(Date date) {
 		return toLocalDateTime(date).toLocalDate();
@@ -98,7 +119,17 @@ public class DateTimeConverterUtil {
 	
 	public static LocalDate toLocalDate(TemporalAccessor temporal) {
 		return LocalDate.from(temporal);
-	}	
+	}
+	
+	/**
+	 * 注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
+	 * @param zonedDateTime
+	 * @return
+	 */
+	public static LocalDate toLocalDate(ZonedDateTime zonedDateTime) {
+		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+		return zonedDateTime.toLocalDate();
+	}
 
 	public static LocalTime toLocalTime(Date date) {
 		return toLocalDateTime(date).toLocalTime();
@@ -115,7 +146,17 @@ public class DateTimeConverterUtil {
 	
 	public static LocalTime toLocalTime(TemporalAccessor temporal) {
 		return LocalTime.from(temporal);
-	}	
+	}
+	
+	/**
+	 * 注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
+	 * @param zonedDateTime
+	 * @return
+	 */
+	public static LocalTime toLocalTime(ZonedDateTime zonedDateTime) {
+		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+		return zonedDateTime.toLocalTime();
+	}
 
 	public static Instant toInstant(Date date) {
 		Objects.requireNonNull(date, "date");
@@ -140,7 +181,7 @@ public class DateTimeConverterUtil {
 		return toLocalDateTime(localTime).atZone(ZoneId.systemDefault()).toInstant();
 	}
 	
-	public static Instant toInstant(Long epochMilli) {
+	public static Instant toInstant(long epochMilli) {
 		Objects.requireNonNull(epochMilli, "epochMilli");
 		return Instant.ofEpochMilli(epochMilli);
 	}
@@ -150,12 +191,22 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
+	 * 注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
+	 * @param zonedDateTime
+	 * @return
+	 */
+	public static Instant toInstant(ZonedDateTime zonedDateTime) {
+		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+		return zonedDateTime.toInstant();
+	}
+	
+	/**
 	 * 转换为毫秒值
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * @param date
 	 * @return
 	 */
-	public static Long toEpochMilli(Date date){
+	public static long toEpochMilli(Date date){
 		Objects.requireNonNull(date, "date");
 		return date.getTime();
 	}
@@ -166,7 +217,7 @@ public class DateTimeConverterUtil {
 	 * @param localDateTime
 	 * @return
 	 */
-	public static Long toEpochMilli(LocalDateTime localDateTime){
+	public static long toEpochMilli(LocalDateTime localDateTime){
 		return toInstant(localDateTime).toEpochMilli();
 	}
 	
@@ -176,7 +227,7 @@ public class DateTimeConverterUtil {
 	 * @param localDate
 	 * @return
 	 */
-	public static Long toEpochMilli(LocalDate localDate){
+	public static long toEpochMilli(LocalDate localDate){
 		return toInstant(localDate).toEpochMilli();
 	}
 	
@@ -186,9 +237,80 @@ public class DateTimeConverterUtil {
 	 * @param instant
 	 * @return
 	 */
-	public static Long toEpochMilli(Instant instant){
+	public static long toEpochMilli(Instant instant){
 		Objects.requireNonNull(instant, "instant");
 		return instant.toEpochMilli();
 	}
+	
+	/**
+	 * 转换为毫秒值，注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
+	 * 从1970-01-01T00:00:00Z开始的毫秒值
+	 * @param zonedDateTime
+	 * @return
+	 */
+	public static long toEpochMilli(ZonedDateTime zonedDateTime) {
+		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+		return zonedDateTime.toInstant().toEpochMilli();
+	}
+	
+	/**
+	 * 转换为ZonedDateTime，时区为系统默认时区
+	 * @param date
+	 * @return
+	 */
+	public static ZonedDateTime toZonedDateTime(Date date) {
+		Objects.requireNonNull(date, "date");
+		return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime()
+				.atZone(ZoneId.systemDefault());
+	}
+
+	/**
+	 * 转换为ZonedDateTime，时区为系统默认时区
+	 * @param localDate
+	 * @return
+	 */
+	public static ZonedDateTime toZonedDateTime(LocalDate localDate) {
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.atStartOfDay().atZone(ZoneId.systemDefault());
+	}
+	
+	/**
+	 * 以当天的日期+LocalTime组成新的ZonedDateTime，时区为系统默认时区
+	 * @param localTime
+	 * @return
+	 */
+	public static ZonedDateTime toZonedDateTime(LocalTime localTime) {
+		Objects.requireNonNull(localTime, "localTime");
+		return LocalDate.now().atTime(localTime).atZone(ZoneId.systemDefault());
+	}
+
+	/**
+	 * 转换为ZonedDateTime，时区为系统默认时区
+	 * @param instant
+	 * @return
+	 */
+	public static ZonedDateTime toZonedDateTime(Instant instant) {
+		return LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).atZone(ZoneId.systemDefault());
+	}
+	
+	/**
+	 * 转换为ZonedDateTime，时区为系统默认时区
+	 * @param epochMilli
+	 * @return
+	 */
+	public static ZonedDateTime toZonedDateTime(long epochMilli) {
+		Objects.requireNonNull(epochMilli, "epochMilli");
+		return LocalDateTime.ofInstant(Instant.ofEpochMilli(epochMilli), ZoneId.systemDefault())
+				.atZone(ZoneId.systemDefault());
+	}
+	
+	/**
+	 * 转换为ZonedDateTime，时区为系统默认时区
+	 * @param temporal
+	 * @return
+	 */
+	public static ZonedDateTime toZonedDateTime(TemporalAccessor temporal) {
+		return LocalDateTime.from(temporal).atZone(ZoneId.systemDefault());
+	}	
 
 }

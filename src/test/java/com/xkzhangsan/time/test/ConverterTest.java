@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 import org.junit.Test;
@@ -31,6 +32,7 @@ public class ConverterTest {
 		System.out.println(DateTimeConverterUtil.toLocalDate(ldt));
 		System.out.println(DateTimeConverterUtil.toLocalTime(ldt));
 		System.out.println(DateTimeConverterUtil.toInstant(ldt));
+		System.out.println(DateTimeConverterUtil.toZonedDateTime(ldt));
 	}
 	
 	@Test
@@ -64,4 +66,16 @@ public class ConverterTest {
 		System.out.println(DateTimeConverterUtil.toLocalDateTime(instant));
 		System.out.println(DateTimeConverterUtil.toLocalDate(instant));
 	}
+	
+	@Test
+	public void zonedDateTimeConverterTest(){
+		System.out.println("===================zonedDateTimeConverterTest=====================");
+		ZonedDateTime zonedDateTime = ZonedDateTime.now();
+		System.out.println(zonedDateTime);
+		System.out.println(DateTimeConverterUtil.toDate(zonedDateTime));
+		System.out.println(DateTimeConverterUtil.toLocalDateTime(zonedDateTime));
+		System.out.println(DateTimeConverterUtil.toLocalDate(zonedDateTime));
+		System.out.println(DateTimeConverterUtil.toLocalTime(zonedDateTime));
+		System.out.println(DateTimeConverterUtil.toInstant(zonedDateTime));
+	}	
 }

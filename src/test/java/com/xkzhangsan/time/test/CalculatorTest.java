@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -13,6 +14,7 @@ import org.junit.Test;
 
 import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
+import com.xkzhangsan.time.enums.ZoneIdEnum;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 
 public class CalculatorTest {
@@ -259,6 +261,33 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.previous(ldt, DayOfWeek.MONDAY));
 		//获下一个工作日
 		System.out.println(DateTimeCalculatorUtil.nextWorkDay(ldt));
+	}
+	
+	/**
+	 * 时区时间计算
+	 */
+	@Test
+	public void zonedDateTimeTest(){
+		//系统默认时区
+		System.out.println(DateTimeCalculatorUtil.getZonedDateTimeNowOfDefault());
+		//系统上海时区
+		ZonedDateTime shanghaiZonedDateTime = DateTimeCalculatorUtil.getZonedDateTimeNowOfShanghai();
+		System.out.println(shanghaiZonedDateTime);
+		//系统巴黎时区
+		ZonedDateTime parisZonedDateTime = DateTimeCalculatorUtil.getZonedDateTimeNowOfParis();
+		System.out.println(parisZonedDateTime);
+		//系统美国东部时区纽约时间
+		System.out.println(DateTimeCalculatorUtil.getZonedDateTimeNowOfEST());
+		//系统东京时区
+		System.out.println(DateTimeCalculatorUtil.getZonedDateTimeNowOfTokyo());
+		
+		//上海时区，转换为巴黎时区
+		System.out.println("============transform 时区转换=============");
+		System.out.println("shanghaiZonedDateTime: "+shanghaiZonedDateTime);
+		ZonedDateTime transformZonedDateTime = DateTimeCalculatorUtil.transform(shanghaiZonedDateTime,
+				ZoneIdEnum.ECT.getZoneIdName());
+		System.out.println("transformZonedDateTime: "+transformZonedDateTime);
+		
 	}	
 	
 	@Test

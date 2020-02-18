@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
@@ -18,6 +20,7 @@ import java.util.Objects;
 
 import com.xkzhangsan.time.TemporalAdjusterExtension;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
+import com.xkzhangsan.time.enums.ZoneIdEnum;
 
 /**
  * 日期计算工具类
@@ -886,6 +889,51 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static Date nextWorkDay(Date date){
 		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusterExtension.nextWorkDay()));
+	}
+	
+	/**
+	 * 获取当前系统当前时区时间
+	 * @param zoneId
+	 * @return
+	 */
+	public static ZonedDateTime getZonedDateTimeNowOfDefault(){
+		return ZonedDateTime.now(ZoneId.systemDefault());
+	}
+	
+	/**
+	 * 获取当前上海时区时间（北京时间）
+	 * @param zoneId
+	 * @return
+	 */
+	public static ZonedDateTime getZonedDateTimeNowOfShanghai(){
+		return ZonedDateTime.now(ZoneId.of(ZoneIdEnum.CTT.getZoneIdName()));
+	}
+	
+	/**
+	 * 获取当前巴黎时区时间
+	 * @param zoneId
+	 * @return
+	 */
+	public static ZonedDateTime getZonedDateTimeNowOfParis(){
+		return ZonedDateTime.now(ZoneId.of(ZoneIdEnum.ECT.getZoneIdName()));
+	}
+	
+	/**
+	 * 获取当前美国东部标准时区（纽约、华盛顿）
+	 * @param zoneId
+	 * @return
+	 */
+	public static ZonedDateTime getZonedDateTimeNowOfEST(){
+		return ZonedDateTime.now(ZoneId.of(ZoneIdEnum.EST.getZoneIdName()));
+	}
+	
+	/**
+	 * 获取当前东京时区时间
+	 * @param zoneId
+	 * @return
+	 */
+	public static ZonedDateTime getZonedDateTimeNowOfTokyo(){
+		return ZonedDateTime.now(ZoneId.of(ZoneIdEnum.JST.getZoneIdName()));
 	}	
 	
 	// base operation
@@ -977,6 +1025,39 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static Period periodBetween(LocalDate startDateInclusive, LocalDate endDateExclusive){
 		return Period.between(startDateInclusive, endDateExclusive);
-	}	
+	}
+	
+	/**
+	 * 获取当前时区时间
+	 * @param zoneId
+	 * @return
+	 */
+	public static ZonedDateTime getZonedDateTimeNow(String zoneId){
+		Objects.requireNonNull(zoneId, "zoneId");
+		return ZonedDateTime.now(ZoneId.of(zoneId));
+	}
+	
+	/**
+	 * 时区转换计算
+	 * @param zonedDateTime
+	 * @param zoneId
+	 * @return
+	 */
+	public static ZonedDateTime transform(ZonedDateTime zonedDateTime, String zoneId){
+		Objects.requireNonNull(zoneId, "zoneId");
+		return transform(zonedDateTime, ZoneId.of(zoneId));
+	}
+	
+	/**
+	 * 时区转换计算
+	 * @param zonedDateTime
+	 * @param zone
+	 * @return
+	 */
+	public static ZonedDateTime transform(ZonedDateTime zonedDateTime, ZoneId zone){
+		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+		Objects.requireNonNull(zone, "zone");
+		return zonedDateTime.withZoneSameInstant(zone);
+	}
 	
 }

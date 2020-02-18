@@ -1,6 +1,7 @@
 package com.xkzhangsan.time.test;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 import org.junit.Test;
@@ -105,5 +106,25 @@ public class FormatterTest {
 	public void parseToInstantTest(){
 		System.out.println(DateTimeFormatterUtil.parseToInstant("2019年12月01日 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_FMT));
 		System.out.println(DateTimeFormatterUtil.parseToInstant("2019-12-01 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT));
+	}
+	
+	/**
+	 * 时区时间格式化
+	 */
+	@Test
+	public void zonedDateTimeFormatTest(){
+		//默认为系统时区
+		ZonedDateTime zonedDateTime = ZonedDateTime.now();
+		System.out.println(DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_Z_FMT));
+	}
+	
+	/**
+	 * 时区时间解析
+	 */
+	@Test
+	public void parseToZonedDateTimeTest(){
+		String text = "2020-02-18T22:37:55+0800";
+		ZonedDateTime zonedDateTime = DateTimeFormatterUtil.parseToZonedDateTime(text, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_Z_FMT);
+		System.out.println(zonedDateTime);
 	}
 }

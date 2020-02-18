@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.Date;
@@ -64,7 +65,7 @@ public class DateTimeFormatterUtil {
 	private static final String YYYYMMDDHHMMSSSSS = "yyyyMMddHHmmssSSS";
     
 	private static final String YYYY_MM_DD_HH_MM_SS_SSS = "yyyy-MM-dd HH:mm:ss.SSS";
-    
+	
 	private static final String MM_DD_HH_MM = "MM-dd HH:mm";
     
 	private static final String MM_DD_HH_MM_CN = "MM月dd日 HH:mm";
@@ -82,6 +83,11 @@ public class DateTimeFormatterUtil {
 	private static final String MM_DD_HH_MM_SS = "MM-dd HH:mm:ss";	
     
 	private static final String MM_DD_HH_MM_SS_CN = "MM月dd日 HH:mm:ss";
+	
+	/**
+	 * ZonedDateTime 时区时间格式
+	 */
+	private static final String YYYY_MM_DD_T_HH_MM_SS_Z = "yyyy-MM-dd'T'HH:mm:ssZ";
     
 	//  ============================formatters============================
     
@@ -227,6 +233,12 @@ public class DateTimeFormatterUtil {
      */
     public static final DateTimeFormatter MM_DD_HH_MM_SS_FMT = DateTimeFormatter.ofPattern(MM_DD_HH_MM_SS).withZone(ZONE);
     
+    /**
+     * ZonedDateTime 时区时间格式Formatter
+     * such as 2020-02-18T22:37:55+0800
+     */
+    public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_Z_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_T_HH_MM_SS_Z);
+    
     //  =============================format===========================
     
     /**
@@ -354,86 +366,99 @@ public class DateTimeFormatterUtil {
 
     /**
      * 解析日期yyyy-MM-dd，返回Date
-     * @param str
+     * @param text
      * @return
      */
-    public static Date parseDateStrToDate(String str){
-    	return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(YYYY_MM_DD_FMT.parse(str)));
+    public static Date parseDateStrToDate(String text){
+    	return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(YYYY_MM_DD_FMT.parse(text)));
     }
     
     /**
      * 解析日期yyyy-MM-dd，返回LocalDateTime
-     * @param str
+     * @param text
      * @return
      */
-    public static LocalDateTime parseDateStrToLocalDateTime(String str){
-    	return DateTimeConverterUtil.toLocalDateTime(YYYY_MM_DD_FMT.parse(str));
+    public static LocalDateTime parseDateStrToLocalDateTime(String text){
+    	return DateTimeConverterUtil.toLocalDateTime(YYYY_MM_DD_FMT.parse(text));
     }
     
     /**
      * 解析日期yyyy-MM-dd，返回Instant
-     * @param str
+     * @param text
      * @return
      */
-    public static Instant parseDateStrToInstant(String str){
-    	return DateTimeConverterUtil.toInstant(YYYY_MM_DD_FMT.parse(str));
+    public static Instant parseDateStrToInstant(String text){
+    	return DateTimeConverterUtil.toInstant(YYYY_MM_DD_FMT.parse(text));
     }
     
     /**
      * 解析日期yyyy-MM-dd HH:mm:ss，返回Date
-     * @param str
+     * @param text
      * @return
      */
-    public static Date parseDateTimeStrToDate(String str){
-    	return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(YYYY_MM_DD_HH_MM_SS_FMT.parse(str)));
+    public static Date parseDateTimeStrToDate(String text){
+    	return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(YYYY_MM_DD_HH_MM_SS_FMT.parse(text)));
     }
     
     /**
      * 解析日期yyyy-MM-dd HH:mm:ss，返回LocalDateTime
-     * @param str
+     * @param text
      * @return
      */
-    public static LocalDateTime parseDateTimeStrToLocalDateTime(String str){
-    	return DateTimeConverterUtil.toLocalDateTime(YYYY_MM_DD_HH_MM_SS_FMT.parse(str));
+    public static LocalDateTime parseDateTimeStrToLocalDateTime(String text){
+    	return DateTimeConverterUtil.toLocalDateTime(YYYY_MM_DD_HH_MM_SS_FMT.parse(text));
     }
     
     /**
      * 解析日期yyyy-MM-dd HH:mm:ss，返回Instant
-     * @param str
+     * @param text
      * @return
      */
-    public static Instant parseDateTimeStrToInstant(String str){
-    	return DateTimeConverterUtil.toInstant(YYYY_MM_DD_HH_MM_SS_FMT.parse(str));
+    public static Instant parseDateTimeStrToInstant(String text){
+    	return DateTimeConverterUtil.toInstant(YYYY_MM_DD_HH_MM_SS_FMT.parse(text));
     }
     
     /**
      * 根据 formatter解析为 Date
-     * @param str
+     * @param text
      * @param formatter
      * @return
      */
-    public static Date parseToDate(String str, DateTimeFormatter formatter){
-    	return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(formatter.parse(str)));
+    public static Date parseToDate(String text, DateTimeFormatter formatter){
+    	Objects.requireNonNull(formatter, "formatter");
+    	return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(formatter.parse(text)));
     }
     
     /**
      * 根据 formatter解析为 LocalDateTime
-     * @param str
+     * @param text
      * @param formatter
      * @return
      */
-    public static LocalDateTime parseToLocalDateTime(String str, DateTimeFormatter formatter){
-    	return DateTimeConverterUtil.toLocalDateTime(formatter.parse(str));
+    public static LocalDateTime parseToLocalDateTime(String text, DateTimeFormatter formatter){
+    	Objects.requireNonNull(formatter, "formatter");
+    	return DateTimeConverterUtil.toLocalDateTime(formatter.parse(text));
     }
     
     /**
      * 根据 formatter解析为 Instant
-     * @param str
+     * @param text
      * @param formatter
      * @return
      */
-    public static Instant parseToInstant(String str, DateTimeFormatter formatter){
-    	return DateTimeConverterUtil.toInstant(formatter.parse(str));
+    public static Instant parseToInstant(String text, DateTimeFormatter formatter){
+    	Objects.requireNonNull(formatter, "formatter");
+    	return DateTimeConverterUtil.toInstant(formatter.parse(text));
     }
+    
+    /**
+     * 根据 formatter解析为 ZonedDateTime
+     * @param text
+     * @param formatter
+     * @return
+     */
+    public static ZonedDateTime parseToZonedDateTime(String text, DateTimeFormatter formatter){
+    	return ZonedDateTime.parse(text, formatter);
+    }    
     
 }
