@@ -263,6 +263,16 @@ public class DateTimeConverterUtil {
 		return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime()
 				.atZone(ZoneId.systemDefault());
 	}
+	
+	/**
+	 * 转换为ZonedDateTime，时区为系统默认时区
+	 * @param localDateTime
+	 * @return
+	 */
+	public static ZonedDateTime toZonedDateTime(LocalDateTime localDateTime) {
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.atZone(ZoneId.systemDefault());
+	}
 
 	/**
 	 * 转换为ZonedDateTime，时区为系统默认时区
