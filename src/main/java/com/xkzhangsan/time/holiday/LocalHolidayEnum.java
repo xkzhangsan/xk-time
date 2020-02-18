@@ -103,33 +103,7 @@ public enum LocalHolidayEnum implements Holiday{
 	 * @return
 	 */
 	public static String getHolidayName(Temporal temporal) {
-		Objects.requireNonNull(temporal, "temporal");
-		MonthDay monthDay = MonthDay.from(temporal);
-		String monthDayStr = monthDay.format(DateTimeFormatterUtil.MMDD_FMT);
-		//对比枚举日期，返回假日
-		for (LocalHolidayEnum localHolidayEnum : LocalHolidayEnum.values()) {
-			if (localHolidayEnum.getPattern().equals(monthDayStr)) {
-				return localHolidayEnum.name;
-			}
-			//如果为特殊格式，解析对比
-			if (localHolidayEnum.getPattern().contains("W")) {
-				String[] arr = localHolidayEnum.getPattern().split("-");
-				int month = Integer.parseInt(arr[0]);
-				int weekIndex = Integer.parseInt(arr[2]);
-				int weekValue = Integer.parseInt(arr[3]);
-				DayOfWeek dow = DayOfWeek.of(weekValue);
-				//设置到当前节日的月份
-				Temporal tempTem = temporal.with(ChronoField.MONTH_OF_YEAR, month);
-				//设置到当前节日的第几星期第几天
-				Temporal targetTem = tempTem.with(TemporalAdjusters.dayOfWeekInMonth(weekIndex, dow));
-				MonthDay targetMonthDay = MonthDay.from(targetTem);
-				String targetMonthDayStr = targetMonthDay.format(DateTimeFormatterUtil.MMDD_FMT);
-				if (monthDayStr.equals(targetMonthDayStr)) {
-					return localHolidayEnum.name;
-				}
-			}
-		}
-		return "";
+		return getHoliday(temporal).name;
 	}
 	
 	/**
