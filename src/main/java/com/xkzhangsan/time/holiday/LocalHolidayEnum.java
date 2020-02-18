@@ -62,6 +62,11 @@ public enum LocalHolidayEnum implements Holiday{
 		return pattern;
 	}
 	
+	/**
+	 * 根据时间获取节日枚举
+	 * @param temporal
+	 * @return
+	 */
 	public static LocalHolidayEnum getHoliday(Temporal temporal) {
 		Objects.requireNonNull(temporal, "temporal");
 		MonthDay monthDay = MonthDay.from(temporal);
@@ -90,6 +95,58 @@ public enum LocalHolidayEnum implements Holiday{
 			}
 		}
 		return DEFAULT_HOLIDAY;
+	}
+	
+	/**
+	 * 根据时间获取节日名称
+	 * @param temporal
+	 * @return
+	 */
+	public static String getHolidayName(Temporal temporal) {
+		Objects.requireNonNull(temporal, "temporal");
+		MonthDay monthDay = MonthDay.from(temporal);
+		String monthDayStr = monthDay.format(DateTimeFormatterUtil.MMDD_FMT);
+		//对比枚举日期，返回假日
+		for (LocalHolidayEnum localHolidayEnum : LocalHolidayEnum.values()) {
+			if (localHolidayEnum.getPattern().equals(monthDayStr)) {
+				return localHolidayEnum.name;
+			}
+			//如果为特殊格式，解析对比
+			if (localHolidayEnum.getPattern().contains("W")) {
+				String[] arr = localHolidayEnum.getPattern().split("-");
+				int month = Integer.parseInt(arr[0]);
+				int weekIndex = Integer.parseInt(arr[2]);
+				int weekValue = Integer.parseInt(arr[3]);
+				DayOfWeek dow = DayOfWeek.of(weekValue);
+				//设置到当前节日的月份
+				Temporal tempTem = temporal.with(ChronoField.MONTH_OF_YEAR, month);
+				//设置到当前节日的第几星期第几天
+				Temporal targetTem = tempTem.with(TemporalAdjusters.dayOfWeekInMonth(weekIndex, dow));
+				MonthDay targetMonthDay = MonthDay.from(targetTem);
+				String targetMonthDayStr = targetMonthDay.format(DateTimeFormatterUtil.MMDD_FMT);
+				if (monthDayStr.equals(targetMonthDayStr)) {
+					return localHolidayEnum.name;
+				}
+			}
+		}
+		return "";
+	}
+	
+	/**
+	 * 对比月日
+	 * @param temporal
+	 * @param monthDay
+	 * @return
+	 */
+	public static boolean compareMonthDay(Temporal temporal, String monthDay){
+		Objects.requireNonNull(temporal, "temporal");
+		Objects.requireNonNull(monthDay, "monthDay");
+		MonthDay monthDay1 = MonthDay.from(temporal);
+		String monthDayStr = monthDay1.format(DateTimeFormatterUtil.MMDD_FMT);
+		if(monthDayStr.equals(monthDay)){
+			return true;
+		}
+		return false;
 	}
 	
 }
