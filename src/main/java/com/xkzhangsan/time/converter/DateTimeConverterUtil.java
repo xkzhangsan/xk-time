@@ -14,7 +14,7 @@ import java.util.Objects;
  * 日期转换
  * 包含Date、LocalDate、LocalDateTime、LocalTime、Instant和ZonedDateTime的互相转换
  * 
- * 注意，ZonedDateTime相关的转换，需要时区一致。
+ * 注意，ZonedDateTime相关的转换，尤其是其他时间转ZonedDateTime，要注意时间和对应时区一致。
 * @ClassName: DateTimeConverterUtil 
 * @Description: DateTime Converter
 * @author xkzhangsan
@@ -78,7 +78,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * ZonedDateTime转Date
-	 * 注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
+	 * 注意时间对应的时区和默认时区差异
 	 * @param zonedDateTime
 	 * @return
 	 */
@@ -148,7 +148,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * ZonedDateTime转LocalDateTime
-	 * 注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
+	 * 注意时间对应的时区和默认时区差异
 	 * @param zonedDateTime
 	 * @return
 	 */
@@ -196,7 +196,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * ZonedDateTime转LocalDate
-	 * 注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
+	 * 注意时间对应的时区和默认时区差异
 	 * @param zonedDateTime
 	 * @return
 	 */
@@ -244,7 +244,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * ZonedDateTime转LocalTime
-	 * 注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
+	 * 注意时间对应的时区和默认时区差异
 	 * @param zonedDateTime
 	 * @return
 	 */
@@ -395,6 +395,20 @@ public class DateTimeConverterUtil {
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return localDateTime.atZone(ZoneId.systemDefault());
 	}
+	
+	/**
+	 * LocalDateTime转ZonedDateTime，时区为zoneId对应时区
+	 * 注意，需要保证localDateTime和zoneId是对应的，不然会出现错误
+	 * 
+	 * @param localDateTime
+	 * @param zoneId
+	 * @return
+	 */
+	public static ZonedDateTime toZonedDateTime(LocalDateTime localDateTime, String zoneId) {
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		Objects.requireNonNull(zoneId, "zoneId");
+		return localDateTime.atZone(ZoneId.of(zoneId));
+	}	
 
 	/**
 	 * LocalDate转ZonedDateTime，时区为系统默认时区

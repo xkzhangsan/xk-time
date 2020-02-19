@@ -24,6 +24,8 @@ import com.xkzhangsan.time.converter.DateTimeConverterUtil;
  * 因为，其他Formatter都绑定的是系统默认时区：
  * private static final ZoneId ZONE = ZoneId.systemDefault();
  * 
+ * 如果需要使用其他Formatter，可以使用withZone方法重新设置时区，比如：
+ * YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")
 * @ClassName: DateTimeFormatterUtil 
 * @Description: DateTime Formatter
 * @author xkzhangsan

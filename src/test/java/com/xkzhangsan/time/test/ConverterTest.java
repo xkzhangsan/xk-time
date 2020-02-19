@@ -85,5 +85,7 @@ public class ConverterTest {
 		System.out.println(DateTimeConverterUtil.toZonedDateTime(LocalDate.now()));
 		System.out.println(DateTimeConverterUtil.toZonedDateTime(LocalTime.now()));
 		System.out.println(DateTimeConverterUtil.toZonedDateTime(Instant.now()));
+		//Asia/Shanghai
+		System.out.println(DateTimeConverterUtil.toZonedDateTime(LocalDateTime.now(), "Asia/Shanghai"));
 	}	
 }

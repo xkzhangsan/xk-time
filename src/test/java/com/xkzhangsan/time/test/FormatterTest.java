@@ -1,6 +1,7 @@
 package com.xkzhangsan.time.test;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
@@ -114,8 +115,8 @@ public class FormatterTest {
 	 */
 	@Test
 	public void zonedDateTimeFormatTest(){
-		//默认为系统时区
-		ZonedDateTime zonedDateTime = ZonedDateTime.now();
+		//默认为巴黎时区
+		ZonedDateTime zonedDateTime = ZonedDateTime.now(ZoneId.of("Europe/Paris"));
 		//2020-02-18T22:37:55+0800
 		System.out.println(DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_Z_FMT));
 		
@@ -130,6 +131,9 @@ public class FormatterTest {
 		System.out.println(zonedDateTime.format(DateTimeFormatterUtil.ISO_WEEK_DATE_FMT));
 		System.out.println(zonedDateTime.format(DateTimeFormatterUtil.ISO_ZONED_DATE_TIME_FMT));
 		System.out.println(zonedDateTime.format(DateTimeFormatterUtil.BASIC_ISO_DATE_FMT));
+		
+		System.out.println("=========其他格式化重新设置时区，用于非系统默认时区时间格式化=========");
+		System.out.println(zonedDateTime.format(DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris"))));
 	}
 	
 	/**
