@@ -18,7 +18,8 @@ import com.xkzhangsan.time.converter.DateTimeConverterUtil;
  * 包含常用日期格式如：
  * yyyy-MM-dd
  * HH:mm:ss
- * yyyy-MM-dd HH:mm:ss等等
+ * yyyy-MM-dd HH:mm:ss
+ * yyyy-MM-dd'T'HH:mm:ssZ等等
  * 
  * 注意：格式化和解析ZonedDateTime 时区时间时，只能使用ISO开头的Formatter，如ISO_DATE_FMT和YYYY_MM_DD_T_HH_MM_SS_Z_FMT
  * 因为，其他Formatter都绑定的是系统默认时区：
