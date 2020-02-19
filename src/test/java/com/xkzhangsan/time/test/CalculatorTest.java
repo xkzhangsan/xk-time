@@ -300,6 +300,20 @@ public class CalculatorTest {
 		}
 	}
 	
+	/**
+	 * 2个时间比较
+	 */
+	@Test
+	public void dateCompareTest(){
+		LocalDateTime localDateTime1 = LocalDateTime.now();
+		LocalDateTime localDateTime2 = localDateTime1.plusDays(1);
+		System.out.println(DateTimeCalculatorUtil.compare(localDateTime1, localDateTime2));
+		
+		Date date1 = new Date();
+		Date date2 = date1;
+		System.out.println(DateTimeCalculatorUtil.compare(date1, date2));
+	}	
+	
 	@Test
 	public void dateCalculatorTest(){
 		Date date = new Date();

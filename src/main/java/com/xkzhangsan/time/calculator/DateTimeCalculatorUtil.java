@@ -1,5 +1,6 @@
 package com.xkzhangsan.time.calculator;
 
+import java.time.DateTimeException;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.Instant;
@@ -31,6 +32,8 @@ import com.xkzhangsan.time.enums.ZoneIdEnum;
  * 4.获取时间修改属性方法，with* 比如withYear(Date date, long newValue) 修改当前时间年值为newValue
  * 5.获取比较2个时间方法，between* 比如betweenYears(Date startInclusive, Date endExclusive) 比较2个时间，获取年部分
  * 6.其他常用方法，比如isLeapYear(Date date) 判断是否闰年
+ * 7.时区转换计算方法，transform*，比如transform(ZonedDateTime zonedDateTime, String zoneId)
+ * 8.比较2个时间大小和相等方法，compare*，比如compare(Date date1, Date date2)
  * 
 * @ClassName: DateTimeCalculatorUtil 
 * @Description:  DateTime Calculator
@@ -1061,6 +1064,46 @@ public class DateTimeCalculatorUtil {
 		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
 		Objects.requireNonNull(zone, "zone");
 		return zonedDateTime.withZoneSameInstant(zone);
+	}
+	
+	/**
+	 * 比较2个时间Date
+	 * @param date1
+	 * @param date2
+	 * @return date1 大于 date2 返回1， date1 小于 date2 返回-1，date1 等于date2 返回0
+	 */
+	public static int compare(Date date1, Date date2){
+		return compare(DateTimeConverterUtil.toLocalDateTime(date1), DateTimeConverterUtil.toLocalDateTime(date2));
+	}
+	
+	/**
+	 * 比较2个时间,可用于LocalDateTime,LocalDate,LocalTime,Instant
+	 * @param temporal1
+	 * @param temporal2
+	 * @return temporal1 大于 temporal2 返回1， temporal1 小于 temporal2 返回-1，temporal1 等于temporal2 返回0
+	 */
+	public static int compare(Temporal temporal1, Temporal temporal2){
+		Objects.requireNonNull(temporal1, "temporal1");
+		Objects.requireNonNull(temporal2, "temporal2");
+		if(temporal1 instanceof LocalDateTime && temporal2 instanceof LocalDateTime){
+			LocalDateTime localDateTimeA = (LocalDateTime)temporal1;
+			LocalDateTime localDateTimeB = (LocalDateTime)temporal2;
+			return localDateTimeA.compareTo(localDateTimeB);
+		}else if(temporal1 instanceof LocalDate && temporal2 instanceof LocalDate){
+			LocalDate localDateA = (LocalDate)temporal1;
+			LocalDate localDateB = (LocalDate)temporal2;
+			return localDateA.compareTo(localDateB);
+		}else if(temporal1 instanceof LocalTime && temporal2 instanceof LocalTime){
+			LocalTime localTimeA = (LocalTime)temporal1;
+			LocalTime localTimeB = (LocalTime)temporal2;
+			return localTimeA.compareTo(localTimeB);
+		}else if(temporal1 instanceof Instant && temporal2 instanceof Instant){
+			Instant instantA = (Instant)temporal1;
+			Instant instantB = (Instant)temporal2;
+			return instantA.compareTo(instantB);
+		}
+		
+		throw new DateTimeException("Unsupported Temporal, must be LocalDateTime,LocalDate,LocalTime,Instant");
 	}
 	
 }
