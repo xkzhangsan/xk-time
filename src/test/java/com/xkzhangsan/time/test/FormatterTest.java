@@ -2,7 +2,6 @@ package com.xkzhangsan.time.test;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.junit.Test;
@@ -111,6 +110,7 @@ public class FormatterTest {
 	
 	/**
 	 * 时区时间格式化和ISO常用格式化
+	 * YYYY_MM_DD_T_HH_MM_SS_Z = "yyyy-MM-dd'T'HH:mm:ssZ"
 	 */
 	@Test
 	public void zonedDateTimeFormatTest(){
@@ -119,21 +119,22 @@ public class FormatterTest {
 		//2020-02-18T22:37:55+0800
 		System.out.println(DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_Z_FMT));
 		
-		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_DATE));
-		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_DATE_TIME));
-		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_INSTANT));
-		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE));
-		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_LOCAL_TIME));
+		System.out.println(zonedDateTime.format(DateTimeFormatterUtil.ISO_DATE_FMT));
+		System.out.println(zonedDateTime.format(DateTimeFormatterUtil.ISO_DATE_TIME_FMT));
+		System.out.println(zonedDateTime.format(DateTimeFormatterUtil.ISO_INSTANT_FMT));
+		System.out.println(zonedDateTime.format(DateTimeFormatterUtil.ISO_LOCAL_DATE_FMT));
+		System.out.println(zonedDateTime.format(DateTimeFormatterUtil.ISO_LOCAL_DATE_TIME_FMT));
+		System.out.println(zonedDateTime.format(DateTimeFormatterUtil.ISO_LOCAL_TIME_FMT));
 		
-		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_TIME));
-		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_WEEK_DATE));
-		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_ZONED_DATE_TIME));
-		System.out.println(zonedDateTime.format(DateTimeFormatter.BASIC_ISO_DATE));
+		System.out.println(zonedDateTime.format(DateTimeFormatterUtil.ISO_TIME_FMT));
+		System.out.println(zonedDateTime.format(DateTimeFormatterUtil.ISO_WEEK_DATE_FMT));
+		System.out.println(zonedDateTime.format(DateTimeFormatterUtil.ISO_ZONED_DATE_TIME_FMT));
+		System.out.println(zonedDateTime.format(DateTimeFormatterUtil.BASIC_ISO_DATE_FMT));
 	}
 	
 	/**
 	 * 时区时间解析
+	 * YYYY_MM_DD_T_HH_MM_SS_Z = "yyyy-MM-dd'T'HH:mm:ssZ"
 	 */
 	@Test
 	public void parseToZonedDateTimeTest(){

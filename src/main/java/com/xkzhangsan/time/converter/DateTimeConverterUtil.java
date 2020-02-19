@@ -280,7 +280,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * 转换为ZonedDateTime，时区为系统默认时区
 	 * @param localDate
-	 * @return
+	 * @return such as 2020-02-19T00:00+08:00[Asia/Shanghai]
 	 */
 	public static ZonedDateTime toZonedDateTime(LocalDate localDate) {
 		Objects.requireNonNull(localDate, "localDate");

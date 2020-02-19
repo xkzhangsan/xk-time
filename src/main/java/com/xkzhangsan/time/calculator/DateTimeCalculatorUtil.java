@@ -1031,7 +1031,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取当前时区时间
+	 * 获取时区当前时间
 	 * @param zoneId
 	 * @return
 	 */
@@ -1043,7 +1043,7 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 时区转换计算
 	 * @param zonedDateTime
-	 * @param zoneId
+	 * @param zoneId 例如 Asia/Shanghai
 	 * @return
 	 */
 	public static ZonedDateTime transform(ZonedDateTime zonedDateTime, String zoneId){

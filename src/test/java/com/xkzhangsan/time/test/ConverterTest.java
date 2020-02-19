@@ -70,6 +70,7 @@ public class ConverterTest {
 	@Test
 	public void zonedDateTimeConverterTest(){
 		System.out.println("===================zonedDateTimeConverterTest=====================");
+		System.out.println("===================ToOther=====================");
 		ZonedDateTime zonedDateTime = ZonedDateTime.now();
 		System.out.println(zonedDateTime);
 		System.out.println(DateTimeConverterUtil.toDate(zonedDateTime));
@@ -77,5 +78,12 @@ public class ConverterTest {
 		System.out.println(DateTimeConverterUtil.toLocalDate(zonedDateTime));
 		System.out.println(DateTimeConverterUtil.toLocalTime(zonedDateTime));
 		System.out.println(DateTimeConverterUtil.toInstant(zonedDateTime));
+		System.out.println("===================toZonedDateTime=====================");
+		System.out.println(zonedDateTime);
+		System.out.println(DateTimeConverterUtil.toZonedDateTime(new Date()));
+		System.out.println(DateTimeConverterUtil.toZonedDateTime(LocalDateTime.now()));
+		System.out.println(DateTimeConverterUtil.toZonedDateTime(LocalDate.now()));
+		System.out.println(DateTimeConverterUtil.toZonedDateTime(LocalTime.now()));
+		System.out.println(DateTimeConverterUtil.toZonedDateTime(Instant.now()));
 	}	
 }

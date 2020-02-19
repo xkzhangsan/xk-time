@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
@@ -287,8 +288,17 @@ public class CalculatorTest {
 		ZonedDateTime transformZonedDateTime = DateTimeCalculatorUtil.transform(shanghaiZonedDateTime,
 				ZoneIdEnum.ECT.getZoneIdName());
 		System.out.println("transformZonedDateTime: "+transformZonedDateTime);
-		
 	}	
+	
+	/**
+	 * 获取可用时区ID
+	 */
+	@Test
+	public void getAvailableZoneIds(){
+		for(String zoneId : ZoneId.getAvailableZoneIds()){
+			System.out.println(zoneId);
+		}
+	}
 	
 	@Test
 	public void dateCalculatorTest(){
