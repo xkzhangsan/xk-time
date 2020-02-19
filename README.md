@@ -1,21 +1,24 @@
 # xk-time
 xk-time is a datetime converter calculator and formatter tool set, based on java8 date and time API, thread safe, easy to use.
 
-datetime转换，计算，格式化，解析的工具，使用java8，线程安全，简单易用，多达20几种常用日期格式化模板。  
+时间转换，计算，格式化，解析的工具，使用java8，线程安全，简单易用，多达20几种常用日期格式化模板。  
+常见的DateUtil，往往将时间转换，计算，格式化，解析等功能都放在同一个类中，导致类功能复杂，方法太多，查找不方便。
+xk-time工具包，将上面功能按照转换，计算，格式化解析分成3个工具类：DateTimeConverterUtil，DateTimeCalculatorUtil，DateTimeFormatterUtil
+每个类只做一个种功能，使用java8api增加了更丰富的方法，让使用更方便。
 
 0.依赖  
 
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>0.0.1</version>    
+      <version>0.0.2</version>    
     </dependency>    
 
-1.日期转换    
+1.日期转换 DateTimeConverterUtil 
 包含Date、LocalDate、LocalDateTime、LocalTime、Instant和ZonedDateTime的互相转换  
  注意，ZonedDateTime相关的转换，尤其是其他时间转ZonedDateTime，要注意时间和对应时区一致。  
 
-2.日期计算工具类   
+2.日期计算工具类 DateTimeCalculatorUtil 
 包括：  
 （1）获取时间属性方法，get* 比如getYear(Date date) 获取年部分。  
 （2）获取时间加操作方法，plus* 比如plusYears(Date date, long amountToAdd) 当前时间年增加amountToAdd值。  
@@ -26,7 +29,8 @@ datetime转换，计算，格式化，解析的工具，使用java8，线程安�
 （7）时区转换计算方法，transform*，比如transform(ZonedDateTime zonedDateTime, String zoneId)  
 （8）比较2个时间大小和相等方法，compare*，比如compare(Date date1, Date date2)  
 
-3.  包含常用日期格式如：  
+3.日期格式化和解析DateTimeFormatterUtil 
+包含常用日期格式如：  
  yyyy-MM-dd  
  HH:mm:ss  
  yyyy-MM-dd HH:mm:ss  
