@@ -2,7 +2,7 @@
 xk-time is a datetime converter calculator and formatter tool set, based on java8 date and time API, thread safe, easy to use.
 
 时间转换，计算，格式化，解析的工具，使用java8，线程安全，简单易用，多达20几种常用日期格式化模板。  
-常见的DateUtil，往往将时间转换，计算，格式化，解析等功能都放在同一个类中，导致类功能复杂，方法太多，查找不方便。
+常见的DateUtil，往往将时间转换，计算，格式化，解析等功能都放在同一个类中，导致类功能复杂，方法太多，查找不方便。    
 xk-time工具包，将上面功能按照转换，计算，格式化解析分成3个工具类：DateTimeConverterUtil，DateTimeCalculatorUtil，DateTimeFormatterUtil
 每个类只做一个种功能，使用java8api增加了更丰富的方法，让使用更方便。
 
