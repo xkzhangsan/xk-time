@@ -40,6 +40,9 @@ import com.xkzhangsan.time.enums.ZoneIdEnum;
  */
 public class DateTimeCalculatorUtil {
 	
+	private DateTimeCalculatorUtil(){
+	}
+	
 	// get base time property
 	
 	public static int getYear(Date date){

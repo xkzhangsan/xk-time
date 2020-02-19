@@ -21,6 +21,9 @@ import java.util.Objects;
 *
  */
 public class DateTimeConverterUtil {
+	
+	private DateTimeConverterUtil(){
+	}
 
 	public static Date toDate(LocalDateTime localDateTime) {
 		Objects.requireNonNull(localDateTime, "localDateTime");

@@ -2,6 +2,7 @@ package com.xkzhangsan.time.test;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.junit.Test;
@@ -109,13 +110,26 @@ public class FormatterTest {
 	}
 	
 	/**
-	 * 时区时间格式化
+	 * 时区时间格式化和ISO常用格式化
 	 */
 	@Test
 	public void zonedDateTimeFormatTest(){
 		//默认为系统时区
 		ZonedDateTime zonedDateTime = ZonedDateTime.now();
+		//2020-02-18T22:37:55+0800
 		System.out.println(DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_Z_FMT));
+		
+		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_DATE));
+		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_DATE_TIME));
+		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_INSTANT));
+		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE));
+		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_LOCAL_TIME));
+		
+		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_TIME));
+		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_WEEK_DATE));
+		System.out.println(zonedDateTime.format(DateTimeFormatter.ISO_ZONED_DATE_TIME));
+		System.out.println(zonedDateTime.format(DateTimeFormatter.BASIC_ISO_DATE));
 	}
 	
 	/**
@@ -126,5 +140,12 @@ public class FormatterTest {
 		String text = "2020-02-18T22:37:55+0800";
 		ZonedDateTime zonedDateTime = DateTimeFormatterUtil.parseToZonedDateTime(text, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_Z_FMT);
 		System.out.println(zonedDateTime);
+		
+		String text2 = "2020-02-19T12:30:25.121+08:00[Asia/Shanghai]";
+		ZonedDateTime zonedDateTime2 = DateTimeFormatterUtil.parseToZonedDateTime(text2, DateTimeFormatterUtil.ISO_ZONED_DATE_TIME_FMT);
+		System.out.println(zonedDateTime2);
+		
+		ZonedDateTime zonedDateTime3 = ZonedDateTime.parse(text2);
+		System.out.println(zonedDateTime3);
 	}
 }
