@@ -34,6 +34,7 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.getHour(date));
 		System.out.println(DateTimeCalculatorUtil.getMinute(date));
 		System.out.println(DateTimeCalculatorUtil.getSecond(date));
+		System.out.println(DateTimeCalculatorUtil.getDate(2020, 2, 27));
 	}
 	
 	/**
@@ -361,6 +362,10 @@ public class CalculatorTest {
 		//指定年月
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfSpecialMonth(2019, 10)));
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfSpecialMonth(2019, 10)));
+		
+		//指定日期
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfDate(2019, 10, 1)));
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfDate(2019, 10, 1)));
 	}	
 	
 	@Test

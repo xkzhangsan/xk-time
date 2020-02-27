@@ -384,6 +384,17 @@ public class DateTimeCalculatorUtil {
 		return Instant.now().toEpochMilli();
 	}
 	
+	/**
+	 * 根据年月日创建Date，时间部分为：00:00:00
+	 * @param year
+	 * @param month
+	 * @param dayOfMonth
+	 * @return
+	 */
+	public static Date getDate(int year, int month, int dayOfMonth){
+		return DateTimeConverterUtil.toDate(LocalDate.of(year, month, dayOfMonth).atTime(startTimeOfDay()));
+	}
+	
 	// plus two times
 	
 	public static Date plusYears(Date date, long amountToAdd){
@@ -1724,4 +1735,26 @@ public class DateTimeCalculatorUtil {
 	public static Date endTimeOfSpecialMonth(int year, int month){
 		return DateTimeConverterUtil.toDate(lastDayOfMonth(LocalDate.of(year, month, 1)).atTime(endTimeOfDay()));
 	}
+	
+	/**
+	 * 获取指定日期的起始时间
+	 * @param year
+	 * @param month
+	 * @param dayOfMonth
+	 * @return
+	 */
+	public static Date startTimeOfDate(int year, int month, int dayOfMonth){
+		return DateTimeConverterUtil.toDate(LocalDate.of(year, month, dayOfMonth).atTime(startTimeOfDay()));
+	}
+	
+	/**
+	 * 获取指定日期的结束时间
+	 * @param year
+	 * @param month
+	 * @param dayOfMonth
+	 * @return
+	 */
+	public static Date endTimeOfDate(int year, int month, int dayOfMonth){
+		return DateTimeConverterUtil.toDate(LocalDate.of(year, month, dayOfMonth).atTime(endTimeOfDay()));
+	}	
 }
