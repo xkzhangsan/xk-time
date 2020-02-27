@@ -312,6 +312,55 @@ public class CalculatorTest {
 		Date date1 = new Date();
 		Date date2 = date1;
 		System.out.println(DateTimeCalculatorUtil.compare(date1, date2));
+	}
+	
+	/**
+	 * 获取月份信息，包括英文全称简称，中文等
+	 */
+	@Test
+	public void dateGetMonthTest(){
+		Date date = new Date();
+		System.out.println(date);
+		
+		System.out.println(DateTimeCalculatorUtil.getMonth(date));
+		System.out.println(DateTimeCalculatorUtil.getMonthEnLong(date));
+		System.out.println(DateTimeCalculatorUtil.getMonthEnShort(date));
+		System.out.println(DateTimeCalculatorUtil.getMonthCnLong(date));
+		System.out.println(DateTimeCalculatorUtil.getMonthCnShort(date));
+	}
+	
+	/**
+	 * 获取星期信息，包括英文全称简称，中文等
+	 */
+	@Test
+	public void dateGetWeekTest(){
+		Date date = new Date();
+		System.out.println(date);
+		
+		System.out.println(DateTimeCalculatorUtil.getDayOfWeek(date));
+		System.out.println(DateTimeCalculatorUtil.getDayOfWeekEnLong(date));
+		System.out.println(DateTimeCalculatorUtil.getDayOfWeekEnShort(date));
+		System.out.println(DateTimeCalculatorUtil.getDayOfWeekCn(date));
+	}	
+	
+	/**
+	 * 获取准确的起始时间方法测试
+	 * 比如startTimeOfMonth() 当月起始时间 当月第一天日期+00:00:00
+	 * 	  endTimeOfMonth() 当月最后一天日期+23:59:59
+	 */
+	@Test
+	public void dateStartTimeAndEndTimeTest(){
+		//当天
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfToday()));
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfToday()));
+		
+		//当月
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfMonth()));
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfMonth()));
+		
+		//指定年月
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfSpecialMonth(2019, 10)));
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfSpecialMonth(2019, 10)));
 	}	
 	
 	@Test

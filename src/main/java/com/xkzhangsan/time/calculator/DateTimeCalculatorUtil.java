@@ -21,20 +21,24 @@ import java.util.Objects;
 
 import com.xkzhangsan.time.TemporalAdjusterExtension;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
+import com.xkzhangsan.time.enums.MonthNameEnum;
+import com.xkzhangsan.time.enums.WeekNameEnum;
 import com.xkzhangsan.time.enums.ZoneIdEnum;
 
 /**
  * 日期计算工具类
  * 包括：
- * 1.获取时间属性方法，get* 比如getYear(Date date) 获取年部分
+ * 1.获取时间属性方法，get* 比如getYear(Date date) 获取年部分，getMonthCnLong(Date date)获取月份中文，getDayOfWeekCn(Date date)，获取星期中文
  * 2.获取时间加操作方法，plus* 比如plusYears(Date date, long amountToAdd) 当前时间年增加amountToAdd值
  * 3.获取时间减操作方法，minus* 比如minusYears(Date date, long amountToAdd) 当前时间年减少amountToAdd值
  * 4.获取时间修改属性方法，with* 比如withYear(Date date, long newValue) 修改当前时间年值为newValue
  * 5.获取比较2个时间方法，between* 比如betweenYears(Date startInclusive, Date endExclusive) 比较2个时间，获取年部分
- * 6.其他常用方法，比如isLeapYear(Date date) 判断是否闰年
+ * 6.其他常用方法，比如isLeapYear(Date date) 判断是否闰年，isWeekend(Date date) 判断是否周末等
  * 7.时区转换计算方法，transform*，比如transform(ZonedDateTime zonedDateTime, String zoneId)
  * 8.比较2个时间大小和相等方法，compare*，比如compare(Date date1, Date date2)
- * 
+ * 9.获取准确的起始时间方法，start*,end*，
+ * 比如startTimeOfMonth() 当月起始时间 当月第一天日期+00:00:00
+ *    endTimeOfMonth() 当月最后一天日期+23:59:59
 * @ClassName: DateTimeCalculatorUtil 
 * @Description:  DateTime Calculator
 * @author xkzhangsan
@@ -48,62 +52,334 @@ public class DateTimeCalculatorUtil {
 	
 	// get base time property
 	
+	/**
+	 * 获取年，比如2020
+	 * @param date
+	 * @return
+	 */
 	public static int getYear(Date date){
 		return DateTimeConverterUtil.toLocalDateTime(date).getYear();
 	}
 	
+	/**
+	 * 获取年，比如2020
+	 * @param instant
+	 * @return
+	 */
 	public static int getYear(Instant instant){
 		return DateTimeConverterUtil.toLocalDateTime(instant).getYear();
 	}
 	
+	/**
+	 * 获取年，比如2020
+	 * LocalDateTime LocalDate ZonedDateTime 可以直接getYear()
+	 * @param localDateTime
+	 * @return
+	 */
+	public static int getYear(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.getYear();
+	}	
+	
+	/**
+	 * 获取月， 比如 1
+	 * @param date
+	 * @return
+	 */
 	public static int getMonth(Date date){
 		return DateTimeConverterUtil.toLocalDateTime(date).getMonthValue();
 	}
 	
+	/**
+	 * 获取月， 比如 1
+	 * @param instant
+	 * @return
+	 */
 	public static int getMonth(Instant instant){
 		return DateTimeConverterUtil.toLocalDateTime(instant).getMonthValue();
 	}
 	
+	/**
+	 * 获取月， 比如 1
+	 * LocalDateTime LocalDate ZonedDateTime 可以直接getMonthValue()
+	 * @param localDateTime
+	 * @return
+	 */
+	public static int getMonth(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.getMonthValue();
+	}
+	
+	
+	
+	/**
+	 * 获取月英文全称， 比如 January
+	 * January, February, March, April, May, June, July, August, September, October,
+	 * November and December
+	 * @param date
+	 * @return
+	 */
+	public static String getMonthEnLong(Date date){
+		return MonthNameEnum.getFullNameEnByCode(getMonth(date));
+	}
+	
+	/**
+	 * 获取月英文全称， 比如 January
+	 * January, February, March, April, May, June, July, August, September, October,
+	 * November and December
+	 * @param instant
+	 * @return
+	 */
+	public static String getMonthEnLong(Instant instant){
+		return MonthNameEnum.getFullNameEnByCode(getMonth(instant));
+	}
+	
+	/**
+	 * 获取月英文全称， 比如 January
+	 * January, February, March, April, May, June, July, August, September, October,
+	 * November and December
+	 * LocalDateTime LocalDate ZonedDateTime 可以直接.getMonth().toString()
+	 * @param localDateTime
+	 * @return
+	 */
+	public static String getMonthEnLong(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return MonthNameEnum.getFullNameEnByCode(getMonth(localDateTime));
+	}
+	
+	/**
+	 * 获取月英文简称， 比如 Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
+	 * @param date
+	 * @return
+	 */
+	public static String getMonthEnShort(Date date){
+		return MonthNameEnum.getShortNameEnByCode(getMonth(date));
+	}
+	
+	/**
+	 * 获取月英文简称， 比如 Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
+	 * @param instant
+	 * @return
+	 */
+	public static String getMonthEnShort(Instant instant){
+		return MonthNameEnum.getShortNameEnByCode(getMonth(instant));
+	}
+	
+	/**
+	 * 获取月英文简称， 比如 Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
+	 * @param localDateTime
+	 * @return
+	 */
+	public static String getMonthEnShort(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return MonthNameEnum.getShortNameEnByCode(getMonth(localDateTime));
+	}
+	
+	/**
+	 * 获取月份中文全称， 比如一月
+	 * @param date
+	 * @return
+	 */
+	public static String getMonthCnLong(Date date){
+		return MonthNameEnum.getFullNameCnByCode(getMonth(date));
+	}
+	
+	/**
+	 * 获取月份中文全称， 比如一月
+	 * @param instant
+	 * @return
+	 */
+	public static String getMonthCnLong(Instant instant){
+		return MonthNameEnum.getFullNameCnByCode(getMonth(instant));
+	}
+	
+	/**
+	 * 获取月份中文全称， 比如一月
+	 * @param localDateTime
+	 * @return
+	 */
+	public static String getMonthCnLong(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return MonthNameEnum.getFullNameCnByCode(getMonth(localDateTime));
+	}
+	
+	/**
+	 * 获取月份中文全称， 比如一
+	 * @param date
+	 * @return
+	 */
+	public static String getMonthCnShort(Date date){
+		return MonthNameEnum.getShortNameCnByCode(getMonth(date));
+	}
+	
+	/**
+	 * 获取月份中文全称， 比如一
+	 * @param instant
+	 * @return
+	 */
+	public static String getMonthCnShort(Instant instant){
+		return MonthNameEnum.getShortNameCnByCode(getMonth(instant));
+	}
+	
+	/**
+	 * 获取月份中文全称， 比如一
+	 * @param localDateTime
+	 * @return
+	 */
+	public static String getMonthCnShort(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return MonthNameEnum.getShortNameCnByCode(getMonth(localDateTime));
+	}
+	
+	/**
+	 * 获取天
+	 * @param date
+	 * @return
+	 */
 	public static int getDayOfMonth(Date date){
 		return DateTimeConverterUtil.toLocalDateTime(date).getDayOfMonth();
 	}
 	
+	/**
+	 * 获取天
+	 * @param instant
+	 * @return
+	 */
 	public static int getDayOfMonth(Instant instant){
 		return DateTimeConverterUtil.toLocalDateTime(instant).getDayOfMonth();
 	}
 	
+	/**
+	 * 获取天
+	 * LocalDateTime LocalDate ZonedDateTime 可以直接.getDayOfMonth()
+	 * @param localDateTime
+	 * @return
+	 */
+	public static int getDayOfMonth(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.getDayOfMonth();
+	}
+	
+	/**
+	 * 获取天（一年中）
+	 * @param date
+	 * @return
+	 */
 	public static int getDayOfYear(Date date){
 		return DateTimeConverterUtil.toLocalDateTime(date).getDayOfYear();
 	}
 	
+	/**
+	 * 获取天（一年中）
+	 * @param instant
+	 * @return
+	 */
 	public static int getDayOfYear(Instant instant){
 		return DateTimeConverterUtil.toLocalDateTime(instant).getDayOfYear();
 	}
 	
+	/**
+	 * 获取天（一年中）
+	 * LocalDateTime LocalDate ZonedDateTime 可以直接.getDayOfYear()获取
+	 * @param localDateTime
+	 * @return
+	 */
+	public static int getDayOfYear(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.getDayOfYear();
+	}
+	
+	/**
+	 * 获取小时
+	 * @param date
+	 * @return
+	 */
 	public static int getHour(Date date){
 		return DateTimeConverterUtil.toLocalDateTime(date).getHour();
 	}
 	
+	/**
+	 * 获取小时
+	 * @param instant
+	 * @return
+	 */
 	public static int getHour(Instant instant){
 		return DateTimeConverterUtil.toLocalDateTime(instant).getHour();
+	}
+	
+	/**
+	 * 获取小时
+	 * LocalDateTime LocalTime ZonedDateTime 可以直接.getHour()获取
+	 * @param localDateTime
+	 * @return
+	 */
+	public static int getHour(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.getHour();
 	}	
 	
+	/**
+	 * 获取分钟
+	 * @param date
+	 * @return
+	 */
 	public static int getMinute(Date date){
 		return DateTimeConverterUtil.toLocalDateTime(date).getMinute();
 	}
 	
+	/**
+	 * 获取分钟
+	 * @param instant
+	 * @return
+	 */
 	public static int getMinute(Instant instant){
 		return DateTimeConverterUtil.toLocalDateTime(instant).getMinute();
+	}
+	
+	/**
+	 * 获取分钟
+	 * LocalDateTime LocalTime ZonedDateTime 可以直接.getMinute()获取
+	 * @param localDateTime
+	 * @return
+	 */
+	public static int getMinute(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.getMinute();
 	}	
 	
+	/**
+	 * 获取秒
+	 * @param date
+	 * @return
+	 */
 	public static int getSecond(Date date){
 		return DateTimeConverterUtil.toLocalDateTime(date).getSecond();
 	}
 	
+	/**
+	 * 获取秒
+	 * @param instant
+	 * @return
+	 */
 	public static int getSecond(Instant instant){
 		return DateTimeConverterUtil.toLocalDateTime(instant).getSecond();
-	}	
+	}
 	
+	/**
+	 * 获取秒
+	 * LocalDateTime LocalTime ZonedDateTime 可以直接.getMinute()获取
+	 * @param localDateTime
+	 * @return
+	 */
+	public static int getSecond(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.getSecond();
+	}
+	
+	/**
+	 * 获取当前时间的时间戳（毫秒）
+	 * @return
+	 */
 	public static long getEpochMilli(){
 		return Instant.now().toEpochMilli();
 	}
@@ -682,6 +958,16 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期值 1-7，星期一到星期日
+	 * @param localDate
+	 * @return
+	 */
+	public static int getDayOfWeek(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.getDayOfWeek().getValue();
+	}	
+	
+	/**
+	 * 获取星期值 1-7，星期一到星期日
 	 * @param instant
 	 * @return
 	 */
@@ -690,7 +976,151 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取星期值当前月的最后一天
+	 * 获取星期英文全称，比如Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday
+	 * @param date
+	 * @return
+	 */
+	public static String getDayOfWeekEnLong(Date date){
+		return WeekNameEnum.getFullNameEnByCode(getDayOfWeek(date));
+	}
+	
+	/**
+	 * 获取星期英文全称，比如Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday
+	 * @param localDateTime
+	 * @return
+	 */
+	public static String getDayOfWeekEnLong(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return WeekNameEnum.getFullNameEnByCode(getDayOfWeek(localDateTime));
+	}
+	
+	/**
+	 * 获取星期英文全称，比如Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday
+	 * @param localDate
+	 * @return
+	 */
+	public static String getDayOfWeekEnLong(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return WeekNameEnum.getFullNameEnByCode(getDayOfWeek(localDate));
+	}	
+	
+	/**
+	 * 获取星期英文全称，比如Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday
+	 * @param instant
+	 * @return
+	 */
+	public static String getDayOfWeekEnLong(Instant instant){
+		return WeekNameEnum.getFullNameEnByCode(getDayOfWeek(instant));
+	}
+	
+	/**
+	 * 获取星期英文简称，比如Mon
+	 * @param date
+	 * @return
+	 */
+	public static String getDayOfWeekEnShort(Date date){
+		return WeekNameEnum.getShortNameEnByCode(getDayOfWeek(date));
+	}
+	
+	/**
+	 * 获取星期英文简称，比如Mon
+	 * @param localDateTime
+	 * @return
+	 */
+	public static String getDayOfWeekEnShort(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return WeekNameEnum.getShortNameEnByCode(getDayOfWeek(localDateTime));
+	}
+	
+	/**
+	 * 获取星期英文简称，比如Mon
+	 * @param localDate
+	 * @return
+	 */
+	public static String getDayOfWeekEnShort(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return WeekNameEnum.getShortNameEnByCode(getDayOfWeek(localDate));
+	}	
+	
+	/**
+	 * 获取星期英文简称，比如Mon
+	 * @param instant
+	 * @return
+	 */
+	public static String getDayOfWeekEnShort(Instant instant){
+		return WeekNameEnum.getShortNameEnByCode(getDayOfWeek(instant));
+	}	
+	
+	
+	/**
+	 * 获取星期中文，比如星期一
+	 * @param date
+	 * @return
+	 */
+	public static String getDayOfWeekCn(Date date){
+		return WeekNameEnum.getNameCnByCode(getDayOfWeek(date));
+	}
+	
+	/**
+	 * 获取星期中文，比如星期一
+	 * @param localDateTime
+	 * @return
+	 */
+	public static String getDayOfWeekCn(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return WeekNameEnum.getNameCnByCode(getDayOfWeek(localDateTime));
+	}
+	
+	/**
+	 * 获取星期中文，比如星期一
+	 * @param localDate
+	 * @return
+	 */
+	public static String getDayOfWeekCn(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return WeekNameEnum.getNameCnByCode(getDayOfWeek(localDate));
+	}	
+	
+	/**
+	 * 获取星期中文，比如星期一
+	 * @param instant
+	 * @return
+	 */
+	public static String getDayOfWeekCn(Instant instant){
+		return WeekNameEnum.getNameCnByCode(getDayOfWeek(instant));
+	}
+	
+	/**
+	 * 获取当前月的第一天
+	 * @param localDate
+	 * @return
+	 */
+	public static LocalDate firstDayOfMonth(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.with(TemporalAdjusters.firstDayOfMonth());
+	}
+	
+	/**
+	 * 获取当前月的第一天
+	 * @param localDateTime
+	 * @return
+	 */
+	public static LocalDateTime firstDayOfMonth(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.with(TemporalAdjusters.firstDayOfMonth());
+	}
+	
+	/**
+	 * 获取当前月的第一天
+	 * @param date
+	 * @return
+	 */
+	public static Date firstDayOfMonth(Date date){
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusters.firstDayOfMonth()));
+	}	
+	
+	/**
+	 * 获取当前月的最后一天
 	 * @param localDate
 	 * @return
 	 */
@@ -700,17 +1130,17 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取星期值当前月的最后一天
+	 * 获取当前月的最后一天
 	 * @param localDateTime
 	 * @return
 	 */
 	public static LocalDateTime lastDayOfMonth(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return localDateTime.with(TemporalAdjusters.lastDayOfMonth());
-	}	
+	}
 	
 	/**
-	 * 获取星期值当前月的最后一天
+	 * 获取当前月的最后一天
 	 * @param date
 	 * @return
 	 */
@@ -745,6 +1175,75 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static boolean isLeapYear(Date date){
 		return DateTimeConverterUtil.toLocalDateTime(date).toLocalDate().isLeapYear();
+	}
+	
+	/**
+	 * 判断是否工作日 （周一到周五）
+	 * @param date
+	 * @return
+	 */
+	public static boolean isWorkDay(Date date){
+		int dayOfWeek = getDayOfWeek(date);
+		if(dayOfWeek == 6 || dayOfWeek == 7){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	/**
+	 * 判断是否工作日 （周一到周五）
+	 * @param localDateTime
+	 * @return
+	 */
+	public static boolean isWorkDay(LocalDateTime localDateTime){
+		int dayOfWeek = getDayOfWeek(localDateTime);
+		if(dayOfWeek == 6 || dayOfWeek == 7){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	/**
+	 * 判断是否工作日 （周一到周五）
+	 * @param localDate
+	 * @return
+	 */
+	public static boolean isWorkDay(LocalDate localDate){
+		int dayOfWeek = getDayOfWeek(localDate);
+		if(dayOfWeek == 6 || dayOfWeek == 7){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	/**
+	 * 判断是否周末（周六周日）
+	 * @param date
+	 * @return
+	 */
+	public static boolean isWeekend(Date date){
+		return ! isWorkDay(date);
+	}
+	
+	/**
+	 * 判断是否周末（周六周日）
+	 * @param localDateTime
+	 * @return
+	 */
+	public static boolean isWeekend(LocalDateTime localDateTime){
+		return ! isWorkDay(localDateTime);
+	}
+	
+	/**
+	 * 判断是否周末（周六周日）
+	 * @param localDate
+	 * @return
+	 */
+	public static boolean isWeekend(LocalDate localDate){
+		return ! isWorkDay(localDate);
 	}
 	
 	/**
@@ -1106,4 +1605,123 @@ public class DateTimeCalculatorUtil {
 		throw new DateTimeException("Unsupported Temporal, must be LocalDateTime,LocalDate,LocalTime,Instant");
 	}
 	
+	//获取精确起始时间 00:00:00 - 23:59:59
+	
+	/**
+	 * 一天开始时间 00:00:00
+	 * @return
+	 */
+	public static LocalTime startTimeOfDay(){
+		return LocalTime.of(0, 0, 0);
+	}
+	
+	/**
+	 * 一天开始时间 23:59:59
+	 * @return
+	 */
+	public static LocalTime endTimeOfDay(){
+		return LocalTime.of(23, 59, 59);
+	}
+	
+	/**
+	 * 昨天起始时间 即：昨天日期+00:00:00
+	 * @return
+	 */
+	public static Date startTimeOfYesterday(){
+		return DateTimeConverterUtil.toDate(LocalDate.now().minusDays(1).atTime(startTimeOfDay()));
+	}
+	
+	/**
+	 * 昨天结束时间即：昨天日期+23:59:59
+	 * @return
+	 */
+	public static Date endTimeOfYesterday(){
+		return DateTimeConverterUtil.toDate(LocalDate.now().minusDays(1).atTime(endTimeOfDay()));
+	}
+	
+	/**
+	 * 今天起始时间 即：今天日期+00:00:00
+	 * @return
+	 */
+	public static Date startTimeOfToday(){
+		return DateTimeConverterUtil.toDate(LocalDate.now().atTime(startTimeOfDay()));
+	}
+	
+	/**
+	 * 今天结束时间即：今天日期+23:59:59
+	 * @return
+	 */
+	public static Date endTimeOfToday(){
+		return DateTimeConverterUtil.toDate(LocalDate.now().atTime(endTimeOfDay()));
+	}
+	
+	/**
+	 * 上个月第一天起始时间 即：上个月第一天日期+00:00:00
+	 * @return
+	 */
+	public static Date startTimeOfLastMonth(){
+		return DateTimeConverterUtil.toDate(firstDayOfMonth(LocalDate.now().minusMonths(1)).atTime(startTimeOfDay()));
+	}
+	
+	/**
+	 * 上个月最后一天结束时间 即：上个月最后一天日期+23:59:59
+	 * @return
+	 */
+	public static Date endTimeOfLastMonth(){
+		return DateTimeConverterUtil.toDate(lastDayOfMonth(LocalDate.now().minusMonths(1)).atTime(endTimeOfDay()));
+	}
+	
+	/**
+	 * 当月第一天起始时间 即：当月第一天日期+00:00:00
+	 * @return
+	 */
+	public static Date startTimeOfMonth(){
+		return DateTimeConverterUtil.toDate(firstDayOfMonth(LocalDate.now()).atTime(startTimeOfDay()));
+	}
+	
+	/**
+	 * 当月最后一天结束时间即：当月最后一天日期+23:59:59
+	 * @return
+	 */
+	public static Date endTimeOfMonth(){
+		return DateTimeConverterUtil.toDate(lastDayOfMonth(LocalDate.now()).atTime(endTimeOfDay()));
+	}
+	
+	/**
+	 * 获date起始时间
+	 * @param date
+	 * @return
+	 */
+	public static Date startTimeOfDate(Date date){
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).atTime(startTimeOfDay()));
+	}
+	
+	/**
+	 * 获取date结束时间
+	 * @param date
+	 * @return
+	 */
+	public static Date endTimeOfDate(Date date){
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).atTime(endTimeOfDay()));
+	}
+
+	/**
+	 * 获取指定年月的第一天起始时间
+	 * @param year
+	 * @param month
+	 * @return
+	 */
+	public static Date startTimeOfSpecialMonth(int year, int month){
+		return DateTimeConverterUtil.toDate(LocalDate.of(year, month, 1).atTime(startTimeOfDay()));
+	}
+	
+	/**
+	 * 获取指定年月的最后一天结束时间
+	 * @param year
+	 * @param month
+	 * @return
+	 */
+	public static Date endTimeOfSpecialMonth(int year, int month){
+		return DateTimeConverterUtil.toDate(lastDayOfMonth(LocalDate.of(year, month, 1)).atTime(endTimeOfDay()));
+	}
 }
