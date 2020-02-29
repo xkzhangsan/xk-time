@@ -41,9 +41,9 @@ import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
  * 6.其他常用方法，比如isLeapYear(Date date) 判断是否闰年，isWeekend(Date date) 判断是否周末等
  * 7.时区转换计算方法，transform*，比如transform(ZonedDateTime zonedDateTime, String zoneId)
  * 8.比较2个时间大小和相等方法，compare*，比如compare(Date date1, Date date2)
- * 9.获取准确的起始时间方法，start*,end*，
- * 比如startTimeOfMonth() 当月起始时间 当月第一天日期+00:00:00
- *    endTimeOfMonth() 当月最后一天日期+23:59:59
+ * 9.获取准确的起始时间方法，start*,end*，比如startTimeOfMonth() 当月起始时间 当月第一天日期+00:00:00 endTimeOfMonth() 当月最后一天日期+23:59:59
+ * 10.相同月日比较判断方法，isSameMonthDay*，betweenNextSameMonthDay*，nextSameMonthDay*， 比如用于生日，节日等周期性的日期比较判断
+ * 11.星座计算方法，getConstellation*，比如getConstellationNameCn(String monthDayStr)，根据日期计算星座
 * @ClassName: DateTimeCalculatorUtil 
 * @Description:  DateTime Calculator
 * @author xkzhangsan
@@ -1893,7 +1893,7 @@ public class DateTimeCalculatorUtil {
 		MonthDay monthDay1 = MonthDay.of(localDate1.getMonthValue(), localDate1.getDayOfMonth());
 		MonthDay monthDay2 = MonthDay.of(month, dayOfMonth);
 		
-		// localDate 月日 小于 month dayOfMonth
+		// localDate1 月日 小于 month dayOfMonth
 		if (monthDay1.compareTo(monthDay2) == -1) {
 			return betweenTotalDays(localDate1.atStartOfDay(),
 					localDate1.withMonth(month).withDayOfMonth(dayOfMonth).atStartOfDay());
