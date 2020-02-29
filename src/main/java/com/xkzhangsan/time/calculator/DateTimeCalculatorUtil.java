@@ -1,5 +1,7 @@
 package com.xkzhangsan.time.calculator;
 
+import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
+
 import java.time.DateTimeException;
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -7,6 +9,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.MonthDay;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -21,9 +24,11 @@ import java.util.Objects;
 
 import com.xkzhangsan.time.TemporalAdjusterExtension;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
+import com.xkzhangsan.time.enums.ConstellationNameEnum;
 import com.xkzhangsan.time.enums.MonthNameEnum;
 import com.xkzhangsan.time.enums.WeekNameEnum;
 import com.xkzhangsan.time.enums.ZoneIdEnum;
+import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 
 /**
  * 日期计算工具类
@@ -204,7 +209,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取月份中文全称， 比如一
+	 * 获取月份中文简称， 比如一
 	 * @param date
 	 * @return
 	 */
@@ -213,7 +218,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取月份中文全称， 比如一
+	 * 获取月份中文简称， 比如一
 	 * @param instant
 	 * @return
 	 */
@@ -222,7 +227,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取月份中文全称， 比如一
+	 * 获取月份中文简称， 比如一
 	 * @param localDateTime
 	 * @return
 	 */
@@ -392,7 +397,7 @@ public class DateTimeCalculatorUtil {
 	 * @return
 	 */
 	public static Date getDate(int year, int month, int dayOfMonth){
-		return DateTimeConverterUtil.toDate(LocalDate.of(year, month, dayOfMonth).atTime(startTimeOfDay()));
+		return DateTimeConverterUtil.toDate(LocalDate.of(year, month, dayOfMonth));
 	}
 	
 	// plus two times
@@ -1127,7 +1132,7 @@ public class DateTimeCalculatorUtil {
 	 * @return
 	 */
 	public static Date firstDayOfMonth(Date date){
-		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusters.firstDayOfMonth()));
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(date).with(TemporalAdjusters.firstDayOfMonth()));
 	}	
 	
 	/**
@@ -1156,7 +1161,7 @@ public class DateTimeCalculatorUtil {
 	 * @return
 	 */
 	public static Date lastDayOfMonth(Date date){
-		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusters.lastDayOfMonth()));
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(date).with(TemporalAdjusters.lastDayOfMonth()));
 	}	
 	
 	/**
@@ -1186,6 +1191,57 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static boolean isLeapYear(Date date){
 		return DateTimeConverterUtil.toLocalDateTime(date).toLocalDate().isLeapYear();
+	}
+	
+	/**
+	 * 判断是否闰年
+	 * @param year
+	 * @return
+	 */
+	public static boolean isLeapYear(int year){
+		return ((year % 4) == 0) && ((year % 100) != 0 || (year % 400) == 0);
+	}
+	
+	/**
+	 * 下一个闰年
+	 * @param localDate
+	 * @return
+	 */
+	public synchronized static int nextLeapYear(int year){
+		for (int i = 0; i < 8; i++) {
+			year++;
+			if(isLeapYear(year)){
+				return year;
+			}
+		}
+		return -1;
+	}
+	
+	/**
+	 * 下一个闰年
+	 * @param localDateTime
+	 * @return
+	 */
+	public static LocalDateTime nextLeapYear(LocalDateTime localDateTime){
+		return localDateTime.withYear(nextLeapYear(localDateTime.getYear()));
+	}
+	
+	/**
+	 * 下一个闰年
+	 * @param localDate
+	 * @return
+	 */
+	public static LocalDate nextLeapYear(LocalDate localDate){
+		return localDate.withYear(nextLeapYear(localDate.getYear()));
+	}
+	
+	/**
+	 * 下一个闰年
+	 * @param date
+	 * @return
+	 */
+	public static Date nextLeapYear(Date date){
+		return DateTimeConverterUtil.toDate(nextLeapYear(DateTimeConverterUtil.toLocalDateTime(date)));
 	}
 	
 	/**
@@ -1343,7 +1399,7 @@ public class DateTimeCalculatorUtil {
 	 * @return
 	 */
 	public static Date next(Date date, DayOfWeek dayOfWeek){
-		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusters.next(dayOfWeek)));
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(date).with(TemporalAdjusters.next(dayOfWeek)));
 	}
 	
 	
@@ -1375,7 +1431,7 @@ public class DateTimeCalculatorUtil {
 	 * @return
 	 */
 	public static Date previous(Date date, DayOfWeek dayOfWeek){
-		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusters.previous(dayOfWeek)));
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(date).with(TemporalAdjusters.previous(dayOfWeek)));
 	}
 	
 	/**
@@ -1404,7 +1460,7 @@ public class DateTimeCalculatorUtil {
 	 * @return
 	 */
 	public static Date nextWorkDay(Date date){
-		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).with(TemporalAdjusterExtension.nextWorkDay()));
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(date).with(TemporalAdjusterExtension.nextWorkDay()));
 	}
 	
 	/**
@@ -1756,5 +1812,197 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static Date endTimeOfDate(int year, int month, int dayOfMonth){
 		return DateTimeConverterUtil.toDate(LocalDate.of(year, month, dayOfMonth).atTime(endTimeOfDay()));
+	}
+	
+	// 使用MonthDay对比时间的月日，用于生日，节日等周期性的日期比较判断。
+	
+	/**
+	 * 相同月日比较判断，用于生日，节日等周期性的日期比较判断。
+	 * @param localDate1
+	 * @param monthDay
+	 * @return
+	 */
+	public static boolean isSameMonthDay(LocalDate localDate1, MonthDay monthDay){
+		Objects.requireNonNull(localDate1, "localDate1");
+		Objects.requireNonNull(monthDay, "monthDay");
+		return MonthDay.of(localDate1.getMonthValue(), localDate1.getDayOfMonth()).equals(monthDay);
+	}
+	
+	/**
+	 * 相同月日比较判断，用于生日，节日等周期性的日期比较判断。
+	 * @param localDate1
+	 * @param monthDayStr MM-dd格式
+	 * @return
+	 */
+	public static boolean isSameMonthDay(LocalDate localDate1, String monthDayStr){
+		Objects.requireNonNull(monthDayStr, "monthDayStr");
+		return isSameMonthDay(localDate1, MonthDay.parse(MONTHDAY_FORMAT_PRE + monthDayStr));
+	}
+	
+	/**
+	 * 相同月日比较判断，用于生日，节日等周期性的日期比较判断。
+	 * @param localDate1
+	 * @param localDate2
+	 * @return
+	 */
+	public static boolean isSameMonthDay(LocalDate localDate1, LocalDate localDate2){
+		Objects.requireNonNull(localDate2, "localDate2");
+		return isSameMonthDay(localDate1, MonthDay.of(localDate2.getMonthValue(), localDate2.getDayOfMonth()));
+	}
+	
+	/**
+	 * 相同月日比较判断，用于生日，节日等周期性的日期比较判断。
+	 * @param date
+	 * @param monthDayStr MM-dd格式
+	 * @return
+	 */
+	public static boolean isSameMonthDay(Date date, String monthDayStr){
+		return isSameMonthDay(DateTimeConverterUtil.toLocalDate(date), monthDayStr);
+	}
+	
+	/**
+	 * 相同月日比较判断，用于生日，节日等周期性的日期比较判断。
+	 * @param date1
+	 * @param date2
+	 * @return
+	 */
+	public static boolean isSameMonthDay(Date date1, Date date2){
+		Objects.requireNonNull(date1, "date1");
+		Objects.requireNonNull(date2, "date2");
+		return isSameMonthDay(DateTimeConverterUtil.toLocalDate(date1), DateTimeConverterUtil.toLocalDate(date2));
+	}
+	
+	/**
+	 * 相同月日比较判断，与当前日期对比，用于生日，节日等周期性的日期比较判断
+	 * @param monthDayStr MM-dd格式
+	 * @return
+	 */
+	public static boolean isSameMonthDayOfNow(String monthDayStr){
+		return isSameMonthDay(LocalDate.now(), monthDayStr);
+	}
+	
+	/**
+	 * 下个固定月日相差天数，用于生日，节日等周期性的日期推算
+	 * @param localDate1
+	 * @param month
+	 * @param dayOfMonth
+	 * @return
+	 */
+	public static long betweenNextSameMonthDay(LocalDate localDate1, int month, int dayOfMonth) {
+		Objects.requireNonNull(localDate1, "localDate1");
+		MonthDay monthDay1 = MonthDay.of(localDate1.getMonthValue(), localDate1.getDayOfMonth());
+		MonthDay monthDay2 = MonthDay.of(month, dayOfMonth);
+		
+		// localDate 月日 小于 month dayOfMonth
+		if (monthDay1.compareTo(monthDay2) == -1) {
+			return betweenTotalDays(localDate1.atStartOfDay(),
+					localDate1.withMonth(month).withDayOfMonth(dayOfMonth).atStartOfDay());
+		} else {
+			// 闰年2月29
+			MonthDay leapMonthDay = MonthDay.of(2, 29);
+			if (leapMonthDay.equals(monthDay2)) {
+				LocalDate nextLeapYear = nextLeapYear(localDate1);
+				return betweenTotalDays(localDate1.atStartOfDay(),
+						nextLeapYear.withMonth(month).withDayOfMonth(dayOfMonth).atStartOfDay());
+			} else {
+				LocalDate next = localDate1.plusYears(1);
+				return betweenTotalDays(localDate1.atStartOfDay(),
+						next.withMonth(month).withDayOfMonth(dayOfMonth).atStartOfDay());
+			}
+		}
+	}
+	
+	/**
+	 * 下个固定月日相差天数，用于生日，节日等周期性的日期推算
+	 * @param localDate
+	 * @param monthDayStr MM-dd格式
+	 * @return
+	 */
+	public static long betweenNextSameMonthDay(LocalDate localDate, String monthDayStr) {
+		Objects.requireNonNull(monthDayStr, "monthDayStr");
+		MonthDay monthDay2 = MonthDay.parse(MONTHDAY_FORMAT_PRE + monthDayStr);
+		return betweenNextSameMonthDay(localDate, monthDay2.getMonthValue(), monthDay2.getDayOfMonth());
+	}
+	
+	/**
+	 * 下个固定月日相差天数，用于生日，节日等周期性的日期推算
+	 * @param date
+	 * @param monthDayStr MM-dd格式
+	 * @return
+	 */
+	public static long betweenNextSameMonthDay(Date date, String monthDayStr) {
+		Objects.requireNonNull(monthDayStr, "monthDayStr");
+		MonthDay monthDay2 = MonthDay.parse(MONTHDAY_FORMAT_PRE + monthDayStr);
+		return betweenNextSameMonthDay(DateTimeConverterUtil.toLocalDate(date), monthDay2.getMonthValue(),
+				monthDay2.getDayOfMonth());
+	}
+	
+	/**
+	 * 下个固定月日相差天数，与当前日期对比，用于生日，节日等周期性的日期推算
+	 * @param monthDayStr MM-dd格式
+	 * @return
+	 */
+	public static long betweenNextSameMonthDayOfNow(String monthDayStr) {
+		Objects.requireNonNull(monthDayStr, "monthDayStr");
+		MonthDay monthDay2 = MonthDay.parse(MONTHDAY_FORMAT_PRE + monthDayStr);
+		return betweenNextSameMonthDay(LocalDate.now(), monthDay2.getMonthValue(),
+				monthDay2.getDayOfMonth());
+	}
+	
+	/**
+	 * 下个固定月日相差日期，用于生日，节日等周期性的日期推算
+	 * @param localDate
+	 * @param monthDayStr MM-dd格式
+	 * @return
+	 */
+	public static LocalDate nextSameMonthDay(LocalDate localDate, String monthDayStr){
+		return localDate.plusDays(betweenNextSameMonthDay(localDate, monthDayStr));
+	}
+	
+	/**
+	 * 下个固定月日相差日期，用于生日，节日等周期性的日期推算
+	 * @param date
+	 * @param monthDayStr MM-dd格式
+	 * @return
+	 */
+	public static Date nextSameMonthDay(Date date, String monthDayStr){
+		return DateTimeConverterUtil.toDate(nextSameMonthDay(DateTimeConverterUtil.toLocalDate(date), monthDayStr));
+	}
+	
+	/**
+	 * 下个固定月日相差日期，与当前日期对比，用于生日，节日等周期性的日期推算
+	 * @param monthDayStr MM-dd格式
+	 * @return
+	 */
+	public static Date nextSameMonthDayOfNow(String monthDayStr){
+		return nextSameMonthDay(new Date(), monthDayStr);
+	}
+	
+	/**
+	 * 根据日期查询星座中文名称
+	 * @param monthDayStr MM-dd格式
+	 * @return
+	 */
+	public static String getConstellationNameCn(String monthDayStr){
+		return ConstellationNameEnum.getNameCnByMonthDay(monthDayStr);
+	}
+	
+	/**
+	 * 根据日期查询星座中文名称
+	 * @param date
+	 * @return
+	 */
+	public static String getConstellationNameCn(Date date){
+		String monthDayStr = DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_FMT);
+		return ConstellationNameEnum.getNameCnByMonthDay(monthDayStr);
+	}
+	
+	/**
+	 * 根据日期查询星座英文名称
+	 * @param monthDayStr MM-dd格式
+	 * @return
+	 */
+	public static String getConstellationNameEn(String monthDayStr){
+		return ConstellationNameEnum.getNameEnByMonthDay(monthDayStr);
 	}	
 }

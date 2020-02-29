@@ -237,6 +237,8 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.previous(date, DayOfWeek.MONDAY));
 		//获下一个工作日
 		System.out.println(DateTimeCalculatorUtil.nextWorkDay(date));
+		//获下一个闰年
+		System.out.println(DateTimeCalculatorUtil.nextLeapYear(date));
 	}
 	
 	/**
@@ -263,6 +265,8 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.previous(ldt, DayOfWeek.MONDAY));
 		//获下一个工作日
 		System.out.println(DateTimeCalculatorUtil.nextWorkDay(ldt));
+		//获下一个闰年
+		System.out.println(DateTimeCalculatorUtil.nextLeapYear(ldt));
 	}
 	
 	/**
@@ -366,7 +370,49 @@ public class CalculatorTest {
 		//指定日期
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfDate(2019, 10, 1)));
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfDate(2019, 10, 1)));
-	}	
+	}
+	
+	/**
+	 * 相同月日对比
+	 */
+	@Test
+	public void sameMonthDayTest(){
+		Date date = DateTimeCalculatorUtil.getDate(2020, 2, 29);
+		System.out.println(date);
+		
+		//date的月日部分是否和02-29相等
+		System.out.println(DateTimeCalculatorUtil.isSameMonthDay(date, "02-29"));
+		//date的月日部分是否和new Date()的月日部分相等
+		System.out.println(DateTimeCalculatorUtil.isSameMonthDay(date, new Date()));
+		//当前时间月日部分是否和02-29相等
+		System.out.println(DateTimeCalculatorUtil.isSameMonthDayOfNow("02-29"));
+		
+		//date的月日部分和下一个03-05相差天数
+		System.out.println(DateTimeCalculatorUtil.betweenNextSameMonthDay(date, "03-05"));
+		//当前时间月日部分和下一个03-05相差天数
+		System.out.println(DateTimeCalculatorUtil.betweenNextSameMonthDayOfNow("03-05"));
+		
+		//date为准，下一个02-14的日期
+		System.out.println(DateTimeCalculatorUtil.nextSameMonthDay(date, "02-14"));
+		//date为准，下一个03-05的日期
+		System.out.println(DateTimeCalculatorUtil.nextSameMonthDay(date, "03-05"));
+		//date为准，下一个02-29的日期 ，02-29 只有闰年有。
+		System.out.println(DateTimeCalculatorUtil.nextSameMonthDay(date, "02-29"));
+		//当前时间为准，下一个02-29的日期  ，02-29 只有闰年有。
+		System.out.println(DateTimeCalculatorUtil.nextSameMonthDayOfNow("02-29"));
+	}
+	
+	/**
+	 * 星座计算测试
+	 */
+	@Test
+	public void constellationTest(){
+		System.out.println(DateTimeCalculatorUtil.getConstellationNameCn("02-29"));
+		System.out.println(DateTimeCalculatorUtil.getConstellationNameEn("02-29"));
+		
+		//2020-05-01 的星座
+		System.out.println(DateTimeCalculatorUtil.getConstellationNameCn(DateTimeCalculatorUtil.getDate(2020, 5, 1)));
+	}
 	
 	@Test
 	public void dateCalculatorTest(){
