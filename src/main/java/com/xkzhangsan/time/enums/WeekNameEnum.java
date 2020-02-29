@@ -1,7 +1,7 @@
 package com.xkzhangsan.time.enums;
 
 /**
- * 星期名称枚举，包含英文全称，英文检查，中文
+ * 星期名称枚举，包含英文全称，英文简称，中文
  * Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday
  * @ClassName: WeekNameEnum
  * @Description: WeekNameEnum

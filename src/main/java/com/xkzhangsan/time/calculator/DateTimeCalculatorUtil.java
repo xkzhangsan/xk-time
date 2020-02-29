@@ -119,8 +119,6 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文全称， 比如 January
-	 * January, February, March, April, May, June, July, August, September, October,
-	 * November and December
 	 * @param date
 	 * @return
 	 */
@@ -130,8 +128,6 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文全称， 比如 January
-	 * January, February, March, April, May, June, July, August, September, October,
-	 * November and December
 	 * @param instant
 	 * @return
 	 */
@@ -141,8 +137,6 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文全称， 比如 January
-	 * January, February, March, April, May, June, July, August, September, October,
-	 * November and December
 	 * LocalDateTime LocalDate ZonedDateTime 可以直接.getMonth().toString()
 	 * @param localDateTime
 	 * @return
@@ -153,7 +147,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取月英文简称， 比如 Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
+	 * 获取月英文简称， 比如 Jan
 	 * @param date
 	 * @return
 	 */
@@ -162,7 +156,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取月英文简称， 比如 Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
+	 * 获取月英文简称， 比如 Jan
 	 * @param instant
 	 * @return
 	 */
@@ -171,7 +165,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取月英文简称， 比如 Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
+	 * 获取月英文简称， 比如 Jan
 	 * @param localDateTime
 	 * @return
 	 */
@@ -402,6 +396,12 @@ public class DateTimeCalculatorUtil {
 	
 	// plus two times
 	
+	/**
+	 * 增加年
+	 * @param date
+	 * @param amountToAdd
+	 * @return
+	 */
 	public static Date plusYears(Date date, long amountToAdd){
 		return plus(date, ChronoUnit.YEARS, amountToAdd);
 	}
@@ -488,6 +488,12 @@ public class DateTimeCalculatorUtil {
 	
 	// minus two times
 	
+	/**
+	 * 减少年
+	 * @param date
+	 * @param amountToAdd
+	 * @return
+	 */
 	public static Date minusYears(Date date, long amountToAdd){
 		return minus(date, ChronoUnit.YEARS, amountToAdd);
 	}
@@ -574,6 +580,12 @@ public class DateTimeCalculatorUtil {
 	
 	// modify property
 	
+	/**
+	 * 修改年属性
+	 * @param date
+	 * @param newValue
+	 * @return
+	 */
 	public static Date withYear(Date date, long newValue){
 		return with(date, ChronoField.YEAR, newValue);
 	}
@@ -661,7 +673,8 @@ public class DateTimeCalculatorUtil {
 	// get the difference between two times
 	
 	/**
-	 * 获取2个日期的相差年月天的年数部分
+	 * 获取2个日期的相差年月天的年数部分，不是相差总年数，
+	 * 比如2020-02-29 2021-03-07，返回1
 	 * @param startInclusive
 	 * @param endExclusive
 	 * @return
@@ -674,7 +687,8 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取2个日期的相差年月天的年数部分
+	 * 获取2个日期的相差年月天的年数部分，不是相差总年数，
+	 * 比如2020-02-29 2021-03-07，返回1
 	 * @param startInclusive
 	 * @param endExclusive
 	 * @return
@@ -687,7 +701,8 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取2个日期的相差年月天的年数部分
+	 * 获取2个日期的相差年月天的年数部分，不是相差总年数，
+	 * 比如2020-02-29 2021-03-07，返回1
 	 * @param startInclusive
 	 * @param endExclusive
 	 * @return
@@ -697,7 +712,8 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取2个日期的相差年月天的月数部分
+	 * 获取2个日期的相差年月天的月数部分，不是相差总月数，
+	 * 比如2020-02-29 2021-03-07，返回0
 	 * @param startInclusive
 	 * @param endExclusive
 	 * @return
@@ -710,7 +726,8 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取2个日期的相差年月天的月数部分
+	 * 获取2个日期的相差年月天的月数部分，不是相差总月数，
+	 * 比如2020-02-29 2021-03-07，返回0
 	 * @param startInclusive
 	 * @param endExclusive
 	 * @return
@@ -723,7 +740,8 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取2个日期的相差年月天的月数部分
+	 * 获取2个日期的相差年月天的月数部分，不是相差总月数，
+	 * 比如2020-02-29 2021-03-07，返回0
 	 * @param startInclusive
 	 * @param endExclusive
 	 * @return
@@ -733,7 +751,8 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取2个日期的相差年月天的天数部分
+	 * 获取2个日期的相差年月天的天数部分，不是相差总天数，
+	 * 比如2020-02-29 2021-03-07，返回7
 	 * @param startInclusive
 	 * @param endExclusive
 	 * @return
@@ -746,7 +765,8 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取2个日期的相差年月天的天数部分
+	 * 获取2个日期的相差年月天的天数部分，不是相差总天数，
+	 * 比如2020-02-29 2021-03-07，返回7
 	 * @param startInclusive
 	 * @param endExclusive
 	 * @return
@@ -759,7 +779,8 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取2个日期的相差年月天的天数部分
+	 * 获取2个日期的相差年月天的天数部分，不是相差总天数，
+	 * 比如2020-02-29 2021-03-07，返回7
 	 * @param startInclusive
 	 * @param endExclusive
 	 * @return
@@ -1207,7 +1228,7 @@ public class DateTimeCalculatorUtil {
 	 * @param localDate
 	 * @return
 	 */
-	public synchronized static int nextLeapYear(int year){
+	public static int nextLeapYear(int year){
 		for (int i = 0; i < 8; i++) {
 			year++;
 			if(isLeapYear(year)){

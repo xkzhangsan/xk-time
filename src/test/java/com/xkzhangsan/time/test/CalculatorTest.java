@@ -407,7 +407,9 @@ public class CalculatorTest {
 	 */
 	@Test
 	public void constellationTest(){
+		//获取星座中文
 		System.out.println(DateTimeCalculatorUtil.getConstellationNameCn("02-29"));
+		//获取星座英文
 		System.out.println(DateTimeCalculatorUtil.getConstellationNameEn("02-29"));
 		
 		//2020-05-01 的星座

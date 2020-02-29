@@ -1,7 +1,7 @@
 package com.xkzhangsan.time.enums;
 
 /**
- * 月份名称枚举，包含英文全称，英文检查，中文全称
+ * 月份名称枚举，包含英文全称，英文简称，中文全称
  * 
  * @ClassName: MonthNameEnum
  * @Description: MonthNameEnum
