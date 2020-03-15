@@ -10,6 +10,7 @@ import java.time.ZonedDateTime;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -414,6 +415,30 @@ public class CalculatorTest {
 		
 		//2020-05-01 的星座
 		System.out.println(DateTimeCalculatorUtil.getConstellationNameCn(DateTimeCalculatorUtil.getDate(2020, 5, 1)));
+	}
+	
+	/**
+	 * yearMonth测试
+	 */
+	@Test
+	public void yearMonthTest(){
+		//是否过期
+		System.out.println(DateTimeCalculatorUtil.isExpiry("2020-03"));
+		
+		//获取指定年月的所有日期列表
+		List<Date> dateList = DateTimeCalculatorUtil.getDateList("2020-03");
+		dateList.stream().forEach(date->{
+			System.out.println(DateTimeFormatterUtil.formatToDateStr(date));
+		});
+		
+		System.out.println("========================");
+
+		//获取指定区间的时间列表，包含起始
+		List<Date> dateList2 = DateTimeCalculatorUtil.getDateList(dateList.get(0), dateList.get(dateList.size()-1));
+		dateList2.stream().forEach(date->{
+			System.out.println(DateTimeFormatterUtil.formatToDateStr(date));
+		});
+		
 	}
 	
 	@Test

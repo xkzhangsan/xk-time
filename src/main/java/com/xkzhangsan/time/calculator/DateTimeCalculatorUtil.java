@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.MonthDay;
 import java.time.Period;
+import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoField;
@@ -19,8 +20,11 @@ import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.TemporalField;
 import java.time.temporal.TemporalUnit;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.xkzhangsan.time.TemporalAdjusterExtension;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
@@ -2025,5 +2029,121 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static String getConstellationNameEn(String monthDayStr){
 		return ConstellationNameEnum.getNameEnByMonthDay(monthDayStr);
-	}	
+	}
+	
+	/**
+	 * 获取指定区间的时间列表，包含起始
+	 * @param startInclusive
+	 * @param endInclusive
+	 * @return
+	 */
+	public static List<LocalDateTime> getLocalDateTimeList(LocalDateTime startInclusive, LocalDateTime endInclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endInclusive, "endInclusive");
+		if(startInclusive.isAfter(endInclusive)){
+			throw new DateTimeException("startInclusive must before or equal endInclusive!");
+		}
+		List<LocalDateTime> localDateTimeList = new ArrayList<LocalDateTime>();
+		long days = betweenTotalDays(startInclusive, endInclusive)+1;
+		for(long i=0; i<days; i++){
+			localDateTimeList.add(startInclusive.plusDays(i));
+		}
+		return localDateTimeList;
+	}
+	
+	/**
+	 * 获取指定区间的时间列表，包含起始
+	 * @param startInclusive
+	 * @param endInclusive
+	 * @return
+	 */
+	public static List<LocalDate> getLocalDateList(LocalDate startInclusive, LocalDate endInclusive){
+		return getLocalDateTimeList(DateTimeConverterUtil.toLocalDateTime(startInclusive),
+				DateTimeConverterUtil.toLocalDateTime(endInclusive)).stream()
+						.map(localDateTime -> localDateTime.toLocalDate()).collect(Collectors.toList());
+	}
+	
+	/**
+	 * 获取指定区间的时间列表，包含起始
+	 * @param startInclusive
+	 * @param endInclusive
+	 * @return
+	 */
+	public static List<Date> getDateList(Date startInclusive, Date endInclusive){
+		return getLocalDateTimeList(DateTimeConverterUtil.toLocalDateTime(startInclusive),
+				DateTimeConverterUtil.toLocalDateTime(endInclusive)).stream()
+						.map(localDateTime -> DateTimeConverterUtil.toDate(localDateTime)).collect(Collectors.toList());
+	}
+	
+	/**
+	 *  获取指定年月的所有日期列表
+	 * @param YearMonth
+	 * @return
+	 */
+	public static List<LocalDate> getLocalDateList(YearMonth yearMonth){
+		Objects.requireNonNull(yearMonth, "yearMonth");
+		List<LocalDate> localDateList = new ArrayList<LocalDate>();
+		long days = yearMonth.lengthOfMonth();
+		LocalDate localDate = DateTimeConverterUtil.toLocalDateStartOfMonth(yearMonth);
+		for(long i=0; i<days; i++){
+			localDateList.add(plusDays(localDate, i));
+		}
+		return localDateList;
+	}
+	
+	/**
+	 *  获取指定年月的所有日期列表
+	 * @param yearMonthStr yyyy-MM-dd
+	 * @return
+	 */
+	public static List<LocalDate> getLocalDateList(String yearMonthStr){
+		Objects.requireNonNull(yearMonthStr, "yearMonthStr");
+		YearMonth yearMonth = YearMonth.parse(yearMonthStr);
+		return getLocalDateList(yearMonth);
+	}
+	
+	/**
+	 *  获取指定年月的所有日期列表
+	 * @param yearMonthStr yyyy-MM-dd
+	 * @return
+	 */
+	public static List<LocalDateTime> getLocalDateTimeList(String yearMonthStr){
+		return getLocalDateList(yearMonthStr).stream()
+				.map(localDate -> DateTimeConverterUtil.toLocalDateTime(localDate)).collect(Collectors.toList());
+	}
+	
+	/**
+	 * 获取指定年月的所有日期列表
+	 * @param yearMonthStr yyyy-MM-dd
+	 * @return
+	 */
+	public static List<Date> getDateList(String yearMonthStr){
+		return getLocalDateList(yearMonthStr).stream().map(localDate -> DateTimeConverterUtil.toDate(localDate))
+				.collect(Collectors.toList());
+	}
+	
+	/**
+	 * 判断是否过期，（输入年月小于当前年月）
+	 * @param yearMonth
+	 * @return
+	 */
+	public static boolean isExpiry(YearMonth yearMonth){
+		Objects.requireNonNull(yearMonth, "yearMonth");
+		if(yearMonth.isBefore(YearMonth.now())){
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * 判断是否过期，（输入年月小于当前年月）
+	 * @param yearMonthStr yyyy-MM-dd
+	 * @return
+	 */
+	public static boolean isExpiry(String yearMonthStr){
+		Objects.requireNonNull(yearMonthStr, "yearMonthStr");
+		YearMonth yearMonth = YearMonth.parse(yearMonthStr);
+		return isExpiry(yearMonth);
+	}
+	
 }
