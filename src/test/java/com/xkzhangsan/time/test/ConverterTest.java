@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.YearMonth;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
@@ -87,5 +88,32 @@ public class ConverterTest {
 		System.out.println(DateTimeConverterUtil.toZonedDateTime(Instant.now()));
 		//Asia/Shanghai
 		System.out.println(DateTimeConverterUtil.toZonedDateTime(LocalDateTime.now(), "Asia/Shanghai"));
+	}
+	
+	@Test
+	public void yearMonthConverterTest(){
+		System.out.println("===================yearMonthConverterTest=====================");
+		Date date = new Date();
+		System.out.println(date);
+		YearMonth yearMonth = DateTimeConverterUtil.toYearMonth(date);
+		System.out.println(yearMonth);
+		
+		Date date1 = DateTimeConverterUtil.toDate(yearMonth, 15);
+		//转换为当月第一天
+		Date date2 = DateTimeConverterUtil.toDateStartOfMonth(yearMonth);
+		//转换为当月最后一天
+		Date date3 = DateTimeConverterUtil.toDateEndOfMonth(yearMonth);
+		System.out.println(date1);
+		System.out.println(date2);
+		System.out.println(date3);
+		
+		LocalDate LocalDate1 = DateTimeConverterUtil.toLocalDate(yearMonth, 15);
+		//转换为当月第一天
+		LocalDate LocalDate2 = DateTimeConverterUtil.toLocalDateStartOfMonth(yearMonth);
+		//转换为当月最后一天
+		LocalDate LocalDate3 = DateTimeConverterUtil.toLocalDateEndOfMonth(yearMonth);
+		System.out.println(LocalDate1);
+		System.out.println(LocalDate2);
+		System.out.println(LocalDate3);
 	}	
 }

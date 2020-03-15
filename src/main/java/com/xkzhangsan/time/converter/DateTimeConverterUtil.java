@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.TemporalAccessor;
@@ -85,6 +86,38 @@ public class DateTimeConverterUtil {
 	public static Date toDate(ZonedDateTime zonedDateTime) {
 		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
 		return Date.from(zonedDateTime.toInstant());
+	}
+	
+	/**
+	 * YearMonth转Date
+	 * 注意dayOfMonth范围：1到31之间，最大值根据月份确定特殊情况，如2月闰年29，非闰年28
+	 * 如果要转换为当月最后一天，可以使用下面方法：toDateEndOfMonth(YearMonth)
+	 * @param yearMonth
+	 * @param dayOfMonth
+	 * @return
+	 */
+	public static Date toDate(YearMonth yearMonth, int dayOfMonth) {
+		Objects.requireNonNull(yearMonth, "yearMonth");
+		return toDate(yearMonth.atDay(dayOfMonth));
+	}
+	
+	/**
+	 * YearMonth转Date，转换为当月第一天
+	 * @param yearMonth
+	 * @return
+	 */
+	public static Date toDateStartOfMonth(YearMonth yearMonth) {
+		return toDate(yearMonth, 1);
+	}
+	
+	/**
+	 * YearMonth转Date，转换为当月最后一天
+	 * @param yearMonth
+	 * @return
+	 */
+	public static Date toDateEndOfMonth(YearMonth yearMonth) {
+		Objects.requireNonNull(yearMonth, "yearMonth");
+		return toDate(yearMonth.atEndOfMonth());
 	}
 
 	/**
@@ -203,6 +236,38 @@ public class DateTimeConverterUtil {
 	public static LocalDate toLocalDate(ZonedDateTime zonedDateTime) {
 		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
 		return zonedDateTime.toLocalDate();
+	}
+	
+	/**
+	 * YearMonth转LocalDate
+	 * 注意dayOfMonth范围：1到31之间，最大值根据月份确定特殊情况，如2月闰年29，非闰年28
+	 * 如果要转换为当月最后一天，可以使用下面方法：toLocalDateEndOfMonth(YearMonth)
+	 * @param yearMonth
+	 * @param dayOfMonth
+	 * @return
+	 */
+	public static LocalDate toLocalDate(YearMonth yearMonth, int dayOfMonth) {
+		Objects.requireNonNull(yearMonth, "yearMonth");
+		return yearMonth.atDay(dayOfMonth);
+	}
+	
+	/**
+	 * YearMonth转LocalDate，转换为当月第一天
+	 * @param yearMonth
+	 * @return
+	 */
+	public static LocalDate toLocalDateStartOfMonth(YearMonth yearMonth) {
+		return toLocalDate(yearMonth, 1);
+	}
+	
+	/**
+	 * YearMonth转LocalDate，转换为当月最后一天
+	 * @param yearMonth
+	 * @return
+	 */
+	public static LocalDate toLocalDateEndOfMonth(YearMonth yearMonth) {
+		Objects.requireNonNull(yearMonth, "yearMonth");
+		return yearMonth.atEndOfMonth();
 	}
 
 	/**
@@ -458,6 +523,56 @@ public class DateTimeConverterUtil {
 	 */
 	public static ZonedDateTime toZonedDateTime(TemporalAccessor temporal) {
 		return LocalDateTime.from(temporal).atZone(ZoneId.systemDefault());
-	}	
+	}
+	
+	/**
+	 * Date转YearMonth
+	 * @param date
+	 * @return
+	 */
+	public static YearMonth toYearMonth(Date date){
+		LocalDate localDate = toLocalDate(date);
+		return YearMonth.of(localDate.getYear(), localDate.getMonthValue());
+	}
+	
+	/**
+	 * LocalDateTime转YearMonth
+	 * @param localDateTime
+	 * @return
+	 */
+	public static YearMonth toYearMonth(LocalDateTime localDateTime){
+		LocalDate localDate = toLocalDate(localDateTime);
+		return YearMonth.of(localDate.getYear(), localDate.getMonthValue());
+	}
+	
+	/**
+	 * LocalDate转YearMonth
+	 * @param localDate
+	 * @return
+	 */
+	public static YearMonth toYearMonth(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return YearMonth.of(localDate.getYear(), localDate.getMonthValue());
+	}
+	
+	/**
+	 * Instant转YearMonth
+	 * @param instant
+	 * @return
+	 */
+	public static YearMonth toYearMonth(Instant instant){
+		LocalDate localDate = toLocalDate(instant);
+		return YearMonth.of(localDate.getYear(), localDate.getMonthValue());
+	}
+	
+	/**
+	 * ZonedDateTime转YearMonth
+	 * @param zonedDateTime
+	 * @return
+	 */
+	public static YearMonth toYearMonth(ZonedDateTime zonedDateTime){
+		LocalDate localDate = toLocalDate(zonedDateTime);
+		return YearMonth.of(localDate.getYear(), localDate.getMonthValue());
+	}
 
 }
