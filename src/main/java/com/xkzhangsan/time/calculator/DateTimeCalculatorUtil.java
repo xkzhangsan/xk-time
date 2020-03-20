@@ -2105,6 +2105,16 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 *  获取指定年月的所有日期列表
+	 * @param yearMonth
+	 * @return
+	 */
+	public static List<LocalDateTime> getLocalDateTimeList(YearMonth yearMonth){
+		return getLocalDateList(yearMonth).stream()
+				.map(localDate -> DateTimeConverterUtil.toLocalDateTime(localDate)).collect(Collectors.toList());
+	}	
+	
+	/**
+	 *  获取指定年月的所有日期列表
 	 * @param yearMonthStr yyyy-MM
 	 * @return
 	 */
