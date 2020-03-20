@@ -12,6 +12,8 @@ import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 
 /**
  * 日历工具类
+ * 包括：
+ * 1.生成指定时间的日历方法，generateCalendar* 比如generateCalendar(int year, int month) 生成指定年月的日历
  * 
  * @ClassName: CalendarUtil
  * @Description: CalendarUtil
