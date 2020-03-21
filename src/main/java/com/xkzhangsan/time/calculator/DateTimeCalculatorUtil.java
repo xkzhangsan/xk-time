@@ -39,7 +39,7 @@ import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
  * 包括：
  * 1.获取时间属性方法，get* 比如getYear(Date date) 获取年部分，getMonthCnLong(Date date)获取月份中文，getDayOfWeekCn(Date date)，获取星期中文
  * 2.获取时间加操作方法，plus* 比如plusYears(Date date, long amountToAdd) 当前时间年增加amountToAdd值
- * 3.获取时间减操作方法，minus* 比如minusYears(Date date, long amountToAdd) 当前时间年减少amountToAdd值
+ * 3.获取时间减操作方法，minus* 比如minusYears(Date date, long amountToSubtract) 当前时间年减少amountToSubtract值
  * 4.获取时间修改属性方法，with* 比如withYear(Date date, long newValue) 修改当前时间年值为newValue
  * 5.获取比较2个时间方法，between* 比如betweenYears(Date startInclusive, Date endExclusive) 比较2个时间，获取年部分
  * 6.其他常用方法，比如isLeapYear(Date date) 判断是否闰年，isWeekend(Date date) 判断是否周末，isExpiry(String yearMonthStr) 是否过期等
@@ -489,99 +489,129 @@ public class DateTimeCalculatorUtil {
 	
 	public static LocalTime plusSeconds(LocalTime localTime, long amountToAdd){
 		return (LocalTime) plus(localTime, ChronoUnit.SECONDS, amountToAdd);
-	}	
+	}
+	
+	/**
+	 * 增加毫秒
+	 * @param date
+	 * @param amountToAdd
+	 * @return
+	 */
+	public static Date plusMillis(Date date, long amountToAdd){
+		return plus(date, ChronoUnit.MILLIS, amountToAdd);
+	}
+	
+	public static LocalDateTime plusMillis(LocalDateTime localDateTime, long amountToAdd){
+		return (LocalDateTime) plus(localDateTime, ChronoUnit.MILLIS, amountToAdd);
+	}
+	
+	public static LocalTime plusMillis(LocalTime localTime, long amountToAdd){
+		return (LocalTime) plus(localTime, ChronoUnit.MILLIS, amountToAdd);
+	}
 	
 	// minus two times
 	
 	/**
 	 * 减少年
 	 * @param date
-	 * @param amountToAdd
+	 * @param amountToSubtract
 	 * @return
 	 */
-	public static Date minusYears(Date date, long amountToAdd){
-		return minus(date, ChronoUnit.YEARS, amountToAdd);
+	public static Date minusYears(Date date, long amountToSubtract){
+		return minus(date, ChronoUnit.YEARS, amountToSubtract);
 	}
 	
-	public static LocalDateTime minusYears(LocalDateTime localDateTime, long amountToAdd){
-		return (LocalDateTime) minus(localDateTime, ChronoUnit.YEARS, amountToAdd);
+	public static LocalDateTime minusYears(LocalDateTime localDateTime, long amountToSubtract){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.YEARS, amountToSubtract);
 	}
 	
-	public static LocalDate minusYears(LocalDate localDate, long amountToAdd){
-		return (LocalDate) minus(localDate, ChronoUnit.YEARS, amountToAdd);
+	public static LocalDate minusYears(LocalDate localDate, long amountToSubtract){
+		return (LocalDate) minus(localDate, ChronoUnit.YEARS, amountToSubtract);
 	}
 	
-	public static Date minusMonths(Date date, long amountToAdd){
-		return minus(date, ChronoUnit.MONTHS, amountToAdd);
+	public static Date minusMonths(Date date, long amountToSubtract){
+		return minus(date, ChronoUnit.MONTHS, amountToSubtract);
 	}
 	
 	public static LocalDateTime minusMonths(LocalDateTime localDateTime, long amountToAdd){
 		return (LocalDateTime) minus(localDateTime, ChronoUnit.MONTHS, amountToAdd);
 	}
 	
-	public static LocalDate minusMonths(LocalDate localDate, long amountToAdd){
-		return (LocalDate) minus(localDate, ChronoUnit.MONTHS, amountToAdd);
+	public static LocalDate minusMonths(LocalDate localDate, long amountToSubtract){
+		return (LocalDate) minus(localDate, ChronoUnit.MONTHS, amountToSubtract);
 	}
 	
-	public static Date minusWeeks(Date date, long amountToAdd){
-		return minus(date, ChronoUnit.WEEKS, amountToAdd);
+	public static Date minusWeeks(Date date, long amountToSubtract){
+		return minus(date, ChronoUnit.WEEKS, amountToSubtract);
 	}
 	
-	public static LocalDateTime minusWeeks(LocalDateTime localDateTime, long amountToAdd){
-		return (LocalDateTime) minus(localDateTime, ChronoUnit.WEEKS, amountToAdd);
+	public static LocalDateTime minusWeeks(LocalDateTime localDateTime, long amountToSubtract){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.WEEKS, amountToSubtract);
 	}
 	
-	public static LocalDate minusWeeks(LocalDate localDate, long amountToAdd){
-		return (LocalDate) minus(localDate, ChronoUnit.WEEKS, amountToAdd);
+	public static LocalDate minusWeeks(LocalDate localDate, long amountToSubtract){
+		return (LocalDate) minus(localDate, ChronoUnit.WEEKS, amountToSubtract);
 	}	
 	
-	public static Date minusDays(Date date, long amountToAdd){
-		return minus(date, ChronoUnit.DAYS, amountToAdd);
+	public static Date minusDays(Date date, long amountToSubtract){
+		return minus(date, ChronoUnit.DAYS, amountToSubtract);
 	}
 	
-	public static LocalDateTime minusDays(LocalDateTime localDateTime, long amountToAdd){
-		return (LocalDateTime) minus(localDateTime, ChronoUnit.DAYS, amountToAdd);
+	public static LocalDateTime minusDays(LocalDateTime localDateTime, long amountToSubtract){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.DAYS, amountToSubtract);
 	}
 	
-	public static LocalDate minusDays(LocalDate localDate, long amountToAdd){
-		return (LocalDate) minus(localDate, ChronoUnit.DAYS, amountToAdd);
+	public static LocalDate minusDays(LocalDate localDate, long amountToSubtract){
+		return (LocalDate) minus(localDate, ChronoUnit.DAYS, amountToSubtract);
 	}
 	
-	public static Date minusHours(Date date, long amountToAdd){
-		return minus(date, ChronoUnit.HOURS, amountToAdd);
+	public static Date minusHours(Date date, long amountToSubtract){
+		return minus(date, ChronoUnit.HOURS, amountToSubtract);
 	}
 	
-	public static LocalDateTime minusHours(LocalDateTime localDateTime, long amountToAdd){
-		return (LocalDateTime) minus(localDateTime, ChronoUnit.HOURS, amountToAdd);
+	public static LocalDateTime minusHours(LocalDateTime localDateTime, long amountToSubtract){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.HOURS, amountToSubtract);
 	}
 	
-	public static LocalTime minusHours(LocalTime localTime, long amountToAdd){
-		return (LocalTime) minus(localTime, ChronoUnit.HOURS, amountToAdd);
+	public static LocalTime minusHours(LocalTime localTime, long amountToSubtract){
+		return (LocalTime) minus(localTime, ChronoUnit.HOURS, amountToSubtract);
 	}
 	
-	public static Date minusMinutes(Date date, long amountToAdd){
-		return minus(date, ChronoUnit.MINUTES, amountToAdd);
+	public static Date minusMinutes(Date date, long amountToSubtract){
+		return minus(date, ChronoUnit.MINUTES, amountToSubtract);
 	}
 	
-	public static LocalDateTime minusMinutes(LocalDateTime localDateTime, long amountToAdd){
-		return (LocalDateTime) minus(localDateTime, ChronoUnit.MINUTES, amountToAdd);
+	public static LocalDateTime minusMinutes(LocalDateTime localDateTime, long amountToSubtract){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.MINUTES, amountToSubtract);
 	}
 	
-	public static LocalTime minusMinutes(LocalTime localTime, long amountToAdd){
-		return (LocalTime) minus(localTime, ChronoUnit.MINUTES, amountToAdd);
+	public static LocalTime minusMinutes(LocalTime localTime, long amountToSubtract){
+		return (LocalTime) minus(localTime, ChronoUnit.MINUTES, amountToSubtract);
 	}
 	
-	public static Date minusSeconds(Date date, long amountToAdd){
-		return minus(date, ChronoUnit.SECONDS, amountToAdd);
+	public static Date minusSeconds(Date date, long amountToSubtract){
+		return minus(date, ChronoUnit.SECONDS, amountToSubtract);
 	}
 	
-	public static LocalDateTime minusSeconds(LocalDateTime localDateTime, long amountToAdd){
-		return (LocalDateTime) minus(localDateTime, ChronoUnit.SECONDS, amountToAdd);
+	public static LocalDateTime minusSeconds(LocalDateTime localDateTime, long amountToSubtract){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.SECONDS, amountToSubtract);
 	}
 	
-	public static LocalTime minusSeconds(LocalTime localTime, long amountToAdd){
-		return (LocalTime) minus(localTime, ChronoUnit.SECONDS, amountToAdd);
+	public static LocalTime minusSeconds(LocalTime localTime, long amountToSubtract){
+		return (LocalTime) minus(localTime, ChronoUnit.SECONDS, amountToSubtract);
 	}
+	
+	public static Date minusMillis(Date date, long amountToSubtract){
+		return minus(date, ChronoUnit.MILLIS, amountToSubtract);
+	}
+	
+	public static LocalDateTime minusMillis(LocalDateTime localDateTime, long amountToSubtract){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.MILLIS, amountToSubtract);
+	}
+	
+	public static LocalTime minusMillis(LocalTime localTime, long amountToSubtract){
+		return (LocalTime) minus(localTime, ChronoUnit.MILLIS, amountToSubtract);
+	}	
 	
 	// modify property
 	

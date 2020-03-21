@@ -8,6 +8,7 @@ import java.time.temporal.TemporalField;
 import java.time.temporal.TemporalUnit;
 import java.util.Date;
 
+import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.holiday.ChineseHolidayEnum;
 
@@ -44,6 +45,7 @@ public final class LunarDate implements Temporal{
 	 */
 	public static final String[] lunarMonth = new String[] { "", "正", "二", "三", "四", "五", "六", "七", "八", "九", "十", "冬",
 			"腊" };
+	
 	/**
 	 * 天干列表
 	 */
@@ -64,6 +66,18 @@ public final class LunarDate implements Temporal{
 	 */
 	public static final String[] numStr = new String[] { "〇", "一", "二", "三", "四", "五", "六", "七", "八", "九"};	
 
+	
+	/**
+	 * 二十四节气
+	 */
+	public static final String[] solarTerms = new String[] {"小寒","大寒","立春","雨水","惊蛰","春分","清明","谷雨","立夏","小满","芒种","夏至","小暑","大暑","立秋","处暑","白露","秋分","寒露","霜降","立冬","小雪","大雪","冬至"};
+	
+	
+	/**
+	 * 二十四节气数据
+	 */
+	private static final long[] solarTermInfo = new long[] {0,21208,42467,63836,85337,107014,128867,150921,173149,195551,218072,240693,263343,285989,308563,331033,353350,375494,397447,419210,440795,462224,483532,504758};
+	
 	/**
 	 * 标准日期
 	 */
@@ -118,6 +132,11 @@ public final class LunarDate implements Temporal{
 	 * 星期，中文
 	 */
 	private String weekCn;
+	
+	/**
+	 * 二十四节气 
+	 */
+	private String solarTerm;
 
 	private LunarDate(LocalDate localDate) {
 		super();
@@ -147,6 +166,9 @@ public final class LunarDate implements Temporal{
 		this.lDayCn = getChinaDay(this.lDay);
 
 		this.weekCn = getWeekCn(localDate.getDayOfWeek().getValue());
+		if(l[7] != -1){
+			this.solarTerm = solarTerms[(int)l[7]];
+		}
 		this.lDateCn = this.lYearCn + "年" + this.lMonthCn + "月" + this.lDayCn;
 	}
 	
@@ -275,10 +297,23 @@ public final class LunarDate implements Temporal{
 		int num = year - 1900 + 36;
 		return (cyclicalm(num));
 	}
+	
+	/**
+	 * 计算某年第n个节气的天
+	 * @param year 公历年
+	 * @param n
+	 * @return
+	 */
+	public static final int solarTerm(int year, int n){
+		LocalDateTime startLocalDateTime = LocalDateTime.of(1900,1,6,2,5);
+		long millis = (long) ((31556925974.7*(year-1900) + solarTermInfo[n]*60000));
+		LocalDateTime tempLocalDateTime = DateTimeCalculatorUtil.plusMillis(startLocalDateTime, millis);
+		return tempLocalDateTime.getDayOfMonth();
+	}
 
 	/**
 	 * 传出year年month月day日对应的农历.year0 .month1 .day2 .yearCyl3 .monCyl4 .dayCyl5
-	 * .isLeap6
+	 * .isLeap6.solarTermIndex7
 	 *
 	 * @param year
 	 * @param month
@@ -286,9 +321,9 @@ public final class LunarDate implements Temporal{
 	 * @return
 	 */
 	public static final long[] calElement(int year, int month, int day) {
-		long[] nongDate = new long[7];
+		long[] nongDate = new long[8];
 		int i = 0, temp = 0, leap = 0;
-		LocalDate baseDate = LocalDate.of(0 + 1900, 1, 31);
+		LocalDate baseDate = LocalDate.of(1900, 1, 31);
 		LocalDate objDate = LocalDate.of(year, month, day);
 		long offset = (DateTimeConverterUtil.toEpochMilli(objDate) - DateTimeConverterUtil.toEpochMilli(baseDate))
 				/ 86400000L;
@@ -340,6 +375,18 @@ public final class LunarDate implements Temporal{
 		}
 		nongDate[1] = i;
 		nongDate[2] = offset + 1;
+		
+		//二十四节气
+		int solarTermIndex = -1;
+		int tempMonth = month - 1;
+		int firstSolarTermOfMonth = solarTerm(year, tempMonth*2);
+		int secondSolarTermOfMonth = solarTerm(year, tempMonth*2+1);
+		if(day == firstSolarTermOfMonth){
+			solarTermIndex = tempMonth*2;
+		}else if(day == secondSolarTermOfMonth){
+			solarTermIndex = tempMonth*2 + 1;
+		}
+		nongDate[7] = solarTermIndex;
 		return nongDate;
 	}
 
@@ -501,12 +548,16 @@ public final class LunarDate implements Temporal{
 	public String getWeekCn() {
 		return weekCn;
 	}
+	
+	public String getSolarTerm() {
+		return solarTerm;
+	}
 
 	@Override
 	public String toString() {
 		return "LunarDate [localDate=" + localDate + ",lDateCn=" + lDateCn + ", suiCi=" + suiCi + ", lAnimal=" + lAnimal + ", lYear=" + lYear
 				+ ", lMonth=" + lMonth + ", lDay=" + lDay + ", lYearCn=" + lYearCn + ", lMonthCn=" + lMonthCn
-				+ ", lDayCn=" + lDayCn + ", weekCn=" + weekCn + "]";
+				+ ", lDayCn=" + lDayCn + ", weekCn=" + weekCn + ", solarTerm=" + solarTerm + "]";
 	}
 
 	/**
