@@ -19,7 +19,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>0.0.4</version>    
+      <version>0.0.5</version>    
     </dependency>    
 
 
