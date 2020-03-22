@@ -193,7 +193,7 @@ public final class LunarDate implements Temporal{
 	
 	/**
 	 * 通过Instant创建LunarDate
-	 * @param localDate
+	 * @param instant
 	 * @return
 	 */
 	public static LunarDate from(Instant instant) {
@@ -324,10 +324,9 @@ public final class LunarDate implements Temporal{
 	public static final long[] calElement(int year, int month, int day) {
 		long[] nongDate = new long[8];
 		int i = 0, temp = 0, leap = 0;
-		LocalDate baseDate = LocalDate.of(1900, 1, 31);
-		LocalDate objDate = LocalDate.of(year, month, day);
-		long offset = (DateTimeConverterUtil.toEpochMilli(objDate) - DateTimeConverterUtil.toEpochMilli(baseDate))
-				/ 86400000L;
+		LocalDateTime baseDate = LocalDate.of(1900, 1, 31).atStartOfDay();
+		LocalDateTime objDate = LocalDate.of(year, month, day).atStartOfDay();
+		long offset = DateTimeCalculatorUtil.betweenTotalDays(baseDate, objDate);		
 		nongDate[5] = offset + 40;
 		nongDate[4] = 14;
 		for (i = 1900; i < 2050 && offset > 0; i++) {
