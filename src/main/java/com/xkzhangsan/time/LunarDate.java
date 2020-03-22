@@ -19,7 +19,7 @@ import com.xkzhangsan.time.holiday.ChineseHolidayEnum;
 * @Description: LunarDate
 * @author xkzhangsan
 * @date 2019年12月30日
-* @version 0.1 ，初版，试用
+* @version 0.2 试用
  */
 public final class LunarDate implements Temporal{
 	
