@@ -61,4 +61,19 @@ YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")
 包括：  
 （1）生成指定时间的日历（包含年、月和日层级关系的日历）方法，generateCalendar* 比如generateCalendar(int year, int month) 生成指定年月的日历。   
 
+## 6.农历日期类 LunarDate （试用）  
+包含：  
+（1）农历日期年月日计算。  
+（2）农历岁次，生肖属相计算。  
+（3）二十四节气计算等  
+ 注意： 仅支持公历1901-1950年的农历转换。  
+ 
+## 7.节假日计算类 Holiday （试用）  
+包含：  
+（1）公历节假日计算， getLocalHoliday* 比如getLocalHoliday(Date date) 计算date的公历节日，getLocalHoliday(Map<String, String> localHolidayMap, Date date) 可以传入自定义节日数据。   
+（2）农历节假日计算， getChineseHoliday* 比如getChineseHoliday(Date date) 计算date的农历节日，getChineseHoliday(Map<String, String> chineseHolidayMap, Date date) 可以传入自定义节日数据。  
+（3）二十四节气计算， getSolarTerm* 比如getSolarTerm(Date date) 计算date的二十四节气。  
+
+注意： 农历和二十四节气使用农历日期类 LunarDate，仅支持公历1901-1950年的计算。  
+
 ### 欢迎提问题和建议！  
