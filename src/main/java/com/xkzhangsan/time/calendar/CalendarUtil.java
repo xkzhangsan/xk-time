@@ -32,6 +32,17 @@ public class CalendarUtil {
 	 * @return
 	 */
 	public static CalendarWrapper generateCalendar(int year, int month){
+		return generateCalendar(year, month, false);
+	}
+	
+	/**
+	 * 生成指定年月的日历
+	 * @param year
+	 * @param month
+	 * @param includeLunarDate
+	 * @return
+	 */
+	public static CalendarWrapper generateCalendar(int year, int month, boolean includeLunarDate){
 		CalendarWrapper calendarWrapper = new CalendarWrapper();
 		Map<String, DayWrapper> dayMap = new ConcurrentHashMap<String, DayWrapper>();
 		List<LocalDateTime> localDateTimeList = DateTimeCalculatorUtil.getLocalDateTimeList(YearMonth.of(year, month));
@@ -40,7 +51,7 @@ public class CalendarUtil {
 		}
 		List<DayWrapper> dayWrapperList = new ArrayList<>();
 		localDateTimeList.stream().forEach(localDateTime->{
-			DayWrapper dayWrapper = new DayWrapper(localDateTime);
+			DayWrapper dayWrapper = new DayWrapper(localDateTime, includeLunarDate);
 			dayWrapperList.add(dayWrapper);
 			dayMap.put(DateTimeFormatterUtil.formatToDateStr(localDateTime), dayWrapper);
 		});
@@ -55,7 +66,7 @@ public class CalendarUtil {
 		
 		calendarWrapper = new CalendarWrapper(yearWrapperList, dayMap);
 		return calendarWrapper;
-	}
+	}	
 	
 	/**
 	 * 生成指定年的日历
@@ -63,6 +74,16 @@ public class CalendarUtil {
 	 * @return
 	 */
 	public static CalendarWrapper generateCalendar(int year){
+		return generateCalendar(year, false);
+	}
+	
+	/**
+	 * 生成指定年的日历
+	 * @param year
+	 * @param includeLunarDate
+	 * @return
+	 */
+	public static CalendarWrapper generateCalendar(int year, boolean includeLunarDate){
 		CalendarWrapper calendarWrapper = new CalendarWrapper();
 		Map<String, DayWrapper> dayMap = new ConcurrentHashMap<String, DayWrapper>();
 		List<MonthWrapper> monthWrapperList = new ArrayList<>();
@@ -73,7 +94,7 @@ public class CalendarUtil {
 			}
 			List<DayWrapper> dayWrapperList = new ArrayList<>();
 			localDateTimeList.stream().forEach(localDateTime->{
-				DayWrapper dayWrapper = new DayWrapper(localDateTime);
+				DayWrapper dayWrapper = new DayWrapper(localDateTime, includeLunarDate);
 				dayWrapperList.add(dayWrapper);
 				dayMap.put(DateTimeFormatterUtil.formatToDateStr(localDateTime), dayWrapper);
 			});
@@ -87,5 +108,5 @@ public class CalendarUtil {
 		yearWrapperList.add(yearWrapper);
 		calendarWrapper = new CalendarWrapper(yearWrapperList, dayMap);
 		return calendarWrapper;
-	}
+	}	
 }

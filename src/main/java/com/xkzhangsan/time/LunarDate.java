@@ -138,6 +138,11 @@ public final class LunarDate implements Temporal{
 	 * 二十四节气 
 	 */
 	private String solarTerm;
+	
+	/**
+	 * 当前日期月份是否为闰月，是 为"闰"
+	 */
+	private String leapMonthCn;
 
 	private LunarDate(LocalDate localDate) {
 		super();
@@ -170,7 +175,12 @@ public final class LunarDate implements Temporal{
 		if(l[7] != -1){
 			this.solarTerm = solarTerms[(int)l[7]];
 		}
-		this.lDateCn = this.lYearCn + "年" + this.lMonthCn + "月" + this.lDayCn;
+		if(l[6] == 1){
+			this.leapMonthCn = "闰";
+		}else{
+			this.leapMonthCn = "";
+		}
+		this.lDateCn = this.lYearCn + "年" + this.leapMonthCn + this.lMonthCn + "月" + this.lDayCn;
 	}
 	
 	/**
@@ -553,11 +563,15 @@ public final class LunarDate implements Temporal{
 		return solarTerm;
 	}
 
+	public String getLeapMonthCn() {
+		return leapMonthCn;
+	}
+	
 	@Override
 	public String toString() {
 		return "LunarDate [localDate=" + localDate + ",lDateCn=" + lDateCn + ", suiCi=" + suiCi + ", lAnimal=" + lAnimal + ", lYear=" + lYear
 				+ ", lMonth=" + lMonth + ", lDay=" + lDay + ", lYearCn=" + lYearCn + ", lMonthCn=" + lMonthCn
-				+ ", lDayCn=" + lDayCn + ", weekCn=" + weekCn + ", solarTerm=" + solarTerm + "]";
+				+ ", lDayCn=" + lDayCn + ", weekCn=" + weekCn + ", solarTerm=" + solarTerm + ", leapMonthCn=" + leapMonthCn + "]";
 	}
 
 	/**

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import com.xkzhangsan.time.LunarDate;
 import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
 import com.xkzhangsan.time.constants.Constant;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
@@ -25,19 +26,58 @@ public class DayWrapper implements Serializable{
 	
 	private LocalDateTime localDateTime;
 	
+	/**
+	 * 日期 yyyy-MM-dd
+	 */
 	private String dateStr;
 	
+	/**
+	 * 天，当月第几天
+	 */
 	private int day;
 	
+	/**
+	 * 星期
+	 */
 	private String weekStr;
 	
+	/**
+	 * 公历节日
+	 */
+	private String localHoliday;
+	
+	/**
+	 * 农历
+	 */
+	private LunarDate lunarDate;
+	
+	/**
+	 * 农历节日
+	 */
+	private String chineseHoliday;
+	
+	/**
+	 *农历日期
+	 */
+	private String lunarDateStr;
+	
+	/**
+	 *二十四节气 
+	 */
+	private String solarTerm;
+	
+	
 	private Object obj;
-
+	
 	public DayWrapper(LocalDateTime localDateTime) {
-		this(localDateTime, null);
+		this(localDateTime, null, false);
+	}
+	
+	public DayWrapper(LocalDateTime localDateTime, boolean includeLunarDate) {
+		this(localDateTime, null, includeLunarDate);
 	}
 
-	public DayWrapper(LocalDateTime localDateTime, Object obj) {
+	public DayWrapper(LocalDateTime localDateTime, Object obj, boolean includeLunarDate) {
 		super();
 		this.localDateTime = localDateTime;
 		this.date = DateTimeConverterUtil.toDate(localDateTime);
@@ -49,6 +89,11 @@ public class DayWrapper implements Serializable{
 			this.weekStr = DateTimeCalculatorUtil.getDayOfWeekEnLong(localDateTime);
 		}
 		this.obj = obj;
+		if(includeLunarDate){
+			this.lunarDate = LunarDate.from(localDateTime);
+			this.lunarDateStr = lunarDate.getlDateCn();
+			this.solarTerm = lunarDate.getSolarTerm();
+		}
 	}
 
 	public Date getDate() {
@@ -97,6 +142,46 @@ public class DayWrapper implements Serializable{
 
 	public void setWeekStr(String weekStr) {
 		this.weekStr = weekStr;
+	}
+
+	public LunarDate getLunarDate() {
+		return lunarDate;
+	}
+
+	public void setLunarDate(LunarDate lunarDate) {
+		this.lunarDate = lunarDate;
+	}
+
+	public String getLocalHoliday() {
+		return localHoliday;
+	}
+
+	public void setLocalHoliday(String localHoliday) {
+		this.localHoliday = localHoliday;
+	}
+
+	public String getChineseHoliday() {
+		return chineseHoliday;
+	}
+
+	public void setChineseHoliday(String chineseHoliday) {
+		this.chineseHoliday = chineseHoliday;
+	}
+
+	public String getSolarTerm() {
+		return solarTerm;
+	}
+
+	public void setSolarTerm(String solarTerm) {
+		this.solarTerm = solarTerm;
+	}
+
+	public String getLunarDateStr() {
+		return lunarDateStr;
+	}
+
+	public void setLunarDateStr(String lunarDateStr) {
+		this.lunarDateStr = lunarDateStr;
 	}
 
 }
