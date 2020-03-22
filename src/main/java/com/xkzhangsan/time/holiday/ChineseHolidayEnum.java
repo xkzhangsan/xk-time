@@ -3,13 +3,20 @@ package com.xkzhangsan.time.holiday;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import com.xkzhangsan.time.LunarDate;
 /**
- * 农历节日
- * 使用LunarDate处理日历，所有仅支持公历1901-1950年的农历节日
- *@version 0.1 ，初版，试用
+ * 农历节日处理
+ * 
+ * 农历相关，仅支持公历1901-1950年的农历
+* @ClassName: ChineseHolidayEnum 
+* @Description: ChineseHolidayEnum
+* @author xkzhangsan
+* @date 2019年12月30日
+* @version 0.2 试用
  */
 public enum ChineseHolidayEnum implements Holiday{
 	
@@ -47,6 +54,7 @@ public enum ChineseHolidayEnum implements Holiday{
 	 * @param temporal
 	 * @return
 	 */
+	@Deprecated
 	public static ChineseHolidayEnum getHoliday(Temporal temporal) {
 		Objects.requireNonNull(temporal, "temporal");
 		LunarDate lunarDate = LunarDate.from(temporal);
@@ -76,7 +84,7 @@ public enum ChineseHolidayEnum implements Holiday{
 	 * @return
 	 */
 	public static String getHolidayName(Temporal temporal) {
-		return getHoliday(temporal).name;
+		return Holiday.getChineseHoliday(convertToMap(), temporal);
 	}
 	
 	/**
@@ -94,5 +102,13 @@ public enum ChineseHolidayEnum implements Holiday{
 			return true;
 		}
 		return false;
+	}
+	
+	public static Map<String, String> convertToMap(){
+		Map<String, String> chineseHolidayMap = new HashMap<String, String>();
+		for (ChineseHolidayEnum chineseHolidayEnum : ChineseHolidayEnum.values()) {
+			chineseHolidayMap.put(chineseHolidayEnum.getPattern(), chineseHolidayEnum.getName());
+		}
+		return chineseHolidayMap;
 	}
 }

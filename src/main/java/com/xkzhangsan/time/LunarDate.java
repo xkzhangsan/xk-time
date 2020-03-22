@@ -10,7 +10,7 @@ import java.util.Date;
 
 import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
-import com.xkzhangsan.time.holiday.ChineseHolidayEnum;
+import com.xkzhangsan.time.holiday.Holiday;
 
 /**
  * 农历日期
@@ -581,7 +581,11 @@ public final class LunarDate implements Temporal{
 	 * @return
 	 */
 	public String formatLongCnWithChineseHoliday(){
-		return suiCi + lAnimal + "年 " + lDateCn + " " + weekCn + " " + ChineseHolidayEnum.getHoliday(localDate).getName();
+		String chineseHoliday = Holiday.getChineseHoliday(localDate);
+		if(solarTerm != ""){
+			chineseHoliday = chineseHoliday + " " + solarTerm;
+		}
+		return suiCi + lAnimal + "年 " + lDateCn + " " + weekCn + " " + chineseHoliday;
 	}	
 	
 	/**
@@ -633,6 +637,7 @@ public final class LunarDate implements Temporal{
     public static void main(String[] args) {
         String str =LunarDate.now().toString();
         System.out.println(str);
+        System.out.println(LunarDate.now().formatLongCnWithChineseHoliday());
     }
 	
 }

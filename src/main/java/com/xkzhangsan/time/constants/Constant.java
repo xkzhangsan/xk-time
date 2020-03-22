@@ -46,6 +46,17 @@ public class Constant {
 	 */
 	public static final String ZH = "zh";
 	
+	/**
+	 * 除夕，节日处理使用
+	 */
+	public static final String CHUXI = "CHUXI";
+	
+	/**
+	 * 春节，节日处理使用
+	 */
+	public static final String CHUNJIE = "0101";
+	
+	
 	private static volatile Constant constant;
 	
 	private Constant(){

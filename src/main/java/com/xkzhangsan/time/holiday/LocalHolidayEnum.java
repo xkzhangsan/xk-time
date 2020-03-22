@@ -5,13 +5,20 @@ import java.time.MonthDay;
 import java.time.temporal.ChronoField;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjusters;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 
 /**
  * 公历常见假日
- * @version 0.1 ，初版，试用
+ * 
+* @ClassName: LocalHolidayEnum 
+* @Description: LocalHolidayEnum
+* @author xkzhangsan
+* @date 2019年12月30日
+* @version 0.2 试用
  */
 public enum LocalHolidayEnum implements Holiday{
 
@@ -67,6 +74,7 @@ public enum LocalHolidayEnum implements Holiday{
 	 * @param temporal
 	 * @return
 	 */
+	@Deprecated
 	public static LocalHolidayEnum getHoliday(Temporal temporal) {
 		Objects.requireNonNull(temporal, "temporal");
 		MonthDay monthDay = MonthDay.from(temporal);
@@ -103,7 +111,7 @@ public enum LocalHolidayEnum implements Holiday{
 	 * @return
 	 */
 	public static String getHolidayName(Temporal temporal) {
-		return getHoliday(temporal).name;
+		return Holiday.getLocalHoliday(convertToMap(), temporal);
 	}
 	
 	/**
@@ -121,6 +129,14 @@ public enum LocalHolidayEnum implements Holiday{
 			return true;
 		}
 		return false;
+	}
+	
+	public static Map<String, String> convertToMap(){
+		Map<String, String> localHolidayMap = new HashMap<String, String>();
+		for (LocalHolidayEnum localHolidayEnum : LocalHolidayEnum.values()) {
+			localHolidayMap.put(localHolidayEnum.getPattern(), localHolidayEnum.getName());
+		}
+		return localHolidayMap;
 	}
 	
 }
