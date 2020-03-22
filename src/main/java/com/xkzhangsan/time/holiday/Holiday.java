@@ -72,7 +72,6 @@ public interface Holiday {
 		Objects.requireNonNull(temporal, "temporal");
 		String localHoliday = "";
 		if(localHolidayMap == null || localHolidayMap.isEmpty()){
-			System.out.println("localHolidayMap is null, use default data");
 			localHolidayMap = LocalHolidayEnum.convertToMap();
 		}
 		
@@ -142,7 +141,6 @@ public interface Holiday {
 		Objects.requireNonNull(temporal, "temporal");
 		String chineseHoliday = "";
 		if(chineseHolidayMap == null || chineseHolidayMap.isEmpty()){
-			System.out.println("chineseHolidayMap is null, use default data");
 			chineseHolidayMap = ChineseHolidayEnum.convertToMap();
 		}
 		
