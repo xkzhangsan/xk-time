@@ -174,6 +174,8 @@ public final class LunarDate implements Temporal{
 		this.weekCn = getWeekCn(localDate.getDayOfWeek().getValue());
 		if(l[7] != -1){
 			this.solarTerm = solarTerms[(int)l[7]];
+		}else{
+			this.solarTerm = "";
 		}
 		if(l[6] == 1){
 			this.leapMonthCn = "闰";
@@ -627,5 +629,10 @@ public final class LunarDate implements Temporal{
 	public long until(Temporal endExclusive, TemporalUnit unit) {
 		return localDate.until(endExclusive, unit);
 	}
+	
+    public static void main(String[] args) {
+        String str =LunarDate.now().toString();
+        System.out.println(str);
+    }
 	
 }
