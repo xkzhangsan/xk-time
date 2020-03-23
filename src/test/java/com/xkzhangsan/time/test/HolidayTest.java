@@ -22,7 +22,7 @@ public class HolidayTest {
 		Map<String, String> localHolidayMap = new HashMap<String, String>();
 		localHolidayMap.put("0422", "世界地球日");
 		LocalDate localDate2 = LocalDate.of(2020, 4, 22);
-		System.out.println(Holiday.getLocalHoliday(localHolidayMap, localDate2));
+		System.out.println(Holiday.getLocalHoliday(localDate2, localHolidayMap));
 	}
 	
 	/**

@@ -13,16 +13,28 @@ import java.util.List;
  */
 public class MonthWrapper implements Serializable{
 
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 6688876063027489849L;
+
+	/**
+	 * 月
+	 */
 	private int month;
 	
+	/**
+	 * 当月包含的所有天
+	 */
 	private List<DayWrapper> days;
 	
-	public MonthWrapper(int month, List<DayWrapper> days) {
+	/**
+	 * 当前月包含天数
+	 */
+	private int length;
+	
+	public MonthWrapper(int month, List<DayWrapper> days, int length) {
 		super();
 		this.month = month;
 		this.days = days;
+		this.length = length;
 	}
 
 	public int getMonth() {
@@ -39,5 +51,13 @@ public class MonthWrapper implements Serializable{
 	
 	public void setDays(List<DayWrapper> days) {
 		this.days = days;
+	}
+
+	public int getLength() {
+		return length;
+	}
+
+	public void setLength(int length) {
+		this.length = length;
 	}
 }

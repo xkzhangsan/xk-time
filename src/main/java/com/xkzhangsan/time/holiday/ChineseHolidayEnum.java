@@ -84,7 +84,7 @@ public enum ChineseHolidayEnum implements Holiday{
 	 * @return
 	 */
 	public static String getHolidayName(Temporal temporal) {
-		return Holiday.getChineseHoliday(convertToMap(), temporal);
+		return Holiday.getChineseHoliday(temporal, convertToMap());
 	}
 	
 	/**

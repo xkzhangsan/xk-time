@@ -111,7 +111,7 @@ public enum LocalHolidayEnum implements Holiday{
 	 * @return
 	 */
 	public static String getHolidayName(Temporal temporal) {
-		return Holiday.getLocalHoliday(convertToMap(), temporal);
+		return Holiday.getLocalHoliday(temporal, convertToMap());
 	}
 	
 	/**

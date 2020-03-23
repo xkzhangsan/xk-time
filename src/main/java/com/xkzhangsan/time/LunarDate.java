@@ -1,5 +1,6 @@
 package com.xkzhangsan.time;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,8 +25,10 @@ import com.xkzhangsan.time.holiday.Holiday;
 * @date 2019年12月30日
 * @version 0.2 试用
  */
-public final class LunarDate implements Temporal{
+public final class LunarDate implements Temporal, Serializable{
 	
+	private static final long serialVersionUID = 7999322619343295974L;
+
 	/**
 	 * 农历信息
 	 */
@@ -150,7 +153,12 @@ public final class LunarDate implements Temporal{
 	private LunarDate(LocalDate localDate) {
 		super();
 		this.localDate = localDate;
-		initialize();
+		
+		try {
+			initialize();
+		} catch (Exception e) {
+			System.err.println("new LunarDate has error: " + e.getMessage());
+		}
 	}
 	
 	/**

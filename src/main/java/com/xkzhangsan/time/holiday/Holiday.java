@@ -16,6 +16,7 @@ import com.xkzhangsan.time.LunarDate;
 import com.xkzhangsan.time.constants.Constant;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
+import com.xkzhangsan.time.utils.CollectionUtil;
 
 /**
  * 节日处理
@@ -39,39 +40,39 @@ public interface Holiday {
 	 * @return
 	 */
 	static String getLocalHoliday(Date date){
-		return getLocalHoliday(null, date);
+		return getLocalHoliday(date, null);
 	}
 	
 	/**
 	 * 根据日期获取公历节日
-	 * @param localHolidayMap 自定义节日数据，特殊节日如，"母亲节", "5-W-2-7" 5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天
 	 * @param date
+	 * @param localHolidayMap 自定义节日数据，特殊节日如，"母亲节", "5-W-2-7" 5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天
 	 * @return
 	 */
-	static String getLocalHoliday(Map<String, String> localHolidayMap, Date date){
+	static String getLocalHoliday(Date date, Map<String, String> localHolidayMap){
 		Objects.requireNonNull(date, "date");
-		return getLocalHoliday(localHolidayMap, DateTimeConverterUtil.toLocalDateTime(date));
+		return getLocalHoliday(DateTimeConverterUtil.toLocalDateTime(date), localHolidayMap);
 	}
 	
 	/**
 	 * 根据日期获取公历节日
-	 * @param temporal
+	 * @param temporal 支持 LocalDate、LocalDateTime、Instant和ZonedDateTime
 	 * @return
 	 */
 	static String getLocalHoliday(Temporal temporal){
-		return getLocalHoliday(null, temporal);
+		return getLocalHoliday(temporal, null);
 	}
 	
 	/**
 	 * 根据日期获取公历节日
-	 * @param localHolidayMap 自定义节日数据
-	 * @param temporal
+	 * @param temporal 支持 LocalDate、LocalDateTime、Instant和ZonedDateTime
+	 * @param localHolidayMap 自定义节日数据，特殊节日如，"母亲节", "5-W-2-7" 5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天
 	 * @return
 	 */
-	static String getLocalHoliday(Map<String, String> localHolidayMap, Temporal temporal){
+	static String getLocalHoliday(Temporal temporal, Map<String, String> localHolidayMap){
 		Objects.requireNonNull(temporal, "temporal");
 		String localHoliday = "";
-		if(localHolidayMap == null || localHolidayMap.isEmpty()){
+		if(CollectionUtil.isEmpty(localHolidayMap)){
 			localHolidayMap = LocalHolidayEnum.convertToMap();
 		}
 		
@@ -108,39 +109,39 @@ public interface Holiday {
 	 * @return
 	 */
 	static String getChineseHoliday(Date date){
-		return getChineseHoliday(null, date);
+		return getChineseHoliday(date, null);
 	}
 	
 	/**
 	 * 根据日期获取农历几日
-	 * @param chineseHolidayMap 自定义节日数据，特殊节日如除夕 用CHUXI表示
 	 * @param date
+	 * @param chineseHolidayMap 自定义节日数据，特殊节日如除夕 用CHUXI表示
 	 * @return
 	 */
-	static String getChineseHoliday(Map<String, String> chineseHolidayMap, Date date){
+	static String getChineseHoliday(Date date, Map<String, String> chineseHolidayMap){
 		Objects.requireNonNull(date, "date");
-		return getChineseHoliday(chineseHolidayMap, DateTimeConverterUtil.toLocalDateTime(date));
+		return getChineseHoliday(DateTimeConverterUtil.toLocalDateTime(date), chineseHolidayMap);
 	}
 	
 	/**
 	 * 根据日期获取农历几日
-	 * @param temporal
+	 * @param temporal 支持 LocalDate、LocalDateTime、Instant和ZonedDateTime 支持 LocalDate、LocalDateTime、Instant和ZonedDateTime
 	 * @return
 	 */
 	static String getChineseHoliday(Temporal temporal){
-		return getChineseHoliday(null, temporal);
+		return getChineseHoliday(temporal, null);
 	}
 	
 	/**
 	 * 根据日期获取农历几日
-	 * @param chineseHolidayMap 自定义节日数据
-	 * @param temporal
+	 * @param temporal 支持 LocalDate、LocalDateTime、Instant和ZonedDateTime
+	 * @param chineseHolidayMap 自定义节日数据，特殊节日如除夕 用CHUXI表示
 	 * @return
 	 */
-	static String getChineseHoliday(Map<String, String> chineseHolidayMap, Temporal temporal){
+	static String getChineseHoliday(Temporal temporal, Map<String, String> chineseHolidayMap){
 		Objects.requireNonNull(temporal, "temporal");
 		String chineseHoliday = "";
-		if(chineseHolidayMap == null || chineseHolidayMap.isEmpty()){
+		if(CollectionUtil.isEmpty(chineseHolidayMap)){
 			chineseHolidayMap = ChineseHolidayEnum.convertToMap();
 		}
 		
@@ -178,8 +179,7 @@ public interface Holiday {
 	
 	/**
 	 * 根据日期获取二十四节气
-	 * @param chineseHolidayMap
-	 * @param temporal
+	 * @param temporal 支持 LocalDate、LocalDateTime、Instant和ZonedDateTime
 	 * @return
 	 */
 	static String getSolarTerm(Temporal temporal){
