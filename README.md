@@ -60,6 +60,7 @@ YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")
 ## 5.日历工具类  CalendarUtil 
 包括：  
 （1）生成指定时间的日历（包含年、月和日层级关系的日历）方法，generateCalendar* 比如generateCalendar(int year, int month) 生成指定年月的日历。   
+（2）生成指定时间的日历（包含年、月和日层级关系的日历），包含农历和所有节假日信息方法，generateCalendarWithHoliday*， 比如generateCalendarWithHoliday(int year, int month, Map<String, String> localHolidayMap, Map<String, String> chineseHolidayMap) 生成指定年月的日历，包含农历和所有节假日信息。  
 
 ## 6.农历日期类 LunarDate （试用）  
 包含：  
