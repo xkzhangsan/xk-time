@@ -49,7 +49,13 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
  HH:mm:ss  
  yyyy-MM-dd HH:mm:ss  
  yyyy-MM-dd'T'HH:mm:ssZ等等  
-  
+ 
+（1）格式化方法， format*， 比如formatToDateStr(Date date) 格式化，返回日期部分，如：yyyy-MM-dd；   
+format(Date date, DateTimeFormatter formatter) formatter 可以选择已定义好的formatter比如YYYY_MM_DD_HH_MM_SS_FMT（yyyy-MM-dd HH:mm:ss）格式化日期。  
+
+（2）解析方法， parse*， 比如parseDateStrToDate(String text) 解析日期yyyy-MM-dd，返回Date；  
+parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 Date。  
+
  注意：格式化和解析ZonedDateTime 时区时间时，只能使用ISO开头  的Formatter，如ISO_DATE_FMT和YYYY_MM_DD_T_HH_MM_SS_Z_FMT  
  因为，其他Formatter都绑定的是系统默认时区：
  private static final ZoneId ZONE = ZoneId.systemDefault();  
@@ -71,8 +77,8 @@ YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")
  
 ## 7.节假日计算类 Holiday （试用）  
 包含：  
-（1）公历节假日计算， getLocalHoliday* 比如getLocalHoliday(Date date) 计算date的公历节日，getLocalHoliday(Map<String, String> localHolidayMap, Date date) 可以传入自定义节日数据。   
-（2）农历节假日计算， getChineseHoliday* 比如getChineseHoliday(Date date) 计算date的农历节日，getChineseHoliday(Map<String, String> chineseHolidayMap, Date date) 可以传入自定义节日数据。  
+（1）公历节假日计算， getLocalHoliday* 比如getLocalHoliday(Date date) 计算date的公历节日，getLocalHoliday(Date date, Map<String, String> localHolidayMap) 可以传入自定义公历节日数据。   
+（2）农历节假日计算， getChineseHoliday* 比如getChineseHoliday(Date date) 计算date的农历节日，getChineseHoliday(Date date, Map<String, String> chineseHolidayMap) 可以传入自定义农历节日数据。  
 （3）二十四节气计算， getSolarTerm* 比如getSolarTerm(Date date) 计算date的二十四节气。  
 
 注意： 农历和二十四节气使用农历日期类 LunarDate，仅支持公历1901-1950年的计算。  

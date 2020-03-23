@@ -21,6 +21,12 @@ import com.xkzhangsan.time.converter.DateTimeConverterUtil;
  * yyyy-MM-dd HH:mm:ss
  * yyyy-MM-dd'T'HH:mm:ssZ等等
  * 
+ * 1.格式化方法， format*， 比如formatToDateStr(Date date) 格式化，返回日期部分，如：yyyy-MM-dd； 
+ * format(Date date, DateTimeFormatter formatter) formatter 可以选择已定义好的formatter比如YYYY_MM_DD_HH_MM_SS_FMT （yyyy-MM-dd HH:mm:ss）
+ * 
+ * 2.解析方法， parse*， 比如parseDateStrToDate(String text) 解析日期yyyy-MM-dd，返回Date；
+ * parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 Date
+ * 
  * 注意：格式化和解析ZonedDateTime 时区时间时，只能使用ISO开头的Formatter，如ISO_DATE_FMT和YYYY_MM_DD_T_HH_MM_SS_Z_FMT
  * 因为，其他Formatter都绑定的是系统默认时区：
  * private static final ZoneId ZONE = ZoneId.systemDefault();
