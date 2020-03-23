@@ -48,7 +48,7 @@ import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
  * 9.获取准确的起始时间方法，start*,end*，比如startTimeOfMonth() 当月起始时间 当月第一天日期+00:00:00 endTimeOfMonth() 当月最后一天日期+23:59:59
  * 10.相同月日比较判断方法，isSameMonthDay*，betweenNextSameMonthDay*，nextSameMonthDay*， 比如用于生日，节日等周期性的日期比较判断
  * 11.星座计算方法，getConstellation*，比如getConstellationNameCn(String monthDayStr)，根据日期计算星座
- * 12.计算指定年月或起始时间区间的时间列表，get*List， 比如getDateList(String yearMonthStr)，计算指定年月（yyyy-MM）的时间列表
+ * 12.计算指定年月或起始时间区间的时间列表，get*List， 比如getDateList(int year, int month)，计算指定年月的时间列表
 * @ClassName: DateTimeCalculatorUtil 
 * @Description:  DateTime Calculator
 * @author xkzhangsan
@@ -2135,6 +2135,17 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 *  获取指定年月的所有日期列表
+	 * @param year
+	 * @param month
+	 * @return
+	 */
+	public static List<LocalDate> getLocalDateList(int year, int month){
+		YearMonth yearMonth = YearMonth.of(year, month);
+		return getLocalDateList(yearMonth);
+	}
+	
+	/**
+	 *  获取指定年月的所有日期列表
 	 * @param yearMonth
 	 * @return
 	 */
@@ -2154,6 +2165,17 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
+	 *  获取指定年月的所有日期列表
+	 * @param year
+	 * @param month
+	 * @return
+	 */
+	public static List<LocalDateTime> getLocalDateTimeList(int year, int month){
+		return getLocalDateList(YearMonth.of(year, month)).stream()
+				.map(localDate -> DateTimeConverterUtil.toLocalDateTime(localDate)).collect(Collectors.toList());
+	}
+	
+	/**
 	 * 获取指定年月的所有日期列表
 	 * @param yearMonthStr yyyy-MM
 	 * @return
@@ -2162,6 +2184,17 @@ public class DateTimeCalculatorUtil {
 		return getLocalDateList(yearMonthStr).stream().map(localDate -> DateTimeConverterUtil.toDate(localDate))
 				.collect(Collectors.toList());
 	}
+	
+	/**
+	 * 获取指定年月的所有日期列表
+	 * @param year
+	 * @param month
+	 * @return
+	 */
+	public static List<Date> getDateList(int year, int month){
+		return getLocalDateList(YearMonth.of(year, month)).stream().map(localDate -> DateTimeConverterUtil.toDate(localDate))
+				.collect(Collectors.toList());
+	}	
 	
 	/**
 	 * 判断是否过期，（输入年月小于当前年月）

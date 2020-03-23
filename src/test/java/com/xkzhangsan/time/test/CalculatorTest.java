@@ -426,7 +426,7 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.isExpiry("2020-03"));
 		
 		//获取指定年月的所有日期列表
-		List<Date> dateList = DateTimeCalculatorUtil.getDateList("2020-03");
+		List<Date> dateList = DateTimeCalculatorUtil.getDateList(2020,3);
 		dateList.stream().forEach(date->{
 			System.out.println(DateTimeFormatterUtil.formatToDateStr(date));
 		});
