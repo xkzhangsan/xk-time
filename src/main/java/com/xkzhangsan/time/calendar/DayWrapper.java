@@ -43,9 +43,14 @@ public class DayWrapper implements Serializable {
 	 * 天，当月第几天
 	 */
 	private int day;
+	
+	/**
+	 * 星期，数字，1-7
+	 */
+	private int week;
 
 	/**
-	 * 星期
+	 * 星期，中文或英文
 	 */
 	private String weekStr;
 
@@ -73,6 +78,11 @@ public class DayWrapper implements Serializable {
 	 * 二十四节气
 	 */
 	private String solarTerm;
+	
+	/**
+	 * 日期类型，0休息日，1其他为工作日
+	 */
+	private int dateType;
 
 	/**
 	 * 扩展信息
@@ -125,6 +135,8 @@ public class DayWrapper implements Serializable {
 		this.date = DateTimeConverterUtil.toDate(localDateTime);
 		this.dateStr = DateTimeFormatterUtil.formatToDateStr(localDateTime);
 		this.day = localDateTime.getDayOfMonth();
+		// week
+		this.week = localDateTime.getDayOfWeek().getValue();
 		if (Constant.getInstance().isChinese()) {
 			this.weekStr = DateTimeCalculatorUtil.getDayOfWeekCn(localDateTime);
 		} else {
@@ -146,6 +158,9 @@ public class DayWrapper implements Serializable {
 				this.chineseHoliday = Holiday.getChineseHoliday(localDateTime, chineseHolidayMap);
 			}
 		}
+		
+		// 工作日
+		this.dateType = DateTimeCalculatorUtil.isWorkDay(localDateTime)?1:0;
 	}
 
 	public Date getDate() {
@@ -234,6 +249,22 @@ public class DayWrapper implements Serializable {
 
 	public void setLunarDateStr(String lunarDateStr) {
 		this.lunarDateStr = lunarDateStr;
+	}
+
+	public int getWeek() {
+		return week;
+	}
+
+	public void setWeek(int week) {
+		this.week = week;
+	}
+
+	public int getDateType() {
+		return dateType;
+	}
+
+	public void setDateType(int dateType) {
+		this.dateType = dateType;
 	}
 
 }

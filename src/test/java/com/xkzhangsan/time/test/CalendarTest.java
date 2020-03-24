@@ -11,7 +11,7 @@ public class CalendarTest {
 	@Test
 	public void calendarTest(){
 		//获取2020年日历，包含农历和所有节假日信息
-		CalendarWrapper calendarWrapper = CalendarUtil.generateCalendarWithHoliday(2020, null, null);
+		CalendarWrapper calendarWrapper = CalendarUtil.generateCalendarWithHoliday(2020);
 		//输出年
 		System.out.println(calendarWrapper.getYears().get(0).getYear());
 		//输出1月
