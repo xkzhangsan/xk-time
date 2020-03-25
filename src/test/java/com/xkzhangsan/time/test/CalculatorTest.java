@@ -331,6 +331,7 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.getMonth(date));
 		System.out.println(DateTimeCalculatorUtil.getMonthEnLong(date));
 		System.out.println(DateTimeCalculatorUtil.getMonthEnShort(date));
+		System.out.println(DateTimeCalculatorUtil.getMonthEnShortUpper(date));
 		System.out.println(DateTimeCalculatorUtil.getMonthCnLong(date));
 		System.out.println(DateTimeCalculatorUtil.getMonthCnShort(date));
 	}
@@ -346,7 +347,9 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.getDayOfWeek(date));
 		System.out.println(DateTimeCalculatorUtil.getDayOfWeekEnLong(date));
 		System.out.println(DateTimeCalculatorUtil.getDayOfWeekEnShort(date));
+		System.out.println(DateTimeCalculatorUtil.getDayOfWeekEnShortUpper(date));
 		System.out.println(DateTimeCalculatorUtil.getDayOfWeekCn(date));
+		System.out.println(DateTimeCalculatorUtil.getDayOfWeekCnShort(date));
 	}	
 	
 	/**

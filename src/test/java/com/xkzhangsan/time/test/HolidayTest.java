@@ -31,7 +31,15 @@ public class HolidayTest {
 	@Test
 	public void chineseHolidayEnumTest(){
 		LocalDate localDate = LocalDate.of(2020, 1, 24);
-		System.out.println(Holiday.getChineseHoliday(localDate));
+		System.out.println("localDate:"+Holiday.getChineseHoliday(localDate));
+		
+		//正常农历九月初九
+		LocalDate localDate2 = LocalDate.of(2014, 10, 2);
+		System.out.println("localDate2:"+Holiday.getChineseHoliday(localDate2));
+		
+		//正常农历闰九月初九  闰月不算节假日
+		LocalDate localDate3 = LocalDate.of(2014, 11, 1);
+		System.out.println("localDate3:"+Holiday.getChineseHoliday(localDate3));
 	}
 	
 	/**

@@ -111,7 +111,6 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月， 比如 1
-	 * LocalDateTime LocalDate ZonedDateTime 可以直接getMonthValue()
 	 * @param localDateTime
 	 * @return
 	 */
@@ -120,7 +119,15 @@ public class DateTimeCalculatorUtil {
 		return localDateTime.getMonthValue();
 	}
 	
-	
+	/**
+	 * 获取月， 比如 1
+	 * @param localDate
+	 * @return
+	 */
+	public static int getMonth(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.getMonthValue();
+	}	
 	
 	/**
 	 * 获取月英文全称， 比如 January
@@ -142,13 +149,22 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文全称， 比如 January
-	 * LocalDateTime LocalDate ZonedDateTime 可以直接.getMonth().toString()
 	 * @param localDateTime
 	 * @return
 	 */
 	public static String getMonthEnLong(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return MonthNameEnum.getFullNameEnByCode(getMonth(localDateTime));
+	}
+	
+	/**
+	 * 获取月英文全称， 比如 January
+	 * @param localDate
+	 * @return
+	 */
+	public static String getMonthEnLong(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return MonthNameEnum.getFullNameEnByCode(getMonth(localDate));
 	}
 	
 	/**
@@ -180,6 +196,54 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
+	 * 获取月英文简称， 比如 Jan
+	 * @param localDate
+	 * @return
+	 */
+	public static String getMonthEnShort(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return MonthNameEnum.getShortNameEnByCode(localDate.getMonthValue());
+	}
+	
+	/**
+	 * 获取月英文简称大写， 比如 JAN
+	 * @param date
+	 * @return
+	 */
+	public static String getMonthEnShortUpper(Date date){
+		return MonthNameEnum.getShortNameEnByCode(getMonth(date)).toUpperCase();
+	}
+	
+	/**
+	 * 获取月英文简称大写， 比如 JAN
+	 * @param instant
+	 * @return
+	 */
+	public static String getMonthEnShortUpper(Instant instant){
+		return MonthNameEnum.getShortNameEnByCode(getMonth(instant)).toUpperCase();
+	}
+	
+	/**
+	 * 获取月英文简称大写， 比如 JAN
+	 * @param localDateTime
+	 * @return
+	 */
+	public static String getMonthEnShortUpper(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return MonthNameEnum.getShortNameEnByCode(getMonth(localDateTime)).toUpperCase();
+	}
+	
+	/**
+	 * 获取月英文简称大写， 比如 JAN
+	 * @param localDate
+	 * @return
+	 */
+	public static String getMonthEnShortUpper(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return MonthNameEnum.getShortNameEnByCode(localDate.getMonthValue()).toUpperCase();
+	}	
+	
+	/**
 	 * 获取月份中文全称， 比如一月
 	 * @param date
 	 * @return
@@ -208,6 +272,16 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
+	 * 获取月份中文全称， 比如一月
+	 * @param localDate
+	 * @return
+	 */
+	public static String getMonthCnLong(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return MonthNameEnum.getFullNameCnByCode(localDate.getMonthValue());
+	}
+	
+	/**
 	 * 获取月份中文简称， 比如一
 	 * @param date
 	 * @return
@@ -233,6 +307,16 @@ public class DateTimeCalculatorUtil {
 	public static String getMonthCnShort(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return MonthNameEnum.getShortNameCnByCode(getMonth(localDateTime));
+	}
+	
+	/**
+	 * 获取月份中文简称， 比如一
+	 * @param localDate
+	 * @return
+	 */
+	public static String getMonthCnShort(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return MonthNameEnum.getShortNameCnByCode(localDate.getMonthValue());
 	}
 	
 	/**
@@ -1121,6 +1205,44 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static String getDayOfWeekEnShort(Instant instant){
 		return WeekNameEnum.getShortNameEnByCode(getDayOfWeek(instant));
+	}
+	
+	/**
+	 * 获取星期英文简称大写，比如MON
+	 * @param date
+	 * @return
+	 */
+	public static String getDayOfWeekEnShortUpper(Date date){
+		return WeekNameEnum.getShortNameEnByCode(getDayOfWeek(date)).toUpperCase();
+	}
+	
+	/**
+	 * 获取星期英文简称大写，比如MON
+	 * @param localDateTime
+	 * @return
+	 */
+	public static String getDayOfWeekEnShortUpper(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return WeekNameEnum.getShortNameEnByCode(getDayOfWeek(localDateTime)).toUpperCase();
+	}
+	
+	/**
+	 * 获取星期英文简称大写，比如MON
+	 * @param localDate
+	 * @return
+	 */
+	public static String getDayOfWeekEnShortUpper(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return WeekNameEnum.getShortNameEnByCode(getDayOfWeek(localDate)).toUpperCase();
+	}
+	
+	/**
+	 * 获取星期英文简称大写，比如MON
+	 * @param instant
+	 * @return
+	 */
+	public static String getDayOfWeekEnShortUpper(Instant instant){
+		return WeekNameEnum.getShortNameEnByCode(getDayOfWeek(instant)).toUpperCase();
 	}	
 	
 	
@@ -1161,6 +1283,44 @@ public class DateTimeCalculatorUtil {
 	public static String getDayOfWeekCn(Instant instant){
 		return WeekNameEnum.getNameCnByCode(getDayOfWeek(instant));
 	}
+	
+	/**
+	 * 获取星期中文简称，比如星期一为一
+	 * @param date
+	 * @return
+	 */
+	public static String getDayOfWeekCnShort(Date date){
+		return WeekNameEnum.getNameCnByCode(getDayOfWeek(date)).substring(2);
+	}
+	
+	/**
+	 * 获取星期中文简称，比如星期一为一
+	 * @param localDateTime
+	 * @return
+	 */
+	public static String getDayOfWeekCnShort(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return WeekNameEnum.getNameCnByCode(getDayOfWeek(localDateTime)).substring(2);
+	}
+	
+	/**
+	 * 获取星期中文简称，比如星期一为一
+	 * @param localDate
+	 * @return
+	 */
+	public static String getDayOfWeekCnShort(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return WeekNameEnum.getNameCnByCode(getDayOfWeek(localDate)).substring(2);
+	}	
+	
+	/**
+	 * 获取星期中文简称，比如星期一为一
+	 * @param instant
+	 * @return
+	 */
+	public static String getDayOfWeekCnShort(Instant instant){
+		return WeekNameEnum.getNameCnByCode(getDayOfWeek(instant)).substring(2);
+	}	
 	
 	/**
 	 * 获取当前月的第一天

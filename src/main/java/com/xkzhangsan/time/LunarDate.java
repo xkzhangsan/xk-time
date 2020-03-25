@@ -94,7 +94,7 @@ public final class LunarDate implements Temporal, Serializable{
 	 * 农历日期，中文
 	 */
 	private String lDateCn;
-
+	
 	/**
 	 * 岁次
 	 */

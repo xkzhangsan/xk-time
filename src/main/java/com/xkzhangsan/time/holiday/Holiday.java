@@ -17,6 +17,7 @@ import com.xkzhangsan.time.constants.Constant;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 import com.xkzhangsan.time.utils.CollectionUtil;
+import com.xkzhangsan.time.utils.StringUtil;
 
 /**
  * 节日处理
@@ -80,7 +81,11 @@ public interface Holiday {
 		String monthDayStr = monthDay.format(DateTimeFormatterUtil.MMDD_FMT);
 		for(Entry<String, String> entry : localHolidayMap.entrySet()){
 			if (entry.getKey().equals(monthDayStr)) {
-				localHoliday = localHoliday + " " +entry.getValue();
+				if(StringUtil.isEmpty(localHoliday)){
+					localHoliday = entry.getValue();
+				}else{
+					localHoliday = localHoliday + " " +entry.getValue();
+				}
 			}
 			//如果为特殊格式，解析对比
 			if (entry.getKey().contains("W")) {
@@ -96,7 +101,11 @@ public interface Holiday {
 				MonthDay targetMonthDay = MonthDay.from(targetTem);
 				String targetMonthDayStr = targetMonthDay.format(DateTimeFormatterUtil.MMDD_FMT);
 				if (monthDayStr.equals(targetMonthDayStr)) {
-					localHoliday = localHoliday + " " +entry.getValue();
+					if(StringUtil.isEmpty(localHoliday)){
+						localHoliday = entry.getValue();
+					}else{
+						localHoliday = localHoliday + " " +entry.getValue();
+					}
 				}
 			}
 		}
@@ -146,11 +155,20 @@ public interface Holiday {
 		}
 		
 		LunarDate lunarDate = LunarDate.from(temporal);
+		
+		//闰月不计算节假日
+		if(StringUtil.isNotEmpty(lunarDate.getLeapMonthCn())){
+			return chineseHoliday;
+		}
 		String monthDayStr = lunarDate.formatShort();
 		//对比枚举日期，返回假日
 		for(Entry<String, String> entry : chineseHolidayMap.entrySet()){
 			if (entry.getKey().equals(monthDayStr)) {
-				chineseHoliday = chineseHoliday + " " +entry.getValue();
+				if(StringUtil.isEmpty(chineseHoliday)){
+					chineseHoliday = entry.getValue();
+				}else{
+					chineseHoliday = chineseHoliday + " " +entry.getValue();
+				}
 			}
 			//如果为特殊节日除夕
 			if (entry.getKey().equals(Constant.CHUXI)) {
@@ -159,7 +177,11 @@ public interface Holiday {
 				LunarDate targetLunarDate = LunarDate.from(targetLocalDate);
 				String targetMonthDayStr = targetLunarDate.formatShort();
 				if(Constant.CHUNJIE.equals(targetMonthDayStr)){
-					chineseHoliday = chineseHoliday + " " +entry.getValue();
+					if(StringUtil.isEmpty(chineseHoliday)){
+						chineseHoliday = entry.getValue();
+					}else{
+						chineseHoliday = chineseHoliday + " " +entry.getValue();
+					}
 				}
 			}
 		}

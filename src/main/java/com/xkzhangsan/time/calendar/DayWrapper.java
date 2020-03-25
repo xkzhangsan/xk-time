@@ -7,7 +7,6 @@ import java.util.Map;
 
 import com.xkzhangsan.time.LunarDate;
 import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
-import com.xkzhangsan.time.constants.Constant;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 import com.xkzhangsan.time.holiday.Holiday;
@@ -50,9 +49,30 @@ public class DayWrapper implements Serializable {
 	private int week;
 
 	/**
-	 * 星期，中文或英文
+	 * 星期，中文简写，比如星期一为一
 	 */
-	private String weekStr;
+	private String weekCnShort;
+	
+	/**
+	 * 星期，中文全称，比如星期一
+	 */
+	private String weekCnLong;
+	
+	/**
+	 * 星期，英文简写，比如星期一为Mon
+	 */
+	private String weekEnShort;
+	
+	/**
+	 * 星期，英文简写大写，比如星期一为MON
+	 */
+	private String weekEnShortUpper;
+	
+	
+	/**
+	 * 星期，英文全称，比如星期一为Monday
+	 */
+	private String weekEnLong;
 
 	/**
 	 * 公历节日
@@ -73,6 +93,11 @@ public class DayWrapper implements Serializable {
 	 * 农历日期
 	 */
 	private String lunarDateStr;
+	
+	/**
+	 * 农历天，比如初一
+	 */
+	private String lunarDay;
 
 	/**
 	 * 二十四节气
@@ -137,17 +162,18 @@ public class DayWrapper implements Serializable {
 		this.day = localDateTime.getDayOfMonth();
 		// week
 		this.week = localDateTime.getDayOfWeek().getValue();
-		if (Constant.getInstance().isChinese()) {
-			this.weekStr = DateTimeCalculatorUtil.getDayOfWeekCn(localDateTime);
-		} else {
-			this.weekStr = DateTimeCalculatorUtil.getDayOfWeekEnLong(localDateTime);
-		}
+		this.weekCnShort = DateTimeCalculatorUtil.getDayOfWeekCnShort(localDateTime);
+		this.weekCnLong = DateTimeCalculatorUtil.getDayOfWeekCn(localDateTime);
+		this.weekEnShort = DateTimeCalculatorUtil.getDayOfWeekEnShort(localDateTime);
+		this.weekEnShortUpper = DateTimeCalculatorUtil.getDayOfWeekEnShortUpper(localDateTime);
+		this.weekEnLong = DateTimeCalculatorUtil.getDayOfWeekEnLong(localDateTime);
 		this.obj = obj;
 
 		// LunarDate
 		if (includeLunarDate) {
 			this.lunarDate = LunarDate.from(localDateTime);
 			this.lunarDateStr = lunarDate.getlDateCn();
+			this.lunarDay = lunarDate.getlDayCn();
 			this.solarTerm = lunarDate.getSolarTerm();
 		}
 
@@ -203,12 +229,44 @@ public class DayWrapper implements Serializable {
 		this.day = day;
 	}
 
-	public String getWeekStr() {
-		return weekStr;
+	public String getWeekCnShort() {
+		return weekCnShort;
 	}
 
-	public void setWeekStr(String weekStr) {
-		this.weekStr = weekStr;
+	public void setWeekCnShort(String weekCnShort) {
+		this.weekCnShort = weekCnShort;
+	}
+
+	public String getWeekEnShort() {
+		return weekEnShort;
+	}
+
+	public void setWeekEnShort(String weekEnShort) {
+		this.weekEnShort = weekEnShort;
+	}
+
+	public String getWeekEnShortUpper() {
+		return weekEnShortUpper;
+	}
+
+	public void setWeekEnShortUpper(String weekEnShortUpper) {
+		this.weekEnShortUpper = weekEnShortUpper;
+	}
+
+	public String getWeekCnLong() {
+		return weekCnLong;
+	}
+
+	public void setWeekCnLong(String weekCnLong) {
+		this.weekCnLong = weekCnLong;
+	}
+
+	public String getWeekEnLong() {
+		return weekEnLong;
+	}
+
+	public void setWeekEnLong(String weekEnLong) {
+		this.weekEnLong = weekEnLong;
 	}
 
 	public LunarDate getLunarDate() {
@@ -265,6 +323,14 @@ public class DayWrapper implements Serializable {
 
 	public void setDateType(int dateType) {
 		this.dateType = dateType;
+	}
+
+	public String getLunarDay() {
+		return lunarDay;
+	}
+
+	public void setLunarDay(String lunarDay) {
+		this.lunarDay = lunarDay;
 	}
 
 }
