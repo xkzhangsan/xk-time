@@ -136,7 +136,9 @@ public class CalendarTest {
 				System.out.print(dayWrapper.getLunarDay());//农历天
 				System.out.print(dayWrapper.getChineseHoliday());//农历节假日，会打印上面定义的 七夕情人节
 				System.out.print(dayWrapper.getSolarTerm());//二十四节气
-				System.out.print(dayWrapper.getDateType());//是否工作日，1是，0否
+				//是否工作日，1是，0否，默认周一到周五为工作日，周六周日为非工作日，
+				//2020-08-07周五本为工作日，这里特别设置为非工作日，2020-08-08周六本为非工作日，这里特别设置为工作日，会重新设置
+				System.out.print(dayWrapper.getDateType());
 				System.out.print(")\t\t");
 				count++;
 			}
