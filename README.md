@@ -5,14 +5,17 @@ xk-time is a datetime converter calculator formatter and calendar tool set, base
 时间转换，计算，格式化，解析和日历等的工具，使用java8，线程安全，简单易用，多达20几种常用日期格式化模板。  
  
  
-## 0.为什么要开发这个工具？
-（1）java8以前的Date API设计不太好，使用不方便，往往会有线程安全问题  
+## 0.为什么要开发这个工具？ 
+ 
+###（1）java8以前的Date API设计不太好，使用不方便，往往会有线程安全问题。  
+ 
 xk-time工具包，使用java8 api，其中Instant、LocalDate、LocalDateTime、LocalTime、ZonedDateTime等都是线程安全的类，而且增加了更丰富的方法，在此基础上开发相关工具类，线程安全，让使用更方便。  
 
-（2）常见的DateUtil，往往将时间转换，计算，格式化，解析等功能都放在同一个类中，导致类功能复杂，方法太多，查找不方便。  
+###（2）常见的DateUtil，往往将时间转换，计算，格式化，解析等功能都放在同一个类中，导致类功能复杂，方法太多，查找不方便。  
+ 
 xk-time工具包，将上面功能按照时间转换，时间计算，时间格式化解析分成3个工具类：DateTimeConverterUtil，DateTimeCalculatorUtil，DateTimeFormatterUtil，每个类只做一个种功能，方便使用。  
-
-（3）为了将与时间紧密相关的节假日、农历、二十四节气、十二星座和日历等功能集中起来开发成工具，方便使用。  
+ 
+###（3）为了将与时间紧密相关的节假日、农历、二十四节气、十二星座和日历等功能集中起来开发成工具，方便使用。  
 
 
 ## 1.依赖  
