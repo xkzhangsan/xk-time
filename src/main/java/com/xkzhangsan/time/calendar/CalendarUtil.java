@@ -17,7 +17,7 @@ import com.xkzhangsan.time.utils.CollectionUtil;
  *  1.生成指定时间的日历方法，generateCalendar* 比如generateCalendar(int year, int
  * month) 生成指定年月的日历
  *  2.生成指定时间的日历，包含农历和所有节假日信息方法，generateCalendarWithHoliday*， 比如generateCalendarWithHoliday(int year, int month, Map<String, String> localHolidayMap,
-			Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap)生成指定年月的日历，包含农历和所有节假日信息，可以自定义节假日和工日志等。
+			Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap)生成指定年月的日历，包含农历和所有节假日信息，可以自定义节假日和工作日等。
  * @ClassName: CalendarUtil
  * @Description: CalendarUtil
  * @author xkzhangsan

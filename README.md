@@ -1,8 +1,8 @@
 # xk-time
 
-xk-time is a datetime converter calculator and formatter tool set, based on java8 date and time API, thread safe, easy to use.
+xk-time is a datetime converter calculator formatter and calendar tool set, based on java8 date and time API, thread safe, easy to use.
 
-时间转换，计算，格式化，解析等的工具，使用java8，线程安全，简单易用，多达20几种常用日期格式化模板。  
+时间转换，计算，格式化，解析和日历等的工具，使用java8，线程安全，简单易用，多达20几种常用日期格式化模板。  
  
  
 ## 0.为什么要开发这个工具？
@@ -28,6 +28,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
 包含Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime和YearMonth的互相转换  
  注意，ZonedDateTime相关的转换，尤其是其他时间转ZonedDateTime，要注意时间和对应时区一致。  
 
+详细使用可以查看相关测试代码。  
 
 ## 3.日期计算工具类  DateTimeCalculatorUtil 
 包括：  
@@ -43,6 +44,8 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
 （10）相同月日比较判断方法，isSameMonthDay*，betweenNextSameMonthDay*，nextSameMonthDay*， 比如用于生日，节日等周期性的日期比较判断。  
 （11）星座计算方法，getConstellation*，比如getConstellationNameCn(String monthDayStr)，根据日期计算星座。  
 （12）计算指定年月或起始时间区间的时间列表，get*List， 比如getDateList(int year, int month)，计算指定年月的时间列表。
+
+详细使用可以查看相关测试代码。  
 
 ## 4.日期格式化和解析工具类  DateTimeFormatterUtil 
 包含常用日期格式如：  
@@ -64,10 +67,14 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
  如果需要使用其他Formatter，可以使用withZone方法重新设置时区，比如：  
 YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")  
 
+详细使用可以查看相关测试代码。  
+
 ## 5.日历工具类  CalendarUtil 
 包括：  
 （1）生成指定时间的日历（包含年、月和日层级关系的日历）方法，generateCalendar* 比如generateCalendar(int year, int month) 生成指定年月的日历。   
-（2）生成指定时间的日历（包含年、月和日层级关系的日历），包含农历和所有节假日信息方法，generateCalendarWithHoliday*， 比generateCalendarWithHoliday(int year, int month, Map<String, String> localHolidayMap,Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap)生成指定年月的日历，包含农历和所有节假日信息，可以自定义节假日和工日志等。   
+（2）生成指定时间的日历（包含年、月和日层级关系的日历），包含农历和所有节假日信息方法，generateCalendarWithHoliday*， 比generateCalendarWithHoliday(int year, int month, Map<String, String> localHolidayMap,Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap)生成指定年月的日历，包含农历和所有节假日信息，可以自定义节假日和工作日等。   
+
+详细使用可以查看相关测试代码。  
 
 ## 6.农历日期类 LunarDate （试用）  
 包含：  
@@ -76,6 +83,8 @@ YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")
 （3）二十四节气计算等  
  注意： 仅支持公历1901-1950年的农历转换。  
  
+详细使用可以查看相关测试代码。  
+ 
 ## 7.节假日计算类 Holiday （试用）  
 包含：  
 （1）公历节假日计算， getLocalHoliday* 比如getLocalHoliday(Date date) 计算date的公历节日，getLocalHoliday(Date date, Map<String, String> localHolidayMap) 可以传入自定义公历节日数据。   
@@ -83,5 +92,8 @@ YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")
 （3）二十四节气计算， getSolarTerm* 比如getSolarTerm(Date date) 计算date的二十四节气。  
 
 注意： 农历和二十四节气使用农历日期类 LunarDate，仅支持公历1901-1950年的计算。  
+
+详细使用可以查看相关测试代码。  
+
 
 ### 欢迎提问题和建议！  
