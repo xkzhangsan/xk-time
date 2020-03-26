@@ -58,7 +58,8 @@ public class CalendarUtil {
 	 * @param localHolidayMap
 	 *            自定义公历节日数据，特殊节日如，"母亲节", "5-W-2-7"
 	 *            5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天，为null时，使用默认数据 LocalHolidayEnum
-	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日
+	 *            比如localHolidayMap.put("0801", "建军节");
+	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日，比如dateTypeMap.put("2020-08-07", 0);
 	 * @return
 	 */
 	public static CalendarWrapper generateCalendarWithLocalHoliday(int year, int month,
@@ -84,9 +85,11 @@ public class CalendarUtil {
 	 * @param localHolidayMap
 	 *            自定义公历节日数据，特殊节日如，"母亲节", "5-W-2-7"
 	 *            5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天，为null时，使用默认数据 LocalHolidayEnum
+	 *            比如localHolidayMap.put("0801", "建军节");
 	 * @param chineseHolidayMap
 	 *            自定义农历节日信息，特殊节日如除夕 用CHUXI表示，为null时，使用默认数据 ChineseHolidayEnum
-	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日
+	 *            比如chineseHolidayMap.put("0707", "七夕情人节");
+	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日，比如dateTypeMap.put("2020-08-07", 0);
 	 * @return
 	 */
 	public static CalendarWrapper generateCalendarWithHoliday(int year, int month, Map<String, String> localHolidayMap,
@@ -104,9 +107,11 @@ public class CalendarUtil {
 	 * @param localHolidayMap
 	 *            自定义公历节日数据，特殊节日如，"母亲节", "5-W-2-7"
 	 *            5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天，为null时，使用默认数据 LocalHolidayEnum
+	 *            比如localHolidayMap.put("0801", "建军节");
 	 * @param chineseHolidayMap
 	 *            自定义农历节日信息，特殊节日如除夕 用CHUXI表示，为null时，使用默认数据 ChineseHolidayEnum
-	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日
+	 *            比如chineseHolidayMap.put("0707", "七夕情人节");
+	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日，比如dateTypeMap.put("2020-08-07", 0);
 	 * @return
 	 */
 	private static CalendarWrapper generateCalendar(int year, int month, boolean includeLunarDate,
@@ -177,7 +182,8 @@ public class CalendarUtil {
 	 * @param localHolidayMap
 	 *            自定义公历节日数据，特殊节日如，"母亲节", "5-W-2-7"
 	 *            5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天，为null时，使用默认数据 LocalHolidayEnum
-	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日
+	 *            比如localHolidayMap.put("0801", "建军节");
+	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日，比如dateTypeMap.put("2020-08-07", 0);
 	 * @return
 	 */
 	public static CalendarWrapper generateCalendarWithLocalHoliday(int year, Map<String, String> localHolidayMap, Map<String, Integer> dateTypeMap) {
@@ -200,9 +206,11 @@ public class CalendarUtil {
 	 * @param localHolidayMap
 	 *            自定义公历节日数据，特殊节日如，"母亲节", "5-W-2-7"
 	 *            5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天，为null时，使用默认数据 LocalHolidayEnum
+	 *            比如localHolidayMap.put("0801", "建军节");
 	 * @param chineseHolidayMap
 	 *            自定义农历节日信息，特殊节日如除夕 用CHUXI表示，为null时，使用默认数据 ChineseHolidayEnum
-	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日
+	 *            比如chineseHolidayMap.put("0707", "七夕情人节");
+	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日，比如dateTypeMap.put("2020-08-07", 0);
 	 * @return
 	 */
 	public static CalendarWrapper generateCalendarWithHoliday(int year, Map<String, String> localHolidayMap,
@@ -219,9 +227,11 @@ public class CalendarUtil {
 	 * @param localHolidayMap
 	 *            自定义公历节日数据，特殊节日如，"母亲节", "5-W-2-7"
 	 *            5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天，为null时，使用默认数据 LocalHolidayEnum
+	 *            比如localHolidayMap.put("0801", "建军节");
 	 * @param chineseHolidayMap
 	 *            自定义农历节日信息，特殊节日如除夕 用CHUXI表示，为null时，使用默认数据 ChineseHolidayEnum
-	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日
+	 *            比如chineseHolidayMap.put("0707", "七夕情人节");
+	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日，比如dateTypeMap.put("2020-08-07", 0);
 	 * @return
 	 */
 	private static CalendarWrapper generateCalendar(int year, boolean includeLunarDate, boolean includeHoliday,
