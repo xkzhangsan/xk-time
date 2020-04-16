@@ -99,7 +99,17 @@ YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")
 
 注意： 农历和二十四节气使用农历日期类 LunarDate，仅支持公历1901-1950年的计算。  
 
-详细使用可以查看相关测试代码。  
+详细使用可以查看相关测试代码。      
+    
+## 8.Cron表达式工具类 CronExpressionUtil    
+包含  
+（1）验证和格式化Cron表达式方法，isValidExpression和formatExpression。  
+ （2）生成下一个或多个执行时间方法，getNextTime和getNextTimeList。  
+（3）生成下一个或多个执行时间的日期格式化（yyyy-MM-dd HH:mm:ss）方法，getNextTimeStr和getNextTimeStrList。  
+
+注意： 底层使用 quartz的CronExpression处理。  
+
+详细使用可以查看相关测试代码。              
 
 
 ### 欢迎提问题和建议！  
