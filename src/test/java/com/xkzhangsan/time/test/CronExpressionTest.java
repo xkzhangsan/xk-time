@@ -13,8 +13,8 @@ public class CronExpressionTest {
 	 */
 	@Test
 	public void cronExpressionTest(){
-		//验证cron
-		System.out.println(CronExpressionUtil.isValidExpression("* * * * * ?"));
+		//验证cron,0 0 2 1 * ? *   表示在每月的1日的凌晨2点触发
+		System.out.println(CronExpressionUtil.isValidExpression("0 0 2 1 * ? *"));
 		//格式化cron
 		System.out.println(CronExpressionUtil.formatExpression(" * * * * * ? *"));
 		//下一个运行时间

@@ -35,20 +35,20 @@ import com.xkzhangsan.time.enums.ZoneIdEnum;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 
 /**
- * 日期计算工具类
- * 包括：
- * 1.获取时间属性方法，get* 比如getYear(Date date) 获取年部分，getMonthCnLong(Date date)获取月份中文，getDayOfWeekCn(Date date)，获取星期中文
- * 2.获取时间加操作方法，plus* 比如plusYears(Date date, long amountToAdd) 当前时间年增加amountToAdd值
- * 3.获取时间减操作方法，minus* 比如minusYears(Date date, long amountToSubtract) 当前时间年减少amountToSubtract值
- * 4.获取时间修改属性方法，with* 比如withYear(Date date, long newValue) 修改当前时间年值为newValue
- * 5.获取比较2个时间方法，between* 比如betweenYears(Date startInclusive, Date endExclusive) 比较2个时间，获取年部分
- * 6.其他常用方法，比如isLeapYear(Date date) 判断是否闰年，isWeekend(Date date) 判断是否周末，isExpiry(String yearMonthStr) 是否过期等
- * 7.时区转换计算方法，transform*，比如transform(ZonedDateTime zonedDateTime, String zoneId)
- * 8.比较2个时间大小和相等方法，compare*，比如compare(Date date1, Date date2)
- * 9.获取准确的起始时间方法，start*,end*，比如startTimeOfMonth() 当月起始时间 当月第一天日期+00:00:00 endTimeOfMonth() 当月最后一天日期+23:59:59
- * 10.相同月日比较判断方法，isSameMonthDay*，betweenNextSameMonthDay*，nextSameMonthDay*， 比如用于生日，节日等周期性的日期比较判断
- * 11.星座计算方法，getConstellation*，比如getConstellationNameCn(String monthDayStr)，根据日期计算星座
- * 12.计算指定年月或起始时间区间的时间列表，get*List， 比如getDateList(int year, int month)，计算指定年月的时间列表
+ * 日期计算工具类<br>
+ * 包括：<br>
+ * 1.获取时间属性方法，get* 比如getYear(Date date) 获取年部分，getMonthCnLong(Date date)获取月份中文，getDayOfWeekCn(Date date)，获取星期中文<br>
+ * 2.获取时间加操作方法，plus* 比如plusYears(Date date, long amountToAdd) 当前时间年增加amountToAdd值<br>
+ * 3.获取时间减操作方法，minus* 比如minusYears(Date date, long amountToSubtract) 当前时间年减少amountToSubtract值<br>
+ * 4.获取时间修改属性方法，with* 比如withYear(Date date, long newValue) 修改当前时间年值为newValue<br>
+ * 5.获取比较2个时间方法，between* 比如betweenYears(Date startInclusive, Date endExclusive) 比较2个时间，获取年部分<br>
+ * 6.其他常用方法，比如isLeapYear(Date date) 判断是否闰年，isWeekend(Date date) 判断是否周末，isExpiry(String yearMonthStr) 是否过期等<br>
+ * 7.时区转换计算方法，transform*，比如transform(ZonedDateTime zonedDateTime, String zoneId)<br>
+ * 8.比较2个时间大小和相等方法，compare*，比如compare(Date date1, Date date2)<br>
+ * 9.获取准确的起始时间方法，start*,end*，比如startTimeOfMonth() 当月起始时间 当月第一天日期+00:00:00 endTimeOfMonth() 当月最后一天日期+23:59:59<br>
+ * 10.相同月日比较判断方法，isSameMonthDay*，betweenNextSameMonthDay*，nextSameMonthDay*， 比如用于生日，节日等周期性的日期比较判断<br>
+ * 11.星座计算方法，getConstellation*，比如getConstellationNameCn(String monthDayStr)，根据日期计算星座<br>
+ * 12.计算指定年月或起始时间区间的时间列表，get*List， 比如getDateList(int year, int month)，计算指定年月的时间列表<br>
 * @ClassName: DateTimeCalculatorUtil 
 * @Description:  DateTime Calculator
 * @author xkzhangsan

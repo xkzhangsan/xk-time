@@ -20,13 +20,13 @@ import com.xkzhangsan.time.utils.CollectionUtil;
 import com.xkzhangsan.time.utils.StringUtil;
 
 /**
- * 节日处理
- * 包含
- * 1.公历节假日计算， getLocalHoliday* 比如getLocalHoliday(Date date) 计算date的公历节日，getLocalHoliday(Date date, Map<String, String> localHolidayMap) 可以传入自定义公历节日数据
- * 2.农历节假日计算， getChineseHoliday* 比如getChineseHoliday(Date date) 计算date的农历节日，getChineseHoliday(Date date, Map<String, String> chineseHolidayMap) 可以传入自定义农历节日数据
- * 3.二十四节气计算， getSolarTerm* 比如getSolarTerm(Date date) 计算date的二十四节气
+ * 节日处理<br>
+ * 包含<br>
+ * 1.公历节假日计算， getLocalHoliday* 比如getLocalHoliday(Date date) 计算date的公历节日，getLocalHoliday(Date date, Map<String, String> localHolidayMap) 可以传入自定义公历节日数据<br>
+ * 2.农历节假日计算， getChineseHoliday* 比如getChineseHoliday(Date date) 计算date的农历节日，getChineseHoliday(Date date, Map<String, String> chineseHolidayMap) 可以传入自定义农历节日数据<br>
+ * 3.二十四节气计算， getSolarTerm* 比如getSolarTerm(Date date) 计算date的二十四节气<br>
  * 
- * 农历相关，仅支持公历1901-1950年的计算
+ * 农历相关，仅支持公历1901-1950年的计算<br>
 * @ClassName: Holiday
 * @Description: Holiday
 * @author xkzhangsan

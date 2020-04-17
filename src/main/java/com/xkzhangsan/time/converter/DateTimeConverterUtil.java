@@ -12,10 +12,10 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * 日期转换
- * 包含Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime和YearMonth的互相转换
+ * 日期转换<br>
+ * 包含Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime和YearMonth的互相转换<br>
  * 
- * 注意，ZonedDateTime相关的转换，尤其是其他时间转ZonedDateTime，要注意时间和对应时区一致。
+ * 注意，ZonedDateTime相关的转换，尤其是其他时间转ZonedDateTime，要注意时间和对应时区一致。<br>
 * @ClassName: DateTimeConverterUtil 
 * @Description: DateTime Converter
 * @author xkzhangsan

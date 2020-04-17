@@ -14,25 +14,25 @@ import java.util.Objects;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 
 /**
- * 日期格式化和解析
- * 包含常用日期格式如：
- * yyyy-MM-dd
- * HH:mm:ss
- * yyyy-MM-dd HH:mm:ss
- * yyyy-MM-dd'T'HH:mm:ssZ等等
+ * 日期格式化和解析<br>
+ * 包含常用日期格式如：<br>
+ * yyyy-MM-dd<br>
+ * HH:mm:ss<br>
+ * yyyy-MM-dd HH:mm:ss<br>
+ * yyyy-MM-dd'T'HH:mm:ssZ等等<br>
  * 
- * 1.格式化方法， format*， 比如formatToDateStr(Date date) 格式化，返回日期部分，如：yyyy-MM-dd； 
- * format(Date date, DateTimeFormatter formatter) formatter 可以选择已定义好的formatter比如YYYY_MM_DD_HH_MM_SS_FMT （yyyy-MM-dd HH:mm:ss）
+ * 1.格式化方法， format*， 比如formatToDateStr(Date date) 格式化，返回日期部分，如：yyyy-MM-dd；<br> 
+ * format(Date date, DateTimeFormatter formatter) formatter 可以选择已定义好的formatter比如YYYY_MM_DD_HH_MM_SS_FMT （yyyy-MM-dd HH:mm:ss）<br>
  * 
- * 2.解析方法， parse*， 比如parseDateStrToDate(String text) 解析日期yyyy-MM-dd，返回Date；
- * parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 Date
+ * 2.解析方法， parse*， 比如parseDateStrToDate(String text) 解析日期yyyy-MM-dd，返回Date；<br>
+ * parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 Date<br>
  * 
- * 注意：格式化和解析ZonedDateTime 时区时间时，只能使用ISO开头的Formatter，如ISO_DATE_FMT和YYYY_MM_DD_T_HH_MM_SS_Z_FMT
- * 因为，其他Formatter都绑定的是系统默认时区：
- * private static final ZoneId ZONE = ZoneId.systemDefault();
+ * 注意：格式化和解析ZonedDateTime 时区时间时，只能使用ISO开头的Formatter，如ISO_DATE_FMT和YYYY_MM_DD_T_HH_MM_SS_Z_FMT<br>
+ * 因为，其他Formatter都绑定的是系统默认时区：<br>
+ * private static final ZoneId ZONE = ZoneId.systemDefault();<br>
  * 
- * 如果需要使用其他Formatter，可以使用withZone方法重新设置时区，比如：
- * YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")
+ * 如果需要使用其他Formatter，可以使用withZone方法重新设置时区，比如：<br>
+ * YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")<br>
 * @ClassName: DateTimeFormatterUtil 
 * @Description: DateTime Formatter
 * @author xkzhangsan

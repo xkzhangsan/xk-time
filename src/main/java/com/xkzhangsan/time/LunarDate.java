@@ -14,11 +14,11 @@ import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.holiday.Holiday;
 
 /**
- * 农历日期
- * 1.农历日期年月日计算
- * 2.农历岁次，生肖属相计算
- * 3.二十四节气计算
- * 仅支持公历1901-1950年的农历转换
+ * 农历日期<br>
+ * 1.农历日期年月日计算<br>
+ * 2.农历岁次，生肖属相计算<br>
+ * 3.二十四节气计算<br>
+ * 仅支持公历1901-1950年的农历转换<br>
 * @ClassName: LunarDate 
 * @Description: LunarDate
 * @author xkzhangsan
