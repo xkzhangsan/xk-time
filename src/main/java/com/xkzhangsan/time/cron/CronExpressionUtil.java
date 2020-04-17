@@ -14,6 +14,7 @@ import com.xkzhangsan.time.utils.CollectionUtil;
  * 1.验证和格式化Cron表达式方法，isValidExpression和formatExpression
  * 2.生成下一个或多个执行时间方法，getNextTime和getNextTimeList
  * 3.生成下一个或多个执行时间的日期格式化（yyyy-MM-dd HH:mm:ss）方法，getNextTimeStr和getNextTimeStrList
+ * 4.对比Cron表达式下一个执行时间是否与指定date相等方法，isSatisfiedBy
  * 
 * @ClassName: CronExpressionUtil 
 * @Description: CronExpressionUtil
@@ -154,6 +155,20 @@ public class CronExpressionUtil {
 	 */
 	public static List<String> getNextTimeStrList(String cronExpression, int num){
 		return getNextTimeStrList(cronExpression, null, num);
+	}
+	
+	/**
+	 * 对比Cron表达式下一个执行时间是否与指定date相等
+	 * @param cronExpression
+	 * @param date
+	 * @return
+	 */
+	public static boolean isSatisfiedBy(String cronExpression, Date date){
+		try {
+			return new CronExpression(cronExpression).isSatisfiedBy(date);
+		} catch (ParseException e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 
 }
