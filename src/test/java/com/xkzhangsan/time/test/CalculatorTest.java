@@ -444,6 +444,32 @@ public class CalculatorTest {
 		
 	}
 	
+	/**
+	 * Date 减少精度测试
+	 */
+	@Test
+	public void reduceAccuracyDateTest(){
+		Date date = new Date();
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(date));
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.reduceAccuracyToSecond(date)));
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.reduceAccuracyToMinute(date)));
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.reduceAccuracyToHour(date)));
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.reduceAccuracyToDay(date)));
+	}
+	
+	/**
+	 * LocalDateTime 减少精度测试
+	 */	
+	@Test
+	public void reduceAccuracyLocalDateTimeTest(){
+		LocalDateTime ldt = LocalDateTime.now();
+		System.out.println(ldt);
+		System.out.println(DateTimeCalculatorUtil.reduceAccuracyToSecond(ldt));
+		System.out.println(DateTimeCalculatorUtil.reduceAccuracyToMinute(ldt));
+		System.out.println(DateTimeCalculatorUtil.reduceAccuracyToHour(ldt));
+		System.out.println(DateTimeCalculatorUtil.reduceAccuracyToDay(ldt));
+	}
+	
 	@Test
 	public void dateCalculatorTest(){
 		Date date = new Date();

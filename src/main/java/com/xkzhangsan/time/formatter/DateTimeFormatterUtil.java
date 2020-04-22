@@ -439,7 +439,7 @@ public class DateTimeFormatterUtil {
      * @return
      */
     public static Date parseDateStrToDate(String text){
-    	return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(YYYY_MM_DD_FMT.parse(text)));
+    	return DateTimeConverterUtil.toDate(LocalDate.parse(text, YYYY_MM_DD_FMT));
     }
     
     /**
@@ -448,7 +448,7 @@ public class DateTimeFormatterUtil {
      * @return
      */
     public static LocalDateTime parseDateStrToLocalDateTime(String text){
-    	return DateTimeConverterUtil.toLocalDateTime(YYYY_MM_DD_FMT.parse(text));
+    	return DateTimeConverterUtil.toLocalDateTime(LocalDate.parse(text, YYYY_MM_DD_FMT));
     }
     
     /**
@@ -457,7 +457,7 @@ public class DateTimeFormatterUtil {
      * @return
      */
     public static Instant parseDateStrToInstant(String text){
-    	return DateTimeConverterUtil.toInstant(YYYY_MM_DD_FMT.parse(text));
+    	return DateTimeConverterUtil.toInstant(LocalDate.parse(text, YYYY_MM_DD_FMT));
     }
     
     /**

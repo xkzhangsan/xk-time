@@ -2380,4 +2380,90 @@ public class DateTimeCalculatorUtil {
 		return isExpiry(yearMonth);
 	}
 	
+	/**
+	 * 减少时间精度到秒
+	 * @param localDateTime
+	 * @return
+	 */
+	public static LocalDateTime reduceAccuracyToSecond(LocalDateTime localDateTime) {
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return LocalDateTime.of(localDateTime.getYear(), localDateTime.getMonthValue(),
+				localDateTime.getDayOfMonth(), localDateTime.getHour(), localDateTime.getMinute(),
+				localDateTime.getSecond());
+	}
+	
+	/**
+	 * 减少时间精度到秒
+	 * @param date
+	 * @return
+	 */
+	public static Date reduceAccuracyToSecond(Date date) {
+		Objects.requireNonNull(date, "date");
+		return DateTimeConverterUtil.toDate(reduceAccuracyToSecond(DateTimeConverterUtil.toLocalDateTime(date)));
+	}
+	
+	/**
+	 * 减少时间精度到分
+	 * @param localDateTime
+	 * @return
+	 */
+	public static LocalDateTime reduceAccuracyToMinute(LocalDateTime localDateTime) {
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return LocalDateTime.of(localDateTime.getYear(), localDateTime.getMonthValue(),
+				localDateTime.getDayOfMonth(), localDateTime.getHour(), localDateTime.getMinute(),
+				0);
+	}
+	
+	/**
+	 * 减少时间精度到分
+	 * @param date
+	 * @return
+	 */
+	public static Date reduceAccuracyToMinute(Date date) {
+		Objects.requireNonNull(date, "date");
+		return DateTimeConverterUtil.toDate(reduceAccuracyToMinute(DateTimeConverterUtil.toLocalDateTime(date)));
+	}
+	
+	/**
+	 * 减少时间精度到小时
+	 * @param localDateTime
+	 * @return
+	 */
+	public static LocalDateTime reduceAccuracyToHour(LocalDateTime localDateTime) {
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return LocalDateTime.of(localDateTime.getYear(), localDateTime.getMonthValue(),
+				localDateTime.getDayOfMonth(), localDateTime.getHour(), 0, 0);
+	}
+	
+	/**
+	 * 减少时间精度到小时
+	 * @param date
+	 * @return
+	 */
+	public static Date reduceAccuracyToHour(Date date) {
+		Objects.requireNonNull(date, "date");
+		return DateTimeConverterUtil.toDate(reduceAccuracyToHour(DateTimeConverterUtil.toLocalDateTime(date)));
+	}
+	
+	/**
+	 * 减少时间精度到天
+	 * @param localDateTime
+	 * @return
+	 */
+	public static LocalDateTime reduceAccuracyToDay(LocalDateTime localDateTime) {
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return LocalDateTime.of(localDateTime.getYear(), localDateTime.getMonthValue(),
+				localDateTime.getDayOfMonth(), 0, 0, 0);
+	}
+	
+	/**
+	 * 减少时间精度到天
+	 * @param date
+	 * @return
+	 */
+	public static Date reduceAccuracyToDay(Date date) {
+		Objects.requireNonNull(date, "date");
+		return DateTimeConverterUtil.toDate(reduceAccuracyToDay(DateTimeConverterUtil.toLocalDateTime(date)));
+	}
+	
 }
