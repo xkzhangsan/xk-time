@@ -57,6 +57,6 @@ public class CalculatorPerformanceTest {
 			ldt2 = ldt.withHour(0).withMinute(0).withSecond(0).withNano(0);
 		}
 		System.out.println("reduceAccuracyWith cost:"+(System.currentTimeMillis()-s));
-		System.out.println("reduceAccuracyOf result:"+ldt2);
+		System.out.println("reduceAccuracyWith result:"+ldt2);
 	}
 }
