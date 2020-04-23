@@ -1,8 +1,8 @@
 # xk-time
 
-xk-time is a datetime converter calculator formatter and calendar tool set, based on java8 date and time API, thread safe, easy to use.
+xk-time is a datetime converter calculator formatter calendar and cron expression tool set, based on java8 date and time API, thread safe, easy to use.
 
-时间转换，计算，格式化，解析和日历等的工具，使用java8，线程安全，简单易用，多达20几种常用日期格式化模板。  
+时间转换，计算，格式化，解析，日历和cron表达式等的工具，使用java8，线程安全，简单易用，多达20几种常用日期格式化模板。  
  
  
 ## 0.为什么要开发这个工具？ 
@@ -50,7 +50,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
 （10）相同月日比较判断方法，isSameMonthDay*，betweenNextSameMonthDay*，nextSameMonthDay*， 比如用于生日，节日等周期性的日期比较判断。  
 （11）星座计算方法，getConstellation*，比如getConstellationNameCn(String monthDayStr)，根据日期计算星座。  
 （12）计算指定年月或起始时间区间的时间列表，get*List， 比如getDateList(int year, int month)，计算指定年月的时间列表。
-（13）减少时间精度方法，reduceAccuracyTo*，， 比如reduceAccuracyToDay(Date date)，减少时间精度到天，其他补0，返回如，2020-04-23 00:00:00  
+（13）减少时间精度方法，reduceAccuracyTo*， 比如reduceAccuracyToDay(Date date)，减少时间精度到天，其他补0，返回如，2020-04-23 00:00:00  
   
 详细使用可以查看相关测试代码。  
 
