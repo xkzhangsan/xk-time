@@ -94,19 +94,19 @@ public class FormatterTest {
 	@Test
 	public void parseToDateTest(){
 		System.out.println(DateTimeFormatterUtil.parseToDate("2019年12月01日 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_FMT));
-		System.out.println(DateTimeFormatterUtil.parseToDate("2019-12-01 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT));
+		System.out.println(DateTimeFormatterUtil.parseToDate("2019-12-01", DateTimeFormatterUtil.YYYY_MM_DD_FMT));
 	}
 	
 	@Test
 	public void parseToLocalDateTimeTest(){
 		System.out.println(DateTimeFormatterUtil.parseToLocalDateTime("2019年12月01日 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_FMT));
-		System.out.println(DateTimeFormatterUtil.parseToLocalDateTime("2019-12-01 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT));
+		System.out.println(DateTimeFormatterUtil.parseToLocalDateTime("2019-12-01", DateTimeFormatterUtil.YYYY_MM_DD_FMT));
 	}
 	
 	@Test
 	public void parseToInstantTest(){
 		System.out.println(DateTimeFormatterUtil.parseToInstant("2019年12月01日 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_FMT));
-		System.out.println(DateTimeFormatterUtil.parseToInstant("2019-12-01 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT));
+		System.out.println(DateTimeFormatterUtil.parseToInstant("2019-12-01", DateTimeFormatterUtil.YYYY_MM_DD_FMT));
 	}
 	
 	/**

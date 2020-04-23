@@ -2381,7 +2381,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 减少时间精度到秒
+	 * 减少时间精度到秒，其他补0，返回如，2020-04-23 15:18:13
 	 * @param localDateTime
 	 * @return
 	 */
@@ -2393,7 +2393,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 减少时间精度到秒
+	 * 减少时间精度到秒，其他补0，返回如，2020-04-23 15:18:13
 	 * @param date
 	 * @return
 	 */
@@ -2403,7 +2403,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 减少时间精度到分
+	 * 减少时间精度到分，其他补0，返回如，2020-04-23 15:18:00
 	 * @param localDateTime
 	 * @return
 	 */
@@ -2415,7 +2415,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 减少时间精度到分
+	 * 减少时间精度到分，其他补0，返回如，2020-04-23 15:18:00
 	 * @param date
 	 * @return
 	 */
@@ -2425,7 +2425,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 减少时间精度到小时
+	 * 减少时间精度到小时，其他补0，返回如，2020-04-23 15:00:00
 	 * @param localDateTime
 	 * @return
 	 */
@@ -2436,7 +2436,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 减少时间精度到小时
+	 * 减少时间精度到小时，其他补0，返回如，2020-04-23 15:00:00
 	 * @param date
 	 * @return
 	 */
@@ -2446,7 +2446,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 减少时间精度到天
+	 * 减少时间精度到天，其他补0，返回如，2020-04-23 00:00:00
 	 * @param localDateTime
 	 * @return
 	 */
@@ -2457,7 +2457,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 减少时间精度到天
+	 * 减少时间精度到天，其他补0，返回如，2020-04-23 00:00:00
 	 * @param date
 	 * @return
 	 */

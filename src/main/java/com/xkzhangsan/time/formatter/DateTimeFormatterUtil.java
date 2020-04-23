@@ -495,7 +495,13 @@ public class DateTimeFormatterUtil {
      */
     public static Date parseToDate(String text, DateTimeFormatter formatter){
     	Objects.requireNonNull(formatter, "formatter");
-    	return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(formatter.parse(text)));
+    	Date date = null;
+    	try {
+    		date = DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(formatter.parse(text)));
+		} catch (Exception e) {
+			date = DateTimeConverterUtil.toDate(LocalDate.parse(text, formatter));
+		}
+    	return date;
     }
     
     /**
@@ -506,7 +512,13 @@ public class DateTimeFormatterUtil {
      */
     public static LocalDateTime parseToLocalDateTime(String text, DateTimeFormatter formatter){
     	Objects.requireNonNull(formatter, "formatter");
-    	return DateTimeConverterUtil.toLocalDateTime(formatter.parse(text));
+    	LocalDateTime localDateTime = null;
+    	try {
+    		localDateTime = DateTimeConverterUtil.toLocalDateTime(formatter.parse(text));
+		} catch (Exception e) {
+			localDateTime = DateTimeConverterUtil.toLocalDateTime(LocalDate.parse(text, formatter));
+		}
+    	return localDateTime;
     }
     
     /**
@@ -517,7 +529,13 @@ public class DateTimeFormatterUtil {
      */
     public static Instant parseToInstant(String text, DateTimeFormatter formatter){
     	Objects.requireNonNull(formatter, "formatter");
-    	return DateTimeConverterUtil.toInstant(formatter.parse(text));
+    	Instant instant = null;
+    	try {
+    		instant = DateTimeConverterUtil.toInstant(formatter.parse(text));
+		} catch (Exception e) {
+			instant = DateTimeConverterUtil.toInstant(LocalDate.parse(text, formatter));
+		}
+    	return instant;
     }
     
     /**
