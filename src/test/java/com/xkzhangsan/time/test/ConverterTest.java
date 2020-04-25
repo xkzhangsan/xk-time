@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.YearMonth;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
@@ -115,5 +116,30 @@ public class ConverterTest {
 		System.out.println(LocalDate1);
 		System.out.println(LocalDate2);
 		System.out.println(LocalDate3);
+	}
+	
+	/**
+	 * 时间戳转换测试
+	 */
+	@Test
+	public void epochMilliConverterTest(){
+		System.out.println("===================epochMilliConverterTest=====================");
+		Date date = new Date();
+		long epochMilli = date.getTime();
+		System.out.println("epochMilli:"+epochMilli);
+		System.out.println("===================ToOther=====================");
+		System.out.println(DateTimeConverterUtil.toDate(epochMilli));
+		System.out.println(DateTimeConverterUtil.toLocalDateTime(epochMilli));
+		System.out.println(DateTimeConverterUtil.toLocalDate(epochMilli));
+		System.out.println(DateTimeConverterUtil.toInstant(epochMilli));
+		System.out.println(DateTimeConverterUtil.toZonedDateTime(epochMilli));
+		System.out.println("===================toEpochMilli=====================");
+		System.out.println(DateTimeConverterUtil.toEpochMilli(new Date()));
+		System.out.println(DateTimeConverterUtil.toEpochMilli(LocalDateTime.now()));
+		// 另一种方式： +8 时区
+		System.out.println(LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli());
+		System.out.println(DateTimeConverterUtil.toEpochMilli(LocalDate.now()));
+		System.out.println(DateTimeConverterUtil.toEpochMilli(Instant.now()));
+		System.out.println(DateTimeConverterUtil.toEpochMilli(ZonedDateTime.now()));
 	}
 }

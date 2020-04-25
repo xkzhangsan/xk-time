@@ -219,6 +219,16 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
+	 * epochMilli毫秒转LocalDate
+	 * @param epochMilli
+	 * @return
+	 */
+	public static LocalDate toLocalDate(long epochMilli) {
+		Objects.requireNonNull(epochMilli, "epochMilli");
+		return toLocalDateTime(epochMilli).toLocalDate();
+	}	
+	
+	/**
 	 * temporal转LocalDate
 	 * @param temporal
 	 * @return
