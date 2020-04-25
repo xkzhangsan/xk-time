@@ -1,6 +1,9 @@
 package com.xkzhangsan.time.test;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -58,5 +61,53 @@ public class CalculatorPerformanceTest {
 		}
 		System.out.println("reduceAccuracyWith cost:"+(System.currentTimeMillis()-s));
 		System.out.println("reduceAccuracyWith result:"+ldt2);
+	}
+	
+	/**
+	 * 使用System获取时间戳
+	 */
+	@Test
+	public void getEpochMilliWithSystem(){
+		long s = System.currentTimeMillis();
+		for (int i = 0; i < 1000000; i++) {
+			System.currentTimeMillis();
+		}
+		System.out.println("getEpochMilliWithSystem cost:"+(System.currentTimeMillis()-s));
+	}
+	
+	/**
+	 * 使用Date获取时间戳
+	 */
+	@Test
+	public void getEpochMilliWithDate(){
+		long s = System.currentTimeMillis();
+		for (int i = 0; i < 1000000; i++) {
+			new Date().getTime();
+		}
+		System.out.println("getEpochMilliWithDate cost:"+(System.currentTimeMillis()-s));
+	}
+	
+	/**
+	 * 使用Calendar获取时间戳
+	 */
+	@Test
+	public void getEpochMilliWithCalendar(){
+		long s = System.currentTimeMillis();
+		for (int i = 0; i < 1000000; i++) {
+			Calendar.getInstance().getTimeInMillis();
+		}
+		System.out.println("getEpochMilliWithDate cost:"+(System.currentTimeMillis()-s));
+	}
+	
+	/**
+	 * 使用Instant获取时间戳
+	 */
+	@Test
+	public void getEpochMilliWithInstant(){
+		long s = System.currentTimeMillis();
+		for (int i = 0; i < 1000000; i++) {
+			Instant.now().toEpochMilli();
+		}
+		System.out.println("getEpochMilliWithInstant cost:"+(System.currentTimeMillis()-s));
 	}
 }

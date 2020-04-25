@@ -1,5 +1,6 @@
 package com.xkzhangsan.time.formatter;
 
+import java.time.DateTimeException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.Objects;
 
+import com.xkzhangsan.time.constants.Constant;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 
 /**
@@ -498,8 +500,12 @@ public class DateTimeFormatterUtil {
     	Date date = null;
     	try {
     		date = DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDateTime(formatter.parse(text)));
-		} catch (Exception e) {
-			date = DateTimeConverterUtil.toDate(LocalDate.parse(text, formatter));
+		} catch (DateTimeException e) {
+			if(e.getMessage().startsWith(Constant.PARSE_LOCAL_DATE_EXCEPTION)){
+				date = DateTimeConverterUtil.toDate(LocalDate.parse(text, formatter));
+			}else{
+				throw e;
+			}
 		}
     	return date;
     }
@@ -515,8 +521,12 @@ public class DateTimeFormatterUtil {
     	LocalDateTime localDateTime = null;
     	try {
     		localDateTime = DateTimeConverterUtil.toLocalDateTime(formatter.parse(text));
-		} catch (Exception e) {
-			localDateTime = DateTimeConverterUtil.toLocalDateTime(LocalDate.parse(text, formatter));
+		} catch (DateTimeException e) {
+			if(e.getMessage().startsWith(Constant.PARSE_LOCAL_DATE_EXCEPTION)){
+				localDateTime = DateTimeConverterUtil.toLocalDateTime(LocalDate.parse(text, formatter));
+			}else{
+				throw e;
+			}
 		}
     	return localDateTime;
     }
@@ -532,8 +542,12 @@ public class DateTimeFormatterUtil {
     	Instant instant = null;
     	try {
     		instant = DateTimeConverterUtil.toInstant(formatter.parse(text));
-		} catch (Exception e) {
-			instant = DateTimeConverterUtil.toInstant(LocalDate.parse(text, formatter));
+		} catch (DateTimeException e) {
+			if(e.getMessage().startsWith(Constant.PARSE_LOCAL_DATE_EXCEPTION)){
+				instant = DateTimeConverterUtil.toInstant(LocalDate.parse(text, formatter));
+			}else{
+				throw e;
+			}
 		}
     	return instant;
     }

@@ -56,6 +56,10 @@ public class Constant {
 	 */
 	public static final String CHUNJIE = "0101";
 	
+	/**
+	 * 解析日期时异常
+	 */
+	public static final String PARSE_LOCAL_DATE_EXCEPTION = "Unable to obtain";
 	
 	private static volatile Constant constant;
 	
