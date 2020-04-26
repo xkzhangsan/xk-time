@@ -1,10 +1,14 @@
 package com.xkzhangsan.time.test;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 
 import com.xkzhangsan.time.cron.CronExpressionUtil;
+import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 
 public class CronExpressionTest {
 
@@ -26,5 +30,20 @@ public class CronExpressionTest {
 		String cronExpression = "0 10 * * * ?";
 		Date nextDate = CronExpressionUtil.getNextTime(cronExpression, date);
 		System.out.println(CronExpressionUtil.isSatisfiedBy(cronExpression, nextDate));
+	}
+	
+	/**
+	 * 特殊周期cron，比如：每隔40s执行，需要多个cron组合使用
+	 */
+	@Test
+	public void cronExpressionSpecialPeriodTest(){
+		List<Date> dateList = new ArrayList<Date>();
+		dateList.addAll(CronExpressionUtil.getNextTimeList("0 0/3 * * * ? ", 3));
+		dateList.addAll(CronExpressionUtil.getNextTimeList("40 1/3 * * * ? ", 3));
+		dateList.addAll(CronExpressionUtil.getNextTimeList("20 2/3 * * * ? ", 3));
+		Collections.sort(dateList);
+		dateList.stream().forEach(date->{
+			System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(date));
+			});
 	}
 }
