@@ -466,11 +466,19 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取当前时间的时间戳（毫秒）
+	 * 获取时间戳
 	 * @return
 	 */
 	public static long getEpochMilli(){
-		return Instant.now().toEpochMilli();
+		return System.currentTimeMillis();
+	}
+	
+	/**
+	 * 获取时间戳（到秒）
+	 * @return
+	 */
+	public static long getEpochSecond(){
+		return Instant.now().getEpochSecond();
 	}
 	
 	/**

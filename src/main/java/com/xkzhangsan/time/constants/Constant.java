@@ -82,10 +82,7 @@ public class Constant {
 	 * @return
 	 */
 	public boolean isChinese(){
-		if(Locale.getDefault().getLanguage().equals(ZH)){
-			return true;
-		}
-		return false;
+		return Locale.getDefault().getLanguage().equals(ZH);
 	}
 
 }

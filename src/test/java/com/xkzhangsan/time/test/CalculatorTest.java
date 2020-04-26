@@ -470,6 +470,17 @@ public class CalculatorTest {
 		System.out.println(DateTimeCalculatorUtil.reduceAccuracyToDay(ldt));
 	}
 	
+	/**
+	 * 获取时间戳
+	 */	
+	@Test
+	public void getTimestampTest(){
+		//时间戳
+		System.out.println(DateTimeCalculatorUtil.getEpochMilli());
+		//时间戳 到秒
+		System.out.println(DateTimeCalculatorUtil.getEpochSecond());
+	}
+	
 	@Test
 	public void dateCalculatorTest(){
 		Date date = new Date();
