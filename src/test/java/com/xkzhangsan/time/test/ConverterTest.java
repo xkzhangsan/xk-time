@@ -1,5 +1,6 @@
 package com.xkzhangsan.time.test;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -141,5 +142,22 @@ public class ConverterTest {
 		System.out.println(DateTimeConverterUtil.toEpochMilli(LocalDate.now()));
 		System.out.println(DateTimeConverterUtil.toEpochMilli(Instant.now()));
 		System.out.println(DateTimeConverterUtil.toEpochMilli(ZonedDateTime.now()));
+	}
+	
+	@Test
+	public void timestampConverterTest(){
+		System.out.println("===================timestampConverterTest=====================");
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		long epochMilli = timestamp.getTime();
+		System.out.println("epochMilli:"+epochMilli);
+		System.out.println("===================ToOther=====================");
+		System.out.println(DateTimeConverterUtil.toLocalDateTime(timestamp));
+		System.out.println(DateTimeConverterUtil.toInstant(timestamp));
+		System.out.println(DateTimeConverterUtil.toEpochMilli(timestamp));
+		System.out.println("===================toEpochMilli=====================");
+		System.out.println(DateTimeConverterUtil.toTimestamp(new Date()));
+		System.out.println(DateTimeConverterUtil.toTimestamp(LocalDateTime.now()));
+		System.out.println(DateTimeConverterUtil.toTimestamp(Instant.now()));
+		System.out.println(DateTimeConverterUtil.toTimestamp(epochMilli));
 	}
 }

@@ -1,5 +1,6 @@
 package com.xkzhangsan.time.converter;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,7 +14,7 @@ import java.util.Objects;
 
 /**
  * 日期转换<br>
- * 包含Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime和YearMonth的互相转换<br>
+ * 包含Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime、YearMonth和Timestamp的互相转换<br>
  * 
  * 注意，ZonedDateTime相关的转换，尤其是其他时间转ZonedDateTime，要注意时间和对应时区一致。<br>
 * @ClassName: DateTimeConverterUtil 
@@ -128,6 +129,16 @@ public class DateTimeConverterUtil {
 	public static LocalDateTime toLocalDateTime(Date date) {
 		Objects.requireNonNull(date, "date");
 		return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
+	}
+	
+	/**
+	 * Timestamp转LocalDateTime
+	 * @param timestamp
+	 * @return
+	 */
+	public static LocalDateTime toLocalDateTime(Timestamp timestamp) {
+		Objects.requireNonNull(timestamp, "timestamp");
+		return timestamp.toLocalDateTime();
 	}
 
 	/**
@@ -337,6 +348,16 @@ public class DateTimeConverterUtil {
 		Objects.requireNonNull(date, "date");
 		return date.toInstant();
 	}
+	
+	/**
+	 * Timestamp转Instant
+	 * @param timestamp
+	 * @return
+	 */
+	public static Instant toInstant(Timestamp timestamp) {
+		Objects.requireNonNull(timestamp, "timestamp");
+		return timestamp.toInstant();
+	}
 
 	/**
 	 * LocalDateTime转Instant
@@ -406,6 +427,17 @@ public class DateTimeConverterUtil {
 	public static long toEpochMilli(Date date){
 		Objects.requireNonNull(date, "date");
 		return date.getTime();
+	}
+	
+	/**
+	 * Timestamp转毫秒值
+	 * 从1970-01-01T00:00:00Z开始的毫秒值
+	 * @param timestamp
+	 * @return
+	 */
+	public static long toEpochMilli(Timestamp timestamp){
+		Objects.requireNonNull(timestamp, "timestamp");
+		return timestamp.getTime();
 	}
 	
 	/**
@@ -584,5 +616,43 @@ public class DateTimeConverterUtil {
 		LocalDate localDate = toLocalDate(zonedDateTime);
 		return YearMonth.of(localDate.getYear(), localDate.getMonthValue());
 	}
+	
+	/**
+	 * Date转Timestamp
+	 * @param date
+	 * @return
+	 */
+	public static Timestamp toTimestamp(Date date){
+		Objects.requireNonNull(date, "date");
+		return new Timestamp(date.getTime());
+	}
+	
+	/**
+	 * LocalDateTime转Timestamp
+	 * @param localDateTime
+	 * @return
+	 */
+	public static Timestamp toTimestamp(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return Timestamp.valueOf(localDateTime);
+	}
+	
+	/**
+	 * Instant转Timestamp
+	 * @param instant
+	 * @return
+	 */
+	public static Timestamp toTimestamp(Instant instant){
+		Objects.requireNonNull(instant, "instant");
+		return Timestamp.from(instant);
+	}
 
+	/**
+	 * epochMilli转Timestamp
+	 * @param epochMilli
+	 * @return
+	 */
+	public static Timestamp toTimestamp(long epochMilli){
+		return new Timestamp(epochMilli);
+	}
 }
