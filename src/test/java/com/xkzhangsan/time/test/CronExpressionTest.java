@@ -33,7 +33,7 @@ public class CronExpressionTest {
 	}
 	
 	/**
-	 * 特殊周期cron，比如：每隔40s执行，需要多个cron组合使用
+	 * 特殊周期cron，不能被字段范围整除的周期值，比如：每隔40s执行，需要多个cron组合使用
 	 */
 	@Test
 	public void cronExpressionSpecialPeriodTest(){
