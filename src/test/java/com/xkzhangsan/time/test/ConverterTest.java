@@ -159,7 +159,7 @@ public class ConverterTest {
 		System.out.println(DateTimeConverterUtil.toLocalDateTime(timestamp));
 		System.out.println(DateTimeConverterUtil.toInstant(timestamp));
 		System.out.println(DateTimeConverterUtil.toEpochMilli(timestamp));
-		System.out.println("===================toEpochMilli=====================");
+		System.out.println("===================toTimestamp=====================");
 		System.out.println(DateTimeConverterUtil.toTimestamp(new Date()));
 		System.out.println(DateTimeConverterUtil.toTimestamp(LocalDateTime.now()));
 		System.out.println(DateTimeConverterUtil.toTimestamp(Instant.now()));

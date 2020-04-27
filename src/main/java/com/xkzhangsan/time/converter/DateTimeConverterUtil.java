@@ -69,7 +69,7 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
-	 * epochMilli毫秒转Date
+	 * 时间戳epochMilli毫秒转Date
 	 * @param epochMilli
 	 * @return
 	 */
@@ -172,7 +172,7 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
-	 * epochMilli毫秒转LocalDateTime
+	 * 时间戳epochMilli毫秒转LocalDateTime
 	 * @param epochMilli
 	 * @return
 	 */
@@ -230,7 +230,7 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
-	 * epochMilli毫秒转LocalDate
+	 * 时间戳epochMilli毫秒转LocalDate
 	 * @param epochMilli
 	 * @return
 	 */
@@ -389,7 +389,7 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
-	 * epochMilli毫秒转Instant
+	 * 时间戳epochMilli毫秒转Instant
 	 * @param epochMilli
 	 * @return
 	 */
@@ -419,7 +419,7 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
-	 * Date转毫秒值
+	 * Date转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * @param date
 	 * @return
@@ -430,7 +430,7 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
-	 * Timestamp转毫秒值
+	 * Timestamp转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * @param timestamp
 	 * @return
@@ -441,7 +441,7 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
-	 * LocalDateTime转毫秒值
+	 * LocalDateTime转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * @param localDateTime
 	 * @return
@@ -451,7 +451,7 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
-	 * LocalDate转毫秒值
+	 * LocalDate转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * @param localDate
 	 * @return
@@ -461,7 +461,7 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
-	 * Instant转毫秒值
+	 * Instant转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * @param instant
 	 * @return
@@ -472,7 +472,7 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
-	 * ZonedDateTime转毫秒值，注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
+	 * ZonedDateTime转时间戳，注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * @param zonedDateTime
 	 * @return
@@ -548,7 +548,7 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
-	 * epochMilli毫秒转ZonedDateTime，时区为系统默认时区
+	 * 时间戳epochMilli毫秒转ZonedDateTime，时区为系统默认时区
 	 * @param epochMilli
 	 * @return
 	 */
@@ -648,7 +648,7 @@ public class DateTimeConverterUtil {
 	}
 
 	/**
-	 * epochMilli转Timestamp
+	 * 时间戳epochMilli转Timestamp
 	 * @param epochMilli
 	 * @return
 	 */

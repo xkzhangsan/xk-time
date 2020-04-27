@@ -97,7 +97,7 @@ public class CalculatorPerformanceTest {
 		for (int i = 0; i < 1000000; i++) {
 			Calendar.getInstance().getTimeInMillis();
 		}
-		System.out.println("getEpochMilliWithDate cost:"+(System.currentTimeMillis()-s));
+		System.out.println("getEpochMilliWithCalendar cost:"+(System.currentTimeMillis()-s));
 	}
 	
 	/**
