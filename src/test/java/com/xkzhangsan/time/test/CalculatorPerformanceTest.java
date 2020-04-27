@@ -1,5 +1,6 @@
 package com.xkzhangsan.time.test;
 
+import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Calendar;
@@ -109,6 +110,18 @@ public class CalculatorPerformanceTest {
 			Instant.now().toEpochMilli();
 		}
 		System.out.println("getEpochMilliWithInstant cost:"+(System.currentTimeMillis()-s));
+	}
+	
+	/**
+	 * 使用Clock获取时间戳
+	 */
+	@Test
+	public void getEpochMilliWithClock(){
+		long s = System.currentTimeMillis();
+		for (int i = 0; i < 1000000; i++) {
+			Clock.systemUTC().millis();
+		}
+		System.out.println("getEpochMilliWithClock cost:"+(System.currentTimeMillis()-s));
 	}
 	
 }
