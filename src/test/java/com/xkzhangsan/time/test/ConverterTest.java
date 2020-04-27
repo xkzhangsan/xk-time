@@ -134,6 +134,7 @@ public class ConverterTest {
 		System.out.println(DateTimeConverterUtil.toLocalDate(epochMilli));
 		System.out.println(DateTimeConverterUtil.toInstant(epochMilli));
 		System.out.println(DateTimeConverterUtil.toZonedDateTime(epochMilli));
+		System.out.println(DateTimeConverterUtil.toTimestamp(epochMilli));
 		System.out.println("===================toEpochMilli=====================");
 		System.out.println(DateTimeConverterUtil.toEpochMilli(new Date()));
 		System.out.println(DateTimeConverterUtil.toEpochMilli(LocalDateTime.now()));
@@ -142,8 +143,12 @@ public class ConverterTest {
 		System.out.println(DateTimeConverterUtil.toEpochMilli(LocalDate.now()));
 		System.out.println(DateTimeConverterUtil.toEpochMilli(Instant.now()));
 		System.out.println(DateTimeConverterUtil.toEpochMilli(ZonedDateTime.now()));
+		System.out.println(DateTimeConverterUtil.toEpochMilli(new Timestamp(System.currentTimeMillis())));
 	}
 	
+	/**
+	 * Timestamp转换测试
+	 */
 	@Test
 	public void timestampConverterTest(){
 		System.out.println("===================timestampConverterTest=====================");
