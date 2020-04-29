@@ -1,17 +1,22 @@
 package com.xkzhangsan.time.test;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.Test;
-
 import com.xkzhangsan.time.calendar.CalendarUtil;
 import com.xkzhangsan.time.calendar.CalendarWrapper;
 import com.xkzhangsan.time.calendar.DayWrapper;
 import com.xkzhangsan.time.calendar.MonthWrapper;
+import org.junit.Test;
 
-public class CalendarTest {
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 日历测试类
+ *
+ * @author xkzhangsan
+ * @date 2020年04月29日
+ */
+public class CalendarUtilTest {
 
 	/**
 	 * 日历基本测试 generateCalendarWithHoliday

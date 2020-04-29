@@ -11,6 +11,11 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
+/**
+ * 日期格式化和解析测试类
+ * @author xkzhangsan
+ * @date 2020年4月29日
+ */
 public class DateTimeFormatterUtilTest {
 	
 	@Test

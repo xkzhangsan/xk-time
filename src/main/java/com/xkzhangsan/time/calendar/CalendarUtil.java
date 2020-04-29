@@ -1,15 +1,15 @@
 package com.xkzhangsan.time.calendar;
 
+import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
+import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
+import com.xkzhangsan.time.utils.CollectionUtil;
+
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
-import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
-import com.xkzhangsan.time.utils.CollectionUtil;
 
 /**
  * 日历工具类 <br>
@@ -18,8 +18,6 @@ import com.xkzhangsan.time.utils.CollectionUtil;
  * month) 生成指定年月的日历<br>
  *  2.生成指定时间的日历，包含农历和所有节假日信息方法，generateCalendarWithHoliday*， 比如generateCalendarWithHoliday(int year, int month, Map<String, String> localHolidayMap,
 			Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap)生成指定年月的日历，包含农历和所有节假日信息，可以自定义节假日和工作日等。<br>
- * @ClassName: CalendarUtil
- * @Description: CalendarUtil
  * @author xkzhangsan
  * @date 2020年03月18日
  */
@@ -33,7 +31,7 @@ public class CalendarUtil {
 	 * 
 	 * @param year
 	 * @param month
-	 * @return
+	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendar(int year, int month) {
 		return generateCalendar(year, month, false, false, null, null, null);
@@ -44,7 +42,7 @@ public class CalendarUtil {
 	 * 
 	 * @param year
 	 * @param month
-	 * @return
+	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendarWithLunar(int year, int month) {
 		return generateCalendar(year, month, true, false, null, null, null);
@@ -60,7 +58,7 @@ public class CalendarUtil {
 	 *            5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天，为null时，使用默认数据 LocalHolidayEnum
 	 *            比如localHolidayMap.put("0801", "建军节");
 	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日，比如dateTypeMap.put("2020-08-07", 0);
-	 * @return
+	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendarWithLocalHoliday(int year, int month,
 			Map<String, String> localHolidayMap, Map<String, Integer> dateTypeMap) {
@@ -71,7 +69,7 @@ public class CalendarUtil {
 	 * 生成指定年月的日历，包含农历和所有节假日信息
 	 * @param year
 	 * @param month
-	 * @return
+	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendarWithHoliday(int year, int month) {
 		return generateCalendar(year, month, true, true, null, null, null);
@@ -90,7 +88,7 @@ public class CalendarUtil {
 	 *            自定义农历节日信息，特殊节日如除夕 用CHUXI表示，为null时，使用默认数据 ChineseHolidayEnum
 	 *            比如chineseHolidayMap.put("0707", "七夕情人节");
 	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日，比如dateTypeMap.put("2020-08-07", 0);
-	 * @return
+	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendarWithHoliday(int year, int month, Map<String, String> localHolidayMap,
 			Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap) {
@@ -112,7 +110,7 @@ public class CalendarUtil {
 	 *            自定义农历节日信息，特殊节日如除夕 用CHUXI表示，为null时，使用默认数据 ChineseHolidayEnum
 	 *            比如chineseHolidayMap.put("0707", "七夕情人节");
 	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日，比如dateTypeMap.put("2020-08-07", 0);
-	 * @return
+	 * @return CalendarWrapper
 	 */
 	private static CalendarWrapper generateCalendar(int year, int month, boolean includeLunarDate,
 			boolean includeHoliday, Map<String, String> localHolidayMap, Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap) {
@@ -159,7 +157,7 @@ public class CalendarUtil {
 	 * 生成指定年月的日历
 	 * 
 	 * @param year
-	 * @return
+	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendar(int year) {
 		return generateCalendar(year, false, false, null, null, null);
@@ -169,7 +167,7 @@ public class CalendarUtil {
 	 * 生成指定年月的日历， 包含农历信息
 	 * 
 	 * @param year
-	 * @return
+	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendarWithLunar(int year) {
 		return generateCalendar(year, true, false, null, null, null);
@@ -184,7 +182,7 @@ public class CalendarUtil {
 	 *            5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天，为null时，使用默认数据 LocalHolidayEnum
 	 *            比如localHolidayMap.put("0801", "建军节");
 	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日，比如dateTypeMap.put("2020-08-07", 0);
-	 * @return
+	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendarWithLocalHoliday(int year, Map<String, String> localHolidayMap, Map<String, Integer> dateTypeMap) {
 		return generateCalendar(year, false, true, localHolidayMap, null, dateTypeMap);
@@ -193,7 +191,7 @@ public class CalendarUtil {
 	/**
 	 * 生成指定年月的日历，包含农历和所有节假日信息
 	 * @param year
-	 * @return
+	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendarWithHoliday(int year) {
 		return generateCalendar(year, true, true, null, null, null);
@@ -211,7 +209,7 @@ public class CalendarUtil {
 	 *            自定义农历节日信息，特殊节日如除夕 用CHUXI表示，为null时，使用默认数据 ChineseHolidayEnum
 	 *            比如chineseHolidayMap.put("0707", "七夕情人节");
 	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日，比如dateTypeMap.put("2020-08-07", 0);
-	 * @return
+	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendarWithHoliday(int year, Map<String, String> localHolidayMap,
 			Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap) {
@@ -232,7 +230,7 @@ public class CalendarUtil {
 	 *            自定义农历节日信息，特殊节日如除夕 用CHUXI表示，为null时，使用默认数据 ChineseHolidayEnum
 	 *            比如chineseHolidayMap.put("0707", "七夕情人节");
 	 * @param dateTypeMap 日期类型，0休息日，1等其他为工作日，比如dateTypeMap.put("2020-08-07", 0);
-	 * @return
+	 * @return CalendarWrapper
 	 */
 	private static CalendarWrapper generateCalendar(int year, boolean includeLunarDate, boolean includeHoliday,
 			Map<String, String> localHolidayMap, Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap) {

@@ -1,12 +1,12 @@
 package com.xkzhangsan.time.cron;
 
+import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
+import com.xkzhangsan.time.utils.CollectionUtil;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
-import com.xkzhangsan.time.utils.CollectionUtil;
 
 /**
  * Cron表达式工具
@@ -30,8 +30,6 @@ import com.xkzhangsan.time.utils.CollectionUtil;
  * 3.生成下一个或多个执行时间的日期格式化（yyyy-MM-dd HH:mm:ss）方法，getNextTimeStr和getNextTimeStrList<br>
  * 4.对比Cron表达式下一个执行时间是否与指定date相等方法，isSatisfiedBy<br>
  * </p>
-* @ClassName: CronExpressionUtil 
-* @Description: CronExpressionUtil
 * @author xkzhangsan
 * @date 2020年4月16日
 *
@@ -45,7 +43,7 @@ public class CronExpressionUtil {
 	/**
 	 * 验证Cron表达式
 	 * @param cronExpression
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean isValidExpression(String cronExpression){
 		return CronExpression.isValidExpression(cronExpression);
@@ -54,7 +52,7 @@ public class CronExpressionUtil {
 	/**
 	 * 格式化Cron表达式
 	 * @param cronExpression
-	 * @return
+	 * @return String
 	 */
 	public static String formatExpression(String cronExpression){
 		try {
@@ -68,7 +66,7 @@ public class CronExpressionUtil {
 	 * 生成下一个执行时间
 	 * @param cronExpression
 	 * @param date
-	 * @return
+	 * @return Date
 	 */
 	public static Date getNextTime(String cronExpression, Date date){
 		try {
@@ -85,7 +83,7 @@ public class CronExpressionUtil {
 	/**
 	 * 生成下一个执行时间
 	 * @param cronExpression
-	 * @return
+	 * @return Date
 	 */
 	public static Date getNextTime(String cronExpression){
 		return getNextTime(cronExpression, null);
@@ -95,7 +93,7 @@ public class CronExpressionUtil {
 	 * 生成下一个执行时间的日期格式化
 	 * @param cronExpression
 	 * @param date
-	 * @return 返回格式化时间 yyyy-MM-dd HH:mm:ss
+	 * @return String 返回格式化时间 yyyy-MM-dd HH:mm:ss
 	 */
 	public static String getNextTimeStr(String cronExpression, Date date){
 		return DateTimeFormatterUtil.formatToDateTimeStr(getNextTime(cronExpression, date));
@@ -104,7 +102,7 @@ public class CronExpressionUtil {
 	/**
 	 * 生成下一个执行时间的日期格式化
 	 * @param cronExpression
-	 * @return 返回格式化时间 yyyy-MM-dd HH:mm:ss
+	 * @return String 返回格式化时间 yyyy-MM-dd HH:mm:ss
 	 */
 	public static String getNextTimeStr(String cronExpression){
 		return getNextTimeStr(cronExpression, null);
@@ -115,7 +113,7 @@ public class CronExpressionUtil {
 	 * @param cronExpression
 	 * @param date
 	 * @param num
-	 * @return
+	 * @return List<Date>
 	 */
 	public static List<Date> getNextTimeList(String cronExpression, Date date, int num){
 		List<Date> dateList = new ArrayList<>();
@@ -136,7 +134,7 @@ public class CronExpressionUtil {
 	 * 生成多个执行时间
 	 * @param cronExpression
 	 * @param num
-	 * @return
+	 * @return List<Date>
 	 */
 	public static List<Date> getNextTimeList(String cronExpression, int num){
 		return getNextTimeList(cronExpression, null, num);
@@ -147,7 +145,7 @@ public class CronExpressionUtil {
 	 * @param cronExpression
 	 * @param date
 	 * @param num
-	 * @return 返回格式化时间 yyyy-MM-dd HH:mm:ss
+	 * @return List<String> 返回格式化时间 yyyy-MM-dd HH:mm:ss
 	 */
 	public static List<String> getNextTimeStrList(String cronExpression, Date date, int num){
 		List<String> dateStrList = new ArrayList<>();
@@ -165,7 +163,7 @@ public class CronExpressionUtil {
 	 * 生成多个执行时间的日期格式化
 	 * @param cronExpression
 	 * @param num
-	 * @return 返回格式化时间 yyyy-MM-dd HH:mm:ss
+	 * @return List<String> 返回格式化时间 yyyy-MM-dd HH:mm:ss
 	 */
 	public static List<String> getNextTimeStrList(String cronExpression, int num){
 		return getNextTimeStrList(cronExpression, null, num);
@@ -175,7 +173,7 @@ public class CronExpressionUtil {
 	 * 对比Cron表达式下一个执行时间是否与指定date相等
 	 * @param cronExpression
 	 * @param date
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean isSatisfiedBy(String cronExpression, Date date){
 		try {

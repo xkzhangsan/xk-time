@@ -1,5 +1,12 @@
 package com.xkzhangsan.time.holiday;
 
+import com.xkzhangsan.time.LunarDate;
+import com.xkzhangsan.time.constants.Constant;
+import com.xkzhangsan.time.converter.DateTimeConverterUtil;
+import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
+import com.xkzhangsan.time.utils.CollectionUtil;
+import com.xkzhangsan.time.utils.StringUtil;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.MonthDay;
@@ -12,13 +19,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 
-import com.xkzhangsan.time.LunarDate;
-import com.xkzhangsan.time.constants.Constant;
-import com.xkzhangsan.time.converter.DateTimeConverterUtil;
-import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
-import com.xkzhangsan.time.utils.CollectionUtil;
-import com.xkzhangsan.time.utils.StringUtil;
-
 /**
  * 节日处理<br>
  * 包含<br>
@@ -27,8 +27,6 @@ import com.xkzhangsan.time.utils.StringUtil;
  * 3.二十四节气计算， getSolarTerm* 比如getSolarTerm(Date date) 计算date的二十四节气<br>
  * 
  * 农历相关，仅支持公历1901-1950年的计算<br>
-* @ClassName: Holiday
-* @Description: Holiday
 * @author xkzhangsan
 * @date 2019年12月30日
 * @version 0.2 试用
@@ -38,7 +36,7 @@ public interface Holiday {
 	/**
 	 * 根据日期获取公历节日
 	 * @param date
-	 * @return
+	 * @return String
 	 */
 	static String getLocalHoliday(Date date){
 		return getLocalHoliday(date, null);
@@ -48,7 +46,7 @@ public interface Holiday {
 	 * 根据日期获取公历节日
 	 * @param date
 	 * @param localHolidayMap 自定义节日数据，特殊节日如，"母亲节", "5-W-2-7" 5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天
-	 * @return
+	 * @return String
 	 */
 	static String getLocalHoliday(Date date, Map<String, String> localHolidayMap){
 		Objects.requireNonNull(date, "date");
@@ -58,7 +56,7 @@ public interface Holiday {
 	/**
 	 * 根据日期获取公历节日
 	 * @param temporal 支持 LocalDate、LocalDateTime、Instant和ZonedDateTime
-	 * @return
+	 * @return String
 	 */
 	static String getLocalHoliday(Temporal temporal){
 		return getLocalHoliday(temporal, null);
@@ -68,7 +66,7 @@ public interface Holiday {
 	 * 根据日期获取公历节日
 	 * @param temporal 支持 LocalDate、LocalDateTime、Instant和ZonedDateTime
 	 * @param localHolidayMap 自定义节日数据，特殊节日如，"母亲节", "5-W-2-7" 5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天
-	 * @return
+	 * @return String
 	 */
 	static String getLocalHoliday(Temporal temporal, Map<String, String> localHolidayMap){
 		Objects.requireNonNull(temporal, "temporal");
@@ -115,7 +113,7 @@ public interface Holiday {
 	/**
 	 * 根据日期获取农历几日
 	 * @param date
-	 * @return
+	 * @return String
 	 */
 	static String getChineseHoliday(Date date){
 		return getChineseHoliday(date, null);
@@ -125,7 +123,7 @@ public interface Holiday {
 	 * 根据日期获取农历几日
 	 * @param date
 	 * @param chineseHolidayMap 自定义节日数据，特殊节日如除夕 用CHUXI表示
-	 * @return
+	 * @return String
 	 */
 	static String getChineseHoliday(Date date, Map<String, String> chineseHolidayMap){
 		Objects.requireNonNull(date, "date");
@@ -135,7 +133,7 @@ public interface Holiday {
 	/**
 	 * 根据日期获取农历几日
 	 * @param temporal 支持 LocalDate、LocalDateTime、Instant和ZonedDateTime 支持 LocalDate、LocalDateTime、Instant和ZonedDateTime
-	 * @return
+	 * @return String
 	 */
 	static String getChineseHoliday(Temporal temporal){
 		return getChineseHoliday(temporal, null);
@@ -145,7 +143,7 @@ public interface Holiday {
 	 * 根据日期获取农历几日
 	 * @param temporal 支持 LocalDate、LocalDateTime、Instant和ZonedDateTime
 	 * @param chineseHolidayMap 自定义节日数据，特殊节日如除夕 用CHUXI表示
-	 * @return
+	 * @return String
 	 */
 	static String getChineseHoliday(Temporal temporal, Map<String, String> chineseHolidayMap){
 		Objects.requireNonNull(temporal, "temporal");
@@ -191,7 +189,7 @@ public interface Holiday {
 	/**
 	 * 根据日期获取二十四节气
 	 * @param date
-	 * @return
+	 * @return String
 	 */
 	static String getSolarTerm(Date date){
 		Objects.requireNonNull(date, "date");
@@ -202,7 +200,7 @@ public interface Holiday {
 	/**
 	 * 根据日期获取二十四节气
 	 * @param temporal 支持 LocalDate、LocalDateTime、Instant和ZonedDateTime
-	 * @return
+	 * @return String
 	 */
 	static String getSolarTerm(Temporal temporal){
 		Objects.requireNonNull(temporal, "temporal");

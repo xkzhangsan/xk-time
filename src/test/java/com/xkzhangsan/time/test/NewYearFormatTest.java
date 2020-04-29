@@ -1,12 +1,17 @@
 package com.xkzhangsan.time.test;
 
-import java.time.LocalDateTime;
-import java.util.Date;
-
 import com.xkzhangsan.time.LunarDate;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
+/**
+ * 2020农历新年格式化测试
+ * @author xkzhangsan
+ * @date 2020年4月29日
+ */
 public class NewYearFormatTest {
 
 	public static void main(String[] args) {

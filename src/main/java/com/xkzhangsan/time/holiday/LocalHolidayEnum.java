@@ -1,5 +1,7 @@
 package com.xkzhangsan.time.holiday;
 
+import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
+
 import java.time.DayOfWeek;
 import java.time.MonthDay;
 import java.time.temporal.ChronoField;
@@ -8,8 +10,6 @@ import java.time.temporal.TemporalAdjusters;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 
 /**
  * 公历常见假日
@@ -72,7 +72,7 @@ public enum LocalHolidayEnum implements Holiday{
 	/**
 	 * 根据时间获取节日枚举
 	 * @param temporal
-	 * @return
+	 * @return LocalHolidayEnum
 	 */
 	@Deprecated
 	public static LocalHolidayEnum getHoliday(Temporal temporal) {
@@ -108,7 +108,7 @@ public enum LocalHolidayEnum implements Holiday{
 	/**
 	 * 根据时间获取节日名称
 	 * @param temporal
-	 * @return
+	 * @return String
 	 */
 	public static String getHolidayName(Temporal temporal) {
 		return Holiday.getLocalHoliday(temporal, convertToMap());
@@ -118,7 +118,7 @@ public enum LocalHolidayEnum implements Holiday{
 	 * 对比月日
 	 * @param temporal
 	 * @param monthDay
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean compareMonthDay(Temporal temporal, String monthDay){
 		Objects.requireNonNull(temporal, "temporal");

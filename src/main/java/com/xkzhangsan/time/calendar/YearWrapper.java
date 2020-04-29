@@ -1,15 +1,13 @@
 package com.xkzhangsan.time.calendar;
 
+import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
+
 import java.io.Serializable;
 import java.util.List;
-
-import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
 
 /**
  * 年
  * 
- * @ClassName: YearWrapper
- * @Description: YearWrapper
  * @author xkzhangsan
  * @date 2020年03月18日
  */

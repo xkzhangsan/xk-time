@@ -2,6 +2,12 @@ package com.xkzhangsan.time.constants;
 
 import java.util.Locale;
 
+/**
+ * 常量
+ *
+ * @author xkzhangsan
+ * @date 2020年02月29日
+ */
 public class Constant {
 	
 	/**
@@ -79,7 +85,7 @@ public class Constant {
 	
 	/**
 	 * 是否为中文
-	 * @return
+	 * @return boolean
 	 */
 	public boolean isChinese(){
 		return Locale.getDefault().getLanguage().equals(ZH);

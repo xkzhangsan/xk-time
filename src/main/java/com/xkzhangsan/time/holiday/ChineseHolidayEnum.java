@@ -1,19 +1,17 @@
 package com.xkzhangsan.time.holiday;
 
+import com.xkzhangsan.time.LunarDate;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import com.xkzhangsan.time.LunarDate;
 /**
  * 农历节日处理
  * 
  * 农历相关，仅支持公历1901-1950年的农历
-* @ClassName: ChineseHolidayEnum 
-* @Description: ChineseHolidayEnum
 * @author xkzhangsan
 * @date 2019年12月30日
 * @version 0.2 试用
@@ -52,7 +50,7 @@ public enum ChineseHolidayEnum implements Holiday{
 	/**
 	 * 根据时间获取农历节日枚举
 	 * @param temporal
-	 * @return
+	 * @return ChineseHolidayEnum
 	 */
 	@Deprecated
 	public static ChineseHolidayEnum getHoliday(Temporal temporal) {
@@ -81,7 +79,7 @@ public enum ChineseHolidayEnum implements Holiday{
 	/**
 	 * 根据时间获取农历节日名称
 	 * @param temporal
-	 * @return
+	 * @return String
 	 */
 	public static String getHolidayName(Temporal temporal) {
 		return Holiday.getChineseHoliday(temporal, convertToMap());
@@ -91,7 +89,7 @@ public enum ChineseHolidayEnum implements Holiday{
 	 * 对比农历月日，比如，农历生日等
 	 * @param temporal
 	 * @param monthDay
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean compareLunarMonthDay(Temporal temporal, String monthDay) {
 		Objects.requireNonNull(temporal, "temporal");

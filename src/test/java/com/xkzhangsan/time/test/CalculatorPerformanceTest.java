@@ -1,19 +1,16 @@
 package com.xkzhangsan.time.test;
 
+import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
+import org.junit.Test;
+
 import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.junit.Test;
-
-import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
-
 /**
  * 日期计算，性能测试类
-* @ClassName: CalculatorPerformanceTest 
-* @Description: CalculatorPerformanceTest
 * @author xkzhangsan
 * @date 2020年4月22日
  */

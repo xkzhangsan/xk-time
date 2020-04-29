@@ -7,8 +7,6 @@ import java.time.temporal.TemporalAdjuster;
 
 /**
  * TemporalAdjuster 扩展
-* @ClassName: TemporalAdjusterExtension 
-* @Description:  TemporalAdjusterExtension
 * @author xkzhangsan
 * @date 2019年12月30日
 *
@@ -21,7 +19,7 @@ public final class TemporalAdjusterExtension {
 	/**
 	 * 下一个工作日
 	 * next work day
-	 * @return
+	 * @return TemporalAdjuster
 	 */
 	public static TemporalAdjuster nextWorkDay(){
 		return (temporal) -> {

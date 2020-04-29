@@ -8,7 +8,7 @@ public class CollectionUtil {
 	/**
      * 判断collection是否为空
      * @param collection
-     * @return
+     * @return boolean
      */
     public static boolean isEmpty(Collection<?> collection){
         return collection == null || collection.isEmpty();
@@ -16,7 +16,7 @@ public class CollectionUtil {
 
     /**
      * 判断Collection是否非空
-     * @return
+     * @return boolean
      */
     public static boolean isNotEmpty(Collection<?> collection){
         return ! isEmpty(collection);
@@ -25,7 +25,7 @@ public class CollectionUtil {
     /**
      * 判断map是否为空
      * @param map
-     * @return
+     * @return boolean
      */
     public static boolean isEmpty(Map<?,?> map){
         return map == null || map.isEmpty();
@@ -34,7 +34,7 @@ public class CollectionUtil {
     /**
      * 判断map是否非
      * @param map
-     * @return
+     * @return boolean
      */
     public static boolean isNotEmpty(Map<?,?> map){
         return ! isEmpty(map);

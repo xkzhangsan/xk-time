@@ -1,15 +1,13 @@
 package com.xkzhangsan.time.enums;
 
-import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
-
 import java.time.MonthDay;
 import java.util.Objects;
+
+import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
 
 /**
  * 星座名称枚举，包含英文全称，中文全称，时间范围
  * 
- * @ClassName: ConstellationNameEnum
- * @Description: ConstellationNameEnum
  * @author xkzhangsan
  * @date 2020年02-29
  */
@@ -60,7 +58,7 @@ public enum ConstellationNameEnum {
 	/**
 	 * 根据日期查询星座名称枚举
 	 * @param monthDayStr MM-dd格式
-	 * @return
+	 * @return ConstellationNameEnum
 	 */
 	public static ConstellationNameEnum getConstellationNameEnumByMonthDay(String monthDayStr){
 		Objects.requireNonNull(monthDayStr, "monthDayStr");
@@ -79,7 +77,7 @@ public enum ConstellationNameEnum {
 	/**
 	 * 根据日期查询星座中文名称
 	 * @param monthDayStr MM-dd格式
-	 * @return
+	 * @return String
 	 */
 	public static String getNameCnByMonthDay(String monthDayStr){
 		ConstellationNameEnum constellationNameEnum = getConstellationNameEnumByMonthDay(monthDayStr);
@@ -89,7 +87,7 @@ public enum ConstellationNameEnum {
 	/**
 	 * 根据日期查询星座英文名称
 	 * @param monthDayStr MM-dd格式
-	 * @return
+	 * @return String
 	 */
 	public static String getNameEnByMonthDay(String monthDayStr){
 		ConstellationNameEnum constellationNameEnum = getConstellationNameEnumByMonthDay(monthDayStr);

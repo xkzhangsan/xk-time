@@ -3,8 +3,6 @@ package com.xkzhangsan.time.enums;
 /**
  * 常用时区枚举 包含中文名称，比如："Asia/Shanghai","亚洲/上海"
  * 
- * @ClassName: ZoneIdEnum
- * @Description: ZoneIdEnum
  * @author xkzhangsan
  * @date 2020年02月18日
  * @see java.time.ZoneId.SHORT_IDS

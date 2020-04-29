@@ -1,5 +1,9 @@
 package com.xkzhangsan.time;
 
+import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
+import com.xkzhangsan.time.converter.DateTimeConverterUtil;
+import com.xkzhangsan.time.holiday.Holiday;
+
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -9,18 +13,12 @@ import java.time.temporal.TemporalField;
 import java.time.temporal.TemporalUnit;
 import java.util.Date;
 
-import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
-import com.xkzhangsan.time.converter.DateTimeConverterUtil;
-import com.xkzhangsan.time.holiday.Holiday;
-
 /**
  * 农历日期<br>
  * 1.农历日期年月日计算<br>
  * 2.农历岁次，生肖属相计算<br>
  * 3.二十四节气计算<br>
  * 仅支持公历1901-1950年的农历转换<br>
-* @ClassName: LunarDate 
-* @Description: LunarDate
 * @author xkzhangsan
 * @date 2019年12月30日
 * @version 0.2 试用
@@ -199,7 +197,7 @@ public final class LunarDate implements Temporal, Serializable{
 	/**
 	 * 通过LocalDateTime创建LunarDate
 	 * @param localDateTime
-	 * @return
+	 * @return LunarDate
 	 */
 	public static LunarDate from(LocalDateTime localDateTime) {
 		return new LunarDate(DateTimeConverterUtil.toLocalDate(localDateTime));
@@ -208,7 +206,7 @@ public final class LunarDate implements Temporal, Serializable{
 	/**
 	 * 通过LocalDate创建LunarDate
 	 * @param localDate
-	 * @return
+	 * @return LunarDate
 	 */
 	public static LunarDate from(LocalDate localDate) {
 		return new LunarDate(localDate);
@@ -217,7 +215,7 @@ public final class LunarDate implements Temporal, Serializable{
 	/**
 	 * 通过Instant创建LunarDate
 	 * @param instant
-	 * @return
+	 * @return LunarDate
 	 */
 	public static LunarDate from(Instant instant) {
 		return new LunarDate(DateTimeConverterUtil.toLocalDate(instant));
@@ -226,7 +224,7 @@ public final class LunarDate implements Temporal, Serializable{
 	/**
 	 * 通过Date创建LunarDate
 	 * @param date
-	 * @return
+	 * @return LunarDate
 	 */
 	public static LunarDate from(Date date) {
 		return new LunarDate(DateTimeConverterUtil.toLocalDate(date));
@@ -240,7 +238,7 @@ public final class LunarDate implements Temporal, Serializable{
 	 * 传回农历year年的总天数
 	 *
 	 * @param year
-	 * @return
+	 * @return int
 	 */
 	private static final int lunarYearDays(int year) {
 		int i, sum = 348;
@@ -255,7 +253,7 @@ public final class LunarDate implements Temporal, Serializable{
 	 * 传回农历 year年闰月的天数
 	 *
 	 * @param year
-	 * @return
+	 * @return int
 	 */
 	private static final int leapMonthDays(int year) {
 		if (leapMonth(year) != 0) {
@@ -271,7 +269,7 @@ public final class LunarDate implements Temporal, Serializable{
 	 * 传回农历 year年闰哪个月 1-12 , 没闰传回 0
 	 *
 	 * @param year
-	 * @return
+	 * @return int
 	 */
 	private static final int leapMonth(int year) {
 		return (int) (lunarInfo[year - 1900] & 0xf);
@@ -282,7 +280,7 @@ public final class LunarDate implements Temporal, Serializable{
 	 *
 	 * @param year
 	 * @param month
-	 * @return
+	 * @return int
 	 */
 	private static final int monthDays(int year, int month) {
 		if ((lunarInfo[year - 1900] & (0x10000 >> month)) == 0)
@@ -295,7 +293,7 @@ public final class LunarDate implements Temporal, Serializable{
 	 * 传回农历 year年的生肖
 	 *
 	 * @param year
-	 * @return
+	 * @return String
 	 */
 	public static final String animalsYear(int year) {
 		return animals[(year - 4) % 12];
@@ -305,7 +303,7 @@ public final class LunarDate implements Temporal, Serializable{
 	 * 传入 月日的offset 传回干支,0=甲子
 	 *
 	 * @param num
-	 * @return
+	 * @return String
 	 */
 	private static final String cyclicalm(int num) {
 		return (tianGan[num % 10] + diZhi[num % 12]);
@@ -315,7 +313,7 @@ public final class LunarDate implements Temporal, Serializable{
 	 * 传入 offset 传回干支, 0=甲子
 	 *
 	 * @param year
-	 * @return
+	 * @return String
 	 */
 	public static final String cyclical(int year) {
 		int num = year - 1900 + 36;
@@ -326,7 +324,7 @@ public final class LunarDate implements Temporal, Serializable{
 	 * 计算某年第n个节气的天
 	 * @param year 公历年
 	 * @param n
-	 * @return
+	 * @return int
 	 */
 	public static final int solarTerm(int year, int n){
 		LocalDateTime startLocalDateTime = LocalDateTime.of(1900,1,6,2,5);
@@ -342,7 +340,7 @@ public final class LunarDate implements Temporal, Serializable{
 	 * @param year
 	 * @param month
 	 * @param day
-	 * @return
+	 * @return long[]
 	 */
 	public static final long[] calElement(int year, int month, int day) {
 		long[] nongDate = new long[8];
@@ -416,7 +414,7 @@ public final class LunarDate implements Temporal, Serializable{
 	/**
 	 * 获取农历中文年
 	 * @param year
-	 * @return
+	 * @return String
 	 */
 	public final static String getChinaYear(int year) {
 		String ge = numStr[year % 10];
@@ -428,7 +426,7 @@ public final class LunarDate implements Temporal, Serializable{
 	/**
 	 * 获取农历中文日期
 	 * @param day
-	 * @return
+	 * @return String
 	 */
 	public final static String getChinaDay(int day) {
 		String a = "";
@@ -486,7 +484,7 @@ public final class LunarDate implements Temporal, Serializable{
 	/**
 	 * 获取中文星期
 	 * @param week
-	 * @return
+	 * @return String
 	 */
 	public final static String getWeekCn(int week) {
 		String weekCn = "";
@@ -521,7 +519,7 @@ public final class LunarDate implements Temporal, Serializable{
 
 	/**
 	 * 以当前时间创建农历日期LunarDate
-	 * @return
+	 * @return LunarDate
 	 */
 	public static LunarDate now() {
 		LocalDate today = LocalDate.now();
@@ -589,7 +587,7 @@ public final class LunarDate implements Temporal, Serializable{
 
 	/**
 	 * 格式化输出，如：庚子鼠年 二〇二〇年正月初一 星期六 春节
-	 * @return
+	 * @return String
 	 */
 	public String formatLongCnWithChineseHoliday(){
 		String chineseHoliday = Holiday.getChineseHoliday(localDate);
@@ -601,7 +599,7 @@ public final class LunarDate implements Temporal, Serializable{
 	
 	/**
 	 * 格式化输出，如： 己亥猪年 二〇一九年腊月初六 星期二
-	 * @return
+	 * @return String
 	 */
 	public String formatLongCn(){
 		return suiCi + lAnimal + "年 " + lDateCn + " " + weekCn;
@@ -609,7 +607,7 @@ public final class LunarDate implements Temporal, Serializable{
 	
 	/**
 	 * 格式化输出，如： 0101
-	 * @return
+	 * @return String
 	 */
 	public String formatShort(){
 		return String.format("%02d", lMonth) + String.format("%02d", lDay);

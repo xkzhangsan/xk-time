@@ -43,7 +43,7 @@ public enum WeekNameEnum {
 	/**
 	 * 根据code查询星期名称枚举
 	 * @param code
-	 * @return
+	 * @return WeekNameEnum
 	 */
 	public static WeekNameEnum getByCode(int code){
 		if(code >=1 && code <= 12){
@@ -59,7 +59,7 @@ public enum WeekNameEnum {
 	/**
 	 * 根据code查询星期英文简称
 	 * @param code
-	 * @return
+	 * @return String
 	 */
 	public static String getShortNameEnByCode(int code){
 		WeekNameEnum monthNameEnum = getByCode(code);
@@ -69,7 +69,7 @@ public enum WeekNameEnum {
 	/**
 	 * 根据code查询星期英文全称
 	 * @param code
-	 * @return
+	 * @return String
 	 */
 	public static String getFullNameEnByCode(int code){
 		WeekNameEnum monthNameEnum = getByCode(code);
@@ -79,7 +79,7 @@ public enum WeekNameEnum {
 	/**
 	 * 根据code查询星期中文名称
 	 * @param code
-	 * @return
+	 * @return String
 	 */
 	public static String getNameCnByCode(int code){
 		WeekNameEnum monthNameEnum = getByCode(code);

@@ -54,7 +54,7 @@ public enum MonthNameEnum {
 	/**
 	 * 根据code查询月份名称枚举
 	 * @param code
-	 * @return
+	 * @return MonthNameEnum
 	 */
 	public static MonthNameEnum getByCode(int code){
 		if(code >=1 && code <= 12){
@@ -70,7 +70,7 @@ public enum MonthNameEnum {
 	/**
 	 * 根据code查询月份英文简称
 	 * @param code
-	 * @return
+	 * @return String
 	 */
 	public static String getShortNameEnByCode(int code){
 		MonthNameEnum monthNameEnum = getByCode(code);
@@ -80,7 +80,7 @@ public enum MonthNameEnum {
 	/**
 	 * 根据code查询月份英文全称
 	 * @param code
-	 * @return
+	 * @return String
 	 */
 	public static String getFullNameEnByCode(int code){
 		MonthNameEnum monthNameEnum = getByCode(code);
@@ -90,7 +90,7 @@ public enum MonthNameEnum {
 	/**
 	 * 根据code查询月份中文全称
 	 * @param code
-	 * @return
+	 * @return String
 	 */
 	public static String getFullNameCnByCode(int code){
 		MonthNameEnum monthNameEnum = getByCode(code);
@@ -100,7 +100,7 @@ public enum MonthNameEnum {
 	/**
 	 * 根据code查询月份中文
 	 * @param code
-	 * @return
+	 * @return String
 	 */
 	public static String getShortNameCnByCode(int code){
 		MonthNameEnum monthNameEnum = getByCode(code);
