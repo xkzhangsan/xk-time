@@ -31,7 +31,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalDateTime转Date
 	 * @param localDateTime
-	 * @return
+	 * @return Date
 	 */
 	public static Date toDate(LocalDateTime localDateTime) {
 		Objects.requireNonNull(localDateTime, "localDateTime");
@@ -41,7 +41,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalDate转Date
 	 * @param localDate
-	 * @return
+	 * @return Date
 	 */
 	public static Date toDate(LocalDate localDate) {
 		Objects.requireNonNull(localDate, "localDate");
@@ -52,7 +52,7 @@ public class DateTimeConverterUtil {
 	 * LocalTime转Date
 	 * 以当天的日期+LocalTime组成新的LocalDateTime转换为Date
 	 * @param localTime
-	 * @return
+	 * @return Date
 	 */
 	public static Date toDate(LocalTime localTime) {
 		Objects.requireNonNull(localTime, "localTime");
@@ -62,7 +62,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Instant转Date
 	 * @param instant
-	 * @return
+	 * @return Date
 	 */
 	public static Date toDate(Instant instant) {
 		return Date.from(instant);
@@ -71,7 +71,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * 时间戳epochMilli毫秒转Date
 	 * @param epochMilli
-	 * @return
+	 * @return Date
 	 */
 	public static Date toDate(long epochMilli){
 		Objects.requireNonNull(epochMilli, "epochMilli");
@@ -82,7 +82,7 @@ public class DateTimeConverterUtil {
 	 * ZonedDateTime转Date
 	 * 注意时间对应的时区和默认时区差异
 	 * @param zonedDateTime
-	 * @return
+	 * @return Date
 	 */
 	public static Date toDate(ZonedDateTime zonedDateTime) {
 		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
@@ -95,7 +95,7 @@ public class DateTimeConverterUtil {
 	 * 如果要转换为当月最后一天，可以使用下面方法：toDateEndOfMonth(YearMonth)
 	 * @param yearMonth
 	 * @param dayOfMonth
-	 * @return
+	 * @return Date
 	 */
 	public static Date toDate(YearMonth yearMonth, int dayOfMonth) {
 		Objects.requireNonNull(yearMonth, "yearMonth");
@@ -105,7 +105,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * YearMonth转Date，转换为当月第一天
 	 * @param yearMonth
-	 * @return
+	 * @return Date
 	 */
 	public static Date toDateStartOfMonth(YearMonth yearMonth) {
 		return toDate(yearMonth, 1);
@@ -114,7 +114,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * YearMonth转Date，转换为当月最后一天
 	 * @param yearMonth
-	 * @return
+	 * @return Date
 	 */
 	public static Date toDateEndOfMonth(YearMonth yearMonth) {
 		Objects.requireNonNull(yearMonth, "yearMonth");
@@ -124,7 +124,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Date转LocalDateTime
 	 * @param date
-	 * @return
+	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(Date date) {
 		Objects.requireNonNull(date, "date");
@@ -134,7 +134,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Timestamp转LocalDateTime
 	 * @param timestamp
-	 * @return
+	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(Timestamp timestamp) {
 		Objects.requireNonNull(timestamp, "timestamp");
@@ -144,7 +144,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalDate转LocalDateTime
 	 * @param localDate
-	 * @return
+	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(LocalDate localDate) {
 		Objects.requireNonNull(localDate, "localDate");
@@ -155,7 +155,7 @@ public class DateTimeConverterUtil {
 	 * LocalTime转LocalDateTime
 	 * 以当天的日期+LocalTime组成新的LocalDateTime
 	 * @param localTime
-	 * @return
+	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(LocalTime localTime) {
 		Objects.requireNonNull(localTime, "localTime");
@@ -165,7 +165,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Instant转LocalDateTime
 	 * @param instant
-	 * @return
+	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(Instant instant) {
 		return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
@@ -174,7 +174,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * 时间戳epochMilli毫秒转LocalDateTime
 	 * @param epochMilli
-	 * @return
+	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(long epochMilli) {
 		Objects.requireNonNull(epochMilli, "epochMilli");
@@ -184,7 +184,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * temporal转LocalDateTime
 	 * @param temporal
-	 * @return
+	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(TemporalAccessor temporal) {
 		return LocalDateTime.from(temporal);
@@ -194,7 +194,7 @@ public class DateTimeConverterUtil {
 	 * ZonedDateTime转LocalDateTime
 	 * 注意时间对应的时区和默认时区差异
 	 * @param zonedDateTime
-	 * @return
+	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(ZonedDateTime zonedDateTime) {
 		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
@@ -204,7 +204,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Date转LocalDate
 	 * @param date
-	 * @return
+	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(Date date) {
 		return toLocalDateTime(date).toLocalDate();
@@ -213,7 +213,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalDateTime转LocalDate
 	 * @param localDateTime
-	 * @return
+	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(LocalDateTime localDateTime) {
 		Objects.requireNonNull(localDateTime, "localDateTime");
@@ -223,7 +223,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Instant转LocalDate
 	 * @param instant
-	 * @return
+	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(Instant instant) {
 		return toLocalDateTime(instant).toLocalDate();
@@ -232,7 +232,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * 时间戳epochMilli毫秒转LocalDate
 	 * @param epochMilli
-	 * @return
+	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(long epochMilli) {
 		Objects.requireNonNull(epochMilli, "epochMilli");
@@ -242,7 +242,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * temporal转LocalDate
 	 * @param temporal
-	 * @return
+	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(TemporalAccessor temporal) {
 		return LocalDate.from(temporal);
@@ -252,7 +252,7 @@ public class DateTimeConverterUtil {
 	 * ZonedDateTime转LocalDate
 	 * 注意时间对应的时区和默认时区差异
 	 * @param zonedDateTime
-	 * @return
+	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(ZonedDateTime zonedDateTime) {
 		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
@@ -265,7 +265,7 @@ public class DateTimeConverterUtil {
 	 * 如果要转换为当月最后一天，可以使用下面方法：toLocalDateEndOfMonth(YearMonth)
 	 * @param yearMonth
 	 * @param dayOfMonth
-	 * @return
+	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(YearMonth yearMonth, int dayOfMonth) {
 		Objects.requireNonNull(yearMonth, "yearMonth");
@@ -275,7 +275,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * YearMonth转LocalDate，转换为当月第一天
 	 * @param yearMonth
-	 * @return
+	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDateStartOfMonth(YearMonth yearMonth) {
 		return toLocalDate(yearMonth, 1);
@@ -284,7 +284,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * YearMonth转LocalDate，转换为当月最后一天
 	 * @param yearMonth
-	 * @return
+	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDateEndOfMonth(YearMonth yearMonth) {
 		Objects.requireNonNull(yearMonth, "yearMonth");
@@ -294,7 +294,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Date转LocalTime
 	 * @param date
-	 * @return
+	 * @return LocalTime
 	 */
 	public static LocalTime toLocalTime(Date date) {
 		return toLocalDateTime(date).toLocalTime();
@@ -303,7 +303,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalDateTime转LocalTime
 	 * @param localDateTime
-	 * @return
+	 * @return LocalTime
 	 */
 	public static LocalTime toLocalTime(LocalDateTime localDateTime) {
 		Objects.requireNonNull(localDateTime, "localDateTime");
@@ -313,7 +313,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Instant转LocalTime
 	 * @param instant
-	 * @return
+	 * @return LocalTime
 	 */
 	public static LocalTime toLocalTime(Instant instant) {
 		return toLocalDateTime(instant).toLocalTime();
@@ -322,7 +322,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * temporal转LocalTime
 	 * @param temporal
-	 * @return
+	 * @return LocalTime
 	 */
 	public static LocalTime toLocalTime(TemporalAccessor temporal) {
 		return LocalTime.from(temporal);
@@ -332,7 +332,7 @@ public class DateTimeConverterUtil {
 	 * ZonedDateTime转LocalTime
 	 * 注意时间对应的时区和默认时区差异
 	 * @param zonedDateTime
-	 * @return
+	 * @return LocalTime
 	 */
 	public static LocalTime toLocalTime(ZonedDateTime zonedDateTime) {
 		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
@@ -342,7 +342,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Date转Instant
 	 * @param date
-	 * @return
+	 * @return Instant
 	 */
 	public static Instant toInstant(Date date) {
 		Objects.requireNonNull(date, "date");
@@ -352,7 +352,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Timestamp转Instant
 	 * @param timestamp
-	 * @return
+	 * @return Instant
 	 */
 	public static Instant toInstant(Timestamp timestamp) {
 		Objects.requireNonNull(timestamp, "timestamp");
@@ -362,7 +362,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalDateTime转Instant
 	 * @param localDateTime
-	 * @return
+	 * @return Instant
 	 */
 	public static Instant toInstant(LocalDateTime localDateTime) {
 		Objects.requireNonNull(localDateTime, "localDateTime");
@@ -372,7 +372,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalDate转Instant
 	 * @param localDate
-	 * @return
+	 * @return Instant
 	 */
 	public static Instant toInstant(LocalDate localDate) {
 		return toLocalDateTime(localDate).atZone(ZoneId.systemDefault()).toInstant();
@@ -382,7 +382,7 @@ public class DateTimeConverterUtil {
 	 * LocalTime转Instant
 	 * 以当天的日期+LocalTime组成新的LocalDateTime转换为Instant
 	 * @param localTime
-	 * @return
+	 * @return Instant
 	 */
 	public static Instant toInstant(LocalTime localTime) {
 		return toLocalDateTime(localTime).atZone(ZoneId.systemDefault()).toInstant();
@@ -391,7 +391,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * 时间戳epochMilli毫秒转Instant
 	 * @param epochMilli
-	 * @return
+	 * @return Instant
 	 */
 	public static Instant toInstant(long epochMilli) {
 		Objects.requireNonNull(epochMilli, "epochMilli");
@@ -401,7 +401,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * temporal转Instant
 	 * @param temporal
-	 * @return
+	 * @return Instant
 	 */
 	public static Instant toInstant(TemporalAccessor temporal) {
 		return Instant.from(temporal);
@@ -411,7 +411,7 @@ public class DateTimeConverterUtil {
 	 * ZonedDateTime转Instant
 	 * 注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
 	 * @param zonedDateTime
-	 * @return
+	 * @return Instant
 	 */
 	public static Instant toInstant(ZonedDateTime zonedDateTime) {
 		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
@@ -422,7 +422,7 @@ public class DateTimeConverterUtil {
 	 * Date转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * @param date
-	 * @return
+	 * @return 时间戳
 	 */
 	public static long toEpochMilli(Date date){
 		Objects.requireNonNull(date, "date");
@@ -433,7 +433,7 @@ public class DateTimeConverterUtil {
 	 * Timestamp转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * @param timestamp
-	 * @return
+	 * @return 时间戳
 	 */
 	public static long toEpochMilli(Timestamp timestamp){
 		Objects.requireNonNull(timestamp, "timestamp");
@@ -444,7 +444,7 @@ public class DateTimeConverterUtil {
 	 * LocalDateTime转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * @param localDateTime
-	 * @return
+	 * @return 时间戳
 	 */
 	public static long toEpochMilli(LocalDateTime localDateTime){
 		return toInstant(localDateTime).toEpochMilli();
@@ -454,7 +454,7 @@ public class DateTimeConverterUtil {
 	 * LocalDate转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * @param localDate
-	 * @return
+	 * @return 时间戳
 	 */
 	public static long toEpochMilli(LocalDate localDate){
 		return toInstant(localDate).toEpochMilli();
@@ -464,7 +464,7 @@ public class DateTimeConverterUtil {
 	 * Instant转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * @param instant
-	 * @return
+	 * @return 时间戳
 	 */
 	public static long toEpochMilli(Instant instant){
 		Objects.requireNonNull(instant, "instant");
@@ -475,7 +475,7 @@ public class DateTimeConverterUtil {
 	 * ZonedDateTime转时间戳，注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * @param zonedDateTime
-	 * @return
+	 * @return 时间戳
 	 */
 	public static long toEpochMilli(ZonedDateTime zonedDateTime) {
 		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
@@ -485,7 +485,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Date转ZonedDateTime，时区为系统默认时区
 	 * @param date
-	 * @return
+	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(Date date) {
 		Objects.requireNonNull(date, "date");
@@ -496,7 +496,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalDateTime转ZonedDateTime，时区为系统默认时区
 	 * @param localDateTime
-	 * @return
+	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(LocalDateTime localDateTime) {
 		Objects.requireNonNull(localDateTime, "localDateTime");
@@ -509,7 +509,7 @@ public class DateTimeConverterUtil {
 	 * 
 	 * @param localDateTime
 	 * @param zoneId
-	 * @return
+	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(LocalDateTime localDateTime, String zoneId) {
 		Objects.requireNonNull(localDateTime, "localDateTime");
@@ -520,7 +520,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalDate转ZonedDateTime，时区为系统默认时区
 	 * @param localDate
-	 * @return such as 2020-02-19T00:00+08:00[Asia/Shanghai]
+	 * @return ZonedDateTime such as 2020-02-19T00:00+08:00[Asia/Shanghai]
 	 */
 	public static ZonedDateTime toZonedDateTime(LocalDate localDate) {
 		Objects.requireNonNull(localDate, "localDate");
@@ -531,7 +531,7 @@ public class DateTimeConverterUtil {
 	 * LocalTime转ZonedDateTime
 	 * 以当天的日期+LocalTime组成新的ZonedDateTime，时区为系统默认时区
 	 * @param localTime
-	 * @return
+	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(LocalTime localTime) {
 		Objects.requireNonNull(localTime, "localTime");
@@ -541,7 +541,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Instant转ZonedDateTime，时区为系统默认时区
 	 * @param instant
-	 * @return
+	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(Instant instant) {
 		return LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).atZone(ZoneId.systemDefault());
@@ -550,7 +550,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * 时间戳epochMilli毫秒转ZonedDateTime，时区为系统默认时区
 	 * @param epochMilli
-	 * @return
+	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(long epochMilli) {
 		Objects.requireNonNull(epochMilli, "epochMilli");
@@ -561,7 +561,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * temporal转ZonedDateTime，时区为系统默认时区
 	 * @param temporal
-	 * @return
+	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(TemporalAccessor temporal) {
 		return LocalDateTime.from(temporal).atZone(ZoneId.systemDefault());
@@ -570,7 +570,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Date转YearMonth
 	 * @param date
-	 * @return
+	 * @return YearMonth
 	 */
 	public static YearMonth toYearMonth(Date date){
 		LocalDate localDate = toLocalDate(date);
@@ -580,7 +580,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalDateTime转YearMonth
 	 * @param localDateTime
-	 * @return
+	 * @return YearMonth
 	 */
 	public static YearMonth toYearMonth(LocalDateTime localDateTime){
 		LocalDate localDate = toLocalDate(localDateTime);
@@ -590,7 +590,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalDate转YearMonth
 	 * @param localDate
-	 * @return
+	 * @return YearMonth
 	 */
 	public static YearMonth toYearMonth(LocalDate localDate){
 		Objects.requireNonNull(localDate, "localDate");
@@ -600,7 +600,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Instant转YearMonth
 	 * @param instant
-	 * @return
+	 * @return YearMonth
 	 */
 	public static YearMonth toYearMonth(Instant instant){
 		LocalDate localDate = toLocalDate(instant);
@@ -610,7 +610,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * ZonedDateTime转YearMonth
 	 * @param zonedDateTime
-	 * @return
+	 * @return YearMonth
 	 */
 	public static YearMonth toYearMonth(ZonedDateTime zonedDateTime){
 		LocalDate localDate = toLocalDate(zonedDateTime);
@@ -620,7 +620,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Date转Timestamp
 	 * @param date
-	 * @return
+	 * @return Timestamp
 	 */
 	public static Timestamp toTimestamp(Date date){
 		Objects.requireNonNull(date, "date");
@@ -630,7 +630,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalDateTime转Timestamp
 	 * @param localDateTime
-	 * @return
+	 * @return Timestamp
 	 */
 	public static Timestamp toTimestamp(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
@@ -640,7 +640,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Instant转Timestamp
 	 * @param instant
-	 * @return
+	 * @return Timestamp
 	 */
 	public static Timestamp toTimestamp(Instant instant){
 		Objects.requireNonNull(instant, "instant");
@@ -650,7 +650,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * 时间戳epochMilli转Timestamp
 	 * @param epochMilli
-	 * @return
+	 * @return Timestamp
 	 */
 	public static Timestamp toTimestamp(long epochMilli){
 		return new Timestamp(epochMilli);
