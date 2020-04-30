@@ -36,55 +36,39 @@ public class DateTimeFormatterUtilTest {
 	public void dateFormatTest(){
 		Date date = DateTimeFormatterUtil.parseToDate("2020-04-29 14:46:29.709", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSS_FMT);
 
-		Assert.assertEquals("14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_SS_FMT));
-
-		Assert.assertEquals("144629", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HHMMSS_FMT));
-
-		Assert.assertEquals("04月29日", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_CN_FMT));
-
-		Assert.assertEquals("04月29日 14:46", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_CN_FMT));
-
-		Assert.assertEquals("04-29 14:46", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_FMT));
-
-
-		Assert.assertEquals("04月29日 14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_SS_CN_FMT));
-
 		Assert.assertEquals("2020", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_FMT));
-
+		Assert.assertEquals("2020-04", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_FMT));
 		Assert.assertEquals("2020年04月", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_CN_FMT));
-
-		Assert.assertEquals("2020年04月29日", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_CN_FMT));
-
-		Assert.assertEquals("2020/04/29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_EN_FMT));
+		Assert.assertEquals("2020/04", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_EN_FMT));
+		Assert.assertEquals("202004", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMM_FMT));
 
 
 		Assert.assertEquals("2020-04-29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_FMT));
-
-		Assert.assertEquals("2020-04-29 14:46", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_FMT));
-
-		Assert.assertEquals("2020年04月29日 14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_FMT));
-
-		Assert.assertEquals("2020-04-29 14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT));
-
-		Assert.assertEquals("2020-04-29 14:46:29.709", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSS_FMT));
-
-
+		Assert.assertEquals("2020年04月29日", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_CN_FMT));
+		Assert.assertEquals("2020/04/29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_EN_FMT));
 		Assert.assertEquals("2020.04.29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_POINT_FMT));
-
-		Assert.assertEquals("2020/04", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_EN_FMT));
-
-		Assert.assertEquals("2020-04", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_FMT));
-
-		Assert.assertEquals("202004", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMM_FMT));
-
 		Assert.assertEquals("20200429", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDD_FMT));
 
-
+		Assert.assertEquals("2020-04-29 14:46", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_FMT));
 		Assert.assertEquals("202004291446", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMM_FMT));
 
+		Assert.assertEquals("2020-04-29 14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT));
+		Assert.assertEquals("2020年04月29日 14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_FMT));
 		Assert.assertEquals("20200429144629", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMMSS_FMT));
 
+		Assert.assertEquals("2020-04-29 14:46:29.709", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSS_FMT));
 		Assert.assertEquals("20200429144629709", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMMSSSSS_FMT));
+
+		Assert.assertEquals("04-29 14:46", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_FMT));
+		Assert.assertEquals("04月29日 14:46", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_CN_FMT));
+		Assert.assertEquals("04-29 14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_SS_FMT));
+		Assert.assertEquals("04月29日 14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_SS_CN_FMT));
+
+		Assert.assertEquals("04-29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_FMT));
+		Assert.assertEquals("04月29日", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_CN_FMT));
+
+		Assert.assertEquals("14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_SS_FMT));
+		Assert.assertEquals("144629", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HHMMSS_FMT));
 	}
 	
 	@Test
