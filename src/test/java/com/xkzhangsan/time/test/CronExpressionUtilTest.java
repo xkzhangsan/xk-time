@@ -1,7 +1,7 @@
 package com.xkzhangsan.time.test;
 
+import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
 import com.xkzhangsan.time.cron.CronExpressionUtil;
-import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -43,12 +43,12 @@ public class CronExpressionUtilTest {
 	@Test
 	public void cronExpressionSpecialPeriodTest(){
 		List<Date> dateList = new ArrayList<Date>();
-		dateList.addAll(CronExpressionUtil.getNextTimeList("0 0/3 * * * ? ", 3));
-		dateList.addAll(CronExpressionUtil.getNextTimeList("40 1/3 * * * ? ", 3));
-		dateList.addAll(CronExpressionUtil.getNextTimeList("20 2/3 * * * ? ", 3));
+		dateList.addAll(CronExpressionUtil.getNextTimeList("0 0/2 * * * ? ", 3));
+		dateList.addAll(CronExpressionUtil.getNextTimeList("40 0/2 * * * ? ", 3));
+		dateList.addAll(CronExpressionUtil.getNextTimeList("20 1/2 * * * ? ", 3));
 		Collections.sort(dateList);
-		dateList.stream().forEach(date->{
-			System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(date));
-			});
+		for(int i=0; i<dateList.size()-1; i++){
+			Assert.assertEquals(40, DateTimeCalculatorUtil.betweenTotalSeconds(dateList.get(i),dateList.get(i+1)));
+		}
 	}
 }
