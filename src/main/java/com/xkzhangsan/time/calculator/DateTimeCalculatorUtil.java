@@ -464,6 +464,35 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
+	 * 获取毫秒
+	 * @param date
+	 * @return int
+	 */
+	public static int getMillisecond(Date date){
+		return DateTimeConverterUtil.toLocalDateTime(date).getNano()/1_000_000;
+	}
+	
+	/**
+	 * 获取毫秒
+	 * @param instant
+	 * @return int
+	 */
+	public static int getMillisecond(Instant instant){
+		return DateTimeConverterUtil.toLocalDateTime(instant).getNano()/1_000_000;
+	}
+	
+	/**
+	 * 获取毫秒
+	 * LocalDateTime LocalTime ZonedDateTime 可以直接.getMinute()获取
+	 * @param localDateTime
+	 * @return int
+	 */
+	public static int getMillisecond(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.getNano()/1_000_000;
+	}
+	
+	/**
 	 * 获取时间戳
 	 * @return long
 	 */
@@ -476,7 +505,7 @@ public class DateTimeCalculatorUtil {
 	 * @return long
 	 */
 	public static long getEpochSecond(){
-		return Instant.now().getEpochSecond();
+		return System.currentTimeMillis()/1000;
 	}
 
 	/**

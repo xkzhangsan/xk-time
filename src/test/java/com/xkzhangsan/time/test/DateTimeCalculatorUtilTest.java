@@ -31,13 +31,14 @@ public class DateTimeCalculatorUtilTest {
 	@Test
 	public void dateCalculatorGetTest(){
 		//2020-04-29T17:30:15
-		Date date = DateTimeCalculatorUtil.getDate(2020,4,29,17,30,15);
+		Date date = DateTimeFormatterUtil.parseToDate("2020-04-29 17:30:15.111", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSS_FMT);
 		Assert.assertEquals(2020,DateTimeCalculatorUtil.getYear(date));
 		Assert.assertEquals(4,DateTimeCalculatorUtil.getMonth(date));
 		Assert.assertEquals(29,DateTimeCalculatorUtil.getDayOfMonth(date));
 		Assert.assertEquals(17,DateTimeCalculatorUtil.getHour(date));
 		Assert.assertEquals(30,DateTimeCalculatorUtil.getMinute(date));
 		Assert.assertEquals(15,DateTimeCalculatorUtil.getSecond(date));
+		Assert.assertEquals(111,DateTimeCalculatorUtil.getMillisecond(date));
 	}
 	
 	/**

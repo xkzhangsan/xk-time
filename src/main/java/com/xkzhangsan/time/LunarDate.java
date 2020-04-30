@@ -23,7 +23,7 @@ import java.util.Date;
 * @date 2019年12月30日
 * @version 0.2 试用
  * 注意: 农历和二十四节气计算的准确依赖于lunarInfo和solarTermInfo基础数据的准确性和精确度。<br>
- *     根据测试结果，发现本程序和常用万年历软件中都有很少量计算误差，欢迎提出问题会进行改进和修改正。
+ *     根据测试结果，发现本程序和常用万年历软件中都有很少量计算误差，欢迎提出问题，会不断进行改进和修正。
  */
 public final class LunarDate implements Temporal, Serializable{
 	
