@@ -14,7 +14,7 @@ import java.util.Date;
 * @author xkzhangsan
 * @date 2020年4月22日
  */
-public class CalculatorPerformanceTest {
+public class DateTimeCalculatorPerformanceTest {
 
 	/**
 	 * 使用Format方法减少精度到天
