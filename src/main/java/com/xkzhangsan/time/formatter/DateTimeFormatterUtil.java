@@ -2,6 +2,7 @@ package com.xkzhangsan.time.formatter;
 
 import com.xkzhangsan.time.constants.Constant;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
+import com.xkzhangsan.time.utils.StringUtil;
 
 import java.time.DateTimeException;
 import java.time.Instant;
@@ -13,6 +14,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -76,8 +78,11 @@ public class DateTimeFormatterUtil {
     
 	private static final String YYYY_MM_DD_HH_MM_SS_CN = "yyyy年MM月dd日 HH:mm:ss";
 	
-	private static final String YYYY_MM_DD_HH_MM_SS_A_CN = "yyyy年MM月dd日 HH:mm:ss a";	
-    
+	/**
+	 * 12小时制
+	 */
+	private static final String YYYY_MM_DD_HH_MM_SS_A_CN = "yyyy年MM月dd日 hh:mm:ss a";
+	
 	private static final String YYYYMMDDHHMMSSSSS = "yyyyMMddHHmmssSSS";
     
 	private static final String YYYY_MM_DD_HH_MM_SS_SSS = "yyyy-MM-dd HH:mm:ss.SSS";
@@ -104,6 +109,46 @@ public class DateTimeFormatterUtil {
 	 * ZonedDateTime 时区时间格式
 	 */
 	private static final String YYYY_MM_DD_T_HH_MM_SS_Z = "yyyy-MM-dd'T'HH:mm:ssZ";
+	
+	/**
+	 * ZonedDateTime 时区时间格式 带 :  0时区时，+00:00
+	 */
+	private static final String YYYY_MM_DD_T_HH_MM_SS_XXX = "yyyy-MM-dd'T'HH:mm:ssxxx";
+	
+	/**
+	 * ZonedDateTime 时区时间格式 带毫秒
+	 */
+	private static final String YYYY_MM_DD_T_HH_MM_SS_SSS_Z = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+	
+	/**
+	 * ZonedDateTime 时区时间格式 带毫秒  带 : 0时区时，+00:00
+	 */
+	private static final String YYYY_MM_DD_T_HH_MM_SS_SSS_XXX = "yyyy-MM-dd'T'HH:mm:ss.SSSxxx";
+	
+	//add for excel date
+	private static final String YY_MM_DD_EN = "yy/MM/dd";
+	
+	private static final String MM_DD_YY_EN = "MM/dd/yy";
+	
+	private static final String MM_DD_EN = "MM/dd";
+	
+	//add for excel time
+	private static String HH_MM_SS_CN = "HH时mm分ss秒";
+	
+	private static String HH_MM_CN = "HH时mm分";
+	
+	private static String HH_MM = "HH:mm";
+	
+	private static String HH_MM_A = "hh:mm a";
+	
+	//add for excel date time
+	private static final String YYYY_MM_DD_HH_MM_SS_CN_ALL = "yyyy年MM月dd日 HH时mm分ss秒";
+	
+	private static final String YYYY_MM_DD_HH_MM_SS_A_CN_ALL = "yyyy年MM月dd日 HH时mm分ss秒 a";
+	
+	private static final String YYYY_MM_DD_HH_MM_SS_EN = "yyyy/MM/dd HH:mm:ss";
+	
+	private static final String YYYY_MM_DD_HH_MM_EN = "yyyy/MM/dd HH:mm";
     
 	//  ============================formatters============================
     
@@ -190,9 +235,14 @@ public class DateTimeFormatterUtil {
     public static final DateTimeFormatter YYYY_MM_DD_HH_MM_SS_CN_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_SS_CN).withZone(ZONE);
     
     /**
-     * such as 2020年01月01日 00:00:00 上午
+     * such as 2020年01月01日 00:00:00 上午 12小时制
      */
     public static final DateTimeFormatter YYYY_MM_DD_HH_MM_SS_A_CN_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_SS_A_CN).withZone(ZONE);
+    
+    /**
+     * such as 2020年04月29日 02:46:29 PM 12小时制 AM PM
+     */
+    public static final DateTimeFormatter YYYY_MM_DD_HH_MM_SS_A_AM_PM_CN_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_SS_A_CN, Locale.ENGLISH).withZone(ZONE);
     
     /**
      * such as 20191203214731714
@@ -254,6 +304,24 @@ public class DateTimeFormatterUtil {
      * such as 2020-02-18T22:37:55+0800
      */
     public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_Z_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_T_HH_MM_SS_Z);
+
+    /**
+     * ZonedDateTime 时区时间格式Formatter 带: 0时区时，+00:00
+     * such as 2020-02-18T22:37:55+08:00
+     */
+    public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_XXX_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_T_HH_MM_SS_XXX);
+    
+    /**
+     * ZonedDateTime 时区时间格式Formatter 带毫秒
+     * such as 2020-02-18T22:37:55.991+0800
+     */
+    public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_SSS_Z_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_T_HH_MM_SS_SSS_Z);
+
+    /**
+     * ZonedDateTime 时区时间格式Formatter 带毫秒  带: 0时区时，+00:00
+     * such as 2020-02-18T22:37:55.991+08:00
+     */
+    public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_T_HH_MM_SS_SSS_XXX);
     
     //ISO Formatters
     
@@ -308,6 +376,74 @@ public class DateTimeFormatterUtil {
 	 */
 	public static final DateTimeFormatter BASIC_ISO_DATE_FMT = DateTimeFormatter.BASIC_ISO_DATE;
 	
+	//add for excel date
+	/**
+	 * such as 20/04/29
+	 */
+	public static final DateTimeFormatter YY_MM_DD_EN_FMT = DateTimeFormatter.ofPattern(YY_MM_DD_EN);
+	
+	/**
+	 * such as 04/29/20
+	 */
+	public static final DateTimeFormatter MM_DD_YY_EN_FMT = DateTimeFormatter.ofPattern(MM_DD_YY_EN);
+	
+	/**
+	 * such as 04/29
+	 */
+	public static final DateTimeFormatter MM_DD_EN_FMT = DateTimeFormatter.ofPattern(MM_DD_EN);
+	
+	//add for excel time
+	/**
+	 * such as 14时46分29秒
+	 */
+	public static DateTimeFormatter HH_MM_SS_CN_FMT = DateTimeFormatter.ofPattern(HH_MM_SS_CN);
+	
+	/**
+	 * such as 14时46分
+	 */
+	public static DateTimeFormatter HH_MM_CN_FMT = DateTimeFormatter.ofPattern(HH_MM_CN);
+	
+	/**
+	 * such as 14:46
+	 */
+	public static DateTimeFormatter HH_MM_FMT = DateTimeFormatter.ofPattern(HH_MM);
+	
+	/**
+	 * such as 02:46 下午
+	 */
+	public static DateTimeFormatter HH_MM_A_FMT = DateTimeFormatter.ofPattern(HH_MM_A);
+	
+	/**
+	 * such as 02:46 PM 12小时制 AM PM
+	 */
+	public static DateTimeFormatter HH_MM_A_AM_PM_FMT = DateTimeFormatter.ofPattern(HH_MM_A, Locale.ENGLISH);
+	
+	//add for excel date time
+	/**
+	 * such as 2020年04月29日 14时46分29秒
+	 */
+	public static final DateTimeFormatter YYYY_MM_DD_HH_MM_SS_CN_ALL_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_SS_CN_ALL);
+	
+	/**
+	 * such as 2020年04月29日 14时46分29秒 下午
+	 */
+	public static final DateTimeFormatter YYYY_MM_DD_HH_MM_SS_A_CN_ALL_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_SS_A_CN_ALL);
+	
+	/**
+	 * such as 2020年04月29日 14时46分29秒  PM 12小时制 AM PM
+	 */
+	public static final DateTimeFormatter YYYY_MM_DD_HH_MM_SS_A_AM_PM_CN_ALL_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_SS_A_CN_ALL, Locale.ENGLISH);
+	
+	/**
+	 * such as 2020/04/29 14:46:29
+	 */
+	public static final DateTimeFormatter YYYY_MM_DD_HH_MM_SS_EN_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_SS_EN);
+	
+	/**
+	 * such as 2020/04/29 14:46
+	 */
+	public static final DateTimeFormatter YYYY_MM_DD_HH_MM_EN_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_EN);
+
     //  =============================format===========================
     
     /**
@@ -317,6 +453,18 @@ public class DateTimeFormatterUtil {
      */
     public static String formatToDateStr(Date date){
     	return DateTimeConverterUtil.toLocalDateTime(date).format(YYYY_MM_DD_FMT);
+    }
+    
+    /**
+     * 格式化，返回日期部分，如：yyyy-MM-dd 指定时区
+     * @param date
+     * @param zoneId
+     * @return String
+     */
+    public static String formatToDateStr(Date date, String zoneId){
+		return StringUtil.isNotEmpty(zoneId)
+				? DateTimeConverterUtil.toZonedDateTime(date).format(YYYY_MM_DD_FMT.withZone(ZoneId.of(zoneId)))
+				: DateTimeConverterUtil.toZonedDateTime(date).format(YYYY_MM_DD_FMT.withZone(null));
     }
     
     /**
@@ -330,12 +478,59 @@ public class DateTimeFormatterUtil {
     }
     
     /**
+     * 格式化，返回日期部分，如：yyyy-MM-dd 指定时区
+     * @param localDateTime
+     * @param zoneId
+     * @return String
+     */
+    public static String formatToDateStr(LocalDateTime localDateTime, String zoneId){
+    	Objects.requireNonNull(localDateTime, "localDateTime");
+		return StringUtil.isNotEmpty(zoneId) ? localDateTime.format(YYYY_MM_DD_FMT.withZone(ZoneId.of(zoneId)))
+				: localDateTime.format(YYYY_MM_DD_FMT.withZone(null));
+    }
+    
+    /**
+     * 格式化，返回日期部分，如：yyyy-MM-dd
+     * @param zonedDateTime
+     * @return String
+     */
+    public static String formatToDateStr(ZonedDateTime zonedDateTime){
+    	Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+    	return zonedDateTime.format(YYYY_MM_DD_FMT);
+    }
+    
+    /**
+     * 格式化，返回日期部分，如：yyyy-MM-dd 指定时区
+     * @param zonedDateTime
+     * @param zoneId
+     * @return String
+     */
+    public static String formatToDateStr(ZonedDateTime zonedDateTime, String zoneId){
+    	Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+		return StringUtil.isNotEmpty(zoneId) ? zonedDateTime.format(YYYY_MM_DD_FMT.withZone(ZoneId.of(zoneId)))
+				: zonedDateTime.format(YYYY_MM_DD_FMT.withZone(null));
+    }
+    
+    /**
      * 格式化，返回完整日期时间，如：yyyy-MM-dd HH:mm:ss
      * @param date
      * @return String
      */
     public static String formatToDateTimeStr(Date date){
-    	return DateTimeConverterUtil.toLocalDateTime(date).format(YYYY_MM_DD_HH_MM_SS_FMT);
+    	return DateTimeConverterUtil.toZonedDateTime(date).format(YYYY_MM_DD_HH_MM_SS_FMT);
+    }
+    
+    /**
+     * 格式化，返回完整日期时间，如：yyyy-MM-dd HH:mm:ss 指定时区
+     * @param date
+     * @param zoneId 
+     * @return String
+     */
+    public static String formatToDateTimeStr(Date date, String zoneId){
+		return StringUtil.isNotEmpty(zoneId)
+				? DateTimeConverterUtil.toZonedDateTime(date)
+						.format(YYYY_MM_DD_HH_MM_SS_FMT.withZone(ZoneId.of(zoneId)))
+				: DateTimeConverterUtil.toZonedDateTime(date).format(YYYY_MM_DD_HH_MM_SS_FMT.withZone(null));
     }
     
     /**
@@ -346,6 +541,40 @@ public class DateTimeFormatterUtil {
     public static String formatToDateTimeStr(LocalDateTime localDateTime){
     	Objects.requireNonNull(localDateTime, "localDateTime");
     	return localDateTime.format(YYYY_MM_DD_HH_MM_SS_FMT);
+    }
+    
+    /**
+     * 格式化，返回完整日期时间，如：yyyy-MM-dd HH:mm:ss 指定时区
+     * @param localDateTime
+     * @param zoneId
+     * @return String
+     */
+    public static String formatToDateTimeStr(LocalDateTime localDateTime, String zoneId){
+    	Objects.requireNonNull(localDateTime, "localDateTime");
+		return StringUtil.isNotEmpty(zoneId) ? localDateTime.format(YYYY_MM_DD_HH_MM_SS_FMT.withZone(ZoneId.of(zoneId)))
+				: localDateTime.format(YYYY_MM_DD_HH_MM_SS_FMT.withZone(null));
+    }
+    
+    /**
+     * 格式化，返回完整日期时间，如：yyyy-MM-dd HH:mm:ss
+     * @param zonedDateTime
+     * @return String
+     */
+    public static String formatToDateTimeStr(ZonedDateTime zonedDateTime){
+    	Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+    	return zonedDateTime.format(YYYY_MM_DD_HH_MM_SS_FMT);
+    }
+    
+    /**
+     * 格式化，返回完整日期时间，如：yyyy-MM-dd HH:mm:ss 指定时区
+     * @param zonedDateTime
+     * @param zoneId
+     * @return String
+     */
+    public static String formatToDateTimeStr(ZonedDateTime zonedDateTime, String zoneId){
+    	Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+		return StringUtil.isNotEmpty(zoneId) ? zonedDateTime.format(YYYY_MM_DD_HH_MM_SS_FMT.withZone(ZoneId.of(zoneId)))
+				: zonedDateTime.format(YYYY_MM_DD_HH_MM_SS_FMT.withZone(null));
     }
     
     /**
@@ -375,7 +604,26 @@ public class DateTimeFormatterUtil {
      */
     public static String format(Date date, DateTimeFormatter formatter){
     	Objects.requireNonNull(formatter, "formatter");
-    	return DateTimeConverterUtil.toLocalDateTime(date).format(formatter);
+    	return DateTimeConverterUtil.toZonedDateTime(date).format(formatter);
+    }
+    
+    /**
+     * 根据 formatter格式化 date 支持自定义时区
+     * @param date
+     * @param formatter
+     * @param zoneId
+     * @return String
+     */
+    public static String format(Date date, DateTimeFormatter formatter, String zoneId){
+    	Objects.requireNonNull(formatter, "formatter");
+    	if(StringUtil.isNotEmpty(zoneId)){
+    		formatter.withZone(ZoneId.of(zoneId));
+    	}else{
+    		formatter.withZone(null);
+    	}
+		return StringUtil.isNotEmpty(zoneId)
+				? DateTimeConverterUtil.toZonedDateTime(date).format(formatter.withZone(ZoneId.of(zoneId)))
+				: DateTimeConverterUtil.toZonedDateTime(date).format(formatter.withZone(null));
     }
     
     /**
@@ -388,6 +636,21 @@ public class DateTimeFormatterUtil {
     	Objects.requireNonNull(localDateTime, "localDateTime");
     	Objects.requireNonNull(formatter, "formatter");
     	return localDateTime.format(formatter);
+    }
+    
+    /**
+     * 根据 formatter格式化 localDateTime 指定时区
+     * @param localDateTime
+     * @param formatter
+     * @param zoneId
+     * @return String
+     */
+    public static String format(LocalDateTime localDateTime, DateTimeFormatter formatter, String zoneId){
+    	Objects.requireNonNull(localDateTime, "localDateTime");
+    	Objects.requireNonNull(formatter, "formatter");
+    	
+		return StringUtil.isNotEmpty(zoneId) ? localDateTime.format(formatter.withZone(ZoneId.of(zoneId)))
+				: localDateTime.format(formatter.withZone(ZoneId.of(zoneId)));
     }
     
     /**
@@ -425,10 +688,48 @@ public class DateTimeFormatterUtil {
     	return formatter.format(instant);
     }
     
+    /**
+     * 根据 formatter格式化 zonedDateTime
+     * @param zonedDateTime
+     * @param formatter
+     * @return String
+     */
+    public static String format(ZonedDateTime zonedDateTime, DateTimeFormatter formatter){
+    	Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+    	Objects.requireNonNull(formatter, "formatter");
+    	return zonedDateTime.format(formatter);
+    }
+    
+    /**
+     * 根据 formatter格式化 zonedDateTime 指定时区
+     * @param zonedDateTime
+     * @param formatter
+     * @param zoneId
+     * @return String
+     */
+    public static String format(ZonedDateTime zonedDateTime, DateTimeFormatter formatter, String zoneId){
+    	Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+    	Objects.requireNonNull(formatter, "formatter");
+		return StringUtil.isNotEmpty(zoneId) ? zonedDateTime.format(formatter.withZone(ZoneId.of(zoneId)))
+				: zonedDateTime.format(formatter.withZone(null));
+    }
+    
     public static String format(TemporalAccessor temporal, DateTimeFormatter formatter){
     	Objects.requireNonNull(temporal, "temporal");
     	Objects.requireNonNull(formatter, "formatter");
     	return formatter.format(temporal);
+    }
+    
+    public static String format(TemporalAccessor temporal, DateTimeFormatter formatter, String zoneId){
+    	Objects.requireNonNull(temporal, "temporal");
+    	Objects.requireNonNull(formatter, "formatter");
+    	if(StringUtil.isNotEmpty(zoneId)){
+    		formatter.withZone(ZoneId.of(zoneId));
+    	}else{
+    		formatter.withZone(null);
+    	}
+		return StringUtil.isNotEmpty(zoneId) ? formatter.withZone(ZoneId.of(zoneId)).format(temporal)
+				: formatter.withZone(null).format(temporal);
     }
     
     //  ============================parse============================

@@ -69,6 +69,22 @@ public class DateTimeFormatterUtilTest {
 
 		Assert.assertEquals("14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_SS_FMT));
 		Assert.assertEquals("144629", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HHMMSS_FMT));
+		// Excel 中特有格式
+		Assert.assertEquals("20/04/29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YY_MM_DD_EN_FMT));
+		Assert.assertEquals("04/29/20", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_YY_EN_FMT));
+		Assert.assertEquals("04/29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_EN_FMT));
+		Assert.assertEquals("14时46分29秒", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_SS_CN_FMT));
+		Assert.assertEquals("14时46分", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_CN_FMT));
+		Assert.assertEquals("14:46", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_FMT));
+		Assert.assertEquals("02:46 下午", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_A_FMT));
+		Assert.assertEquals("2020年04月29日 02:46:29 下午", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_A_CN_FMT));
+		Assert.assertEquals("2020年04月29日 14时46分29秒", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_ALL_FMT));
+		Assert.assertEquals("2020年04月29日 14时46分29秒 下午", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_A_CN_ALL_FMT));
+		Assert.assertEquals("2020/04/29 14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_EN_FMT));
+		Assert.assertEquals("2020/04/29 14:46", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_EN_FMT));
+		Assert.assertEquals("2020年04月29日 02:46:29 PM", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_A_AM_PM_CN_FMT));
+		Assert.assertEquals("2020年04月29日 14时46分29秒 PM", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_A_AM_PM_CN_ALL_FMT));
+		Assert.assertEquals("02:46 PM", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_A_AM_PM_FMT));
 	}
 	
 	@Test
@@ -91,6 +107,9 @@ public class DateTimeFormatterUtilTest {
 		//默认为巴黎时区
 		ZonedDateTime zonedDateTime = ZonedDateTime.parse("2020-04-29T09:18:11.611+02:00[Europe/Paris]");
 		Assert.assertEquals("2020-04-29T09:18:11+0200", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_Z_FMT));
+		Assert.assertEquals("2020-04-29T09:18:11.611+0200", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSS_Z_FMT));
+		Assert.assertEquals("2020-04-29T09:18:11+02:00", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_XXX_FMT));
+		Assert.assertEquals("2020-04-29T09:18:11.611+02:00", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_FMT));
 
 		Assert.assertEquals("2020-04-29+02:00",zonedDateTime.format(DateTimeFormatterUtil.ISO_DATE_FMT));
 		Assert.assertEquals("2020-04-29T09:18:11.611+02:00[Europe/Paris]",zonedDateTime.format(DateTimeFormatterUtil.ISO_DATE_TIME_FMT));
@@ -106,6 +125,8 @@ public class DateTimeFormatterUtilTest {
 		
 		//其他格式化重新设置时区，用于非系统默认时区时间格式化
 		Assert.assertEquals("2020-04-29 09:18:11.611",zonedDateTime.format(DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris"))));
+		
+		Assert.assertEquals("2020-04-29T15:18:11+08:00",DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_XXX_FMT, "Asia/Shanghai"));
 	}
 	
 	/**

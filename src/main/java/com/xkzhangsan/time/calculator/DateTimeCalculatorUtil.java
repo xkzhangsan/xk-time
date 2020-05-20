@@ -518,6 +518,46 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
+	 * 获取格式化时间戳字符串，带毫秒
+	 * @return String 格式： yyyy-MM-dd HH:mm:ss.SSS
+	 */
+	public static String getEpochMilliFormatFull(){
+		return DateTimeFormatterUtil.format(new Date(), DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSS_FMT);
+	}
+	
+	/**
+	 * 获取格式化时间戳字符串 iso格式 带: 2020-02-18T22:37:55+08:00
+	 * @return String 格式： yyyy-MM-ddTHH:mm:ssxxx
+	 */
+	public static String getEpochMilliIsoFormat(){
+		return DateTimeFormatterUtil.format(new Date(), DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_XXX_FMT);
+	}
+	
+	/**
+	 * 获取格式化时间戳字符串 iso格式 带毫秒  带: 2020-02-18T22:37:55.991+08:00
+	 * @return String 格式： yyyy-MM-dd'T'HH:mm:ss.SSSxxx
+	 */
+	public static String getEpochMilliIsoFormatFull(){
+		return DateTimeFormatterUtil.format(new Date(), DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_FMT);
+	}
+	
+	/**
+	 * 获取格式化时间戳字符串 iso格式 2020-02-18T22:37:55+0800
+	 * @return String 格式： yyyy-MM-ddTHH:mm:ssZ
+	 */
+	public static String getEpochMilliIsoNotFormatNoColon(){
+		return DateTimeFormatterUtil.format(new Date(), DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_Z_FMT);
+	}
+	
+	/**
+	 * 获取格式化时间戳字符串 iso格式 带毫秒 2020-02-18T22:37:55.991+0800
+	 * @return String 格式： yyyy-MM-dd'T'HH:mm:ss.SSSZ
+	 */
+	public static String getEpochMilliIsoFormatFullNoColon(){
+		return DateTimeFormatterUtil.format(new Date(), DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSS_Z_FMT);
+	}
+	
+	/**
 	 * 根据年月日创建Date，时间部分为：00:00:00
 	 * @param year
 	 * @param month
@@ -1920,6 +1960,28 @@ public class DateTimeCalculatorUtil {
 		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
 		Objects.requireNonNull(zone, "zone");
 		return zonedDateTime.withZoneSameInstant(zone);
+	}
+	
+	/**
+	 * 时区转换计算
+	 * @param date
+	 * @param zoneId 目标时区
+	 * @return 日期 yyyy-MM-dd HH:mm:ss
+	 */
+	public static String transform(Date date, String zoneId){
+		Objects.requireNonNull(zoneId, "zoneId");
+		return transform(date, ZoneId.of(zoneId));
+	}
+	
+	/**
+	 * 时区转换计算
+	 * @param date
+	 * @param zone 目标时区
+	 * @return 日期 yyyy-MM-dd HH:mm:ss
+	 */
+	public static String transform(Date date, ZoneId zone){
+		Objects.requireNonNull(zone, "zone");
+		return DateTimeFormatterUtil.formatToDateTimeStr(date, zone.toString());
 	}
 	
 	/**

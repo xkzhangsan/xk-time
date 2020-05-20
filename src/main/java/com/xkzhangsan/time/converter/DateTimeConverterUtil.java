@@ -487,8 +487,30 @@ public class DateTimeConverterUtil {
 	 */
 	public static ZonedDateTime toZonedDateTime(Date date) {
 		Objects.requireNonNull(date, "date");
-		return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime()
-				.atZone(ZoneId.systemDefault());
+		return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault());
+	}
+	
+	/**
+	 * Date转ZonedDateTime
+	 * @param date
+	 * @param zoneId 目标时区
+	 * @return ZonedDateTime
+	 */
+	public static ZonedDateTime toZonedDateTime(Date date, String zoneId) {
+		Objects.requireNonNull(zoneId, "zoneId");
+		return toZonedDateTime(date, ZoneId.of(zoneId));
+	}
+	
+	/**
+	 * Date转ZonedDateTime
+	 * @param date
+	 * @param zone 目标时区
+	 * @return ZonedDateTime
+	 */
+	public static ZonedDateTime toZonedDateTime(Date date, ZoneId zone) {
+		Objects.requireNonNull(date, "date");
+		Objects.requireNonNull(zone, "zone");
+		return Instant.ofEpochMilli(date.getTime()).atZone(zone);
 	}
 	
 	/**

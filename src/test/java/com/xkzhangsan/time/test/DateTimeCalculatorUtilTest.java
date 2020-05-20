@@ -1,6 +1,7 @@
 package com.xkzhangsan.time.test;
 
 import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
+import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.enums.ZoneIdEnum;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 import com.xkzhangsan.time.utils.CollectionUtil;
@@ -183,6 +184,9 @@ public class DateTimeCalculatorUtilTest {
 		ZonedDateTime transformZonedDateTime = DateTimeCalculatorUtil.transform(shanghaiZonedDateTimeSpecial,
 				ZoneIdEnum.ECT.getZoneIdName());
 		Assert.assertEquals("2020-04-30T07:23:02.879+02:00[Europe/Paris]",transformZonedDateTime.toString());
+		//Date时区转换
+		String parisTransform = DateTimeCalculatorUtil.transform(DateTimeConverterUtil.toDate(shanghaiZonedDateTimeSpecial), ZoneId.of("Europe/Paris"));
+		Assert.assertEquals("2020-04-30 07:23:02", parisTransform);
 	}	
 	
 	/**
@@ -341,6 +345,18 @@ public class DateTimeCalculatorUtilTest {
         Assert.assertNotNull(String.valueOf(DateTimeCalculatorUtil.getEpochSecond()));
 		//获取格式化时间戳字符串 yyyy-MM-dd HH:mm:ss
 		Assert.assertNotNull(DateTimeCalculatorUtil.getEpochMilliFormat());
+		//获取格式化时间戳字符串 yyyy-MM-dd HH:mm:ss.SSS
+		Assert.assertNotNull(DateTimeCalculatorUtil.getEpochMilliFormatFull());
+		
+		//iso 2020-02-18T22:37:55+08:00
+		Assert.assertNotNull(DateTimeCalculatorUtil.getEpochMilliIsoFormat());
+		//iso 2020-02-18T22:37:55.991+08:00
+		Assert.assertNotNull(DateTimeCalculatorUtil.getEpochMilliIsoFormatFull());
+		
+		//iso 2020-02-18T22:37:55+0800
+		Assert.assertNotNull(DateTimeCalculatorUtil.getEpochMilliIsoFormatFullNoColon());
+		//iso 2020-02-18T22:37:55.991+0800
+		Assert.assertNotNull(DateTimeCalculatorUtil.getEpochMilliIsoFormatFullNoColon());
 	}
 
 	@Test
