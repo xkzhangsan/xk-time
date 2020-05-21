@@ -21,7 +21,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
   
   
   
-## 1.依赖  
+## 1.Maven 坐标  
 
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
@@ -130,6 +130,11 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 注意： 底层使用 quartz的CronExpression处理。  
 
 详细使用可以查看相关测试代码。              
-
-
-### 欢迎提问题和建议！  
+  
+  
+# 参与项目  
+## 1.提bug和建议  
+- [Issues](https://github.com/xkzhangsan/xk-time/issues)    
+  
+## 2.贡献代码  
+在dev分支修改和pull request。  
