@@ -190,22 +190,32 @@ public class DateTimeFormatterUtil {
 	/**
 	 * 带毫秒
 	 */
-	private static final String YYYY_M_D_H_M_S_S = "yyyy-M-d H:m:s.S";
+	private static final String YYYY_M_D_H_M_S_SSS = "yyyy-M-d H:m:s.SSS";
 	
 	/**
 	 * 带毫秒
 	 */
-	private static final String YYYY_M_D_H_M_S_S_EN = "yyyy/M/d H:m:s.S";
+	private static final String YYYY_M_D_H_M_S_SSS_EN = "yyyy/M/d H:m:s.SSS";
 	
 	/**
 	 * 带毫秒 带时区
 	 */
-	private static final String YYYY_M_D_H_M_S_S_Z = "yyyy-M-d H:m:s.SZ";
+	private static final String YYYY_M_D_T_H_M_S_SSS_Z = "yyyy-M-d'T'H:m:s.SSSZ";
+	
+	/**
+	 * 带毫秒 带时区 +08:00
+	 */
+	private static final String YYYY_M_D_T_H_M_S_SSS_XXX = "yyyy-M-d'T'H:m:s.SSSxxx";
+	
+	/**
+	 * 带毫秒 带时区 +08:00
+	 */
+	private static final String YYYY_M_D_T_H_M_S_SSS_XXX_EN = "yyyy/M/d'T'H:m:s.SSSxxx";
 	
 	/**
 	 * 带毫秒 带时区
 	 */
-	private static final String YYYY_M_D_H_M_S_S_Z_EN = "yyyy/M/d H:m:s.SZ";
+	private static final String YYYY_M_D_T_H_M_S_SSS_Z_EN = "yyyy/M/d'T'H:m:s.SSSZ";
 	
 	/**
 	 * Date 默认格式  Thu May 21 22:58:05 CST 2020
@@ -555,24 +565,33 @@ public class DateTimeFormatterUtil {
 	public static final DateTimeFormatter YYYY_M_D_H_M_EN_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_H_M_EN);
 	
 	/**
-	 * such as 2020-4-9 1:1:1.1
+	 * such as 2020-4-9 1:1:1.111
 	 */
-	public static final DateTimeFormatter YYYY_M_D_H_M_S_S_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_H_M_S_S);
+	public static final DateTimeFormatter YYYY_M_D_H_M_S_SSS_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_H_M_S_SSS);
 	
 	/**
-	 * such as 2020/4/9 1:1:1.1
+	 * such as 2020/4/9 1:1:1.111
 	 */
-	public static final DateTimeFormatter YYYY_M_D_H_M_S_S_EN_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_H_M_S_S_EN);
+	public static final DateTimeFormatter YYYY_M_D_H_M_S_SSS_EN_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_H_M_S_SSS_EN);
 	
 	/**
-	 * such as 2020-4-9 1:1:1.1+0800
+	 * such as 2020-4-9 1:1:1.111+0800
 	 */
-	public static final DateTimeFormatter YYYY_M_D_H_M_S_S_Z_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_H_M_S_S_Z);
+	public static final DateTimeFormatter YYYY_M_D_T_H_M_S_SSS_Z_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_T_H_M_S_SSS_Z);
 	
 	/**
-	 * such as 2020/4/9 1:1:1.1+0800
+	 * such as 2020-4-9T1:1:1.111+08:00
 	 */
-	public static final DateTimeFormatter YYYY_M_D_H_M_S_S_Z_EN_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_H_M_S_S_Z_EN);
+	public static final DateTimeFormatter YYYY_M_D_T_H_M_S_SSS_XXX_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_T_H_M_S_SSS_XXX);
+	
+	/**
+	 * such as 2020-4-9T1:1:1.111+08:00
+	 */
+	public static final DateTimeFormatter YYYY_M_D_T_H_M_S_SSS_XXX_EN_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_T_H_M_S_SSS_XXX_EN);
+	/**
+	 * such as 2020/4/9T1:1:1.111+0800
+	 */
+	public static final DateTimeFormatter YYYY_M_D_T_H_M_S_SSS_Z_EN_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_T_H_M_S_SSS_Z_EN);
 	
 	/**
 	 * Date 默认格式  Thu May 21 22:58:05 CST 2020
@@ -1028,15 +1047,15 @@ public class DateTimeFormatterUtil {
 		} else if (text.contains(":") && text.contains(".")
 				&& (text.contains("+") || text.contains("-"))) {
     		if(text.contains("-")){
-    			return parseToLocalDateTime(text, YYYY_M_D_H_M_S_S_Z_FMT);
+    			return parseToLocalDateTime(text, YYYY_M_D_T_H_M_S_SSS_XXX_FMT);
     		} else if(text.contains("/")){
-    			return parseToLocalDateTime(text, YYYY_M_D_H_M_S_S_Z_EN_FMT);
+    			return parseToLocalDateTime(text, YYYY_M_D_T_H_M_S_SSS_XXX_EN_FMT);
     		}
     	} else if (text.contains(":") && text.contains(".")){
     		if(text.contains("-")){
-    			return parseToLocalDateTime(text, YYYY_M_D_H_M_S_S_FMT);
+    			return parseToLocalDateTime(text, YYYY_M_D_H_M_S_SSS_FMT);
     		} else if(text.contains("/")){
-    			return parseToLocalDateTime(text, YYYY_M_D_H_M_S_S_EN_FMT);
+    			return parseToLocalDateTime(text, YYYY_M_D_H_M_S_SSS_EN_FMT);
     		}
 		} else if (text.contains(":")){
     		if(text.contains("-")){

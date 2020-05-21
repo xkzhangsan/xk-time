@@ -118,9 +118,9 @@ public class DateTimeFormatterUtilTest {
 		Assert.assertEquals(date9, date11);
 		Date date12 = DateTimeFormatterUtil.smartParseToDate("2020/05/01 00:00:00");
 		Assert.assertEquals(date9, date12);
-		Date date13 = DateTimeFormatterUtil.smartParseToDate("2020-05-01 00:00:00.0+0800");
+		Date date13 = DateTimeFormatterUtil.smartParseToDate("2020-05-01T00:00:00.000+08:00");
 		Assert.assertEquals(date9, date13);
-		Date date14 = DateTimeFormatterUtil.smartParseToDate("2020/05/01 00:00:00.0+0800");
+		Date date14 = DateTimeFormatterUtil.smartParseToDate("2020/05/01T00:00:00.000+08:00");
 		Assert.assertEquals(date9, date14);
 	}
 
@@ -132,9 +132,9 @@ public class DateTimeFormatterUtilTest {
 		Assert.assertEquals(ldt9, ldt10);
 		LocalDateTime ldt11 = DateTimeFormatterUtil.smartParseToLocalDateTime("2020/5/1 0:0:0");
 		Assert.assertEquals(ldt9, ldt11);
-		LocalDateTime ldt13 = DateTimeFormatterUtil.smartParseToLocalDateTime("2020-05-01 00:00:00.0+0800");
+		LocalDateTime ldt13 = DateTimeFormatterUtil.smartParseToLocalDateTime("2020-05-01T00:00:00.000+08:00");
 		Assert.assertEquals(ldt9, ldt13);
-		LocalDateTime ldt14 = DateTimeFormatterUtil.smartParseToLocalDateTime("2020/05/01 00:00:00.0+0800");
+		LocalDateTime ldt14 = DateTimeFormatterUtil.smartParseToLocalDateTime("2020/05/01T00:00:00.000+08:00");
 		Assert.assertEquals(ldt9, ldt14);
 	}
 	
@@ -152,7 +152,8 @@ public class DateTimeFormatterUtilTest {
 		Assert.assertEquals("2020-04-29T09:18:11.611+02:00", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_FMT));
 		Assert.assertEquals("2020-04-29T09:18:11+02:00", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_XXX_Z_FMT));
 		Assert.assertEquals("2020-04-29T09:18:11.611+02:00", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_Z_FMT));
-
+		Assert.assertEquals("2020-4-29T9:18:11.611+02:00", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_M_D_T_H_M_S_SSS_XXX_FMT));
+		
 		Assert.assertEquals("2020-04-29+02:00",zonedDateTime.format(DateTimeFormatterUtil.ISO_DATE_FMT));
 		Assert.assertEquals("2020-04-29T09:18:11.611+02:00[Europe/Paris]",zonedDateTime.format(DateTimeFormatterUtil.ISO_DATE_TIME_FMT));
 		Assert.assertEquals("2020-04-29T07:18:11.611Z",zonedDateTime.format(DateTimeFormatterUtil.ISO_INSTANT_FMT));
