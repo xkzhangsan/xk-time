@@ -24,7 +24,7 @@ import java.util.Objects;
  * HH:mm:ss<br>
  * yyyy-MM-dd HH:mm:ss<br>
  * yyyy-MM-dd HH:mm:ss.SSS<br>
- * yyyy-MM-dd'T'HH:mm:ssZ等等<br>
+ * yyyy-MM-dd'T'HH:mm:ssZ<br>
  * yyyy-MM-dd'T'HH:mm:ss.SSSZ等等<br>
  * 
  * 1.格式化方法， format*， 比如formatToDateStr(Date date) 格式化，返回日期部分，如：yyyy-MM-dd；<br> 
