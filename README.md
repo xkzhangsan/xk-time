@@ -21,7 +21,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
   
   
   
-## 1.依赖  
+## 1.Maven 坐标  
 
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
