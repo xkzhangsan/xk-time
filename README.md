@@ -134,7 +134,7 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
   
 # 参与项目  
 ## 1.提bug和建议  
-issues : https://github.com/xkzhangsan/xk-time/issues  
+-[issues](https://github.com/xkzhangsan/xk-time/issues)    
   
 ## 2.贡献代码  
 在dev分支修改和pull request。  
