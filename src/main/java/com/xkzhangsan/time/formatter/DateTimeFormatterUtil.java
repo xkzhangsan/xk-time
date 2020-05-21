@@ -125,12 +125,39 @@ public class DateTimeFormatterUtil {
 	 */
 	private static final String YYYY_MM_DD_T_HH_MM_SS_SSS_XXX = "yyyy-MM-dd'T'HH:mm:ss.SSSxxx";
 	
+	/**
+	 * ZonedDateTime 时区时间格式 带 :  0时区时，Z
+	 */
+	private static final String YYYY_MM_DD_T_HH_MM_SS_XXX_Z = "yyyy-MM-dd'T'HH:mm:ssXXX";
+	
+	/**
+	 * ZonedDateTime 时区时间格式 带毫秒 带 :  0时区时，Z
+	 */
+	private static final String YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_Z = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
+	
 	//add for excel date
 	private static final String YY_MM_DD_EN = "yy/MM/dd";
 	
 	private static final String MM_DD_YY_EN = "MM/dd/yy";
 	
 	private static final String MM_DD_EN = "MM/dd";
+	
+	/**
+	 * 2012-3-14
+	 */
+	private static final String YYYY_M_D = "yyyy-M-d";
+	/**
+	 * 2012/3/14
+	 */
+	private static final String YYYY_M_D_EN = "yyyy/M/d";
+	/**
+	 * 5月1日
+	 */
+	private static final String M_D_CN = "M月d日";
+	/**
+	 * 5/1
+	 */
+	private static final String M_D_EN = "M/d";
 	
 	//add for excel time
 	private static String HH_MM_SS_CN = "HH时mm分ss秒";
@@ -141,6 +168,10 @@ public class DateTimeFormatterUtil {
 	
 	private static String HH_MM_A = "hh:mm a";
 	
+	private static String H_M_S = "H:m:s";
+	
+	private static String H_M = "H:m";
+	
 	//add for excel date time
 	private static final String YYYY_MM_DD_HH_MM_SS_CN_ALL = "yyyy年MM月dd日 HH时mm分ss秒";
 	
@@ -149,6 +180,37 @@ public class DateTimeFormatterUtil {
 	private static final String YYYY_MM_DD_HH_MM_SS_EN = "yyyy/MM/dd HH:mm:ss";
 	
 	private static final String YYYY_MM_DD_HH_MM_EN = "yyyy/MM/dd HH:mm";
+	
+	private static final String YYYY_M_D_H_M_S = "yyyy-M-d H:m:s";
+	
+	private static final String YYYY_M_D_H_M_S_EN = "yyyy/M/d H:m:s";
+	
+	private static final String YYYY_M_D_H_M_EN = "yyyy/M/d H:m";
+	
+	/**
+	 * 带毫秒
+	 */
+	private static final String YYYY_M_D_H_M_S_S = "yyyy-M-d H:m:s.S";
+	
+	/**
+	 * 带毫秒
+	 */
+	private static final String YYYY_M_D_H_M_S_S_EN = "yyyy/M/d H:m:s.S";
+	
+	/**
+	 * 带毫秒 带时区
+	 */
+	private static final String YYYY_M_D_H_M_S_S_Z = "yyyy-M-d H:m:s.SZ";
+	
+	/**
+	 * 带毫秒 带时区
+	 */
+	private static final String YYYY_M_D_H_M_S_S_Z_EN = "yyyy/M/d H:m:s.SZ";
+	
+	/**
+	 * Date 默认格式  Thu May 21 22:58:05 CST 2020
+	 */
+	private static final String EEE_MMM_DD_HH_MM_SS_ZZZ_YYYY = "EEE MMM dd HH:mm:ss zzz yyyy";
     
 	//  ============================formatters============================
     
@@ -323,6 +385,19 @@ public class DateTimeFormatterUtil {
      */
     public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_T_HH_MM_SS_SSS_XXX);
     
+    
+    /**
+     * ZonedDateTime 时区时间格式Formatter 带: 0时区时，Z
+     * such as 2020-02-18T22:37:55+08:00
+     */
+    public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_XXX_Z_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_T_HH_MM_SS_XXX_Z);
+    
+    /**
+     * ZonedDateTime 时区时间格式Formatter 带毫秒  带: 0时区时，Z
+     * such as 2020-02-18T22:37:55.991+08:00
+     */
+    public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_Z_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_Z);
+    
     //ISO Formatters
     
     /**
@@ -392,6 +467,23 @@ public class DateTimeFormatterUtil {
 	 */
 	public static final DateTimeFormatter MM_DD_EN_FMT = DateTimeFormatter.ofPattern(MM_DD_EN);
 	
+	/**
+	 * 2012-3-14 不补0
+	 */
+	public static final DateTimeFormatter YYYY_M_D_FMT = DateTimeFormatter.ofPattern(YYYY_M_D);
+	/**
+	 * 2012/3/14
+	 */
+	public static final DateTimeFormatter YYYY_M_D_EN_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_EN);
+	/**
+	 * 5月1日
+	 */
+	public static final DateTimeFormatter M_D_CN_FMT = DateTimeFormatter.ofPattern(M_D_CN);
+	/**
+	 * 5/1
+	 */
+	public static final DateTimeFormatter M_D_EN_FMT = DateTimeFormatter.ofPattern(M_D_EN);
+	
 	//add for excel time
 	/**
 	 * such as 14时46分29秒
@@ -418,6 +510,9 @@ public class DateTimeFormatterUtil {
 	 */
 	public static DateTimeFormatter HH_MM_A_AM_PM_FMT = DateTimeFormatter.ofPattern(HH_MM_A, Locale.ENGLISH);
 	
+	public static DateTimeFormatter H_M_S_FMT = DateTimeFormatter.ofPattern(H_M_S);
+	
+	public static DateTimeFormatter H_M_FMT = DateTimeFormatter.ofPattern(H_M);
 	//add for excel date time
 	/**
 	 * such as 2020年04月29日 14时46分29秒
@@ -444,6 +539,46 @@ public class DateTimeFormatterUtil {
 	 */
 	public static final DateTimeFormatter YYYY_MM_DD_HH_MM_EN_FMT = DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_EN);
 
+	/**
+	 * such as 2020-4-9 1:1:1
+	 */
+	public static final DateTimeFormatter YYYY_M_D_H_M_S_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_H_M_S);
+	
+	/**
+	 * such as 2020/4/9 1:1:1
+	 */
+	public static final DateTimeFormatter YYYY_M_D_H_M_S_EN_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_H_M_S_EN);
+	
+	/**
+	 * such as 2020/4/9 1:1
+	 */
+	public static final DateTimeFormatter YYYY_M_D_H_M_EN_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_H_M_EN);
+	
+	/**
+	 * such as 2020-4-9 1:1:1.1
+	 */
+	public static final DateTimeFormatter YYYY_M_D_H_M_S_S_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_H_M_S_S);
+	
+	/**
+	 * such as 2020/4/9 1:1:1.1
+	 */
+	public static final DateTimeFormatter YYYY_M_D_H_M_S_S_EN_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_H_M_S_S_EN);
+	
+	/**
+	 * such as 2020-4-9 1:1:1.1+0800
+	 */
+	public static final DateTimeFormatter YYYY_M_D_H_M_S_S_Z_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_H_M_S_S_Z);
+	
+	/**
+	 * such as 2020/4/9 1:1:1.1+0800
+	 */
+	public static final DateTimeFormatter YYYY_M_D_H_M_S_S_Z_EN_FMT = DateTimeFormatter.ofPattern(YYYY_M_D_H_M_S_S_Z_EN);
+	
+	/**
+	 * Date 默认格式  Thu May 21 22:58:05 CST 2020
+	 */
+	public static final DateTimeFormatter EEE_MMM_DD_HH_MM_SS_ZZZ_YYYY_FMT = DateTimeFormatter.ofPattern(EEE_MMM_DD_HH_MM_SS_ZZZ_YYYY, Locale.ENGLISH);
+	
     //  =============================format===========================
     
     /**
@@ -859,6 +994,58 @@ public class DateTimeFormatterUtil {
 	 */
     public static ZonedDateTime parseToZonedDateTime(String text, DateTimeFormatter formatter){
     	return ZonedDateTime.parse(text, formatter);
+    }
+    
+    
+	/**
+	 * 自动解析为 Date
+	 * 支持格式 yyyy-M-d yyyy/M/d yyyy-M-d H:m:s yyyy/M/d H:m:s yyyy-M-d H:m:s.S yyyy/M/d H:m:s.S
+	 * @param text 
+	 */
+    public static Date smartParseToDate(String text){
+		return DateTimeConverterUtil.toDate(smartParseToLocalDateTime(text));
+    }
+    
+	/**
+	 * 自动解析为 LocalDateTime
+	 * 支持格式 yyyy-M-d yyyy/M/d yyyy-M-d H:m:s yyyy/M/d H:m:s yyyy-M-d H:m:s.S yyyy/M/d H:m:s.S
+	 * @param text 
+	 */
+    public static LocalDateTime smartParseToLocalDateTime(String text){
+    	if(StringUtil.isEmpty(text)){
+    		throw new DateTimeException("text is null");
+    	}
+    	if((!text.contains("-")) && (!text.contains("/"))){
+    		throw new DateTimeException("text is not supported!");
+    	}
+    	
+    	if(text.length() <= 10){
+    		if(text.contains("-")){
+    			return parseToLocalDateTime(text, YYYY_M_D_FMT);
+    		} else if(text.contains("/")){
+    			return parseToLocalDateTime(text, YYYY_M_D_EN_FMT);
+    		}
+		} else if (text.contains(":") && text.contains(".")
+				&& (text.contains("+") || text.contains("-"))) {
+    		if(text.contains("-")){
+    			return parseToLocalDateTime(text, YYYY_M_D_H_M_S_S_Z_FMT);
+    		} else if(text.contains("/")){
+    			return parseToLocalDateTime(text, YYYY_M_D_H_M_S_S_Z_EN_FMT);
+    		}
+    	} else if (text.contains(":") && text.contains(".")){
+    		if(text.contains("-")){
+    			return parseToLocalDateTime(text, YYYY_M_D_H_M_S_S_FMT);
+    		} else if(text.contains("/")){
+    			return parseToLocalDateTime(text, YYYY_M_D_H_M_S_S_EN_FMT);
+    		}
+		} else if (text.contains(":")){
+    		if(text.contains("-")){
+    			return parseToLocalDateTime(text, YYYY_M_D_H_M_S_FMT);
+    		} else if(text.contains("/")){
+    			return parseToLocalDateTime(text, YYYY_M_D_H_M_S_EN_FMT);
+    		}
+    	}
+    	throw new DateTimeException("text is not supported!");
     }
     
 }
