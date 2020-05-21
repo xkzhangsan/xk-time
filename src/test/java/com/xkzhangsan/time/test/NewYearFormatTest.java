@@ -34,6 +34,7 @@ public class NewYearFormatTest {
 		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_EN_FMT));
 		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_POINT_FMT));
 		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_E_FMT));
+		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_FMT));
 		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDD_FMT));
 		
 		System.out.println("=============================");
