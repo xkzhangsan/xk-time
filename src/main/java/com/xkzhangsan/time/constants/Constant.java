@@ -1,6 +1,7 @@
 package com.xkzhangsan.time.constants;
 
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 /**
  * 常量
@@ -10,6 +11,7 @@ import java.util.Locale;
  */
 public class Constant {
 	
+	//===========================数值定义============================
 	/**
 	 * 每天小时数
 	 */
@@ -40,6 +42,30 @@ public class Constant {
 	 */
 	public static final int MILLISECOND_PER_DAY = SECONDS_PER_DAY * MILLISECOND_PER_SECONDS;
 	
+	//===========================异常定义============================
+	/**
+	 * 解析日期时异常
+	 */
+	public static final String PARSE_LOCAL_DATE_EXCEPTION = "Unable to obtain";
+	
+	//===========================正则定义============================
+	
+	/**
+	 * 纯数字
+	 */
+	public static final Pattern NUMERIC_REGEX = Pattern.compile("[0-9]+");
+	
+	/**
+	 * 字母开头
+	 */
+	public static final Pattern START_WITH_WORD_REGEX = Pattern.compile("^[A-Za-z].*");
+	
+	/**
+	 * 中文
+	 */
+	public static final Pattern CHINESE_REGEX = Pattern.compile("[\u4E00-\u9FFF]");
+	//===========================其他定义============================
+	
 	/**
 	 * MonthDay 默认解析前缀
 	 * 解析字符串需要加前缀，如"--12-03"
@@ -62,11 +88,6 @@ public class Constant {
 	 */
 	public static final String CHUNJIE = "0101";
 	
-	/**
-	 * 解析日期时异常
-	 */
-	public static final String PARSE_LOCAL_DATE_EXCEPTION = "Unable to obtain";
-	
 	private static volatile Constant constant;
 	
 	private Constant(){
@@ -83,12 +104,16 @@ public class Constant {
 		return constant;
 	}
 	
+	//===========================常用方法============================
+	
 	/**
-	 * 是否为中文
+	 * 是否为中文语言环境
 	 * @return boolean
 	 */
-	public boolean isChinese(){
+	public static boolean isChineseLanguage(){
 		return Locale.getDefault().getLanguage().equals(ZH);
 	}
+	
+
 
 }

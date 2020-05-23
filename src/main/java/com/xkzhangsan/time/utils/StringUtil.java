@@ -1,5 +1,7 @@
 package com.xkzhangsan.time.utils;
 
+import com.xkzhangsan.time.constants.Constant;
+
 public class StringUtil {
 
     /**
@@ -18,5 +20,55 @@ public class StringUtil {
      */
     public static boolean isNotEmpty(String str){
         return !isEmpty(str);
+    }
+    
+	/**
+	 * 是否纯数字
+	 * @param str
+	 * @return
+	 */
+	public static boolean isNumeric(String str){
+		if(str == null){
+			return false;
+		}
+		return Constant.NUMERIC_REGEX.matcher(str).matches();
+	}
+    
+    /**
+     * 判断字符串是否以字母开头
+     * @param str 如果不为空，则返回false
+     * @return boolean
+     */
+    public static boolean isStartWithWord(String str){
+    	if(str == null){
+    		return false;
+    	}
+        return Constant.START_WITH_WORD_REGEX.matcher(str).matches();
+    }
+    
+    /**
+     * 计算字符出现次数
+     * @param str 如果不为空，则返回0
+     * @return boolean
+     */
+    public static int countWord(String str, String target){
+    	if(str == null){
+    		return 0;
+    	}
+    	int len1 = str.length();
+    	int len2 = str.replace(target, "").length();
+        return (len1-len2);
+    }
+    
+    /**
+     * 判断字符串是包含中文
+     * @param str 如果不为空，则返回false
+     * @return boolean
+     */
+    public static boolean hasChinese(String str){
+    	if(str == null){
+    		return false;
+    	}
+        return Constant.CHINESE_REGEX.matcher(str).find();
     }
 }

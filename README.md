@@ -69,6 +69,8 @@ format(Date date, DateTimeFormatter formatter) formatter 可以选择已定义�
 parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 Date。  
   
 （3）自动解析方法，根据字符串特点自动识别解析，smartParse*，比如smartParseToDate(String text) 自动解析Date。   
+
+（4）ISO格式（包含T）自动解析方法，根据字符串特点自动识别解析，parseIso*，比如parseIsoToDate(String text) 自动解析Date。  
    
  注意：格式化和解析ZonedDateTime 时区时间时，只能使用ISO开头  的Formatter，如ISO_DATE_FMT和YYYY_MM_DD_T_HH_MM_SS_Z_FMT  
  因为，其他Formatter都绑定的是系统默认时区：
@@ -137,4 +139,6 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 - [Issues](https://github.com/xkzhangsan/xk-time/issues)    
   
 ## 2.贡献代码  
-在dev分支修改和pull request。  
+1.fork项目。  
+2.在dev分支修改。  
+3.提交pull request。  
