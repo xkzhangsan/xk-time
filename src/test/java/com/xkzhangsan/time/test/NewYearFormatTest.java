@@ -53,6 +53,10 @@ public class NewYearFormatTest {
 		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMMSSSSS_FMT));		
 		
 		System.out.println("=============================");
+		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.ISO_DATE_TIME_FMT));
+		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.ISO_ZONED_DATE_TIME_FMT));
+		
+		System.out.println("=============================");
 		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_SS_FMT));
 		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_SS_CN_FMT));
 		System.out.println(DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_FMT));

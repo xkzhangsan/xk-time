@@ -32,63 +32,6 @@ public class DateTimeFormatterUtilTest {
 		Assert.assertEquals("17:03:03", timeStr);
 	}
 	
-	@Test
-	public void dateFormatTest(){
-		Date date = DateTimeFormatterUtil.parseToDate("2020-04-29 14:46:29.709", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSS_FMT);
-		
-		Assert.assertEquals("2020", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_FMT));
-		Assert.assertEquals("2020-04", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_FMT));
-		Assert.assertEquals("2020年04月", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_CN_FMT));
-		Assert.assertEquals("2020/04", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_EN_FMT));
-		Assert.assertEquals("202004", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMM_FMT));
-
-
-		Assert.assertEquals("2020-04-29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_FMT));
-		Assert.assertEquals("2020年04月29日", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_CN_FMT));
-		Assert.assertEquals("2020/04/29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_EN_FMT));
-		Assert.assertEquals("2020.04.29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_POINT_FMT));
-		Assert.assertEquals("20200429", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDD_FMT));
-
-		Assert.assertEquals("2020-04-29 14:46", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_FMT));
-		Assert.assertEquals("202004291446", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMM_FMT));
-
-		Assert.assertEquals("2020-04-29 14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT));
-		Assert.assertEquals("2020年04月29日 14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_FMT));
-		Assert.assertEquals("20200429144629", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMMSS_FMT));
-
-		Assert.assertEquals("2020-04-29 14:46:29.709", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSS_FMT));
-		Assert.assertEquals("20200429144629709", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMMSSSSS_FMT));
-
-		Assert.assertEquals("04-29 14:46", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_FMT));
-		Assert.assertEquals("04月29日 14:46", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_CN_FMT));
-		Assert.assertEquals("04-29 14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_SS_FMT));
-		Assert.assertEquals("04月29日 14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_SS_CN_FMT));
-
-		Assert.assertEquals("04-29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_FMT));
-		Assert.assertEquals("04月29日", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_CN_FMT));
-
-		Assert.assertEquals("14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_SS_FMT));
-		Assert.assertEquals("144629", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HHMMSS_FMT));
-		// Excel 中特有格式
-		Assert.assertEquals("20/04/29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YY_MM_DD_EN_FMT));
-		Assert.assertEquals("04/29/20", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_YY_EN_FMT));
-		Assert.assertEquals("04/29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_EN_FMT));
-		Assert.assertEquals("14时46分29秒", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_SS_CN_FMT));
-		Assert.assertEquals("14时46分", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_CN_FMT));
-		Assert.assertEquals("14:46", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_FMT));
-		Assert.assertEquals("02:46 下午", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_A_FMT));
-		Assert.assertEquals("2020年04月29日 02:46:29 下午", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_A_CN_FMT));
-		Assert.assertEquals("2020年04月29日 14时46分29秒", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_ALL_FMT));
-		Assert.assertEquals("2020年04月29日 14时46分29秒 下午", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_A_CN_ALL_FMT));
-		Assert.assertEquals("2020/04/29 14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_EN_FMT));
-		Assert.assertEquals("2020/04/29 14:46", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_EN_FMT));
-		Assert.assertEquals("2020年04月29日 02:46:29 PM", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_A_AM_PM_CN_FMT));
-		Assert.assertEquals("2020年04月29日 14时46分29秒 PM", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_A_AM_PM_CN_ALL_FMT));
-		Assert.assertEquals("02:46 PM", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_A_AM_PM_FMT));
-		Assert.assertEquals("2020/4/29 14:46:29", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_H_M_S_EN_FMT));
-		// Date 默认格式化
-		Assert.assertEquals("Wed Apr 29 14:46:29 CST 2020", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.EEE_MMM_DD_HH_MM_SS_ZZZ_YYYY_FMT));
-	}
 	
 	@Test
 	public void parseToDateTest(){
@@ -152,7 +95,6 @@ public class DateTimeFormatterUtilTest {
 		Assert.assertEquals("2020-04-29T09:18:11.611+02:00", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_FMT));
 		Assert.assertEquals("2020-04-29T09:18:11+02:00", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_XXX_Z_FMT));
 		Assert.assertEquals("2020-04-29T09:18:11.611+02:00", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_Z_FMT));
-		Assert.assertEquals("2020-4-29T9:18:11.611+02:00", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_M_D_T_H_M_S_SSS_XXX_FMT));
 		
 		Assert.assertEquals("2020-04-29+02:00",zonedDateTime.format(DateTimeFormatterUtil.ISO_DATE_FMT));
 		Assert.assertEquals("2020-04-29T09:18:11.611+02:00[Europe/Paris]",zonedDateTime.format(DateTimeFormatterUtil.ISO_DATE_TIME_FMT));
@@ -186,5 +128,289 @@ public class DateTimeFormatterUtilTest {
 		ZonedDateTime zonedDateTime2 = DateTimeFormatterUtil.parseToZonedDateTime(text2, DateTimeFormatterUtil.ISO_ZONED_DATE_TIME_FMT);
 		ZonedDateTime zonedDateTime3 = ZonedDateTime.parse(text2);
 		Assert.assertEquals(zonedDateTime2, zonedDateTime3);
+	}
+	
+	/**
+	 * 格式化 yyyy-MM-dd相关格式
+	 */
+	@Test
+	public void formatDateTest(){
+		Date date = DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+08:00");
+		
+		Assert.assertEquals("2020-05-23", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_FMT));
+		
+		Assert.assertEquals("2020-5-23", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_FMT));
+		
+		Assert.assertEquals("20200523", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDD_FMT));
+		
+		Assert.assertEquals("2020/05/23", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_EN_FMT));
+		
+		Assert.assertEquals("2020/5/23", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_EN_FMT));
+		
+		Assert.assertEquals("2020年05月23日", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_CN_FMT));
+		
+		Assert.assertEquals("2020年5月23日", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_CN_FMT));
+		
+		Assert.assertEquals("2020.05.23", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_POINT_FMT));
+	
+		Assert.assertEquals("2020.5.23", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_POINT_FMT));
+		
+		Assert.assertEquals("20/05/23", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YY_MM_DD_EN_FMT));
+		
+		Assert.assertEquals("05/23/20", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_YY_EN_FMT));
+		
+		Assert.assertEquals("2020-05-23 星期六", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_E_FMT));
+	
+		Assert.assertEquals("20", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YY_FMT));
+	
+		Assert.assertEquals("2020", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_FMT));
+		
+		Assert.assertEquals("2020-05", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_FMT));
+		
+		Assert.assertEquals("202005", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMM_FMT));
+
+		Assert.assertEquals("2020/05", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_EN_FMT));
+		
+		Assert.assertEquals("2020年05月", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_CN_FMT));
+		
+		Assert.assertEquals("2020年5月", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_CN_FMT));
+		
+		Assert.assertEquals("05-23", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_FMT));
+		
+		Assert.assertEquals("0523", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MMDD_FMT));
+		
+		Assert.assertEquals("05/23", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_EN_FMT));
+		
+		Assert.assertEquals("5/23", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.M_D_EN_FMT));
+		
+		Assert.assertEquals("05月23日", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_CN_FMT));
+	
+		Assert.assertEquals("5月23日", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.M_D_CN_FMT));
+	}
+	
+	/**
+	 * 解析 yyyy-MM-dd相关格式
+	 */
+	@Test
+	public void smartParseToDateTest1(){
+		
+		DateTimeFormatterUtil.smartParseToDate("2020-05-23");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020-5-23");
+		
+		DateTimeFormatterUtil.smartParseToDate("20200523");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020/05/23");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020/5/23");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020年05月23日");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020年5月23日");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020.05.23");
+	
+		DateTimeFormatterUtil.smartParseToDate("2020.5.23");
+	}
+	
+	/**
+	 * 格式化 HH:mm:ss相关格式
+	 */
+	@Test
+	public void formatTimeTest(){
+		Date date = DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+08:00");
+		
+		Assert.assertEquals("17:06:30", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_SS_FMT));
+		
+		Assert.assertEquals("17:6:30", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.H_M_S_FMT));
+		
+		Assert.assertEquals("170630", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HHMMSS_FMT));
+		
+		Assert.assertEquals("17时06分30秒", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_SS_CN_FMT));
+		
+		Assert.assertEquals("17:06", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_FMT));
+		
+		Assert.assertEquals("17:6", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.H_M_FMT));
+		
+		Assert.assertEquals("17时06分", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_CN_FMT));
+		
+		Assert.assertEquals("05:06 下午", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_A_FMT));
+		
+		Assert.assertEquals("05:06 PM", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.HH_MM_A_AM_PM_FMT));
+	}
+	
+	
+	/**
+	 * 格式化 yyyy-MM-dd HH:mm:ss相关格式
+	 */
+	@Test
+	public void formatDateTimeTest(){
+		Date date = DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+08:00");
+		
+		Assert.assertEquals("2020-05-23 17:06:30", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT));
+		
+		Assert.assertEquals("2020-5-23 17:6:30", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_H_M_S_FMT));
+		
+		Assert.assertEquals("20200523170630", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMMSS_FMT));
+		
+		Assert.assertEquals("2020/05/23 17:06:30", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_EN_FMT));
+		
+		Assert.assertEquals("2020/5/23 17:6:30", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_H_M_S_EN_FMT));
+		
+		Assert.assertEquals("2020年05月23日 17:06:30", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_FMT));
+		
+		Assert.assertEquals("2020年05月23日 17时06分30秒", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_CN_ALL_FMT));
+		
+		Assert.assertEquals("2020-05-23 17:06", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_FMT));
+		
+		Assert.assertEquals("2020-5-23 17:6", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_H_M_FMT));
+		
+		Assert.assertEquals("202005231706", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMM_FMT));
+		
+		Assert.assertEquals("2020/05/23 17:06", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_EN_FMT));
+		
+		Assert.assertEquals("2020/5/23 17:6", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_H_M_EN_FMT));
+		
+		Assert.assertEquals("05-23 17:06", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_FMT));
+		
+		Assert.assertEquals("05月23日 17:06", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_CN_FMT));
+		
+		Assert.assertEquals("05-23 17:06:30", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_SS_FMT));
+		
+		Assert.assertEquals("05月23日 17:06:30", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_HH_MM_SS_CN_FMT));
+		
+		Assert.assertEquals("2020年05月23日 05:06:30 下午", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_A_CN_FMT));
+		
+		Assert.assertEquals("2020年05月23日 05:06:30 PM", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_A_AM_PM_CN_FMT));
+		
+		Assert.assertEquals("2020年05月23日 05时06分30秒 下午", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_A_CN_ALL_FMT));
+	}
+	
+	/**
+	 * 解析 yyyy-MM-dd HH:mm:ss相关格式
+	 */
+	@Test
+	public void smartParseToDateTest2(){
+		
+		// ==================================yyyy-MM-dd相关Pattern==================================
+		DateTimeFormatterUtil.smartParseToDate("2020-05-23 17:06:30");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020-5-23 17:6:30");
+		
+		DateTimeFormatterUtil.smartParseToDate("20200523170630");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020/05/23 17:06:30");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020/5/23 17:6:30");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020年05月23日 17:06:30");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020年05月23日 17时06分30秒");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020-05-23 17:06");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020-5-23 17:6");
+		
+		DateTimeFormatterUtil.smartParseToDate("202005231706");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020/05/23 17:06");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020/5/23 17:6");
+		
+	}
+	
+	/**
+	 * 格式化yyyy-MM-dd HH:mm:ss.SSS相关格式
+	 */
+	@Test
+	public void formatDateTimeWithMillisecondTest(){
+		Date date = DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+08:00");
+		
+		Assert.assertEquals("2020-05-23 17:06:30.272", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSS_FMT));
+		
+		Assert.assertEquals("20200523170630272", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMMSSSSS_FMT));
+		
+		Assert.assertEquals("2020-5-23 17:6:30.272", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_H_M_S_SSS_FMT));
+		
+		Assert.assertEquals("2020/5/23 17:6:30.272", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_H_M_S_SSS_EN_FMT));
+	}
+	
+	/**
+	 * 解析yyyy-MM-dd HH:mm:ss.SSS相关格式
+	 */
+	@Test
+	public void smartParseToDateTest3(){
+		
+		DateTimeFormatterUtil.smartParseToDate("2020-05-23 17:06:30.272");
+		
+		DateTimeFormatterUtil.smartParseToDate("20200523170630272");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020-5-23 17:6:30.272");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020/5/23 17:6:30.272");
+	}
+	
+	
+	/**
+	 * 格式化Iso相关格式
+	 */
+	@Test
+	public void formatDateTimeWithZoneTest(){
+		Date date = DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+08:00");
+		
+		Assert.assertEquals("2020-05-23T17:06:30+0800", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_Z_FMT));
+		
+		Assert.assertEquals("2020-05-23T17:06:30+08:00", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_XXX_FMT));
+		
+		Assert.assertEquals("2020-05-23T17:06:30+08:00", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_XXX_Z_FMT));
+		
+		Assert.assertEquals("2020-05-23T17:06:30.272+0800", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSS_Z_FMT));
+		
+		Assert.assertEquals("2020-05-23T17:06:30.272+08:00", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_FMT));
+		
+		Assert.assertEquals("2020-05-23T17:06:30.272+08:00", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_Z_FMT));
+	}
+	
+	/**
+	 * 解析Iso相关格式
+	 */
+	@Test
+	public void smartParseToDateTest4(){
+		
+		DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+08:00[Asia/Shanghai]");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30+08:00");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30+08:00");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30Z");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+0800");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+08:00");
+		
+		DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+08:00");
+		
+		// parseIsoToLocalDateTime 方法
+		
+		DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272+08:00[Asia/Shanghai]");
+		
+		DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30+08:00");
+		
+		DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30+08:00");
+		
+		DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272+0800");
+		
+		DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272+08:00");
+		
+		DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272+08:00");
+	}
+	
+	/**
+	 * Date 默认格式
+	 */
+	@Test
+	public void smartParseToDateTest5(){
+		DateTimeFormatterUtil.smartParseToDate("Sat May 23 17:06:30 CST 2020");
 	}
 }
