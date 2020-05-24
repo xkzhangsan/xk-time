@@ -71,7 +71,14 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
 （3）自动解析方法，根据字符串特点自动识别解析，smartParse*，比如smartParseToDate(String text) 自动解析Date。   
 
 （4）ISO格式（包含T）自动解析方法，根据字符串特点自动识别解析，parseIso*，比如parseIsoToDate(String text) 自动解析Date。  
+ 
+（5）解析时间戳方法, parseEpochMilli*， 比如parseEpochMilliToDate(String text)，解析时间戳为Date，如 1590224790000。  
+ 
+（6）解析Date默认格式，parseDateDefaultStr*，比如parseDateDefaultStrToDate(String text)  
+ 解析 EEE MMM dd HH:mm:ss zzz yyyy 比如：  Sat May 23 17:06:30 CST 2020 为Date。  
    
+     
+     
  注意：格式化和解析ZonedDateTime 时区时间时，只能使用ISO开头  的Formatter，如ISO_DATE_FMT和YYYY_MM_DD_T_HH_MM_SS_Z_FMT  
  因为，其他Formatter都绑定的是系统默认时区：
  private static final ZoneId ZONE = ZoneId.systemDefault();  
@@ -139,6 +146,6 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 - [Issues](https://github.com/xkzhangsan/xk-time/issues)    
   
 ## 2.贡献代码  
-1.fork项目。  
-2.在dev分支修改。  
-3.提交pull request。  
+（1）fork项目。  
+（2）在dev分支修改。  
+（3）提交pull request。  

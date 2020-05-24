@@ -37,10 +37,15 @@ import java.util.Objects;
  * 2.解析方法， parse*， 比如parseDateStrToDate(String text) 解析日期yyyy-MM-dd，返回Date；<br>
  * parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 Date<br>
  * 
- * 3.自动解析方法，根据字符串特点自动识别解析，smartParse*，比如smartParseToDate(String text) 自动解析Date<br>  
+ * 3.自动解析方法，根据字符串特点自动识别解析，smartParse*，比如smartParseToDate(String text) 自动解析Date<br>
  * 
  * 4.ISO格式（包含T）自动解析方法，根据字符串特点自动识别解析，parseIso*，比如parseIsoToDate(String text) 自动解析Date<br>  
- * 
+ *
+ * 5.解析时间戳方法, parseEpochMilli*， 比如parseEpochMilliToDate(String text)，解析时间戳为Date，如 1590224790000<br>
+ *
+ * 6.解析Date默认格式，parseDateDefaultStr*，比如parseDateDefaultStrToDate(String text) <br>
+ *     解析 EEE MMM dd HH:mm:ss zzz yyyy 比如：  Sat May 23 17:06:30 CST 2020 为Date <br>
+ *
  * 注意：格式化和解析ZonedDateTime 时区时间时，只能使用ISO开头的Formatter，如ISO_DATE_FMT和YYYY_MM_DD_T_HH_MM_SS_Z_FMT<br>
  * 因为，其他Formatter都绑定的是系统默认时区：<br>
  * private static final ZoneId ZONE = ZoneId.systemDefault();<br>
@@ -473,7 +478,7 @@ public class DateTimeFormatterUtil {
 	// ==================================其他格式 formatters==================================
 	
 	/**
-	 * Date 默认格式  Sat May 23 17:06:30 CST 2020
+	 * Date 默认格式 EEE MMM dd HH:mm:ss zzz yyyy 比如：  Sat May 23 17:06:30 CST 2020
 	 */
 	public static final DateTimeFormatter EEE_MMM_DD_HH_MM_SS_ZZZ_YYYY_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.EEE_MMM_DD_HH_MM_SS_ZZZ_YYYY, Locale.ENGLISH);
 	
@@ -1089,7 +1094,7 @@ public class DateTimeFormatterUtil {
     
 	/**
 	 * 解析时间戳为Date
-	 * @param text
+	 * @param text 比如 1590224790000
 	 * @return LocalDateTime
 	 */
 	public static Date parseEpochMilliToDate(String text) {
@@ -1103,7 +1108,7 @@ public class DateTimeFormatterUtil {
 	
 	/**
 	 * 解析时间戳为LocalDateTime
-	 * @param text
+	 * @param text 比如 1590224790000
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime parseEpochMilliToLocalDateTime(String text) {
@@ -1117,7 +1122,7 @@ public class DateTimeFormatterUtil {
 	
 	/**
 	 * 解析Date默认格式为Date
-	 * @param text EEE MMM dd HH:mm:ss zzz yyyy
+	 * @param text EEE MMM dd HH:mm:ss zzz yyyy  比如：  Sat May 23 17:06:30 CST 2020
 	 * @return LocalDateTime
 	 */
 	public static Date parseDateDefaultStrToDate(String text) {
@@ -1126,7 +1131,7 @@ public class DateTimeFormatterUtil {
 	
 	/**
 	 * 解析Date默认格式为LocalDateTime
-	 * @param text EEE MMM dd HH:mm:ss zzz yyyy
+	 * @param text EEE MMM dd HH:mm:ss zzz yyyy  比如：  Sat May 23 17:06:30 CST 2020
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime parseDateDefaultStrToLocalDateTime(String text) {
