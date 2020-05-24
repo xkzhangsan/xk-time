@@ -77,15 +77,12 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
 （6）解析Date默认格式，parseDateDefaultStr*，比如parseDateDefaultStrToDate(String text)  
  解析 EEE MMM dd HH:mm:ss zzz yyyy 比如：  Sat May 23 17:06:30 CST 2020 为Date。  
    
-     
-     
- 注意：格式化和解析ZonedDateTime 时区时间时，只能使用ISO开头  的Formatter，如ISO_DATE_FMT和YYYY_MM_DD_T_HH_MM_SS_Z_FMT  
- 因为，其他Formatter都绑定的是系统默认时区：
- private static final ZoneId ZONE = ZoneId.systemDefault();  
+（7）自定义时区格式化方法，比如 format(Date date, DateTimeFormatter formatter, String zoneId)，根据zoneId格式化Date。  
  
- 如果需要使用其他Formatter，可以使用withZone方法重新设置时区，比如：  
-YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")  
-
+     
+ 注意：格式化和解析与系统时区不同的时间时，使用自定义时区格式化方法，或可以使用withZone方法重新设置时区，比如：  
+ YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris") 。  
+  
 详细使用可以查看相关测试代码。  
 
 ## 5.日历工具类  CalendarUtil 
