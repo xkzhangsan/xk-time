@@ -66,12 +66,16 @@ public enum ConstellationNameEnum {
 		for(ConstellationNameEnum constellationNameEnum : ConstellationNameEnum.values()){
 			MonthDay monthDayStart = MonthDay.parse(MONTHDAY_FORMAT_PRE + constellationNameEnum.getStartDate());
 			MonthDay monthDayEnd = MonthDay.parse(MONTHDAY_FORMAT_PRE + constellationNameEnum.getEndDate());
-			if (monthDay.equals(monthDayStart) || monthDay.equals(monthDayEnd)
-					|| (monthDay.isAfter(monthDayStart) && monthDay.isBefore(monthDayEnd))) {
+			if (isBetween(monthDay, monthDayStart, monthDayEnd)) {
 				return constellationNameEnum;
 			}
 		}
 		return null;
+	}
+
+	private static boolean isBetween(MonthDay monthDay, MonthDay monthDayStart, MonthDay monthDayEnd) {
+		return monthDay.equals(monthDayStart) || monthDay.equals(monthDayEnd)
+				|| (monthDay.isAfter(monthDayStart) && monthDay.isBefore(monthDayEnd));
 	}
 
 	/**

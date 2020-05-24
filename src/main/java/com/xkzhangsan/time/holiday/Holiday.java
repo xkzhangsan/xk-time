@@ -70,7 +70,7 @@ public interface Holiday {
 	 */
 	static String getLocalHoliday(Temporal temporal, Map<String, String> localHolidayMap){
 		Objects.requireNonNull(temporal, "temporal");
-		String localHoliday = "";
+		StringBuilder localHoliday = new StringBuilder("");
 		if(CollectionUtil.isEmpty(localHolidayMap)){
 			localHolidayMap = LocalHolidayEnum.convertToMap();
 		}
@@ -79,10 +79,10 @@ public interface Holiday {
 		String monthDayStr = monthDay.format(DateTimeFormatterUtil.MMDD_FMT);
 		for(Entry<String, String> entry : localHolidayMap.entrySet()){
 			if (entry.getKey().equals(monthDayStr)) {
-				if(StringUtil.isEmpty(localHoliday)){
-					localHoliday = entry.getValue();
+				if(localHoliday == null || localHoliday.length() == 0){
+					localHoliday = new StringBuilder(entry.getValue());
 				}else{
-					localHoliday = localHoliday + " " +entry.getValue();
+					localHoliday.append(" " +entry.getValue());
 				}
 			}
 			//如果为特殊格式，解析对比
@@ -99,15 +99,15 @@ public interface Holiday {
 				MonthDay targetMonthDay = MonthDay.from(targetTem);
 				String targetMonthDayStr = targetMonthDay.format(DateTimeFormatterUtil.MMDD_FMT);
 				if (monthDayStr.equals(targetMonthDayStr)) {
-					if(StringUtil.isEmpty(localHoliday)){
-						localHoliday = entry.getValue();
+					if(localHoliday == null || localHoliday.length() == 0){
+						localHoliday = new StringBuilder(entry.getValue());
 					}else{
-						localHoliday = localHoliday + " " +entry.getValue();
+						localHoliday.append(" " +entry.getValue());
 					}
 				}
 			}
 		}
-		return localHoliday;
+		return localHoliday.toString();
 	}
 	
 	/**
@@ -147,7 +147,7 @@ public interface Holiday {
 	 */
 	static String getChineseHoliday(Temporal temporal, Map<String, String> chineseHolidayMap){
 		Objects.requireNonNull(temporal, "temporal");
-		String chineseHoliday = "";
+		StringBuilder chineseHoliday = new StringBuilder("");
 		if(CollectionUtil.isEmpty(chineseHolidayMap)){
 			chineseHolidayMap = ChineseHolidayEnum.convertToMap();
 		}
@@ -156,16 +156,16 @@ public interface Holiday {
 		
 		//闰月不计算节假日
 		if(StringUtil.isNotEmpty(lunarDate.getLeapMonthCn())){
-			return chineseHoliday;
+			return chineseHoliday.toString();
 		}
 		String monthDayStr = lunarDate.formatShort();
 		//对比枚举日期，返回假日
 		for(Entry<String, String> entry : chineseHolidayMap.entrySet()){
 			if (entry.getKey().equals(monthDayStr)) {
-				if(StringUtil.isEmpty(chineseHoliday)){
-					chineseHoliday = entry.getValue();
+				if(chineseHoliday == null || chineseHoliday.length() == 0){
+					chineseHoliday = new StringBuilder(entry.getValue());
 				}else{
-					chineseHoliday = chineseHoliday + " " +entry.getValue();
+					chineseHoliday.append(" " +entry.getValue());
 				}
 			}
 			//如果为特殊节日除夕
@@ -175,15 +175,15 @@ public interface Holiday {
 				LunarDate targetLunarDate = LunarDate.from(targetLocalDate);
 				String targetMonthDayStr = targetLunarDate.formatShort();
 				if(Constant.CHUNJIE.equals(targetMonthDayStr)){
-					if(StringUtil.isEmpty(chineseHoliday)){
-						chineseHoliday = entry.getValue();
+					if(chineseHoliday == null || chineseHoliday.length() == 0){
+						chineseHoliday= new StringBuilder(entry.getValue());
 					}else{
-						chineseHoliday = chineseHoliday + " " +entry.getValue();
+						chineseHoliday.append(" " +entry.getValue());
 					}
 				}
 			}
 		}
-		return chineseHoliday;
+		return chineseHoliday.toString();
 	}
 	
 	/**

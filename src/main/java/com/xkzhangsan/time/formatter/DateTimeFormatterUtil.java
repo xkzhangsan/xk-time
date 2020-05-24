@@ -1,7 +1,7 @@
 package com.xkzhangsan.time.formatter;
 
 import static com.xkzhangsan.time.enums.ZoneIdEnum.CTT;
-import com.xkzhangsan.time.formatter.DateFormatPattern;
+
 import com.xkzhangsan.time.constants.Constant;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.utils.StringUtil;
@@ -1143,7 +1143,7 @@ public class DateTimeFormatterUtil {
     private static String preprocessText(String text) {
     	text = convertSlashToNormal(text);
     	text = convertPointToNormal(text);
-    	text = convertCNToNormal(text);
+    	text = convertCnToNormal(text);
     	return text;
     }
     
@@ -1176,7 +1176,7 @@ public class DateTimeFormatterUtil {
      * @param str
      * @return
      */
-    private static String convertCNToNormal(String str){
+    private static String convertCnToNormal(String str){
     	if(StringUtil.hasChinese(str)){
 			return str.replace("年", "-").replace("月", "-").replace("日", "").replace("时", ":").replace("分", ":")
 					.replace("秒", "");

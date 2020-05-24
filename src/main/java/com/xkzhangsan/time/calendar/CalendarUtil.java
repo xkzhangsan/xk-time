@@ -116,7 +116,7 @@ public class CalendarUtil {
 			boolean includeHoliday, Map<String, String> localHolidayMap, Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap) {
 		YearMonth yearMonth = YearMonth.of(year, month);
 		CalendarWrapper calendarWrapper = new CalendarWrapper();
-		Map<String, DayWrapper> dayMap = new ConcurrentHashMap<String, DayWrapper>();
+		Map<String, DayWrapper> dayMap = new ConcurrentHashMap<String, DayWrapper>(64);
 		List<DayWrapper> dayList = new ArrayList<DayWrapper>();
 		
 		List<LocalDateTime> localDateTimeList = DateTimeCalculatorUtil.getLocalDateTimeList(YearMonth.of(year, month));
@@ -235,7 +235,7 @@ public class CalendarUtil {
 	private static CalendarWrapper generateCalendar(int year, boolean includeLunarDate, boolean includeHoliday,
 			Map<String, String> localHolidayMap, Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap) {
 		CalendarWrapper calendarWrapper = new CalendarWrapper();
-		Map<String, DayWrapper> dayMap = new ConcurrentHashMap<String, DayWrapper>();
+		Map<String, DayWrapper> dayMap = new ConcurrentHashMap<String, DayWrapper>(512);
 		List<DayWrapper> dayList = new ArrayList<DayWrapper>();
 		List<MonthWrapper> monthWrapperList = new ArrayList<>();
 		
