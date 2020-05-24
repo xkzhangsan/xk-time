@@ -2,6 +2,12 @@ package com.xkzhangsan.time.utils;
 
 import com.xkzhangsan.time.constants.Constant;
 
+/**
+ * 字符串工具类
+ *
+ * @author xkzhangsan
+ * @date 2020年03月23日
+ */
 public class StringUtil {
 
     /**

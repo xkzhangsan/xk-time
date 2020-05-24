@@ -4,6 +4,7 @@ import com.xkzhangsan.time.calendar.CalendarUtil;
 import com.xkzhangsan.time.calendar.CalendarWrapper;
 import com.xkzhangsan.time.calendar.DayWrapper;
 import com.xkzhangsan.time.calendar.MonthWrapper;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -19,10 +20,34 @@ import java.util.Map;
 public class CalendarUtilTest {
 
 	/**
-	 * 日历基本测试 generateCalendarWithHoliday
+	 * 日历整年基本测试 generateCalendarWithHoliday
 	 */
 	@Test
 	public void calendarTest() {
+		// 公历节假日自定义
+		Map<String, String> localHolidayMap = new HashMap<>();
+		localHolidayMap.put("0801", "建军节");
+
+		// 农历节假日自定义
+		Map<String, String> chineseHolidayMap = new HashMap<>();
+		chineseHolidayMap.put("0707", "七夕情人节");
+
+		// 工作日自定义 2020-08-07周五本为工作日，这里特别设置为非工作日，2020-08-08周六本为非工作日，这里特别设置为工作日
+		Map<String, Integer> dateTypeMap = new HashMap<>();
+		dateTypeMap.put("2020-08-07", 0);
+		dateTypeMap.put("2020-08-08", 1);
+
+		// 获取2020年8月日历，包含农历和所有节假日信息，包含自定义数据
+		CalendarWrapper calendarWrapper = CalendarUtil.generateCalendarWithHoliday(2020, localHolidayMap,
+				chineseHolidayMap, dateTypeMap);
+		Assert.assertEquals(366, calendarWrapper.getDayList().size());
+	}
+
+	/**
+	 * 日历基本测试 generateCalendarWithHoliday
+	 */
+	@Test
+	public void calendarMonthTest() {
 		// 获取2020年日历，包含农历和所有节假日信息
 		CalendarWrapper calendarWrapper = CalendarUtil.generateCalendarWithHoliday(2020, 3);
 		// 输出年
@@ -89,7 +114,7 @@ public class CalendarUtilTest {
 	 * 日历自定义测试 generateCalendarWithHoliday
 	 */
 	@Test
-	public void calendarCustomTest() {
+	public void calendarMonthCustomTest() {
 		// 公历节假日自定义
 		Map<String, String> localHolidayMap = new HashMap<>();
 		localHolidayMap.put("0801", "建军节");

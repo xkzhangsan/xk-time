@@ -385,31 +385,31 @@ public class DateTimeFormatterUtilTest {
 		
 		Date date = DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+08:00[Asia/Shanghai]");
 		
-		Assert.assertEquals(date, DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30+08:00"));
+		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30+08:00").toString());
 		
-		Assert.assertEquals(date, DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30+08:00"));
+		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30+08:00").toString());
 		
-		Assert.assertEquals(date, DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30Z"));
+		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30Z").toString());
 		
-		Assert.assertEquals(date, DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+0800"));
+		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+0800").toString());
 		
-		Assert.assertEquals(date, DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+08:00"));
+		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+08:00").toString());
 		
-		Assert.assertEquals(date, DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+08:00"));
+		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.smartParseToDate("2020-05-23T17:06:30.272+08:00").toString());
 		
 		// parseIsoToLocalDateTime 方法
 		
-		Assert.assertEquals(date, DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272+08:00[Asia/Shanghai]"));
+		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272+08:00[Asia/Shanghai]").toString());
 		
-		Assert.assertEquals(date, DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30+08:00"));
+		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30+08:00").toString());
 		
-		Assert.assertEquals(date, DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30+08:00"));
+		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30+08:00").toString());
 		
-		Assert.assertEquals(date, DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272+0800"));
+		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272+0800").toString());
 		
-		Assert.assertEquals(date, DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272+08:00"));
+		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272+08:00").toString());
 		
-		Assert.assertEquals(date, DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272+08:00"));
+		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272+08:00").toString());
 	}
 	
 	/**

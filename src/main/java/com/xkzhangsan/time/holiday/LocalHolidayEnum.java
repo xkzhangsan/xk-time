@@ -59,9 +59,17 @@ public enum LocalHolidayEnum implements Holiday{
 		this.name = name;
 		this.pattern = pattern;
 	}
-	
+
+	/**
+	 * 中文名称
+	 */
 	private final String name;
+	/**
+	 * 匹配模式
+	 */
 	private final String pattern;
+
+
 	public String getName() {
 		return name;
 	}

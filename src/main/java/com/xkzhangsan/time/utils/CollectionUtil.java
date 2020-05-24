@@ -3,6 +3,12 @@ package com.xkzhangsan.time.utils;
 import java.util.Collection;
 import java.util.Map;
 
+/**
+ * 集合工具类
+ *
+ * @author xkzhangsan
+ * @date 2020年03月23日
+ */
 public class CollectionUtil {
 	
 	/**
