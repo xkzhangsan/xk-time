@@ -37,21 +37,20 @@ import java.util.Objects;
  * 2.解析方法， parse*， 比如parseDateStrToDate(String text) 解析日期yyyy-MM-dd，返回Date；<br>
  * parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 Date<br>
  * 
- * 3.自动解析方法，根据字符串特点自动识别解析，smartParse*，比如smartParseToDate(String text) 自动解析Date<br>
+ * 3.自动解析方法，根据字符串特点自动识别解析，smartParse*，比如 smartParseToDate(String text) 自动解析Date<br>
  * 
- * 4.ISO格式（包含T）自动解析方法，根据字符串特点自动识别解析，parseIso*，比如parseIsoToDate(String text) 自动解析Date<br>  
+ * 4.ISO格式（包含T）自动解析方法，根据字符串特点自动识别解析，parseIso*，比如 parseIsoToDate(String text) 自动解析Date<br>
  *
  * 5.解析时间戳方法, parseEpochMilli*， 比如parseEpochMilliToDate(String text)，解析时间戳为Date，如 1590224790000<br>
  *
  * 6.解析Date默认格式，parseDateDefaultStr*，比如parseDateDefaultStrToDate(String text) <br>
  *     解析 EEE MMM dd HH:mm:ss zzz yyyy 比如：  Sat May 23 17:06:30 CST 2020 为Date <br>
  *
- * 注意：格式化和解析ZonedDateTime 时区时间时，只能使用ISO开头的Formatter，如ISO_DATE_FMT和YYYY_MM_DD_T_HH_MM_SS_Z_FMT<br>
- * 因为，其他Formatter都绑定的是系统默认时区：<br>
- * private static final ZoneId ZONE = ZoneId.systemDefault();<br>
- * 
- * 如果需要使用其他Formatter，可以使用withZone方法重新设置时区，比如：<br>
+ * 7.自定义时区格式化方法，比如 format(Date date, DateTimeFormatter formatter, String zoneId)，根据zoneId格式化Date <br>
+ *
+ * 注意：格式化和解析与系统时区不同的时间时，使用自定义时区格式化方法，或可以使用withZone方法重新设置时区，比如：<br>
  * YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")<br>
+ *
 * @author xkzhangsan
 * @date 2019年12月1日
 *
@@ -1045,6 +1044,10 @@ public class DateTimeFormatterUtil {
 	public static LocalDateTime parseIsoToLocalDateTime(String text) {
 		if (StringUtil.isEmpty(text)) {
 			throw new DateTimeException("text is null");
+		}
+
+		if(!text.contains("T")){
+			throw new DateTimeException("text is not supported! " + text);
 		}
 		
 		text = text.trim();
