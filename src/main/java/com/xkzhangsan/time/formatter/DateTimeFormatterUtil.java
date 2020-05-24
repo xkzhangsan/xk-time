@@ -1,5 +1,6 @@
 package com.xkzhangsan.time.formatter;
 
+import static com.xkzhangsan.time.enums.ZoneIdEnum.CTT;
 import com.xkzhangsan.time.formatter.DateFormatPattern;
 import com.xkzhangsan.time.constants.Constant;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
@@ -59,8 +60,16 @@ public class DateTimeFormatterUtil {
 	 * 系统默认时区
 	 */
     private static final ZoneId ZONE = ZoneId.systemDefault();
-
     
+	/**
+	 * 上海时区ID Asia/Shanghai
+	 */
+    public static final String SHANGHAI_ZONE_ID = CTT.getZoneIdName();
+    
+	/**
+	 * 上海时区  Asia/Shanghai
+	 */
+    public static final ZoneId SHANGHAI_ZONE = ZoneId.of(SHANGHAI_ZONE_ID);
     
     // ==================================yyyy-MM-dd相关formatters==================================
 	/**
@@ -677,7 +686,7 @@ public class DateTimeFormatterUtil {
     	Objects.requireNonNull(formatter, "formatter");
     	
 		return StringUtil.isNotEmpty(zoneId) ? localDateTime.format(formatter.withZone(ZoneId.of(zoneId)))
-				: localDateTime.format(formatter.withZone(ZoneId.of(zoneId)));
+				: localDateTime.format(formatter.withZone(ZoneId.of(null)));
     }
     
     /**
@@ -1007,7 +1016,7 @@ public class DateTimeFormatterUtil {
 				// 2.3 不包含毫秒 yyyy-MM-dd HH:mm:ss yyyy-MM-dd HH:mm
 				if (colonCount == 2) {
 					return parseToLocalDateTime(text, YYYY_M_D_H_M_S_FMT);
-				} else {
+				} if (colonCount == 1) {
 					return parseToLocalDateTime(text, YYYY_M_D_H_M_FMT);
 				}
 			}
@@ -1078,8 +1087,51 @@ public class DateTimeFormatterUtil {
 		return DateTimeConverterUtil.toDate(parseIsoToLocalDateTime(text));
 	}
     
+	/**
+	 * 解析时间戳为Date
+	 * @param text
+	 * @return LocalDateTime
+	 */
+	public static Date parseEpochMilliToDate(String text) {
+		if (StringUtil.isEmpty(text)) {
+			throw new DateTimeException("text is null");
+		}
+		
+		text = text.trim();
+		return DateTimeConverterUtil.toDate(Long.parseLong(text));
+	}
 	
+	/**
+	 * 解析时间戳为LocalDateTime
+	 * @param text
+	 * @return LocalDateTime
+	 */
+	public static LocalDateTime parseEpochMilliToLocalDateTime(String text) {
+		if (StringUtil.isEmpty(text)) {
+			throw new DateTimeException("text is null");
+		}
+		
+		text = text.trim();
+		return DateTimeConverterUtil.toLocalDateTime(Long.parseLong(text));
+	}
 	
+	/**
+	 * 解析Date默认格式为Date
+	 * @param text EEE MMM dd HH:mm:ss zzz yyyy
+	 * @return LocalDateTime
+	 */
+	public static Date parseDateDefaultStrToDate(String text) {
+		return parseToDate(text, EEE_MMM_DD_HH_MM_SS_ZZZ_YYYY_FMT);
+	}
+	
+	/**
+	 * 解析Date默认格式为LocalDateTime
+	 * @param text EEE MMM dd HH:mm:ss zzz yyyy
+	 * @return LocalDateTime
+	 */
+	public static LocalDateTime parseDateDefaultStrToLocalDateTime(String text) {
+		return parseToLocalDateTime(text, EEE_MMM_DD_HH_MM_SS_ZZZ_YYYY_FMT);
+	}
 	
 	// ==================================private method==================================
 
