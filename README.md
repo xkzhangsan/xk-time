@@ -1,10 +1,29 @@
 # xk-time
 
+<p align="center">
+	<a target="_blank" href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">
+		<img src="https://img.shields.io/badge/JDK-8+-green.svg" />
+	</a>
+	<a target="_blank" href="https://search.maven.org/search?q=g:%22com.github.xkzhangsan%22%20AND%20a:%22xk-time%22">
+		<img src="https://img.shields.io/maven-central/v/com.github.xkzhangsan/xk-time.svg?label=Maven%20Central" />
+	</a>
+	<a href="https://www.codacy.com/app/xkzhangsan/xk-time?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xkzhangsan/xk-time&amp;utm_campaign=Badge_Grade">
+		<img src="https://api.codacy.com/project/badge/Grade/3e1b8a70248c46579b7b0d01d60c6377"/>
+	</a>
+	<a target="_blank" href="https://gitee.com/xkzhangsan/xk-time/stargazers">
+		<img src="https://gitee.com/xkzhangsan/xk-time/badge/star.svg?theme=dark" alt='gitee star'/>
+	</a>
+	<a target="_blank" href='https://github.com/xkzhangsan/xk-time'>
+		<img src="https://img.shields.io/github/stars/xkzhangsan/xk-time.svg?style=social" alt="github star"/>
+	</a>
+</p>
+<br>
+  
 xk-time is a datetime converter calculator formatter calendar and cron expression tool set, based on java8 date and time API, thread safe, easy to use.
 
-时间转换，计算，格式化，解析，日历和cron表达式等的工具，使用java8，线程安全，简单易用，多达20几种常用日期格式化模板。  
+时间转换，计算，格式化，解析，日历和cron表达式等的工具，使用java8，线程安全，简单易用，多达60几种常用日期格式化模板。  
  
- 
+
 ## 0.为什么要开发这个工具？ 
  
 ### （1）java8以前的Date API设计不太好，使用不方便，往往会有线程安全问题。  
