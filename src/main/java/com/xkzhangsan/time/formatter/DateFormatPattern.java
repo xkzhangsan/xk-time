@@ -62,11 +62,21 @@ public class DateFormatPattern {
 	 * yy/MM/dd  比如：20/05/23
 	 */
 	public static final String YY_MM_DD_EN = "yy/MM/dd";
+	
+	/**
+	 * yy/M/d  比如：20/5/23
+	 */
+	public static final String YY_M_D_EN = "yy/M/d";
 
 	/**
 	 * MM/dd/yy  比如：05/23/20
 	 */
 	public static final String MM_DD_YY_EN = "MM/dd/yy";
+	
+	/**
+	 * M/d/yy  比如：5/23/20
+	 */
+	public static final String M_D_YY_EN = "M/d/yy";
 
 	/**
 	 * yyyy-MM-dd E  比如：2020-05-23 星期六
@@ -244,6 +254,11 @@ public class DateFormatPattern {
 	 * yyyy/M/d H:m 比如：2020/5/23 17:6
 	 */
 	public static final String YYYY_M_D_H_M_EN = "yyyy/M/d H:m";
+	
+	/**
+	 * yyyy/M/d h:m a 比如：2020/5/23 5:6 下午
+	 */
+	public static final String YYYY_M_D_H_M_A_EN = "yyyy/M/d h:m a";
 	
 	/**
 	 * MM-dd HH:mm 比如：05-23 17:06
