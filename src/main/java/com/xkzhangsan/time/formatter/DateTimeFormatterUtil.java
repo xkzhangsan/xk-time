@@ -126,9 +126,19 @@ public class DateTimeFormatterUtil {
 	public static final DateTimeFormatter YY_MM_DD_EN_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YY_MM_DD_EN).withZone(ZONE);
 	
 	/**
+	 * yy/M/d  比如：20/5/23
+	 */
+	public static final DateTimeFormatter YY_M_D_EN_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YY_M_D_EN).withZone(ZONE);
+	
+	/**
 	 * MM/dd/yy 不补0  比如：05/23/20
 	 */
 	public static final DateTimeFormatter MM_DD_YY_EN_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.MM_DD_YY_EN).withZone(ZONE);
+	
+	/**
+	 * M/d/yy  比如：5/23/20
+	 */
+	public static final DateTimeFormatter M_D_YY_EN_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.M_D_YY_EN).withZone(ZONE);
 	
 	/**
 	 * yyyy-MM-dd E 不补0  比如：2020-05-23 星期六
@@ -315,6 +325,15 @@ public class DateTimeFormatterUtil {
 	 */
 	public static final DateTimeFormatter YYYY_M_D_H_M_EN_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_M_D_H_M_EN).withZone(ZONE);
 	
+	/**
+	 * yyyy/M/d h:m a 比如：2020/5/23 5:6 下午 跟随系统
+	 */
+	public static final DateTimeFormatter YYYY_M_D_H_M_A_EN_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_M_D_H_M_A_EN).withZone(ZONE);
+	
+	/**
+	 * yyyy/M/d h:m a 比如：2020/5/23 5:6 PM  AM，PM
+	 */
+	public static final DateTimeFormatter YYYY_M_D_H_M_A_AM_PM_EN_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_M_D_H_M_A_EN, Locale.ENGLISH).withZone(ZONE);
 	/**
 	 * MM-dd HH:mm 比如：05-23 17:06
 	 */
