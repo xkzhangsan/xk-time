@@ -383,8 +383,16 @@ public class DateTimeCalculatorUtil {
 	 * @param year
 	 * @return int
 	 */
-	public static int getDayOfYear(int year){
+	public static int getLengthOfYear(int year){
 		return Year.of(year).length();
+	}
+	
+	/**
+	 * 获取当前时间在一年中的第几天
+	 * @return int
+	 */
+	public static int getDayOfYear(){
+		return getDayOfYear(new Date());
 	}
 	
 	/**
