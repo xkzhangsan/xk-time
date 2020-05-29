@@ -388,7 +388,7 @@ public class DateTimeFormatterUtil {
 	 * yyyyMMddHHmmssSSS 比如：20200523170630272 <br>
 	 *  Jdk8 解析 yyyyMMddHHmmssSSS bug，推荐解决用法 :https://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8031085
 	 */
-    public static final DateTimeFormatter YYYYMMDDHHMMSSSSS_FMT = new DateTimeFormatterBuilder().appendPattern("yyyyMMddHHmmss").appendValue(ChronoField.MILLI_OF_SECOND, 3).toFormatter().withZone(ZONE);
+    public static final DateTimeFormatter YYYYMMDDHHMMSSSSS_FMT = new DateTimeFormatterBuilder().appendPattern(DateFormatPattern.YYYYMMDDHHMMSS).appendValue(ChronoField.MILLI_OF_SECOND, 3).toFormatter().withZone(ZONE);
     
 	/**
 	 * yyyy-M-d H:m:s.SSS 比如：2020-5-23 17:6:30.272

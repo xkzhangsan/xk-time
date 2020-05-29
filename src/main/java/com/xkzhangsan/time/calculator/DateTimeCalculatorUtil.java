@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.MonthDay;
 import java.time.Period;
+import java.time.Year;
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -375,6 +376,15 @@ public class DateTimeCalculatorUtil {
 	public static int getDayOfYear(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return localDateTime.getDayOfYear();
+	}
+	
+	/**
+	 * 获取某年的总天数
+	 * @param year
+	 * @return int
+	 */
+	public static int getDayOfYear(int year){
+		return Year.of(year).length();
 	}
 	
 	/**

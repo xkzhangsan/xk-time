@@ -40,6 +40,8 @@ public class DateTimeCalculatorUtilTest {
 		Assert.assertEquals(30,DateTimeCalculatorUtil.getMinute(date));
 		Assert.assertEquals(15,DateTimeCalculatorUtil.getSecond(date));
 		Assert.assertEquals(111,DateTimeCalculatorUtil.getMillisecond(date));
+		Assert.assertEquals(120,DateTimeCalculatorUtil.getDayOfYear(date));
+		Assert.assertEquals(366,DateTimeCalculatorUtil.getDayOfYear(2020));
 	}
 	
 	/**
