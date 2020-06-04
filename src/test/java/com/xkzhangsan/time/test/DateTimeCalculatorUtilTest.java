@@ -361,6 +361,18 @@ public class DateTimeCalculatorUtilTest {
 		//iso 2020-02-18T22:37:55.991+0800
 		Assert.assertNotNull(DateTimeCalculatorUtil.getEpochMilliIsoFormatFullNoColon());
 	}
+	
+	/**
+	 * 年龄生日测试
+	 */	
+	@Test
+	public void getAgeBirthDayTest(){
+		Date date = DateTimeCalculatorUtil.getDate(2000, 6, 4);
+		int age = DateTimeCalculatorUtil.getAge(date);
+		Assert.assertTrue(age>=20);
+		@SuppressWarnings("unused")
+		boolean isBirthDay = DateTimeCalculatorUtil.isBirthDay(date);
+	}
 
 	@Test
 	public void durationBetween(){
@@ -379,4 +391,5 @@ public class DateTimeCalculatorUtilTest {
 		//只考虑日期部分，不关心时间部分
         Assert.assertEquals(1,p.getDays());
 	}
+	
 }

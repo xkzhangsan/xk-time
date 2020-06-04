@@ -51,7 +51,9 @@ import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
  * 11.星座计算方法，getConstellation*，比如getConstellationNameCn(String monthDayStr)，根据日期计算星座<br>
  * 12.计算指定年月或起始时间区间的时间列表，get*List， 比如getDateList(int year, int month)，计算指定年月的时间列表<br>
  * 13.减少时间精度方法，reduceAccuracyTo*， 比如reduceAccuracyToDay(Date date)，减少时间精度到天，其他补0，返回如，2020-04-23 00:00:00<br>
- * 14.获取时间戳方法，getEpoch*， 比如getEpochMilli()获取时间戳，getEpochMilliFormat()获取时间戳格式化字符串（yyyy-MM-dd HH:mm:ss）
+ * 14.获取时间戳方法，getEpoch*， 比如getEpochMilli()获取时间戳，getEpochMilliFormat()获取时间戳格式化字符串（yyyy-MM-dd HH:mm:ss）<br>
+ * 15.计算年龄方法，getAge*， 比如getAge(Date birthDay)，通过生日计算年龄<br>
+ * 16.判断是否到生日方法，isBirthDay*， 比如isBirthDay(Date birthDay)，根据生日判断当前日期是否到生日。
 * @author xkzhangsan
 * @date 2019年12月1日
 *
@@ -618,6 +620,39 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static Date getDateEndOfMonth(int year, int month){
 		return DateTimeConverterUtil.toDateEndOfMonth(YearMonth.of(year, month));
+	}
+	
+	/**
+	 * 计算年龄
+	 * @param birthDay
+	 * @return int 年龄
+	 */
+	public static int getAge(LocalDate birthDay){
+		Objects.requireNonNull(birthDay, "birthDay");
+		Period period = periodBetween(birthDay, LocalDate.now());
+		if (period.getYears() < 0) {
+			throw new DateTimeException("birthDay is before now!");
+		} else {
+			return period.getYears();
+		}
+	}
+	
+	/**
+	 * 计算年龄
+	 * @param birthDay
+	 * @return int 年龄
+	 */
+	public static int getAge(Date birthDay){
+		return getAge(DateTimeConverterUtil.toLocalDate(birthDay));
+	}
+	
+	/**
+	 * 计算年龄
+	 * @param birthDay
+	 * @return int 年龄
+	 */
+	public static int getAge(LocalDateTime birthDay){
+		return getAge(DateTimeConverterUtil.toLocalDate(birthDay));
 	}
 	
 	// plus two times
@@ -2532,6 +2567,36 @@ public class DateTimeCalculatorUtil {
 		Objects.requireNonNull(yearMonthStr, "yearMonthStr");
 		YearMonth yearMonth = YearMonth.parse(yearMonthStr);
 		return isExpiry(yearMonth);
+	}
+	
+	/**
+	 * 是否为生日
+	 * @param birthDay
+	 * @return boolean
+	 */
+	public static boolean isBirthDay(LocalDate birthDay){
+		Objects.requireNonNull(birthDay, "birthDay");
+		return isSameMonthDay(birthDay, LocalDate.now());
+	}
+	
+	/**
+	 * 是否为生日
+	 * @param birthDay
+	 * @return boolean
+	 */
+	public static boolean isBirthDay(Date birthDay){
+		Objects.requireNonNull(birthDay, "birthDay");
+		return isBirthDay(DateTimeConverterUtil.toLocalDate(birthDay));
+	}
+	
+	/**
+	 * 是否为生日
+	 * @param birthDay
+	 * @return boolean
+	 */
+	public static boolean isBirthDay(LocalDateTime birthDay){
+		Objects.requireNonNull(birthDay, "birthDay");
+		return isBirthDay(DateTimeConverterUtil.toLocalDate(birthDay));
 	}
 	
 	/**

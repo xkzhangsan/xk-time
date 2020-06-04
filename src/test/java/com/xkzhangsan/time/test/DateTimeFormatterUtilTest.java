@@ -117,8 +117,6 @@ public class DateTimeFormatterUtilTest {
 		
 		//Date 默认格式解析
 		Assert.assertEquals("2020-04-29T15:18:11+08:00",DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_XXX_FMT, "Asia/Shanghai"));
-		
-		System.out.println(System.currentTimeMillis());
 	}
 	
 	/**
@@ -342,6 +340,8 @@ public class DateTimeFormatterUtilTest {
 		
 		Assert.assertEquals("2020-05-23 17:06:30.272", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSS_FMT));
 		
+		Assert.assertEquals("2020-05-23 17:06:30,272", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSS_COMMA_FMT));
+		
 		Assert.assertEquals("20200523170630272", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYYMMDDHHMMSSSSS_FMT));
 		
 		Assert.assertEquals("2020-5-23 17:6:30.272", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_H_M_S_SSS_FMT));
@@ -356,6 +356,8 @@ public class DateTimeFormatterUtilTest {
 	public void smartParseToDateTest3(){
 		
 		Date date = DateTimeFormatterUtil.smartParseToDate("2020-05-23 17:06:30.272");
+		
+		Assert.assertEquals(date, DateTimeFormatterUtil.smartParseToDate("2020-05-23 17:06:30,272"));
 		
 		Assert.assertEquals(date, DateTimeFormatterUtil.smartParseToDate("20200523170630272"));
 		
