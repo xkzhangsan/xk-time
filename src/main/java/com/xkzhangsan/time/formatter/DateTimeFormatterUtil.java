@@ -383,6 +383,11 @@ public class DateTimeFormatterUtil {
 	 * yyyy-MM-dd HH:mm:ss.SSS 比如：2020-05-23 17:06:30.272
 	 */
     public static final DateTimeFormatter YYYY_MM_DD_HH_MM_SS_SSS_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_MM_DD_HH_MM_SS_SSS).withZone(ZONE);
+    
+	/**
+	 * yyyy-MM-dd HH:mm:ss,SSS 比如：2020-05-23 17:06:30,272
+	 */
+    public static final DateTimeFormatter YYYY_MM_DD_HH_MM_SS_SSS_COMMA_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_MM_DD_HH_MM_SS_SSS_COMMA).withZone(ZONE);
 	
 	/**
 	 * yyyyMMddHHmmssSSS 比如：20200523170630272 <br>
@@ -943,6 +948,7 @@ public class DateTimeFormatterUtil {
 	 * 
 	 * =====================yyyy-MM-dd HH:mm:ss.SSS 相关=====================
 	 * yyyy-MM-dd HH:mm:ss.SSS		2020-05-23 17:06:30.272
+	 * yyyy-MM-dd HH:mm:ss,SSS		2020-05-23 17:06:30,272
 	 * yyyyMMddHHmmssSSS			20200523170630272
 	 * 
 	 * =====================Iso相关格式=====================
@@ -951,6 +957,9 @@ public class DateTimeFormatterUtil {
 	 * yyyy-MM-dd'T'HH:mm:ssxxx		2020-05-23T17:06:30+08:00
 	 * yyyy-MM-dd'T'HH:mm:ss.SSSZ		2020-05-23T17:06:30.272+0800
 	 * yyyy-MM-dd'T'HH:mm:ss.SSSxxx		2020-05-23T17:06:30.272+08:00
+	 * 
+	 * =====================其他格式=====================
+	 * EEE MMM dd HH:mm:ss zzz yyyy	 	Sat May 23 17:06:30 CST 2020
 	 * </pre>
 	 * @param text 
 	 * @return Date
@@ -981,6 +990,7 @@ public class DateTimeFormatterUtil {
 	 * 
 	 * =====================yyyy-MM-dd HH:mm:ss.SSS 相关=====================
 	 * yyyy-MM-dd HH:mm:ss.SSS		2020-05-23 17:06:30.272
+	 * yyyy-MM-dd HH:mm:ss,SSS		2020-05-23 17:06:30,272
 	 * yyyyMMddHHmmssSSS			20200523170630272
 	 * 
 	 * =====================Iso相关格式=====================
@@ -989,6 +999,9 @@ public class DateTimeFormatterUtil {
 	 * yyyy-MM-dd'T'HH:mm:ssxxx		2020-05-23T17:06:30+08:00
 	 * yyyy-MM-dd'T'HH:mm:ss.SSSZ		2020-05-23T17:06:30.272+0800
 	 * yyyy-MM-dd'T'HH:mm:ss.SSSxxx		2020-05-23T17:06:30.272+08:00
+	 * 
+	 * =====================其他格式=====================
+	 *  EEE MMM dd HH:mm:ss zzz yyyy	 	Sat May 23 17:06:30 CST 2020
 	 * </pre>
 	 * @param text
 	 * @return LocalDateTime
@@ -1026,20 +1039,24 @@ public class DateTimeFormatterUtil {
 		} else {
 			// : 出现次数
 			int colonCount = StringUtil.countWord(text, ":");
-			// 2.2 yyyy-MM-dd 格式解析
+			// 2.3 yyyy-MM-dd 格式解析
 			if (colonCount == 0) {
 				return parseToLocalDateTime(text, YYYY_M_D_FMT);
 			} else if (text.contains("T")) {
-				// 2.3 ISO格式解析
+				// 2.4 ISO格式解析
 				return parseIsoToLocalDateTime(text);
 			} else if (colonCount > 0 && text.contains(".")) {
-				// 2.3 包含毫秒 yyyy-MM-dd HH:mm:ss.SSS
+				// 2.5 yyyy-MM-dd HH:mm:ss.SSS
 				return parseToLocalDateTime(text, YYYY_M_D_H_M_S_SSS_FMT);
+			} else if (colonCount > 0 && text.contains(",")) {
+				// 2.6 yyyy-MM-dd HH:mm:ss,SSS
+				return parseToLocalDateTime(text, YYYY_MM_DD_HH_MM_SS_SSS_COMMA_FMT);
 			} else if (colonCount > 0) {
-				// 2.3 不包含毫秒 yyyy-MM-dd HH:mm:ss yyyy-MM-dd HH:mm
 				if (colonCount == 2) {
+					// 2.7 yyyy-MM-dd HH:mm:ss
 					return parseToLocalDateTime(text, YYYY_M_D_H_M_S_FMT);
 				} if (colonCount == 1) {
+					// 2.8 yyyy-MM-dd HH:mm
 					return parseToLocalDateTime(text, YYYY_M_D_H_M_FMT);
 				}
 			}

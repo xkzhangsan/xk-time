@@ -298,6 +298,11 @@ public class DateFormatPattern {
 	 * yyyy-MM-dd HH:mm:ss.SSS 比如：2020-05-23 17:06:30.272
 	 */
 	public static final String YYYY_MM_DD_HH_MM_SS_SSS = "yyyy-MM-dd HH:mm:ss.SSS";
+	
+	/**
+	 * yyyy-MM-dd HH:mm:ss,SSS 比如：2020-05-23 17:06:30,272
+	 */
+	public static final String YYYY_MM_DD_HH_MM_SS_SSS_COMMA = "yyyy-MM-dd HH:mm:ss,SSS";
 
 	/**
 	 * yyyyMMddHHmmssSSS 比如：20200523170630272

@@ -45,7 +45,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>1.1.0</version>    
+      <version>1.1.1</version>    
     </dependency>    
 
 
@@ -71,6 +71,9 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
 （12）计算指定年月或起始时间区间的时间列表，get*List， 比如getDateList(int year, int month)，计算指定年月的时间列表。  
 （13）减少时间精度方法，reduceAccuracyTo*， 比如reduceAccuracyToDay(Date date)，减少时间精度到天，其他补0，返回如，2020-04-23 00:00:00。    
 （14）获取时间戳方法，getEpoch*， 比如getEpochMilli()获取时间戳，getEpochMilliFormat()获取时间戳格式化字符串（yyyy-MM-dd HH:mm:ss）    
+（15）计算年龄方法，getAge*， 比如getAge(Date birthDay)，通过生日计算年龄。  
+（16）判断是否到生日方法，isBirthDay*， 比如isBirthDay(Date birthDay)，根据生日判断当前日期是否到生日。  
+  
   
 详细使用可以查看相关测试代码。  
 
