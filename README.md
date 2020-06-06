@@ -119,7 +119,7 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
 （1）农历日期年月日计算。  
 （2）农历岁次，生肖属相计算。  
 （3）二十四节气计算等  
- 注意： 仅支持公历1901-1950年的农历转换。    
+ 注意： 仅支持公历1901-2050年的农历转换。    
  农历和二十四节气计算的准确依赖于lunarInfo和solarTermInfo基础数据的准确性和精确度。  
  根据测试结果，发现本程序和常用万年历基本一致，常用万年历软件中也有很少量计算误差，欢迎提出问题，会不断进行改进和修正。  
    
@@ -131,7 +131,7 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
 （2）农历节假日计算， getChineseHoliday* 比如getChineseHoliday(Date date) 计算date的农历节日，getChineseHoliday(Date date, Map<String, String> chineseHolidayMap) 可以传入自定义农历节日数据。  
 （3）二十四节气计算， getSolarTerm* 比如getSolarTerm(Date date) 计算date的二十四节气。  
 
-注意： 农历和二十四节气使用农历日期类 LunarDate，仅支持公历1901-1950年的计算。  
+注意： 农历和二十四节气使用农历日期类 LunarDate，仅支持公历1901-2050年的计算。  
 
 详细使用可以查看相关测试代码。      
     
