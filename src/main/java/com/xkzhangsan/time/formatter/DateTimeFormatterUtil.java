@@ -405,6 +405,11 @@ public class DateTimeFormatterUtil {
 	 */
 	public static final DateTimeFormatter YYYY_M_D_H_M_S_SSS_EN_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_M_D_H_M_S_SSS_EN).withZone(ZONE);
 	
+	/**
+	 * yyyy-M-d H:m:s,SSS 比如：2020-5-23 17:6:30,272
+	 */
+	public static final DateTimeFormatter YYYY_M_D_H_M_S_SSS_COMMA_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_M_D_H_M_S_SSS_COMMA).withZone(ZONE);	
+	
 	
 	
 	
@@ -1050,7 +1055,7 @@ public class DateTimeFormatterUtil {
 				return parseToLocalDateTime(text, YYYY_M_D_H_M_S_SSS_FMT);
 			} else if (colonCount > 0 && text.contains(",")) {
 				// 2.6 yyyy-MM-dd HH:mm:ss,SSS
-				return parseToLocalDateTime(text, YYYY_MM_DD_HH_MM_SS_SSS_COMMA_FMT);
+				return parseToLocalDateTime(text, YYYY_M_D_H_M_S_SSS_COMMA_FMT);
 			} else if (colonCount > 0) {
 				if (colonCount == 2) {
 					// 2.7 yyyy-MM-dd HH:mm:ss

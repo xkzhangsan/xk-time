@@ -347,6 +347,8 @@ public class DateTimeFormatterUtilTest {
 		Assert.assertEquals("2020-5-23 17:6:30.272", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_H_M_S_SSS_FMT));
 		
 		Assert.assertEquals("2020/5/23 17:6:30.272", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_H_M_S_SSS_EN_FMT));
+		
+		Assert.assertEquals("2020-5-23 17:6:30,272", DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.YYYY_M_D_H_M_S_SSS_COMMA_FMT));
 	}
 	
 	/**
@@ -364,6 +366,8 @@ public class DateTimeFormatterUtilTest {
 		Assert.assertEquals(date, DateTimeFormatterUtil.smartParseToDate("2020-5-23 17:6:30.272"));
 		
 		Assert.assertEquals(date, DateTimeFormatterUtil.smartParseToDate("2020/5/23 17:6:30.272"));
+		
+		Assert.assertEquals(date, DateTimeFormatterUtil.smartParseToDate("2020-5-23 17:6:30,272"));
 	}
 	
 	
