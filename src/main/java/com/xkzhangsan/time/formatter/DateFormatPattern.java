@@ -192,6 +192,31 @@ public class DateFormatPattern {
 	 */
 	public static String HH_MM_A = "hh:mm a";
 	
+	// ==================================HH:mm:ss.SSS 相关Pattern==================================
+	
+	/**
+	 * HH:mm:ss.SSS  比如：17:26:30.272
+	 */
+	public static String HH_MM_SS_SSS = "HH:mm:ss.SSS";
+	
+	
+	// ==================================HH:mm:ss.SSSSSS 相关Pattern==================================
+	
+	/**
+	 * HH:mm:ss.SSSSSS  比如：17:26:30.272150
+	 */
+	public static String HH_MM_SS_SSSSSS = "HH:mm:ss.SSSSSS";
+	
+	
+	// ==================================HH:mm:ss.SSSSSSSSS 相关Pattern==================================
+	
+	/**
+	 * HH:mm:ss.SSSSSSSSS  比如：17:26:30.272150620
+	 */
+	public static String HH_MM_SS_SSSSSSSSS = "HH:mm:ss.SSSSSSSSS";
+	
+	
+	
 	
 	// ==================================yyyy-MM-dd HH:mm:ss 相关Pattern==================================
 	
@@ -323,39 +348,89 @@ public class DateFormatPattern {
 	 * yyyy-M-d H:m:s,SSS 比如：2020-5-23 17:6:30,272
 	 */
 	public static final String YYYY_M_D_H_M_S_SSS_COMMA = "yyyy-M-d H:m:s,SSS";
+	
+	
+	// ==================================yyyy-MM-dd HH:mm:ss.SSSSSS 相关Pattern==================================	
+	
+	/**
+	 * yyyy-MM-dd HH:mm:ss.SSSSSS 比如：2020-05-23 17:06:30.272150
+	 */
+	public static final String YYYY_MM_DD_HH_MM_SS_SSSSSS = "yyyy-MM-dd HH:mm:ss.SSSSSS";
+	
+	
+	
+	
+	// ==================================yyyy-MM-dd HH:mm:ss.SSSSSSSSS 相关Pattern==================================	
+	
+	/**
+	 * yyyy-MM-dd HH:mm:ss.SSSSSSSSS 比如：2020-05-23 17:06:30.272150620
+	 */
+	public static final String YYYY_MM_DD_HH_MM_SS_SSSSSSSSS = "yyyy-MM-dd HH:mm:ss.SSSSSSSSS";	
 
+	
 	
 	// ==================================Iso相关Pattern 包含 T==================================
 	
 	/**
-	 * yyyy-MM-dd'T'HH:mm:ssZ 比如：2020-05-23T17:06:30+0800
+	 * yyyy-MM-dd'T'HH:mm:ssZ 比如：2020-05-23T17:06:30+0800 2020-05-23T09:06:30+0000
 	 */
 	public static final String YYYY_MM_DD_T_HH_MM_SS_Z = "yyyy-MM-dd'T'HH:mm:ssZ";
 
 	/**
-	 * yyyy-MM-dd'T'HH:mm:ssxxx 比如：2020-05-23T17:06:30+08:00
+	 * yyyy-MM-dd'T'HH:mm:ssxxx 比如：2020-05-23T17:06:30+08:00 2020-05-23T09:06:30+00:00
 	 */
 	public static final String YYYY_MM_DD_T_HH_MM_SS_XXX = "yyyy-MM-dd'T'HH:mm:ssxxx";
 	
 	/**
-	 * yyyy-MM-dd'T'HH:mm:ssXXX 比如：2020-05-23T17:06:30+08:00 0时区时末尾 为Z
+	 * yyyy-MM-dd'T'HH:mm:ssXXX 比如：2020-05-23T17:06:30+08:00 2020-05-23T09:06:30Z 0时区时末尾 为Z
 	 */
 	public static final String YYYY_MM_DD_T_HH_MM_SS_XXX_Z = "yyyy-MM-dd'T'HH:mm:ssXXX";
 
 	/**
-	 * yyyy-MM-dd'T'HH:mm:ss.SSSZ 比如：2020-05-23T17:06:30.272+0800
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSZ 比如：2020-05-23T17:06:30.272+0800 2020-05-23T09:06:30.272+0000
 	 */
 	public static final String YYYY_MM_DD_T_HH_MM_SS_SSS_Z = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 
 	/**
-	 * yyyy-MM-dd'T'HH:mm:ss.SSSxxx 比如：2020-05-23T17:06:30.272+08:00
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSxxx 比如：2020-05-23T17:06:30.272+08:00 2020-05-23T09:06:30.272+00:00
 	 */
 	public static final String YYYY_MM_DD_T_HH_MM_SS_SSS_XXX = "yyyy-MM-dd'T'HH:mm:ss.SSSxxx";
 
 	/**
-	 * yyyy-MM-dd'T'HH:mm:ss.SSSXXX 比如：2020-05-23T17:06:30.272+08:00 0时区时末尾 为Z
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSXXX 比如：2020-05-23T17:06:30.272+08:00 2020-05-23T09:06:30.272Z 0时区时末尾 为Z
 	 */
 	public static final String YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_Z = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
+	
+	/**
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ 比如：2020-05-23T17:06:30.272150+0800 2020-05-23T09:06:30.272150+0000
+	 */
+	public static final String YYYY_MM_DD_T_HH_MM_SS_SSSSSS_Z = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ";
+
+	/**
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSSSSxxx 比如：2020-05-23T17:06:30.272150+08:00 2020-05-23T09:06:30.272150+00:00
+	 */
+	public static final String YYYY_MM_DD_T_HH_MM_SS_SSSSSS_XXX = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSxxx";
+
+	/**
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX 比如：2020-05-23T17:06:30.272150+08:00 2020-05-23T09:06:30.272150Z 0时区时末尾 为Z
+	 */
+	public static final String YYYY_MM_DD_T_HH_MM_SS_SSSSSS_XXX_Z = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX";
+	
+	
+	/**
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSSZ 比如：2020-05-23T17:06:30.272150620+0800 2020-05-23T09:06:30.272150620+0000
+	 */
+	public static final String YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_Z = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSSZ";
+
+	/**
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSSxxx 比如：2020-05-23T17:06:30.272150620+08:00 2020-05-23T09:06:30.272150620+00:00
+	 */
+	public static final String YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_XXX = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSSxxx";
+
+	/**
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSSXXX 比如：2020-05-23T17:06:30.272150620+08:00 2020-05-23T09:06:30.272150620Z 0时区时末尾 为Z
+	 */
+	public static final String YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_XXX_Z = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSSXXX";	
 	
 	
 	// ==================================其他格式 Pattern==================================

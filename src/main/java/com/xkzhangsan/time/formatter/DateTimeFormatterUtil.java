@@ -261,6 +261,26 @@ public class DateTimeFormatterUtil {
 	public static DateTimeFormatter HH_MM_A_AM_PM_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.HH_MM_A, Locale.ENGLISH).withZone(ZONE);
     
     
+	// ==================================HH:mm:ss.SSS 相关formatters==================================
+	
+	/**
+	 * HH:mm:ss.SSS  比如：17:26:30.272
+	 */
+	public static DateTimeFormatter HH_MM_SS_SSS_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.HH_MM_SS_SSS).withZone(ZONE);
+	
+	// ==================================HH:mm:ss.SSSSSS 相关formatters==================================
+	
+	/**
+	 * HH:mm:ss.SSSSSS  比如：17:26:30.272150
+	 */
+	public static DateTimeFormatter HH_MM_SS_SSSSSS_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.HH_MM_SS_SSSSSS).withZone(ZONE);
+	
+	// ==================================HH:mm:ss.SSSSSSSSS 相关formatters==================================
+	
+	/**
+	 * HH:mm:ss.SSSSSSSSS  比如：17:26:30.272150620
+	 */
+	public static DateTimeFormatter HH_MM_SS_SSSSSSSSS_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.HH_MM_SS_SSSSSSSSS).withZone(ZONE);	
 	
 	
 	// ==================================yyyy-MM-dd HH:mm:ss 相关formatters==================================
@@ -412,6 +432,20 @@ public class DateTimeFormatterUtil {
 	
 	
 	
+	// ==================================yyyy-MM-dd HH:mm:ss.SSSSSS 相关formatters==================================
+	/**
+	 * yyyy-MM-dd HH:mm:ss.SSSSSS 比如：2020-05-23 17:06:30.272150
+	 */
+	public static final DateTimeFormatter YYYY_MM_DD_HH_MM_SS_SSSSSS_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_MM_DD_HH_MM_SS_SSSSSS).withZone(ZONE);
+	
+	
+	// ==================================yyyy-MM-dd HH:mm:ss.SSSSSSSSS 相关formatters==================================
+	/**
+	 * yyyy-MM-dd HH:mm:ss.SSSSSSSSS 比如：2020-05-23 17:06:30.272150620
+	 */
+	public static final DateTimeFormatter YYYY_MM_DD_HH_MM_SS_SSSSSSSSS_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_MM_DD_HH_MM_SS_SSSSSSSSS).withZone(ZONE);
+	
+	
 	
 	// ==================================Iso相关formatters 包含 T （自定义）==================================
 
@@ -445,9 +479,35 @@ public class DateTimeFormatterUtil {
 	 */
     public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_Z_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_MM_DD_T_HH_MM_SS_SSS_XXX_Z);
     
-	
+	/**
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ 比如：2020-05-23T17:06:30.272150+0800 2020-05-23T09:06:30.272150+0000
+	 */
+    public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_SSSSSS_Z_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_MM_DD_T_HH_MM_SS_SSSSSS_Z);
     
+	/**
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSSSSxxx 比如：2020-05-23T17:06:30.272150+08:00 2020-05-23T09:06:30.272150+00:00
+	 */
+    public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_SSSSSS_XXX_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_MM_DD_T_HH_MM_SS_SSSSSS_XXX);
     
+	/**
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX 比如：2020-05-23T17:06:30.272150+08:00 2020-05-23T09:06:30.272150Z 0时区时末尾 为Z
+	 */
+    public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_SSSSSS_XXX_Z_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_MM_DD_T_HH_MM_SS_SSSSSS_XXX_Z);
+    
+	/**
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSSZ 比如：2020-05-23T17:06:30.272150620+0800 2020-05-23T09:06:30.272150620+0000
+	 */
+    public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_Z_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_Z);
+    
+	/**
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSSxxx 比如：2020-05-23T17:06:30.272150620+08:00 2020-05-23T09:06:30.272150620+00:00
+	 */
+    public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_XXX_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_XXX);    
+    
+	/**
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSSXXX 比如：2020-05-23T17:06:30.272150620+08:00 2020-05-23T09:06:30.272150620Z 0时区时末尾 为Z
+	 */
+    public static final DateTimeFormatter YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_XXX_Z_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_XXX_Z);
     // ==================================Iso相关formatters 包含 T （Jdk）==================================
     
     /**
@@ -510,7 +570,6 @@ public class DateTimeFormatterUtil {
 	 */
 	public static final DateTimeFormatter EEE_MMM_DD_HH_MM_SS_ZZZ_YYYY_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.EEE_MMM_DD_HH_MM_SS_ZZZ_YYYY, Locale.ENGLISH);
 	
-
 	
 	
 	// ==================================format==================================
@@ -677,6 +736,18 @@ public class DateTimeFormatterUtil {
     }
     
     /**
+     * 根据 dateFormatPattern格式化 date
+     * @param date
+     * @param dateFormatPattern
+     * @return String
+     */
+    public static String format(Date date, String dateFormatPattern){
+    	Objects.requireNonNull(dateFormatPattern, "dateFormatPattern");
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormatPattern).withZone(ZONE);
+    	return format(date, formatter);
+    }    
+    
+    /**
      * 根据 formatter格式化 date 支持自定义时区
      * @param date
      * @param formatter
@@ -706,6 +777,19 @@ public class DateTimeFormatterUtil {
     	Objects.requireNonNull(formatter, "formatter");
     	return localDateTime.format(formatter);
     }
+    
+    /**
+     * 根据 dateFormatPattern格式化 localDateTime
+     * @param localDateTime
+     * @param dateFormatPattern
+     * @return String
+     */
+    public static String format(LocalDateTime localDateTime, String dateFormatPattern){
+    	Objects.requireNonNull(localDateTime, "localDateTime");
+    	Objects.requireNonNull(dateFormatPattern, "dateFormatPattern");
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormatPattern).withZone(ZONE);
+    	return format(localDateTime, formatter);
+    }    
     
     /**
      * 根据 formatter格式化 localDateTime 指定时区
@@ -781,6 +865,37 @@ public class DateTimeFormatterUtil {
     	Objects.requireNonNull(formatter, "formatter");
 		return StringUtil.isNotEmpty(zoneId) ? zonedDateTime.format(formatter.withZone(ZoneId.of(zoneId)))
 				: zonedDateTime.format(formatter.withZone(null));
+    }
+    
+    /**
+     * 格式化date成Timestamp 默认格式 yyyy-mm-dd hh:mm:ss.fffffffff 其中 fffffffff 纳秒，省略后面的0 比如：
+	 * <pre>
+	 * 2020-05-23 17:06:30.0
+	 * 2020-05-23 17:06:30.272
+	 * 2020-05-23 17:06:30.27215
+	 * 2020-05-23 17:06:30.27215062
+	 *</pre>
+     * @param date
+     * @return String
+     */
+    public static String formatTimestampStyle(Date date){
+    	Objects.requireNonNull(date, "date");
+    	return DateTimeConverterUtil.toTimestamp(date).toString();
+    }
+    
+    /**
+     * 格式化localDateTime成Timestamp 默认格式 yyyy-mm-dd hh:mm:ss.fffffffff 其中 fffffffff 纳秒，省略后面的0 比如：
+	 * <pre>
+	 * 2020-05-23 17:06:30.0
+	 * 2020-05-23 17:06:30.272
+	 * 2020-05-23 17:06:30.27215
+	 * 2020-05-23 17:06:30.27215062
+     * @param localDateTime
+     * @return String
+     */
+    public static String formatTimestampStyle(LocalDateTime localDateTime){
+    	Objects.requireNonNull(localDateTime, "localDateTime");
+    	return DateTimeConverterUtil.toTimestamp(localDateTime).toString();
     }
     
     public static String format(TemporalAccessor temporal, DateTimeFormatter formatter){
@@ -879,6 +994,18 @@ public class DateTimeFormatterUtil {
     }
     
     /**
+     * 根据 dateFormatPattern解析为 Date
+     * @param text
+     * @param dateFormatPattern
+     * @return Date
+     */
+	public static Date parseToDate(String text, String dateFormatPattern) {
+		Objects.requireNonNull(dateFormatPattern, "dateFormatPattern");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormatPattern).withZone(ZONE);
+		return parseToDate(text, formatter);
+	}
+    
+    /**
      * 根据 formatter解析为 LocalDateTime
      * @param text
      * @param formatter
@@ -897,6 +1024,18 @@ public class DateTimeFormatterUtil {
 			}
 		}
     	return localDateTime;
+    }
+    
+    /**
+     * 根据 dateFormatPattern解析为 LocalDateTime
+     * @param text
+     * @param dateFormatPattern
+     * @return LocalDateTime
+     */
+    public static LocalDateTime parseToLocalDateTime(String text, String dateFormatPattern){
+    	Objects.requireNonNull(dateFormatPattern, "dateFormatPattern");
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormatPattern).withZone(ZONE);
+    	return parseToLocalDateTime(text, formatter);
     }
     
     /**
@@ -1051,8 +1190,12 @@ public class DateTimeFormatterUtil {
 				// 2.4 ISO格式解析
 				return parseIsoToLocalDateTime(text);
 			} else if (colonCount > 0 && text.contains(".")) {
-				// 2.5 yyyy-MM-dd HH:mm:ss.SSS
-				return parseToLocalDateTime(text, YYYY_M_D_H_M_S_SSS_FMT);
+				if(text.split("\\.")[1].length()==3){
+					// 2.5 yyyy-MM-dd HH:mm:ss.SSS
+					return parseToLocalDateTime(text, YYYY_M_D_H_M_S_SSS_FMT);
+				}else{
+					return parseTimestampStyleToLocalDateTime(text);
+				}
 			} else if (colonCount > 0 && text.contains(",")) {
 				// 2.6 yyyy-MM-dd HH:mm:ss,SSS
 				return parseToLocalDateTime(text, YYYY_M_D_H_M_S_SSS_COMMA_FMT);
@@ -1180,6 +1323,65 @@ public class DateTimeFormatterUtil {
 	 */
 	public static LocalDateTime parseDateDefaultStrToLocalDateTime(String text) {
 		return parseToLocalDateTime(text, EEE_MMM_DD_HH_MM_SS_ZZZ_YYYY_FMT);
+	}
+	
+	/**
+     * 解析Timestamp格式字符串为Date  默认格式 yyyy-mm-dd hh:mm:ss.fffffffff 其中 fffffffff 纳秒，省略后面的0 比如：
+	 * <pre>
+	 * 2020-05-23 17:06:30.0
+	 * 2020-05-23 17:06:30.272
+	 * 2020-05-23 17:06:30.27215
+	 * 2020-05-23 17:06:30.27215062
+	 *</pre>
+	 * @param text
+	 * @return Date
+	 */
+	public static Date parseformatTimestampStyleToDate(String text){
+		return DateTimeConverterUtil.toDate(parseTimestampStyleToLocalDateTime(text));
+	}
+	
+	/**
+     * 解析Timestamp格式字符串为LocalDateTime  默认格式 yyyy-mm-dd hh:mm:ss.fffffffff 其中 fffffffff 纳秒，省略后面的0 比如：
+	 * <pre>
+	 * 2020-05-23 17:06:30.0
+	 * 2020-05-23 17:06:30.272
+	 * 2020-05-23 17:06:30.27215
+	 * 2020-05-23 17:06:30.27215062
+	 *</pre>
+	 * @param text
+	 * @return LocalDateTime
+	 */
+	public static LocalDateTime parseTimestampStyleToLocalDateTime(String text){
+		//预处理
+		Objects.requireNonNull(text, "text");
+		text=text.trim();
+		if(!text.contains(".")){
+			throw new DateTimeException("text is not supported! " + text);
+		}
+		
+		//.分割成2部分，分别分析
+		String[] textArr = text.split("\\.");
+		String main = textArr[0];
+		String nanoOfSecond = textArr[1];
+		int mainLen = main.length();
+		int len = nanoOfSecond.length();
+		if(mainLen != DateFormatPattern.YYYY_MM_DD_HH_MM_SS.length()){
+			throw new DateTimeException("text is not supported! " + text);
+		}
+		if(len>9){
+			throw new DateTimeException("text is not supported! " + text);
+		}
+		
+		//纳秒部分补0
+		StringBuilder sb = new StringBuilder();
+		for(int i=0;i<9-len;i++){
+			sb.append("0");
+		}
+		nanoOfSecond = nanoOfSecond+sb.toString();
+		text = main+"."+nanoOfSecond;
+		
+		//使用yyyy-MM-dd HH:mm:ss.SSSSSSSSS 标准格式解析
+		return parseToLocalDateTime(text, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSSSSSSSS_FMT);
 	}
 	
 	// ==================================private method==================================
