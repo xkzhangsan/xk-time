@@ -631,7 +631,7 @@ public class DateTimeCalculatorUtil {
 		Objects.requireNonNull(birthDay, "birthDay");
 		Period period = periodBetween(birthDay, LocalDate.now());
 		if (period.getYears() < 0) {
-			throw new DateTimeException("birthDay is before now!");
+			throw new DateTimeException("birthDay is after now!");
 		} else {
 			return period.getYears();
 		}

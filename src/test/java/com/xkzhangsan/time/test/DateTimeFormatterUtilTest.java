@@ -1,6 +1,7 @@
 package com.xkzhangsan.time.test;
 
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
+import com.xkzhangsan.time.formatter.DateFormatPattern;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 import org.junit.Assert;
 import org.junit.Test;
@@ -439,4 +440,112 @@ public class DateTimeFormatterUtilTest {
 		
 		Assert.assertEquals(date1, date2);
 	}
+	
+	/**
+	 * 含纳秒时间格式化
+	 */
+	@Test
+	public void formatTimeWithNanoTest(){
+		LocalDateTime localDateTime = DateTimeFormatterUtil.smartParseToLocalDateTime("2020-05-23T17:06:30.272150620+08:00");
+		//时间格式化
+		Assert.assertEquals("17:06:30.272", DateTimeFormatterUtil.format(localDateTime, DateTimeFormatterUtil.HH_MM_SS_SSS_FMT));
+		Assert.assertEquals("17:06:30.272150", DateTimeFormatterUtil.format(localDateTime, DateTimeFormatterUtil.HH_MM_SS_SSSSSS_FMT));
+		Assert.assertEquals("17:06:30.272150620", DateTimeFormatterUtil.format(localDateTime, DateTimeFormatterUtil.HH_MM_SS_SSSSSSSSS_FMT));
+		
+		//日期时间格式化
+		Assert.assertEquals("2020-05-23 17:06:30.272150", DateTimeFormatterUtil.format(localDateTime, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSSSSS_FMT));
+		Assert.assertEquals("2020-05-23 17:06:30.272150620", DateTimeFormatterUtil.format(localDateTime, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSSSSSSSS_FMT));
+
+		ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
+		//ISO日期时间格式化
+		Assert.assertEquals("2020-05-23T17:06:30.272150620+0800", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_Z_FMT));
+		Assert.assertEquals("2020-05-23T17:06:30.272150620+08:00", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_XXX_Z_FMT));
+	}
+	
+	/**
+	 * 含纳秒时间格式解析
+	 */
+	@Test
+	public void parseTimeWithNanoTest(){
+		LocalDateTime localDateTime1 = DateTimeFormatterUtil.smartParseToLocalDateTime("2020-05-23T17:06:30.272150620+08:00");
+		
+		LocalDateTime localDateTime2 = DateTimeFormatterUtil.smartParseToLocalDateTime("2020-05-23T17:06:30.272150+08:00");
+		
+		LocalDateTime localDateTime3 = DateTimeFormatterUtil.smartParseToLocalDateTime("2020-05-23T17:06:30.272+08:00");
+		
+		Assert.assertTrue(localDateTime3.isBefore(localDateTime2));
+		
+		Assert.assertTrue(localDateTime2.isBefore(localDateTime1));
+	}
+	
+	/**
+	 * 含纳秒Timestamp时间格式化
+	 */
+	@Test
+	public void formatTimestampStyleTest(){
+		Date date = DateTimeFormatterUtil.smartParseToDate("2020-05-23 17:06:30");
+		//时间格式化
+		Assert.assertEquals("2020-05-23 17:06:30.0", DateTimeFormatterUtil.formatTimestampStyle(date));
+		
+		LocalDateTime localDateTime1 = DateTimeFormatterUtil.smartParseToLocalDateTime("2020-05-23 17:06:30.272150");
+		Assert.assertEquals("2020-05-23 17:06:30.27215",DateTimeFormatterUtil.formatTimestampStyle(localDateTime1));
+		
+		LocalDateTime localDateTime2 = DateTimeFormatterUtil.smartParseToLocalDateTime("2020-05-23 17:06:30.272150620");
+		Assert.assertEquals("2020-05-23 17:06:30.27215062",DateTimeFormatterUtil.formatTimestampStyle(localDateTime2));
+	}
+	
+	/**
+	 * 含纳秒Timestamp时间格式解析
+	 */
+	@Test
+	public void parseTimestampStyleTest(){
+		
+		Date date = DateTimeFormatterUtil.smartParseToDate("2020-05-23 17:06:30");
+		
+		Date date2 = DateTimeFormatterUtil.parseformatTimestampStyleToDate("2020-05-23 17:06:30.0");
+		
+		Date date3 = DateTimeFormatterUtil.parseformatTimestampStyleToDate("2020-05-23 17:06:30.0");
+		
+		Assert.assertEquals(date, date2);
+		Assert.assertEquals(date2, date3);
+		
+		LocalDateTime localDateTime1 = DateTimeFormatterUtil.smartParseToLocalDateTime("2020-05-23 17:06:30.272150");
+		
+		LocalDateTime localDateTime2 = DateTimeFormatterUtil.smartParseToLocalDateTime("2020-05-23 17:06:30.27215");
+		Assert.assertEquals(localDateTime1, localDateTime2);
+	}
+	
+	/**
+	 * 根据dateFormatPattern格式化
+	 */
+	@Test
+	public void dateFormatPatternFormatTest(){
+		Date date = DateTimeFormatterUtil.smartParseToDate("2020-05-23 17:06:30");
+		//时间格式化
+		Assert.assertEquals("2020-05-23", DateTimeFormatterUtil.format(date, DateFormatPattern.YYYY_MM_DD));
+		
+		LocalDateTime localDateTime = DateTimeFormatterUtil.smartParseToLocalDateTime("2020-05-23 17:06:30");
+		//时间格式化
+		Assert.assertEquals("2020-05-23", DateTimeFormatterUtil.format(localDateTime, DateFormatPattern.YYYY_MM_DD));
+		
+		
+	}
+	
+	/**
+	 * 根据dateFormatPattern解析
+	 */
+	@Test
+	public void dateFormatPatternParseTest(){
+		
+		Date date = DateTimeFormatterUtil.parseToDate("2020-05-23", DateFormatPattern.YYYY_MM_DD);
+		
+		Date date2 = DateTimeFormatterUtil.parseToDate("2020-05-23", DateTimeFormatterUtil.YYYY_MM_DD_FMT);
+		Assert.assertEquals(date, date2);
+		
+		LocalDateTime localDateTime1 = DateTimeFormatterUtil.parseToLocalDateTime("2020-05-23", DateFormatPattern.YYYY_MM_DD);
+		
+		LocalDateTime localDateTime2 = DateTimeFormatterUtil.parseToLocalDateTime("2020-05-23", DateTimeFormatterUtil.YYYY_MM_DD_FMT);
+		Assert.assertEquals(localDateTime1, localDateTime2);
+	}	
+	
 }
