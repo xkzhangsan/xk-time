@@ -501,9 +501,9 @@ public class DateTimeFormatterUtilTest {
 		
 		Date date = DateTimeFormatterUtil.smartParseToDate("2020-05-23 17:06:30");
 		
-		Date date2 = DateTimeFormatterUtil.parseformatTimestampStyleToDate("2020-05-23 17:06:30.0");
+		Date date2 = DateTimeFormatterUtil.parseTimestampStyleToDate("2020-05-23 17:06:30.0");
 		
-		Date date3 = DateTimeFormatterUtil.parseformatTimestampStyleToDate("2020-05-23 17:06:30.0");
+		Date date3 = DateTimeFormatterUtil.parseTimestampStyleToDate("2020-05-23 17:06:30.0");
 		
 		Assert.assertEquals(date, date2);
 		Assert.assertEquals(date2, date3);
