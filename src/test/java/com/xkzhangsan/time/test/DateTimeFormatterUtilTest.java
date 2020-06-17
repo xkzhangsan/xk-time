@@ -456,10 +456,9 @@ public class DateTimeFormatterUtilTest {
 		Assert.assertEquals("2020-05-23 17:06:30.272150", DateTimeFormatterUtil.format(localDateTime, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSSSSS_FMT));
 		Assert.assertEquals("2020-05-23 17:06:30.272150620", DateTimeFormatterUtil.format(localDateTime, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSSSSSSSS_FMT));
 
-		ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
 		//ISO日期时间格式化
-		Assert.assertEquals("2020-05-23T17:06:30.272150620+0800", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_Z_FMT));
-		Assert.assertEquals("2020-05-23T17:06:30.272150620+08:00", DateTimeFormatterUtil.format(zonedDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_XXX_Z_FMT));
+		Assert.assertEquals("2020-05-23T17:06:30.272150620+0800", DateTimeFormatterUtil.format(localDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_Z_FMT));
+		Assert.assertEquals("2020-05-23T17:06:30.272150620+08:00", DateTimeFormatterUtil.format(localDateTime, DateTimeFormatterUtil.YYYY_MM_DD_T_HH_MM_SS_SSSSSSSSS_XXX_Z_FMT));
 	}
 	
 	/**
@@ -528,7 +527,8 @@ public class DateTimeFormatterUtilTest {
 		//时间格式化
 		Assert.assertEquals("2020-05-23", DateTimeFormatterUtil.format(localDateTime, DateFormatPattern.YYYY_MM_DD));
 		
-		
+		//自定义格式
+		Assert.assertEquals("2020-05-23 17:06", DateTimeFormatterUtil.format(date, "yyyy-MM-dd HH:mm"));
 	}
 	
 	/**
@@ -546,6 +546,10 @@ public class DateTimeFormatterUtilTest {
 		
 		LocalDateTime localDateTime2 = DateTimeFormatterUtil.parseToLocalDateTime("2020-05-23", DateTimeFormatterUtil.YYYY_MM_DD_FMT);
 		Assert.assertEquals(localDateTime1, localDateTime2);
-	}	
+		
+		//自定义格式
+		Date date3 = DateTimeFormatterUtil.smartParseToDate("2020-05-23 17:06");
+		Assert.assertEquals(date3, DateTimeFormatterUtil.parseToDate("2020-05-23 17:06", "yyyy-MM-dd HH:mm"));
+	}
 	
 }
