@@ -359,7 +359,6 @@ public class DateFormatPattern {
 	
 	
 	
-	
 	// ==================================yyyy-MM-dd HH:mm:ss.SSSSSSSSS 相关Pattern==================================	
 	
 	/**

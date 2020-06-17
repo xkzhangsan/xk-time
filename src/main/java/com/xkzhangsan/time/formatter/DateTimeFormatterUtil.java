@@ -775,7 +775,7 @@ public class DateTimeFormatterUtil {
     public static String format(LocalDateTime localDateTime, DateTimeFormatter formatter){
     	Objects.requireNonNull(localDateTime, "localDateTime");
     	Objects.requireNonNull(formatter, "formatter");
-    	return localDateTime.format(formatter);
+    	return DateTimeConverterUtil.toZonedDateTime(localDateTime).format(formatter);
     }
     
     /**
@@ -802,8 +802,8 @@ public class DateTimeFormatterUtil {
     	Objects.requireNonNull(localDateTime, "localDateTime");
     	Objects.requireNonNull(formatter, "formatter");
     	
-		return StringUtil.isNotEmpty(zoneId) ? localDateTime.format(formatter.withZone(ZoneId.of(zoneId)))
-				: localDateTime.format(formatter.withZone(ZoneId.of(null)));
+		return StringUtil.isNotEmpty(zoneId) ? DateTimeConverterUtil.toZonedDateTime(localDateTime).format(formatter.withZone(ZoneId.of(zoneId)))
+				: DateTimeConverterUtil.toZonedDateTime(localDateTime).format(formatter.withZone(ZoneId.of(null)));
     }
     
     /**
@@ -814,7 +814,7 @@ public class DateTimeFormatterUtil {
      */
     public static String format(LocalDate localDate, DateTimeFormatter formatter){
     	Objects.requireNonNull(formatter, "formatter");
-    	return DateTimeConverterUtil.toLocalDateTime(localDate).format(formatter);
+    	return DateTimeConverterUtil.toZonedDateTime(localDate).format(formatter);
     }
     
     /**
@@ -826,7 +826,7 @@ public class DateTimeFormatterUtil {
     public static String format(LocalTime localTime, DateTimeFormatter formatter){
     	Objects.requireNonNull(localTime, "localTime");
     	Objects.requireNonNull(formatter, "formatter");
-    	return localTime.format(formatter);
+    	return DateTimeConverterUtil.toZonedDateTime(localTime).format(formatter);
     }
     
     /**
