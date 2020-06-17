@@ -21,7 +21,7 @@
   
 xk-time is a datetime converter calculator formatter calendar and cron expression tool set, based on java8 date and time API, thread safe, easy to use.
 
-时间转换，计算，格式化，解析，日历和cron表达式等的工具，使用java8，线程安全，简单易用，多达60几种常用日期格式化模板。  
+时间转换，计算，格式化，解析，日历和cron表达式等的工具，使用java8，线程安全，简单易用，多达70几种常用日期格式化模板。  
  
 
 ## 0.为什么要开发这个工具？ 
@@ -50,7 +50,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
 
 
 ## 2.日期转换工具类   DateTimeConverterUtil 
-包含Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime、YearMonth和Timestamp等互相转换    
+包含Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime、YearMonth、Timestamp和long等互相转换    
  注意，ZonedDateTime相关的转换，尤其是其他时间转ZonedDateTime，要注意时间和对应时区一致。  
 
 详细使用可以查看相关测试代码。  
