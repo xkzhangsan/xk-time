@@ -28,8 +28,9 @@ import java.util.Objects;
  * HH:mm:ss<br>
  * yyyy-MM-dd HH:mm:ss<br>
  * yyyy-MM-dd HH:mm:ss.SSS<br>
- * yyyy-MM-dd'T'HH:mm:ssZ<br>
- * yyyy-MM-dd'T'HH:mm:ss.SSSZ等等<br>
+ * yyyy-MM-dd HH:mm:ss.SSSSSS<br>
+ * yyyy-MM-dd HH:mm:ss.SSSSSSSSS<br>
+ * yyyy-MM-dd'T'HH:mm:ss.SSSZ等等，支持毫秒、微秒和纳秒等精确时间。<br>
  * 
  * 1.格式化方法， format*， 比如formatToDateStr(Date date) 格式化，返回日期部分，如：yyyy-MM-dd；<br> 
  * format(Date date, DateTimeFormatter formatter) formatter 可以选择已定义好的formatter比如YYYY_MM_DD_HH_MM_SS_FMT （yyyy-MM-dd HH:mm:ss）<br>
@@ -45,8 +46,16 @@ import java.util.Objects;
  *
  * 6.解析Date默认格式，parseDateDefaultStr*，比如parseDateDefaultStrToDate(String text) <br>
  *     解析 EEE MMM dd HH:mm:ss zzz yyyy 比如：  Sat May 23 17:06:30 CST 2020 为Date <br>
- *
+ *     
  * 7.自定义时区格式化方法，比如 format(Date date, DateTimeFormatter formatter, String zoneId)，根据zoneId格式化Date <br>
+ *
+ * 8.自定义模板格式化方法，比如 format(Date date, String dateFormatPattern)，根据dateFormatPattern格式化Date <br>
+ * 
+ * 9.自定义模板解析方法，比如 parseToDate(String text, String dateFormatPattern)，根据dateFormatPattern格式化Date <br>
+ * 
+ * 10.Timestamp默认格式（ yyyy-mm-dd hh:mm:ss.fffffffff 其中 fffffffff 纳秒，省略后面的0）格式化方法，比如 formatTimestampStyle(Date date) <br>
+ * 
+ * 11.Timestamp默认格式（ yyyy-mm-dd hh:mm:ss.fffffffff 其中 fffffffff 纳秒，省略后面的0）解析方法，比如 parseTimestampStyleToDate(String text) <br>
  *
  * 注意：格式化和解析与系统时区不同的时间时，使用自定义时区格式化方法，或可以使用withZone方法重新设置时区，比如：<br>
  * YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")<br>
@@ -1336,7 +1345,7 @@ public class DateTimeFormatterUtil {
 	 * @param text
 	 * @return Date
 	 */
-	public static Date parseformatTimestampStyleToDate(String text){
+	public static Date parseTimestampStyleToDate(String text){
 		return DateTimeConverterUtil.toDate(parseTimestampStyleToLocalDateTime(text));
 	}
 	
