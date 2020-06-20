@@ -552,4 +552,16 @@ public class DateTimeFormatterUtilTest {
 		Assert.assertEquals(date3, DateTimeFormatterUtil.parseToDate("2020-05-23 17:06", "yyyy-MM-dd HH:mm"));
 	}
 	
+	/**
+	 * 验证日期格式是否正确测试
+	 */
+	@Test
+	public void isValidDateTimeTest(){
+		Assert.assertTrue(DateTimeFormatterUtil.isValidDate("2020-12-31"));
+		Assert.assertFalse(DateTimeFormatterUtil.isValidDate("2020-13-61"));
+		
+		Assert.assertTrue(DateTimeFormatterUtil.isValidDateTime("2020-12-31 23:00:00"));
+		Assert.assertFalse(DateTimeFormatterUtil.isValidDateTime("2020-12-31 25:00:00"));
+	}
+	
 }

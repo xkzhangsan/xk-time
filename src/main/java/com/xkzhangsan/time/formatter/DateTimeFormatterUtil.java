@@ -57,6 +57,8 @@ import java.util.Objects;
  * 
  * 11.Timestamp默认格式（ yyyy-mm-dd hh:mm:ss.fffffffff 其中 fffffffff 纳秒，省略后面的0）解析方法，比如 parseTimestampStyleToDate(String text) <br>
  *
+ * 12.验证日期格式是否正确方法，isValidDate*， 比如isValidDate(String text)，验证yyyy-MM-dd 格式字符串是否正确 <br>
+ * 
  * 注意：格式化和解析与系统时区不同的时间时，使用自定义时区格式化方法，或可以使用withZone方法重新设置时区，比如：<br>
  * YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")<br>
  *
@@ -1392,6 +1394,35 @@ public class DateTimeFormatterUtil {
 		//使用yyyy-MM-dd HH:mm:ss.SSSSSSSSS 标准格式解析
 		return parseToLocalDateTime(text, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSSSSSSSS_FMT);
 	}
+	
+	/**
+	 * 验证日期格式是否正确
+	 * @param text yyyy-MM-dd 格式
+	 * @return 正确返回true，不正确返回false
+	 */
+	public static boolean isValidDate(String text){
+		try {
+			parseDateStrToDate(text);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	/**
+	 * 验证日期时间格式是否正确
+	 * @param text yyyy-MM-dd HH:mm:ss 格式
+	 * @return 正确返回true，不正确返回false
+	 */
+	public static boolean isValidDateTime(String text){
+		try {
+			parseDateTimeStrToDate(text);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
 	
 	// ==================================private method==================================
 
