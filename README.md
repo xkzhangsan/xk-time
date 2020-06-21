@@ -19,9 +19,9 @@
 </p>
 <br>
   
-xk-time is a datetime converter calculator formatter calendar and cron expression tool set, based on java8 date and time API, thread safe, easy to use.
+xk-time is a tool for time conversion, calculation, formatting, parsing, calendar and cron expression, etc., using Java8, thread-safe, easy to use, up to 70 commonly used date formatting templates, support Java8 time class and Date , Lightweight, no third party dependence.
 
-时间转换，计算，格式化，解析，日历和cron表达式等的工具，使用java8，线程安全，简单易用，多达70几种常用日期格式化模板。  
+xk-time 是时间转换，计算，格式化，解析，日历和cron表达式等的工具，使用Java8，线程安全，简单易用，多达70几种常用日期格式化模板，支持Java8时间类和Date，轻量级，无第三方依赖。  
  
 
 ## 0.为什么要开发这个工具？ 
