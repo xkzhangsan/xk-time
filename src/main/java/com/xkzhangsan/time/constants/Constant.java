@@ -1,5 +1,6 @@
 package com.xkzhangsan.time.constants;
 
+import java.time.LocalTime;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -64,6 +65,13 @@ public class Constant {
 	 * 中文
 	 */
 	public static final Pattern CHINESE_REGEX = Pattern.compile("[\u4E00-\u9FFF]");
+	
+	//===========================时间定义============================
+	
+	public static final LocalTime ONECLOCK = LocalTime.of(1, 0, 0);
+	
+	public static final LocalTime TWENTYTHREECLOCK = LocalTime.of(23, 0, 0);
+	
 	//===========================其他定义============================
 	
 	/**

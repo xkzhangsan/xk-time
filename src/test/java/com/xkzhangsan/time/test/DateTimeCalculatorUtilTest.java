@@ -12,6 +12,7 @@ import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -372,6 +373,35 @@ public class DateTimeCalculatorUtilTest {
 		Assert.assertTrue(age>=20);
 		@SuppressWarnings("unused")
 		boolean isBirthDay = DateTimeCalculatorUtil.isBirthDay(date);
+	}
+	
+	/**
+	 * 年龄生日测试
+	 */	
+	@Test
+	public void getWeekofTest(){
+		Date date = DateTimeCalculatorUtil.getDate(2020, 8, 1);
+		// 日期所在月中第几周
+		Assert.assertEquals(1, DateTimeCalculatorUtil.weekOfMonth(date));
+		DateTimeCalculatorUtil.weekOfMonth();
+		// 日期所在年中第几周
+		Assert.assertEquals(31, DateTimeCalculatorUtil.weekOfYear(date));
+		DateTimeCalculatorUtil.weekOfYear();
+	}
+	
+	/**
+	 * 十二时辰测试
+	 */	
+	@Test
+	public void getTwelveHoursTest(){
+		LocalTime localTime = LocalTime.of(23,0,0);
+		Assert.assertEquals("子时", DateTimeCalculatorUtil.getTwelveHours(localTime));
+		
+		Date date = DateTimeCalculatorUtil.getDate(2020, 8, 1, 0,30,0);
+		Assert.assertEquals("子时", DateTimeCalculatorUtil.getTwelveHours(date));
+		
+		Date date2 = DateTimeCalculatorUtil.getDate(2020, 8, 1, 20,30,0);
+		Assert.assertEquals("戌时", DateTimeCalculatorUtil.getTwelveHours(date2));
 	}
 
 	@Test
