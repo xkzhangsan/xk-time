@@ -92,6 +92,12 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
   
 （16）判断是否到生日方法，isBirthDay*， 比如isBirthDay(Date birthDay)，根据生日判断当前日期是否到生日。  
   
+（17）周数计算方法，weekof*， 比如weekOfMonth(Date date)，日期所在月中第几周。  
+  
+（18）判断星期一，星期五方法，isMonday*,isZhouYi*， 比如isZhouYi(Date date)，是否为周一。  
+  
+（19）十二时辰计算方法，getTwelveTwo*， 比如getTwelveTwo(Date date)，获取指定时间对应的十二时辰。  
+  
   
 详细使用可以查看相关测试代码。  
 
@@ -131,9 +137,10 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
   
 （11）Timestamp默认格式（ yyyy-mm-dd hh:mm:ss.fffffffff 其中 fffffffff 纳秒，省略后面的0）解析方法。    
 比如 parseTimestampStyleToDate(String text)。  
-
+  
 （12）验证日期格式是否正确方法，isValidDate*， 比如isValidDate(String text)，验证yyyy-MM-dd 格式字符串是否正确。  
   
+（13）根据自定义模板数组解析方法， 比如parseToDate(String text, String[] dateFormatPatterns)，dateFormatPatterns 支持多种模板，只要其中一个解析成功就返回对应Date。  
   
  注意：格式化和解析与系统时区不同的时间时，使用自定义时区格式化方法，或可以使用withZone方法重新设置时区，比如：  
  YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris") 。  
@@ -152,9 +159,7 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
 （1）农历日期年月日计算。  
 （2）农历岁次，生肖属相计算。  
 （3）二十四节气计算等  
- 注意： 仅支持公历1901-2050年的农历转换。    
- 农历和二十四节气计算的准确依赖于lunarInfo和solarTermInfo基础数据的准确性和精确度。  
- 根据测试结果，发现本程序和常用万年历基本一致，常用万年历软件中也有很少量计算误差，欢迎提出问题，会不断进行改进和修正。  
+ 注意： 仅支持公历1900-2100年的农历转换。    
    
 详细使用可以查看相关测试代码。  
  
@@ -164,7 +169,7 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
 （2）农历节假日计算， getChineseHoliday* 比如getChineseHoliday(Date date) 计算date的农历节日，getChineseHoliday(Date date, Map<String, String> chineseHolidayMap) 可以传入自定义农历节日数据。  
 （3）二十四节气计算， getSolarTerm* 比如getSolarTerm(Date date) 计算date的二十四节气。  
 
-注意： 农历和二十四节气使用农历日期类 LunarDate，仅支持公历1901-2050年的计算。  
+注意： 农历和二十四节气使用农历日期类 LunarDate，仅支持公历1900-2100年的计算。  
 
 详细使用可以查看相关测试代码。      
     

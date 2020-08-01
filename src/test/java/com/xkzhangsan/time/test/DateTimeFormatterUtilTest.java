@@ -1,5 +1,6 @@
 package com.xkzhangsan.time.test;
 
+import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.formatter.DateFormatPattern;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
@@ -562,6 +563,17 @@ public class DateTimeFormatterUtilTest {
 		
 		Assert.assertTrue(DateTimeFormatterUtil.isValidDateTime("2020-12-31 23:00:00"));
 		Assert.assertFalse(DateTimeFormatterUtil.isValidDateTime("2020-12-31 25:00:00"));
+	}
+	
+	/**
+	 * 验证根据自定义模板数组解析时间
+	 */
+	@Test
+	public void isValidDateTimeTest2(){
+		//解析为Date
+		Assert.assertEquals(DateTimeCalculatorUtil.getDate(2020, 12, 31),DateTimeFormatterUtil.parseToDate("2020-12-31", new String[]{"MM", "yyyy-MM-dd"}));
+		//解析为LocalDateTime
+		Assert.assertEquals(LocalDateTime.of(2020, 12, 31, 0, 0),DateTimeFormatterUtil.parseToLocalDateTime("2020-12-31", new String[]{"MM", "yyyy-MM-dd"}));
 	}
 	
 }

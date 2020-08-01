@@ -4,6 +4,7 @@ import com.xkzhangsan.time.TemporalAdjusterExtension;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.enums.ConstellationNameEnum;
 import com.xkzhangsan.time.enums.MonthNameEnum;
+import com.xkzhangsan.time.enums.TwelveTwoEnum;
 import com.xkzhangsan.time.enums.WeekNameEnum;
 import com.xkzhangsan.time.enums.ZoneIdEnum;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
@@ -27,9 +28,11 @@ import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.TemporalField;
 import java.time.temporal.TemporalUnit;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -53,7 +56,10 @@ import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
  * 13.减少时间精度方法，reduceAccuracyTo*， 比如reduceAccuracyToDay(Date date)，减少时间精度到天，其他补0，返回如，2020-04-23 00:00:00<br>
  * 14.获取时间戳方法，getEpoch*， 比如getEpochMilli()获取时间戳，getEpochMilliFormat()获取时间戳格式化字符串（yyyy-MM-dd HH:mm:ss）<br>
  * 15.计算年龄方法，getAge*， 比如getAge(Date birthDay)，通过生日计算年龄<br>
- * 16.判断是否到生日方法，isBirthDay*， 比如isBirthDay(Date birthDay)，根据生日判断当前日期是否到生日。
+ * 16.判断是否到生日方法，isBirthDay*， 比如isBirthDay(Date birthDay)，根据生日判断当前日期是否到生日<br>
+ * 17.周数计算方法，weekof*， 比如weekOfMonth(Date date)，日期所在月中第几周<br>
+ * 18.判断星期一，星期五方法，isMonday*,isZhouYi*， 比如isZhouYi(Date date)，是否为周一<br>
+ * 19.十二时辰计算方法，getTwelveTwo*， 比如getTwelveTwo(Date date)，获取指定时间对应的十二时辰<br>
 * @author xkzhangsan
 * @date 2019年12月1日
 *
@@ -2112,6 +2118,22 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
+	 * 明天起始时间 即：明天日期+00:00:00
+	 * @return Date
+	 */
+	public static Date startTimeOfTomorrow(){
+		return DateTimeConverterUtil.toDate(LocalDate.now().plusDays(1).atTime(startTimeOfDay()));
+	}
+	
+	/**
+	 * 明天结束时间即：明天日期+23:59:59
+	 * @return Date
+	 */
+	public static Date endTimeOfTomorrow(){
+		return DateTimeConverterUtil.toDate(LocalDate.now().plusDays(1).atTime(endTimeOfDay()));
+	}
+	
+	/**
 	 * 今天起始时间 即：今天日期+00:00:00
 	 * @return Date
 	 */
@@ -2683,6 +2705,209 @@ public class DateTimeCalculatorUtil {
 	public static Date reduceAccuracyToDay(Date date) {
 		Objects.requireNonNull(date, "date");
 		return DateTimeConverterUtil.toDate(reduceAccuracyToDay(DateTimeConverterUtil.toLocalDateTime(date)));
+	}
+	
+	/**
+	 * 日期所在月中第几周
+	 * @param localDate
+	 * @param locale 地区 为null 是取系统默认地区
+	 * @return 周数
+	 */
+	public static int weekOfMonth(LocalDate localDate, Locale locale){
+		Objects.requireNonNull(localDate, "localDate");
+		WeekFields weekFields = locale == null ? WeekFields.of(Locale.getDefault()) : WeekFields.of(locale);
+		return (int) weekFields.weekOfMonth().getFrom(localDate);
+	}
+	
+	/**
+	 * 日期所在月中第几周
+	 * @param localDate
+	 * @return 周数
+	 */
+	public static int weekOfMonth(LocalDate localDate){
+		return weekOfMonth(localDate, null);
+	}
+	
+	/**
+	 * 日期所在月中第几周
+	 * @param localDateTime
+	 * @return 周数
+	 */
+	public static int weekOfMonth(LocalDateTime localDateTime){
+		return weekOfMonth(DateTimeConverterUtil.toLocalDate(localDateTime), null);
+	}
+	
+	/**
+	 * 日期所在月中第几周
+	 * @param date
+	 * @return 周数
+	 */
+	public static int weekOfMonth(Date date){
+		return weekOfMonth(DateTimeConverterUtil.toLocalDate(date), null);
+	}
+	
+	/**
+	 * 当前日期所在月中第几周
+	 * @return 周数
+	 */
+	public static int weekOfMonth(){
+		return weekOfMonth(LocalDate.now());
+	}
+	
+	/**
+	 * 日期所在年中第几周
+	 * @param localDate
+	 * @param locale 地区 为null 是取系统默认地区
+	 * @return 周数
+	 */
+	public static int weekOfYear(LocalDate localDate, Locale locale){
+		Objects.requireNonNull(localDate, "localDate");
+		WeekFields weekFields = locale == null ? WeekFields.of(Locale.getDefault()) : WeekFields.of(locale);
+		return (int) weekFields.weekOfYear().getFrom(localDate);
+	}
+	
+	/**
+	 * 日期所在年中第几周
+	 * @param localDate
+	 * @return 周数
+	 */
+	public static int weekOfYear(LocalDate localDate){
+		return weekOfYear(localDate, null);
+	}
+	
+	/**
+	 * 日期所在年中第几周
+	 * @param localDateTime
+	 * @return 周数
+	 */
+	public static int weekOfYear(LocalDateTime localDateTime){
+		return weekOfYear(DateTimeConverterUtil.toLocalDate(localDateTime), null);
+	}
+	
+	/**
+	 * 日期所在年中第几周
+	 * @param date
+	 * @return 周数
+	 */
+	public static int weekOfYear(Date date){
+		return weekOfYear(DateTimeConverterUtil.toLocalDate(date), null);
+	}
+	
+	/**
+	 * 当前日期所在年中第几周
+	 * @return 周数
+	 */
+	public static int weekOfYear(){
+		return weekOfYear(LocalDate.now());
+	}
+	
+	/**
+	 * 是否为周一
+	 * @param localDate
+	 * @return 是 true 否 false
+	 */
+	public static boolean isMonday(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return WeekNameEnum.Mon.getCode() == localDate.getDayOfWeek().getValue();
+	}
+	
+	/**
+	 * 是否为周一
+	 * @param date
+	 * @return 是 true 否 false
+	 */
+	public static boolean isMonday(Date date){
+		return isMonday(DateTimeConverterUtil.toLocalDate(date));
+	}
+	
+	/**
+	 * 是否为周一
+	 * @param localDate
+	 * @return 是 true 否 false
+	 */
+	public static boolean isZhouYi(LocalDate localDate){
+		return isMonday(localDate);
+	}
+	
+	/**
+	 * 是否为周一
+	 * @param date
+	 * @return 是 true 否 false
+	 */
+	public static boolean isZhouYi(Date date){
+		return isMonday(DateTimeConverterUtil.toLocalDate(date));
+	}
+	
+	/**
+	 * 是否为周五
+	 * @param localDate
+	 * @return 是 true 否 false
+	 */
+	public static boolean isFriday(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return WeekNameEnum.Fri.getCode() == localDate.getDayOfWeek().getValue();
+	}
+	
+	/**
+	 * 是否为周五
+	 * @param date
+	 * @return 是 true 否 false
+	 */
+	public static boolean isFriday(Date date){
+		return isFriday(DateTimeConverterUtil.toLocalDate(date));
+	}
+	
+	/**
+	 * 是否为周五
+	 * @param localDate
+	 * @return 是 true 否 false
+	 */
+	public static boolean isZhouWu(LocalDate localDate){
+		return isFriday(localDate);
+	}
+	
+	/**
+	 * 是否为周五
+	 * @param date
+	 * @return 是 true 否 false
+	 */
+	public static boolean isZhouWu(Date date){
+		return isFriday(DateTimeConverterUtil.toLocalDate(date));
+	}
+	
+	/**
+	 * 获取指定时间对应的十二时辰
+	 * @param localTime
+	 * @return 十二时辰名称
+	 */
+	public static String getTwelveTwo(LocalTime localTime){
+		return TwelveTwoEnum.getNameCn(localTime);
+	}
+	
+	/**
+	 * 获取指定时间对应的十二时辰
+	 * @param localDateTime
+	 * @return 十二时辰名称
+	 */
+	public static String getTwelveTwo(LocalDateTime localDateTime){
+		return TwelveTwoEnum.getNameCn(DateTimeConverterUtil.toLocalTime(localDateTime));
+	}
+	
+	/**
+	 * 获取指定时间对应的十二时辰
+	 * @param localDateTime
+	 * @return 十二时辰名称
+	 */
+	public static String getTwelveTwo(Date date){
+		return TwelveTwoEnum.getNameCn(date);
+	}
+	
+	/**
+	 * 获取当前时间对应的十二时辰
+	 * @return 十二时辰名称
+	 */
+	public static String getTwelveTwo(){
+		return TwelveTwoEnum.getNameCn(LocalTime.now());
 	}
 	
 }
