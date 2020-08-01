@@ -97,7 +97,7 @@ public enum TwelveTwoEnum {
 	 */
 	private static boolean isZiShi(LocalTime localTime, LocalTime timeStart, LocalTime timeEnd) {
 		//23点，0点
-		if(LocalTime.MIDNIGHT.equals(localTime) || LocalTime.MIDNIGHT.equals(localTime)){
+		if(Constant.TWENTYTHREECLOCK.equals(localTime) || LocalTime.MIDNIGHT.equals(localTime)){
 			return true;
 		}
 		//23-0点
