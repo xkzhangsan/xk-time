@@ -37,7 +37,7 @@ xk-time工具包，使用java8 api，其中Instant、LocalDate、LocalDateTime�
  
 xk-time工具包，将上面功能按照时间转换，时间计算，时间格式化解析分成3个工具类：DateTimeConverterUtil，DateTimeCalculatorUtil，DateTimeFormatterUtil，每个类只做一个种功能，方便使用。  
  
-#### （3）为了将与时间紧密相关的节假日、农历、二十四节气、十二星座和日历等功能集中起来开发成工具，方便使用。  
+#### （3）为了将与时间紧密相关的节假日、农历、二十四节气、十二星座、十二生肖、十二时辰和日历等功能集中起来开发成工具，方便使用。  
   
   
   
@@ -48,7 +48,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>1.1.3</version>    
+      <version>1.2.0</version>    
     </dependency>    
 
 
