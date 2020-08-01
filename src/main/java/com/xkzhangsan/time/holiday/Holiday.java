@@ -26,7 +26,7 @@ import java.util.Objects;
  * 2.农历节假日计算， getChineseHoliday* 比如getChineseHoliday(Date date) 计算date的农历节日，getChineseHoliday(Date date, Map<String, String> chineseHolidayMap) 可以传入自定义农历节日数据<br>
  * 3.二十四节气计算， getSolarTerm* 比如getSolarTerm(Date date) 计算date的二十四节气<br>
  * 
- * 农历相关，仅支持公历1901-2100年的计算，使用{@link LunarDate}<br>
+ * 农历相关，仅支持公历1900-2100年的计算，使用{@link LunarDate}<br>
 * @author xkzhangsan
 * @date 2019年12月30日
 * @version 0.2 试用

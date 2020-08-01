@@ -56,7 +56,10 @@ import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
  * 13.减少时间精度方法，reduceAccuracyTo*， 比如reduceAccuracyToDay(Date date)，减少时间精度到天，其他补0，返回如，2020-04-23 00:00:00<br>
  * 14.获取时间戳方法，getEpoch*， 比如getEpochMilli()获取时间戳，getEpochMilliFormat()获取时间戳格式化字符串（yyyy-MM-dd HH:mm:ss）<br>
  * 15.计算年龄方法，getAge*， 比如getAge(Date birthDay)，通过生日计算年龄<br>
- * 16.判断是否到生日方法，isBirthDay*， 比如isBirthDay(Date birthDay)，根据生日判断当前日期是否到生日。
+ * 16.判断是否到生日方法，isBirthDay*， 比如isBirthDay(Date birthDay)，根据生日判断当前日期是否到生日<br>
+ * 17.周数计算方法，weekof*， 比如weekOfMonth(Date date)，日期所在月中第几周<br>
+ * 18.判断星期一，星期五方法，isMonday*,isZhouYi*， 比如isZhouYi(Date date)，是否为周一<br>
+ * 19.十二时辰计算方法，getTwelveTwo*， 比如getTwelveTwo(Date date)，获取指定时间对应的十二时辰<br>
 * @author xkzhangsan
 * @date 2019年12月1日
 *
@@ -2115,6 +2118,22 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
+	 * 明天起始时间 即：明天日期+00:00:00
+	 * @return Date
+	 */
+	public static Date startTimeOfTomorrow(){
+		return DateTimeConverterUtil.toDate(LocalDate.now().plusDays(1).atTime(startTimeOfDay()));
+	}
+	
+	/**
+	 * 明天结束时间即：明天日期+23:59:59
+	 * @return Date
+	 */
+	public static Date endTimeOfTomorrow(){
+		return DateTimeConverterUtil.toDate(LocalDate.now().plusDays(1).atTime(endTimeOfDay()));
+	}
+	
+	/**
 	 * 今天起始时间 即：今天日期+00:00:00
 	 * @return Date
 	 */
@@ -2861,7 +2880,7 @@ public class DateTimeCalculatorUtil {
 	 * @param localTime
 	 * @return 十二时辰名称
 	 */
-	public static String getTwelveHours(LocalTime localTime){
+	public static String getTwelveTwo(LocalTime localTime){
 		return TwelveTwoEnum.getNameCn(localTime);
 	}
 	
@@ -2870,7 +2889,7 @@ public class DateTimeCalculatorUtil {
 	 * @param localDateTime
 	 * @return 十二时辰名称
 	 */
-	public static String getTwelveHours(LocalDateTime localDateTime){
+	public static String getTwelveTwo(LocalDateTime localDateTime){
 		return TwelveTwoEnum.getNameCn(DateTimeConverterUtil.toLocalTime(localDateTime));
 	}
 	
@@ -2879,7 +2898,7 @@ public class DateTimeCalculatorUtil {
 	 * @param localDateTime
 	 * @return 十二时辰名称
 	 */
-	public static String getTwelveHours(Date date){
+	public static String getTwelveTwo(Date date){
 		return TwelveTwoEnum.getNameCn(date);
 	}
 	
@@ -2887,7 +2906,7 @@ public class DateTimeCalculatorUtil {
 	 * 获取当前时间对应的十二时辰
 	 * @return 十二时辰名称
 	 */
-	public static String getTwelveHours(){
+	public static String getTwelveTwo(){
 		return TwelveTwoEnum.getNameCn(LocalTime.now());
 	}
 	

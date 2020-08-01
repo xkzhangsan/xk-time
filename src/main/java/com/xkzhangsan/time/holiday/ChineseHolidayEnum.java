@@ -11,7 +11,7 @@ import java.util.Objects;
 /**
  * 农历节日处理
  * 
- * 农历相关，仅支持公历1901-2100年的农历，使用{@link LunarDate}
+ * 农历相关，仅支持公历1900-2100年的农历，使用{@link LunarDate}
 * @author xkzhangsan
 * @date 2019年12月30日
 * @version 0.2 试用

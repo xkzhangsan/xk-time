@@ -395,13 +395,13 @@ public class DateTimeCalculatorUtilTest {
 	@Test
 	public void getTwelveHoursTest(){
 		LocalTime localTime = LocalTime.of(23,0,0);
-		Assert.assertEquals("子时", DateTimeCalculatorUtil.getTwelveHours(localTime));
+		Assert.assertEquals("子时", DateTimeCalculatorUtil.getTwelveTwo(localTime));
 		
 		Date date = DateTimeCalculatorUtil.getDate(2020, 8, 1, 0,30,0);
-		Assert.assertEquals("子时", DateTimeCalculatorUtil.getTwelveHours(date));
+		Assert.assertEquals("子时", DateTimeCalculatorUtil.getTwelveTwo(date));
 		
 		Date date2 = DateTimeCalculatorUtil.getDate(2020, 8, 1, 20,30,0);
-		Assert.assertEquals("戌时", DateTimeCalculatorUtil.getTwelveHours(date2));
+		Assert.assertEquals("戌时", DateTimeCalculatorUtil.getTwelveTwo(date2));
 	}
 
 	@Test
