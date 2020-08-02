@@ -3,6 +3,8 @@ package com.xkzhangsan.time.enums;
 import java.time.MonthDay;
 import java.util.Objects;
 
+import com.xkzhangsan.time.constants.Constant;
+
 import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
 
 /**
@@ -64,18 +66,39 @@ public enum ConstellationNameEnum {
 		Objects.requireNonNull(monthDayStr, "monthDayStr");
 		MonthDay monthDay = MonthDay.parse(MONTHDAY_FORMAT_PRE + monthDayStr);
 		for(ConstellationNameEnum constellationNameEnum : ConstellationNameEnum.values()){
+			if(constellationNameEnum.getStartDate().equals(monthDayStr)||constellationNameEnum.getEndDate().equals(monthDayStr)){
+				return constellationNameEnum;
+			}
 			MonthDay monthDayStart = MonthDay.parse(MONTHDAY_FORMAT_PRE + constellationNameEnum.getStartDate());
 			MonthDay monthDayEnd = MonthDay.parse(MONTHDAY_FORMAT_PRE + constellationNameEnum.getEndDate());
-			if (isBetween(monthDay, monthDayStart, monthDayEnd)) {
+			if(isCapricorn(monthDay, monthDayStart, monthDayEnd)){
+				return ConstellationNameEnum.Capricorn;
+			}
+			if (monthDay.isAfter(monthDayStart) && monthDay.isBefore(monthDayEnd)) {
 				return constellationNameEnum;
 			}
 		}
 		return null;
 	}
 
-	private static boolean isBetween(MonthDay monthDay, MonthDay monthDayStart, MonthDay monthDayEnd) {
-		return monthDay.equals(monthDayStart) || monthDay.equals(monthDayEnd)
-				|| (monthDay.isAfter(monthDayStart) && monthDay.isBefore(monthDayEnd));
+	/**
+	 * 是否是摩羯座
+	 * @param monthDay
+	 * @param monthDayStart
+	 * @param monthDayEnd
+	 * @return
+	 */
+	private static boolean isCapricorn(MonthDay monthDay, MonthDay monthDayStart, MonthDay monthDayEnd) {
+		if(Constant.MONTH_DAY_START.equals(monthDay)||Constant.MONTH_DAY_END.equals(monthDay)){
+			return true;
+		}
+		if(monthDay.isAfter(Constant.CAPRICORN_START) && monthDay.isBefore(Constant.MONTH_DAY_END)){
+			return true;
+		}
+		if(monthDay.isAfter(Constant.MONTH_DAY_START) && monthDay.isBefore(Constant.CAPRICORN_END)){
+			return true;
+		}
+		return false;
 	}
 
 	/**

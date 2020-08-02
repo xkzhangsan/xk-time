@@ -1,6 +1,8 @@
 package com.xkzhangsan.time.constants;
 
+
 import java.time.LocalTime;
+import java.time.MonthDay;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -78,14 +80,34 @@ public class Constant {
 	 */
 	public static final LocalTime TWENTYTHREECLOCK = LocalTime.of(23, 0, 0);
 	
-	//===========================其他定义============================
-	
 	/**
 	 * MonthDay 默认解析前缀
 	 * 解析字符串需要加前缀，如"--12-03"
 	 * @see java.time.MonthDay.parse(CharSequence)
 	 */
 	public static final String MONTHDAY_FORMAT_PRE = "--";
+
+	/**
+	 * 月日的起始值 01-01
+	 */
+	public static final MonthDay MONTH_DAY_START = MonthDay.parse(MONTHDAY_FORMAT_PRE +"01-01");
+	
+	/**
+	 * 月日的终止值 12-31
+	 */
+	public static final MonthDay MONTH_DAY_END = MonthDay.parse(MONTHDAY_FORMAT_PRE +"12-31");
+	
+	/**
+	 * 摩羯座的起始日期 12-22
+	 */
+	public static final MonthDay CAPRICORN_START = MonthDay.parse(MONTHDAY_FORMAT_PRE +"12-22");
+	
+	/**
+	 * 摩羯座的终止日期 01-19
+	 */
+	public static final MonthDay CAPRICORN_END = MonthDay.parse(MONTHDAY_FORMAT_PRE +"01-19");
+	
+	//===========================其他定义============================
 	
 	/**
 	 * 中文

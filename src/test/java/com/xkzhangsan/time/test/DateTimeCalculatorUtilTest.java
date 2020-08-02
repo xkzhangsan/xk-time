@@ -305,6 +305,11 @@ public class DateTimeCalculatorUtilTest {
 		//获取星座英文
 		Assert.assertEquals("Pisces",DateTimeCalculatorUtil.getConstellationNameEn("02-29"));
 		
+		Assert.assertEquals("摩羯座",DateTimeCalculatorUtil.getConstellationNameCn("12-31"));
+		
+		Assert.assertEquals("摩羯座",DateTimeCalculatorUtil.getConstellationNameCn("01-01"));
+		
+		Assert.assertEquals("双鱼座",DateTimeCalculatorUtil.getConstellationNameCn("02-29"));
 		//2020-05-01 的星座
 		Assert.assertEquals("金牛座",DateTimeCalculatorUtil.getConstellationNameCn(DateTimeCalculatorUtil.getDate(2020, 5, 1)));
 	}
@@ -376,7 +381,7 @@ public class DateTimeCalculatorUtilTest {
 	}
 	
 	/**
-	 * 年龄生日测试
+	 * 周数计算测试
 	 */	
 	@Test
 	public void getWeekofTest(){
@@ -387,6 +392,12 @@ public class DateTimeCalculatorUtilTest {
 		// 日期所在年中第几周
 		Assert.assertEquals(31, DateTimeCalculatorUtil.weekOfYear(date));
 		DateTimeCalculatorUtil.weekOfYear();
+		
+		Date date2 = DateTimeCalculatorUtil.getDate(2020, 8, 3);
+		Assert.assertTrue(DateTimeCalculatorUtil.isMonday(date2));
+		
+		Date date3 = DateTimeCalculatorUtil.getDate(2020, 8, 7);
+		Assert.assertTrue(DateTimeCalculatorUtil.isFriday(date3));
 	}
 	
 	/**
