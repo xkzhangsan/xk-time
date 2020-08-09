@@ -31,7 +31,7 @@ xk-time is a tool for time conversion, calculation, formatting, parsing, calenda
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>2.0.0</version>    
+      <version>2.1.0</version>    
     </dependency>    
       
   
