@@ -26,8 +26,16 @@
 xk-time is a tool for time conversion, calculation, formatting, parsing, calendar and cron expression, etc., using Java8, thread-safe, easy to use, up to 70 commonly used date formatting templates, support Java8 time class and Date , Lightweight, no third party dependence.
   
   
+## Maven 坐标  
+
+    <dependency>  
+      <groupId>com.github.xkzhangsan</groupId>    
+      <artifactId>xk-time</artifactId>       
+      <version>2.1.0</version>    
+    </dependency>    
+      
   
-## 0.为什么要开发这个工具？ 
+## 为什么要开发这个工具？ 
  
 #### （1）java8以前的Date API设计不太好，使用不方便，往往会有线程安全问题。  
  
@@ -42,23 +50,15 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
   
   
   
-  
-## 1.Maven 坐标  
-
-    <dependency>  
-      <groupId>com.github.xkzhangsan</groupId>    
-      <artifactId>xk-time</artifactId>       
-      <version>2.0.0</version>    
-    </dependency>    
 
 
-## 2.日期转换工具类   DateTimeConverterUtil 
+## 1.日期转换工具类   DateTimeConverterUtil 
 包含Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime、YearMonth、Timestamp和long等互相转换    
  注意，ZonedDateTime相关的转换，尤其是其他时间转ZonedDateTime，要注意时间和对应时区一致。  
 
 详细使用可以查看相关测试代码。  
 
-## 3.日期计算工具类  DateTimeCalculatorUtil 
+## 2.日期计算工具类  DateTimeCalculatorUtil 
 包括：  
 （1）获取时间属性方法，get* 比如getYear(Date date) 获取年部分，getMonthCnLong(Date date)获取月份中文，getDayOfWeekCn(Date date)，获取星期中文。   
   
@@ -101,7 +101,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
   
 详细使用可以查看相关测试代码。  
 
-## 4.日期格式化和解析工具类  DateTimeFormatterUtil 
+## 3.日期格式化和解析工具类  DateTimeFormatterUtil 
 包含常用日期格式如：  
  yyyy-MM-dd  
  HH:mm:ss  
@@ -147,14 +147,14 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
   
 详细使用可以查看相关测试代码。  
 
-## 5.日历工具类  CalendarUtil 
+## 4.日历工具类  CalendarUtil 
 包括：  
 （1）生成指定时间的日历（包含年、月和日层级关系的日历）方法，generateCalendar* 比如generateCalendar(int year, int month) 生成指定年月的日历。   
 （2）生成指定时间的日历（包含年、月和日层级关系的日历），包含农历和所有节假日信息方法，generateCalendarWithHoliday*， 比generateCalendarWithHoliday(int year, int month, Map<String, String> localHolidayMap,Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap)生成指定年月的日历，包含农历和所有节假日信息，可以自定义节假日和工作日等。   
 
 详细使用可以查看相关测试代码。  
 
-## 6.农历日期类 LunarDate    
+## 5.农历日期类 LunarDate    
 包含：  
 （1）农历日期年月日计算。  
 （2）农历岁次，生肖属相计算。  
@@ -163,7 +163,7 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
    
 详细使用可以查看相关测试代码。  
  
-## 7.节假日计算类 Holiday      
+## 6.节假日计算类 Holiday      
 包含：  
 （1）公历节假日计算， getLocalHoliday* 比如getLocalHoliday(Date date) 计算date的公历节日，getLocalHoliday(Date date, Map<String, String> localHolidayMap) 可以传入自定义公历节日数据。   
 （2）农历节假日计算， getChineseHoliday* 比如getChineseHoliday(Date date) 计算date的农历节日，getChineseHoliday(Date date, Map<String, String> chineseHolidayMap) 可以传入自定义农历节日数据。  
@@ -173,7 +173,7 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
 
 详细使用可以查看相关测试代码。      
     
-## 8.Cron表达式工具类 CronExpressionUtil    
+## 7.Cron表达式工具类 CronExpressionUtil    
   
 cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小时（0-23） 日期（1-31） 月份（1-12的整数或者 JAN-DEC） 星期（1-7的整数或者 SUN-SAT （1=SUN）） 年份（可选，1970-2099）  
 所有字段均可使用特殊字符：, - * / 分别是枚举，范围，任意，间隔  
@@ -196,6 +196,15 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 注意： 底层使用 quartz的CronExpression处理。  
 
 详细使用可以查看相关测试代码。              
+  
+  
+## 8.计算耗时工具 CostUtil
+  
+  计算耗时工具，支持秒，毫秒，纳秒
+  
+  包括：  
+  1.计算耗时，返回耗时结果。  
+  2.计算耗时，自定义任务名称，输出耗时结果。  
   
   
 # 参与项目  
