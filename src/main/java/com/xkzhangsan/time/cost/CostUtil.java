@@ -1,21 +1,24 @@
 package com.xkzhangsan.time.cost;
 
 /**
- * 计算耗时工具，支持秒，毫秒，纳秒<br>
- * 
+ * 计算耗时工具，支持秒，毫秒，纳秒
+ * <p>包括:
+ * <p>1.计算耗时，返回耗时结果
  * <pre>
- * 		Cost cost = CostUtil.startMillisecondCost();
-		TimeUnit.MILLISECONDS.sleep(1000);
-		long millisecond = cost.stop();
-		
-		Cost cost2 = CostUtil.startMillisecondCost("millisecondCostTest");
-		TimeUnit.MILLISECONDS.sleep(1000);
-		cost2.stopAndPrint();
-		// millisecondCostTest cost: 1000 ms
+ *		Cost cost = CostUtil.startMillisecondCost();
+ *		TimeUnit.MILLISECONDS.sleep(1000);
+ *		long millisecond = cost.stop();
+ * <pre>
+ * <p>2.计算耗时，自定义任务名称，输出耗时结果
+ * <pre>
+ *		Cost cost = CostUtil.startMillisecondCost("millisecondCostTest");
+ *		TimeUnit.MILLISECONDS.sleep(1000);
+ *		cost.stopAndPrint();
+ *		// millisecondCostTest cost: 1000 ms
  * <pre>
  * 
-* @author xkzhangsan
-* @date 2020年8月8日
+ * @author xkzhangsan
+ * @date 2020年8月8日
  */
 public class CostUtil {
 	
