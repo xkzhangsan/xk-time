@@ -26,15 +26,21 @@
 xk-time is a tool for time conversion, calculation, formatting, parsing, calendar and cron expression, etc., using Java8, thread-safe, easy to use, up to 70 commonly used date formatting templates, support Java8 time class and Date , Lightweight, no third party dependence.
   
   
-## Maven 坐标  
+## 安装项目  
 
+#### （1）Maven  
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
       <version>2.1.0</version>    
     </dependency>    
       
-  
+        
+#### （2）Gradle        
+    compile group: 'com.github.xkzhangsan', name: 'xk-time', version: '2.1.0'  
+      
+#### 注意：Android谨慎使用，Android端因为需要兼容低版本而不支持Java8，建议继续使用其他工具，如果有需要本项目相关的功能，可以参考源码实现，或留言给我。感谢支持！  
+    
 ## 为什么要开发这个工具？ 
  
 #### （1）java8以前的Date API设计不太好，使用不方便，往往会有线程安全问题。  

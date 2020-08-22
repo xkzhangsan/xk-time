@@ -25,26 +25,53 @@ public class CostUtil {
 	private CostUtil(){
 	}
 	
+	/**
+	 * 开始计时，单位纳秒，返回cost对象
+	 * @return 返回cost对象
+	 */
 	public static Cost startNanosecondCost(){
 		return new NanosecondCost();
 	}
 	
+	/**
+	 * 开始计时，单位纳秒，返回cost对象
+	 * @param name
+	 * @return
+	 */
 	public static Cost startNanosecondCost(String name){
 		return new NanosecondCost(name);
 	}
 	
+	/**
+	 * 开始计时，单位毫秒，返回cost对象
+	 * @return 返回cost对象
+	 */
 	public static Cost startMillisecondCost(){
 		return new MillisecondCost();
 	}
 	
+	/**
+	 * 开始计时，单位毫秒，返回cost对象
+	 * @param name 任务名称
+	 * @return 返回cost对象
+	 */
 	public static Cost startMillisecondCost(String name){
 		return new MillisecondCost(name);
 	}
 	
+	/**
+	 * 开始计时，单位秒，返回cost对象
+	 * @return 返回cost对象
+	 */
 	public static Cost startSecondCost(){
 		return new SecondCost();
 	}
 	
+	/**
+	 * 开始计时，单位秒，返回cost对象
+	 * @param name 任务名称
+	 * @return 返回cost对象
+	 */
 	public static Cost startSecondCost(String name){
 		return new SecondCost(name);
 	}
