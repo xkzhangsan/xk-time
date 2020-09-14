@@ -34,5 +34,14 @@ public final class MillisecondCost implements Cost{
 		System.out.println(this.name + " cost: " + stop() + " ms");
 	}
 
+	@Override
+	public String stopAndFormat() {
+		return (this.name + " cost: " + stop() + " ms");
+	}
+
+	@Override
+	public String stopAccurate() {
+		return String.valueOf(stop());
+	}
 
 }

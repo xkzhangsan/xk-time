@@ -1,5 +1,6 @@
 package com.xkzhangsan.time.cost;
 
+import java.math.BigDecimal;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,6 +35,17 @@ public final class SecondCost implements Cost{
 	@Override
 	public void stopAndPrint() {
 		System.out.println(this.name + " cost: " + stop() + " s");
+	}
+	
+	@Override
+	public String stopAndFormat() {
+		return (this.name + " cost: " + stop() + " s");
+	}
+
+	@Override
+	public String stopAccurate() {
+		double result= (System.currentTimeMillis() - millisecond)/1000.0;
+		return new BigDecimal(result).setScale(3, BigDecimal.ROUND_DOWN).toString();
 	}
 
 

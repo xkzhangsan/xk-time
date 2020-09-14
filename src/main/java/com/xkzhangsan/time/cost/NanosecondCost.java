@@ -34,5 +34,13 @@ public final class NanosecondCost implements Cost{
 		System.out.println(this.name + " cost: " + stop() + " ns");
 	}
 
+	@Override
+	public String stopAndFormat() {
+		return (this.name + " cost: " + stop() + " ns");
+	}
 
+	@Override
+	public String stopAccurate() {
+		return String.valueOf(stop());
+	}
 }
