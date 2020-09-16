@@ -17,7 +17,7 @@ package com.xkzhangsan.time.cost;
  *		cost.stopAndPrint();
  *		// millisecondCostTest cost: 1000 ms
  * <pre>
- * <p>3.计算耗时，返回精确计时
+ * <p>3.计算耗时，返回精确计时，带3小数的结果，使用ROUND_DOWN 舍弃超过3位的小数部分
  * <pre>
  *		Cost cost = CostUtil.startMillisecondCost();
  *		TimeUnit.NANOSECONDS.sleep(1000_500_000);
