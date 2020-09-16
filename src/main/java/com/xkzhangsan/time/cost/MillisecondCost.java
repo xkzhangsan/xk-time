@@ -1,5 +1,8 @@
 package com.xkzhangsan.time.cost;
 
+import java.math.BigDecimal;
+import java.util.concurrent.TimeUnit;
+
 /**
  * 计算耗时，单位毫秒<br>
  * 
@@ -10,28 +13,28 @@ public final class MillisecondCost implements Cost{
 	
 	private final String name;
 	
-	private final long millisecond;
+	private final long nanosecond;
 	
 	public MillisecondCost() {
 		super();
 		this.name = "";
-		this.millisecond = System.currentTimeMillis();
+		this.nanosecond = System.nanoTime();
 	}
 	
 	public MillisecondCost(String name) {
 		super();
 		this.name = name;
-		this.millisecond = System.currentTimeMillis();
+		this.nanosecond = System.nanoTime();
 	}
 	
 	@Override
 	public long stop() {
-		return System.currentTimeMillis() - millisecond;
+		return TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - nanosecond);
 	}
 
 	@Override
 	public void stopAndPrint() {
-		System.out.println(this.name + " cost: " + stop() + " ms");
+		System.out.println(stopAndFormat());
 	}
 
 	@Override
@@ -41,7 +44,18 @@ public final class MillisecondCost implements Cost{
 
 	@Override
 	public String stopAccurate() {
-		return String.valueOf(stop());
+		double result= (System.nanoTime() - nanosecond)/1000_000.0;
+		return new BigDecimal(result).setScale(3, BigDecimal.ROUND_DOWN).toString();
+	}
+
+	@Override
+	public void stopAccurateAndPrint() {
+		System.out.println(stopAccurateAndFormat());
+	}
+
+	@Override
+	public String stopAccurateAndFormat() {
+		return (this.name + " cost: " + stopAccurate() + " ms");
 	}
 
 }

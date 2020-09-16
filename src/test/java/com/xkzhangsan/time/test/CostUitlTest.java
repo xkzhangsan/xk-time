@@ -28,6 +28,14 @@ public class CostUitlTest {
 		Cost cost2 = CostUtil.startSecondCost("secondCostTest");
 		TimeUnit.SECONDS.sleep(1);
 		cost2.stopAndPrint();
+		
+		Cost cost3 = CostUtil.startSecondCost();
+		TimeUnit.MILLISECONDS.sleep(1500);
+		Assert.assertTrue(Double.parseDouble(cost3.stopAccurate())-1.0>0);
+		
+		Cost cost4 = CostUtil.startSecondCost("secondCostTest2");
+		TimeUnit.MILLISECONDS.sleep(1500);
+		cost4.stopAccurateAndPrint();
 	}
 	
 	/**
@@ -43,6 +51,14 @@ public class CostUitlTest {
 		Cost cost2 = CostUtil.startMillisecondCost("millisecondCostTest");
 		TimeUnit.MILLISECONDS.sleep(1000);
 		cost2.stopAndPrint();
+		
+		Cost cost3 = CostUtil.startMillisecondCost();
+		TimeUnit.NANOSECONDS.sleep(1000_500_000);
+		Assert.assertTrue(Double.parseDouble(cost3.stopAccurate())-1000>0);
+		
+		Cost cost4 = CostUtil.startMillisecondCost("millisecondCostTest2");
+		TimeUnit.NANOSECONDS.sleep(1000_500_000);
+		cost4.stopAccurateAndPrint();
 	}
 	
 	/**
@@ -55,8 +71,16 @@ public class CostUitlTest {
 		TimeUnit.NANOSECONDS.sleep(1000_000_000);
 		Assert.assertTrue(cost.stop()-1000_000_000<=3_000_000);
 		
-		Cost cost2 = CostUtil.startNanosecondCost();
+		Cost cost2 = CostUtil.startNanosecondCost("nanosecondTest");
 		TimeUnit.NANOSECONDS.sleep(1000_000_000);
 		cost2.stopAndPrint();
+		
+		Cost cost3 = CostUtil.startNanosecondCost();
+		TimeUnit.NANOSECONDS.sleep(1000_000_000);
+		Assert.assertTrue(cost3.stop()-1000_000_000<=3_000_000);
+		
+		Cost cost4 = CostUtil.startNanosecondCost("nanosecondTest2");
+		TimeUnit.NANOSECONDS.sleep(1000_000_000);
+		cost4.stopAccurateAndPrint();
 	}
 }

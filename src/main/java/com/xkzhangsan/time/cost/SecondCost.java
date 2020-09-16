@@ -34,7 +34,7 @@ public final class SecondCost implements Cost{
 
 	@Override
 	public void stopAndPrint() {
-		System.out.println(this.name + " cost: " + stop() + " s");
+		System.out.println(stopAndFormat());
 	}
 	
 	@Override
@@ -46,6 +46,16 @@ public final class SecondCost implements Cost{
 	public String stopAccurate() {
 		double result= (System.currentTimeMillis() - millisecond)/1000.0;
 		return new BigDecimal(result).setScale(3, BigDecimal.ROUND_DOWN).toString();
+	}
+
+	@Override
+	public void stopAccurateAndPrint() {
+		System.out.println(stopAccurateAndFormat());
+	}
+
+	@Override
+	public String stopAccurateAndFormat() {
+		return (this.name + " cost: " + stopAccurate() + " s");
 	}
 
 

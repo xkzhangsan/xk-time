@@ -31,7 +31,7 @@ public final class NanosecondCost implements Cost{
 
 	@Override
 	public void stopAndPrint() {
-		System.out.println(this.name + " cost: " + stop() + " ns");
+		System.out.println(stopAndFormat());
 	}
 
 	@Override
@@ -42,5 +42,15 @@ public final class NanosecondCost implements Cost{
 	@Override
 	public String stopAccurate() {
 		return String.valueOf(stop());
+	}
+
+	@Override
+	public void stopAccurateAndPrint() {
+		System.out.println(stopAccurateAndFormat());
+	}
+
+	@Override
+	public String stopAccurateAndFormat() {
+		return stopAndFormat();
 	}
 }

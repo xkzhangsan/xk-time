@@ -1,5 +1,6 @@
 package com.xkzhangsan.time.cost;
 
+
 /**
  * 计算耗时工具，支持秒，毫秒，纳秒
  * <p>包括:
@@ -15,6 +16,13 @@ package com.xkzhangsan.time.cost;
  *		TimeUnit.MILLISECONDS.sleep(1000);
  *		cost.stopAndPrint();
  *		// millisecondCostTest cost: 1000 ms
+ * <pre>
+ * <p>3.计算耗时，返回精确计时
+ * <pre>
+ *		Cost cost = CostUtil.startMillisecondCost();
+ *		TimeUnit.NANOSECONDS.sleep(1000_500_000);
+ *		cost.stopAccurate();
+ *		// 1001.238
  * <pre>
  * 
  * @author xkzhangsan
