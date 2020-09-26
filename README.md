@@ -32,12 +32,12 @@ xk-time is a tool for time conversion, calculation, formatting, parsing, calenda
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>2.1.1</version>    
+      <version>2.1.2</version>    
     </dependency>    
       
         
 #### （2）Gradle        
-    compile group: 'com.github.xkzhangsan', name: 'xk-time', version: '2.1.1'  
+    compile group: 'com.github.xkzhangsan', name: 'xk-time', version: '2.1.2'  
       
 #### 注意：Android谨慎使用，Android端因为需要兼容低版本而不支持Java8，建议继续使用其他工具，如果有需要本项目相关的功能，可以参考源码实现，或留言给我。感谢支持！  
     
@@ -66,7 +66,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
 
 ## 2.日期计算工具类  DateTimeCalculatorUtil 
 包括：  
-（1）获取时间属性方法，get* 比如getYear(Date date) 获取年部分，getMonthCnLong(Date date)获取月份中文，getDayOfWeekCn(Date date)，获取星期中文。   
+（1）获取时间属性方法（支持年月日时分秒毫秒，星期，时间戳等），get* 比如getYear(Date date) 获取年部分，getMonthCnLong(Date date)获取月份中文，getDayOfWeekCn(Date date)，获取星期中文。   
   
 （2）获取时间加操作方法，plus* 比如plusYears(Date date, long amountToAdd) 当前时间年增加amountToAdd值。  
   
@@ -104,6 +104,11 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
   
 （19）十二时辰计算方法，getTwelveTwo*， 比如getTwelveTwo(Date date)，获取指定时间对应的十二时辰。  
   
+（20）季度计算方法，getQuarter*， 比如getQuarter(Date date)，获取指定时间对应的季度    
+  
+（21）获取季度准确的起始时间方法（四个季度），startTimeOf*Quarter， 比如startTimeOfFirstQuarter(int year)，获取指定年的第一季度   
+  
+（22） 获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间  
   
 详细使用可以查看相关测试代码。  
 

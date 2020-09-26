@@ -41,7 +41,7 @@ import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
 /**
  * 日期计算工具类<br>
  * 包括：<br>
- * 1.获取时间属性方法，get* 比如getYear(Date date) 获取年部分，getMonthCnLong(Date date)获取月份中文，getDayOfWeekCn(Date date)，获取星期中文<br>
+ * 1.获取时间属性方法（支持年月日时分秒毫秒，星期，时间戳等），get* 比如getYear(Date date) 获取年部分，getMonthCnLong(Date date)获取月份中文，getDayOfWeekCn(Date date)，获取星期中文<br>
  * 2.获取时间加操作方法，plus* 比如plusYears(Date date, long amountToAdd) 当前时间年增加amountToAdd值<br>
  * 3.获取时间减操作方法，minus* 比如minusYears(Date date, long amountToSubtract) 当前时间年减少amountToSubtract值<br>
  * 4.获取时间修改属性方法，with* 比如withYear(Date date, long newValue) 修改当前时间年值为newValue<br>
@@ -60,6 +60,10 @@ import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
  * 17.周数计算方法，weekof*， 比如weekOfMonth(Date date)，日期所在月中第几周<br>
  * 18.判断星期一，星期五方法，isMonday*,isZhouYi*， 比如isZhouYi(Date date)，是否为周一<br>
  * 19.十二时辰计算方法，getTwelveTwo*， 比如getTwelveTwo(Date date)，获取指定时间对应的十二时辰<br>
+ * 20.季度计算方法，getQuarter*， 比如getQuarter(Date date)，获取指定时间对应的季度<br> * 
+ * 21.获取季度准确的起始时间方法（四个季度），startTimeOf*Quarter， 比如startTimeOfFirstQuarter(int year)，获取指定年的第一季度开始时间<br> *
+ * 22.获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间<br> *
+ *  
 * @author xkzhangsan
 * @date 2019年12月1日
 *
@@ -659,6 +663,44 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static int getAge(LocalDateTime birthDay){
 		return getAge(DateTimeConverterUtil.toLocalDate(birthDay));
+	}
+	
+ 	/**
+	 * 获得季度值
+	 * @param localDateTime
+	 * @return int 季度 1,2,3,4
+	 */
+	public static int getQuarter(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return (localDateTime.getMonthValue()+2)/3;
+	}
+	
+	/**
+	 * 获得季度值
+	 * @param localDate
+	 * @return int 季度 1,2,3,4
+	 */
+	public static int getQuarter(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return (localDate.getMonthValue()+2)/3;
+	}
+	
+	/**
+	 * 获得季度值
+	 * @param date
+	 * @return int 季度 1,2,3,4
+	 */
+	public static int getQuarter(Date date){
+		Objects.requireNonNull(date, "date");
+		return (getMonth(date)+2)/3;
+	}
+	
+	/**
+	 * 获得当前季度值
+	 * @return int 季度 1,2,3,4
+	 */
+	public static int getQuarterOfNow(){
+		return (LocalDate.now().getMonthValue()+2)/3;
 	}
 	
 	// plus two times
@@ -2240,6 +2282,138 @@ public class DateTimeCalculatorUtil {
 	public static Date endTimeOfDate(int year, int month, int dayOfMonth){
 		return DateTimeConverterUtil.toDate(LocalDate.of(year, month, dayOfMonth).atTime(endTimeOfDay()));
 	}
+	
+	/**
+	 * 获取第一季度起始日期的开始时间
+	 * @param year
+	 * @return Date
+	 */
+	public static Date startTimeOfFirstQuarter(int year){
+		return startTimeOfSpecialMonth(year, 1);
+	}
+	
+	/**
+	 * 获取第二季度起始日期的开始时间
+	 * @param year
+	 * @return Date
+	 */
+	public static Date startTimeOfSecondQuarter(int year){
+		return startTimeOfSpecialMonth(year, 4);
+	}
+	
+	/**
+	 * 获取第三季度起始日期的开始时间
+	 * @param year
+	 * @return Date
+	 */
+	public static Date startTimeOfThirdQuarter(int year){
+		return startTimeOfSpecialMonth(year, 7);
+	}
+	
+	/**
+	 * 获取第四季度起始日期的开始时间
+	 * @param year
+	 * @return Date
+	 */
+	public static Date startTimeOfFourthQuarter(int year){
+		return startTimeOfSpecialMonth(year, 10);
+	}
+	
+	/**
+	 * 获取第一季度结束日期的开始时间
+	 * @param year
+	 * @return Date
+	 */
+	public static Date endTimeOfFirstQuarter(int year){
+		return endTimeOfSpecialMonth(year, 3);
+	}
+	
+	/**
+	 * 获取第二季度结束日期的开始时间
+	 * @param year
+	 * @return Date
+	 */
+	public static Date endTimeOfSecondQuarter(int year){
+		return endTimeOfSpecialMonth(year, 6);
+	}
+	
+	/**
+	 * 获取第三季度结束日期的开始时间
+	 * @param year
+	 * @return Date
+	 */
+	public static Date endTimeOfThirdQuarter(int year){
+		return endTimeOfSpecialMonth(year, 9);
+	}
+	
+	/**
+	 * 获取第四季度结束日期的开始时间
+	 * @param year
+	 * @return Date
+	 */
+	public static Date endTimeOfFourthQuarter(int year){
+		return endTimeOfSpecialMonth(year, 12);
+	}
+
+	/**
+	 * 获取当前季度起始日期的开始时间
+	 * @param year
+	 * @return Date
+	 */
+	public static Date startTimeOfCurrentQuarter(){
+		LocalDate now = LocalDate.now();
+		int year = now.getYear();
+		int firstMonthOfQuarter = now.getMonth().firstMonthOfQuarter().getValue();
+		return startTimeOfSpecialMonth(year, firstMonthOfQuarter);
+	}
+	
+	/**
+	 * 获取当前季度结束日期的时间
+	 * @param year
+	 * @return Date
+	 */
+	public static Date endTimeOfCurrentQuarter(){
+		LocalDate now = LocalDate.now();
+		int year = now.getYear();
+		int endMonthOfQuarter = now.getMonth().firstMonthOfQuarter().getValue()+2;
+		return endTimeOfSpecialMonth(year, endMonthOfQuarter);
+	}
+	
+	/**
+	 * 获取指定年起始日期的开始时间
+	 * @param year
+	 * @return Date
+	 */
+	public static Date startTimeOfYear(int year){
+		return startTimeOfSpecialMonth(year, 1);
+	}
+	
+	/**
+	 * 获取指定年结束日期的开始时间
+	 * @param year
+	 * @return Date
+	 */
+	public static Date endTimeOfYear(int year){
+		return endTimeOfSpecialMonth(year, 12);
+	}
+
+	/**
+	 * 获取当前年起始日期的开始时间
+	 * @param year
+	 * @return Date
+	 */
+	public static Date startTimeOfCurrentYear(){
+		return startTimeOfYear(LocalDate.now().getYear());
+	}
+	
+	/**
+	 * 获取当前年结束日期的时间
+	 * @param year
+	 * @return Date
+	 */
+	public static Date endTimeOfCurrentYear(){
+		return endTimeOfYear(LocalDate.now().getYear());
+	}	
 	
 	// 使用MonthDay对比时间的月日，用于生日，节日等周期性的日期比较判断。
 	
