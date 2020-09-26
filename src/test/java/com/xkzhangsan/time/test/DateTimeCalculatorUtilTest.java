@@ -414,6 +414,71 @@ public class DateTimeCalculatorUtilTest {
 		Date date2 = DateTimeCalculatorUtil.getDate(2020, 8, 1, 20,30,0);
 		Assert.assertEquals("戌时", DateTimeCalculatorUtil.getTwelveTwo(date2));
 	}
+	
+	/**
+	 * 季度测试
+	 */	
+	@Test
+	public void quarterTest(){
+		//获取季度
+		Date date = DateTimeCalculatorUtil.getDate(2000, 1, 1);
+		Assert.assertEquals(1, DateTimeCalculatorUtil.getQuarter(date));
+		
+		LocalDate localDate = LocalDate.of(2000, 1, 1);
+		Assert.assertEquals(1, DateTimeCalculatorUtil.getQuarter(localDate));
+		
+		LocalDateTime localDateTime = LocalDateTime.of(2000, 1, 1, 0, 0, 0);
+		Assert.assertEquals(1, DateTimeCalculatorUtil.getQuarter(localDateTime));
+		
+		//第一季度起始时间
+		Assert.assertEquals(DateTimeFormatterUtil.formatToDateStr(
+				DateTimeCalculatorUtil.getDateStartOfMonth(2019, 1))+" 00:00:00",
+				DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfFirstQuarter(2019)));
+		Assert.assertEquals(DateTimeFormatterUtil.formatToDateStr(
+				DateTimeCalculatorUtil.getDateEndOfMonth(2019, 3))+" 23:59:59",
+				DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfFirstQuarter(2019)));
+		
+		//第二季度起始时间
+		Assert.assertEquals(DateTimeFormatterUtil.formatToDateStr(
+				DateTimeCalculatorUtil.getDateStartOfMonth(2019, 4))+" 00:00:00",
+				DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfSecondQuarter(2019)));
+		Assert.assertEquals(DateTimeFormatterUtil.formatToDateStr(
+				DateTimeCalculatorUtil.getDateEndOfMonth(2019, 6))+" 23:59:59",
+				DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfSecondQuarter(2019)));
+		
+		//第三季度起始时间
+		Assert.assertEquals(DateTimeFormatterUtil.formatToDateStr(
+				DateTimeCalculatorUtil.getDateStartOfMonth(2019, 7))+" 00:00:00",
+				DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfThirdQuarter(2019)));
+		Assert.assertEquals(DateTimeFormatterUtil.formatToDateStr(
+				DateTimeCalculatorUtil.getDateEndOfMonth(2019, 9))+" 23:59:59",
+				DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfThirdQuarter(2019)));
+		
+		//第四季度起始时间
+		Assert.assertEquals(DateTimeFormatterUtil.formatToDateStr(
+				DateTimeCalculatorUtil.getDateStartOfMonth(2019, 10))+" 00:00:00",
+				DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfFourthQuarter(2019)));
+		Assert.assertEquals(DateTimeFormatterUtil.formatToDateStr(
+				DateTimeCalculatorUtil.getDateEndOfMonth(2019, 12))+" 23:59:59",
+				DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfFourthQuarter(2019)));
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfCurrentQuarter()));
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfCurrentQuarter()));
+	}
+	
+	/**
+	 * 年起始日期准确时间测试
+	 */	
+	@Test
+	public void startTimeOfYearTest(){
+		Assert.assertEquals(DateTimeFormatterUtil.formatToDateStr(
+				DateTimeCalculatorUtil.getDateStartOfMonth(2019, 1))+" 00:00:00",
+				DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfYear(2019)));
+		Assert.assertEquals(DateTimeFormatterUtil.formatToDateStr(
+				DateTimeCalculatorUtil.getDateEndOfMonth(2019, 12))+" 23:59:59",
+				DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfYear(2019)));
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfCurrentYear()));
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfCurrentYear()));
+	}	
 
 	@Test
 	public void durationBetween(){

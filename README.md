@@ -66,7 +66,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
 
 ## 2.日期计算工具类  DateTimeCalculatorUtil 
 包括：  
-（1）获取时间属性方法，get* 比如getYear(Date date) 获取年部分，getMonthCnLong(Date date)获取月份中文，getDayOfWeekCn(Date date)，获取星期中文。   
+（1）获取时间属性方法（支持年月日时分秒毫秒，星期，时间戳等），get* 比如getYear(Date date) 获取年部分，getMonthCnLong(Date date)获取月份中文，getDayOfWeekCn(Date date)，获取星期中文。   
   
 （2）获取时间加操作方法，plus* 比如plusYears(Date date, long amountToAdd) 当前时间年增加amountToAdd值。  
   
@@ -104,6 +104,11 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
   
 （19）十二时辰计算方法，getTwelveTwo*， 比如getTwelveTwo(Date date)，获取指定时间对应的十二时辰。  
   
+（20）季度计算方法，getQuarter*， 比如getQuarter(Date date)，获取指定时间对应的季度    
+  
+（21）获取季度准确的起始时间方法（四个季度），startTimeOf*Quarter， 比如startTimeOfFirstQuarter(int year)，获取指定年的第一季度   
+  
+（22） 获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间  
   
 详细使用可以查看相关测试代码。  
 
