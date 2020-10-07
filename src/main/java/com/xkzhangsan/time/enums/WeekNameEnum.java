@@ -4,7 +4,6 @@ package com.xkzhangsan.time.enums;
  * 星期名称枚举，包含英文全称，英文简称，中文
  * Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday
  * @author xkzhangsan
- * @date 2020年02月27日
  */
 public enum WeekNameEnum {
 	
@@ -40,7 +39,7 @@ public enum WeekNameEnum {
 
 	/**
 	 * 根据code查询星期名称枚举
-	 * @param code
+	 * @param code code
 	 * @return WeekNameEnum
 	 */
 	public static WeekNameEnum getByCode(int code){
@@ -56,7 +55,7 @@ public enum WeekNameEnum {
 	
 	/**
 	 * 根据code查询星期英文简称
-	 * @param code
+	 * @param code code
 	 * @return String
 	 */
 	public static String getShortNameEnByCode(int code){
@@ -66,7 +65,7 @@ public enum WeekNameEnum {
 	
 	/**
 	 * 根据code查询星期英文全称
-	 * @param code
+	 * @param code code
 	 * @return String
 	 */
 	public static String getFullNameEnByCode(int code){
@@ -76,7 +75,7 @@ public enum WeekNameEnum {
 	
 	/**
 	 * 根据code查询星期中文名称
-	 * @param code
+	 * @param code code
 	 * @return String
 	 */
 	public static String getNameCnByCode(int code){

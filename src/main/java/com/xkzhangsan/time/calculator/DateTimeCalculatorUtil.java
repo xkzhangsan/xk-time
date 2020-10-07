@@ -65,7 +65,6 @@ import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
  * 22.获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间<br> *
  *  
 * @author xkzhangsan
-* @date 2019年12月1日
 *
  */
 public class DateTimeCalculatorUtil {
@@ -77,7 +76,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取年，比如2020
-	 * @param date
+	 * @param date Date
 	 * @return int
 	 */
 	public static int getYear(Date date){
@@ -86,7 +85,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取年，比如2020
-	 * @param instant
+	 * @param instant Instant
 	 * @return int
 	 */
 	public static int getYear(Instant instant){
@@ -96,7 +95,7 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取年，比如2020
 	 * LocalDateTime LocalDate ZonedDateTime 可以直接getYear()
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return int
 	 */
 	public static int getYear(LocalDateTime localDateTime){
@@ -106,7 +105,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月， 比如 1
-	 * @param date
+	 * @param date Date
 	 * @return int
 	 */
 	public static int getMonth(Date date){
@@ -115,7 +114,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月， 比如 1
-	 * @param instant
+	 * @param instant Instant
 	 * @return int
 	 */
 	public static int getMonth(Instant instant){
@@ -124,7 +123,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月， 比如 1
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return int
 	 */
 	public static int getMonth(LocalDateTime localDateTime){
@@ -134,7 +133,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月， 比如 1
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return int
 	 */
 	public static int getMonth(LocalDate localDate){
@@ -144,7 +143,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文全称， 比如 January
-	 * @param date
+	 * @param date Date
 	 * @return String
 	 */
 	public static String getMonthEnLong(Date date){
@@ -153,7 +152,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文全称， 比如 January
-	 * @param instant
+	 * @param instant Instant
 	 * @return String
 	 */
 	public static String getMonthEnLong(Instant instant){
@@ -162,7 +161,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文全称， 比如 January
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return String
 	 */
 	public static String getMonthEnLong(LocalDateTime localDateTime){
@@ -172,7 +171,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文全称， 比如 January
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return String
 	 */
 	public static String getMonthEnLong(LocalDate localDate){
@@ -182,7 +181,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文简称， 比如 Jan
-	 * @param date
+	 * @param date Date
 	 * @return String
 	 */
 	public static String getMonthEnShort(Date date){
@@ -191,7 +190,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文简称， 比如 Jan
-	 * @param instant
+	 * @param instant Instant
 	 * @return String
 	 */
 	public static String getMonthEnShort(Instant instant){
@@ -200,7 +199,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文简称， 比如 Jan
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return String
 	 */
 	public static String getMonthEnShort(LocalDateTime localDateTime){
@@ -210,7 +209,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文简称， 比如 Jan
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return String
 	 */
 	public static String getMonthEnShort(LocalDate localDate){
@@ -220,7 +219,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文简称大写， 比如 JAN
-	 * @param date
+	 * @param date Date
 	 * @return String
 	 */
 	public static String getMonthEnShortUpper(Date date){
@@ -229,7 +228,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文简称大写， 比如 JAN
-	 * @param instant
+	 * @param instant Instant
 	 * @return String
 	 */
 	public static String getMonthEnShortUpper(Instant instant){
@@ -238,7 +237,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文简称大写， 比如 JAN
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return String
 	 */
 	public static String getMonthEnShortUpper(LocalDateTime localDateTime){
@@ -248,7 +247,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月英文简称大写， 比如 JAN
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return String
 	 */
 	public static String getMonthEnShortUpper(LocalDate localDate){
@@ -258,7 +257,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月份中文全称， 比如一月
-	 * @param date
+	 * @param date Date
 	 * @return String
 	 */
 	public static String getMonthCnLong(Date date){
@@ -267,7 +266,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月份中文全称， 比如一月
-	 * @param instant
+	 * @param instant Instant
 	 * @return String
 	 */
 	public static String getMonthCnLong(Instant instant){
@@ -276,7 +275,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月份中文全称， 比如一月
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return String
 	 */
 	public static String getMonthCnLong(LocalDateTime localDateTime){
@@ -286,7 +285,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月份中文全称， 比如一月
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return String
 	 */
 	public static String getMonthCnLong(LocalDate localDate){
@@ -296,7 +295,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月份中文简称， 比如一
-	 * @param date
+	 * @param date Date
 	 * @return String
 	 */
 	public static String getMonthCnShort(Date date){
@@ -305,7 +304,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月份中文简称， 比如一
-	 * @param instant
+	 * @param instant Instant
 	 * @return String
 	 */
 	public static String getMonthCnShort(Instant instant){
@@ -314,7 +313,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月份中文简称， 比如一
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return String
 	 */
 	public static String getMonthCnShort(LocalDateTime localDateTime){
@@ -324,7 +323,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月份中文简称， 比如一
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return String
 	 */
 	public static String getMonthCnShort(LocalDate localDate){
@@ -334,7 +333,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取天
-	 * @param date
+	 * @param date Date
 	 * @return int
 	 */
 	public static int getDayOfMonth(Date date){
@@ -343,7 +342,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取天
-	 * @param instant
+	 * @param instant Instant
 	 * @return int
 	 */
 	public static int getDayOfMonth(Instant instant){
@@ -353,7 +352,7 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取天
 	 * LocalDateTime LocalDate ZonedDateTime 可以直接.getDayOfMonth()
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return int
 	 */
 	public static int getDayOfMonth(LocalDateTime localDateTime){
@@ -363,7 +362,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取天（一年中）
-	 * @param date
+	 * @param date Date
 	 * @return int
 	 */
 	public static int getDayOfYear(Date date){
@@ -372,7 +371,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取天（一年中）
-	 * @param instant
+	 * @param instant Instant
 	 * @return int
 	 */
 	public static int getDayOfYear(Instant instant){
@@ -382,7 +381,7 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取天（一年中）
 	 * LocalDateTime LocalDate ZonedDateTime 可以直接.getDayOfYear()获取
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return int
 	 */
 	public static int getDayOfYear(LocalDateTime localDateTime){
@@ -392,7 +391,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取某年的总天数
-	 * @param year
+	 * @param year 年
 	 * @return int
 	 */
 	public static int getLengthOfYear(int year){
@@ -409,7 +408,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取小时
-	 * @param date
+	 * @param date Date
 	 * @return int
 	 */
 	public static int getHour(Date date){
@@ -418,7 +417,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取小时
-	 * @param instant
+	 * @param instant Instant
 	 * @return int
 	 */
 	public static int getHour(Instant instant){
@@ -428,7 +427,7 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取小时
 	 * LocalDateTime LocalTime ZonedDateTime 可以直接.getHour()获取
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return int
 	 */
 	public static int getHour(LocalDateTime localDateTime){
@@ -438,7 +437,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取分钟
-	 * @param date
+	 * @param date Date
 	 * @return int
 	 */
 	public static int getMinute(Date date){
@@ -447,7 +446,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取分钟
-	 * @param instant
+	 * @param instant Instant
 	 * @return int
 	 */
 	public static int getMinute(Instant instant){
@@ -457,7 +456,7 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取分钟
 	 * LocalDateTime LocalTime ZonedDateTime 可以直接.getMinute()获取
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return int
 	 */
 	public static int getMinute(LocalDateTime localDateTime){
@@ -467,7 +466,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取秒
-	 * @param date
+	 * @param date Date
 	 * @return int
 	 */
 	public static int getSecond(Date date){
@@ -476,7 +475,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取秒
-	 * @param instant
+	 * @param instant Instant
 	 * @return int
 	 */
 	public static int getSecond(Instant instant){
@@ -486,7 +485,7 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取秒
 	 * LocalDateTime LocalTime ZonedDateTime 可以直接.getMinute()获取
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return int
 	 */
 	public static int getSecond(LocalDateTime localDateTime){
@@ -496,7 +495,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取毫秒
-	 * @param date
+	 * @param date Date
 	 * @return int
 	 */
 	public static int getMillisecond(Date date){
@@ -505,7 +504,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取毫秒
-	 * @param instant
+	 * @param instant Instant
 	 * @return int
 	 */
 	public static int getMillisecond(Instant instant){
@@ -515,7 +514,7 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取毫秒
 	 * LocalDateTime LocalTime ZonedDateTime 可以直接.getMinute()获取
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return int
 	 */
 	public static int getMillisecond(LocalDateTime localDateTime){
@@ -589,9 +588,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 根据年月日创建Date，时间部分为：00:00:00
-	 * @param year
-	 * @param month
-	 * @param dayOfMonth
+	 * @param year 年
+	 * @param month 月
+	 * @param dayOfMonth 日
 	 * @return Date
 	 */
 	public static Date getDate(int year, int month, int dayOfMonth){
@@ -600,13 +599,13 @@ public class DateTimeCalculatorUtil {
 
 	/**
 	 * 根据年月日时分秒创建Date
-	 * @param year
-	 * @param month
-	 * @param dayOfMonth
-	 * @param hour
-	 * @param minute
-	 * @param second
-	 * @return
+	 * @param year 年
+	 * @param month 月
+	 * @param dayOfMonth 日
+	 * @param hour 时
+	 * @param minute 分
+	 * @param second 秒
+	 * @return Date
 	 */
 	public static Date getDate(int year, int month, int dayOfMonth, int hour, int minute, int second){
 		return DateTimeConverterUtil.toDate(LocalDateTime.of(year, month, dayOfMonth, hour, minute, second));
@@ -614,8 +613,8 @@ public class DateTimeCalculatorUtil {
 
 	/**
 	 * 获取指定月第一天
-	 * @param year
-	 * @param month
+	 * @param year 年
+	 * @param month 月
 	 * @return Date
 	 */
 	public static Date getDateStartOfMonth(int year, int month){
@@ -624,8 +623,8 @@ public class DateTimeCalculatorUtil {
 
 	/**
 	 * 获取指定月最后一天
-	 * @param year
-	 * @param month
+	 * @param year 年
+	 * @param month 月
 	 * @return Date
 	 */
 	public static Date getDateEndOfMonth(int year, int month){
@@ -634,7 +633,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 计算年龄
-	 * @param birthDay
+	 * @param birthDay 生日
 	 * @return int 年龄
 	 */
 	public static int getAge(LocalDate birthDay){
@@ -649,7 +648,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 计算年龄
-	 * @param birthDay
+	 * @param birthDay 生日
 	 * @return int 年龄
 	 */
 	public static int getAge(Date birthDay){
@@ -658,7 +657,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 计算年龄
-	 * @param birthDay
+	 * @param birthDay 生日
 	 * @return int 年龄
 	 */
 	public static int getAge(LocalDateTime birthDay){
@@ -667,7 +666,7 @@ public class DateTimeCalculatorUtil {
 	
  	/**
 	 * 获得季度值
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return int 季度 1,2,3,4
 	 */
 	public static int getQuarter(LocalDateTime localDateTime){
@@ -677,7 +676,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获得季度值
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return int 季度 1,2,3,4
 	 */
 	public static int getQuarter(LocalDate localDate){
@@ -687,7 +686,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获得季度值
-	 * @param date
+	 * @param date Date
 	 * @return int 季度 1,2,3,4
 	 */
 	public static int getQuarter(Date date){
@@ -706,109 +705,241 @@ public class DateTimeCalculatorUtil {
 	// plus two times
 	
 	/**
-	 * 增加年
-	 * @param date
-	 * @param amountToAdd
+	 * 加年
+	 * @param date Date
+	 * @param amountToAdd 增加的值
 	 * @return Date
 	 */
 	public static Date plusYears(Date date, long amountToAdd){
 		return plus(date, ChronoUnit.YEARS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加年
+	 * @param localDateTime LocalDateTime
+	 * @param amountToAdd 增加的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime plusYears(LocalDateTime localDateTime, long amountToAdd){
 		return (LocalDateTime) plus(localDateTime, ChronoUnit.YEARS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加年
+	 * @param localDate LocalDate
+	 * @param amountToAdd 增加的值
+	 * @return LocalDate
+	 */
 	public static LocalDate plusYears(LocalDate localDate, long amountToAdd){
 		return (LocalDate) plus(localDate, ChronoUnit.YEARS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加月
+	 * @param date Date
+	 * @param amountToAdd 增加的值
+	 * @return Date
+	 */
 	public static Date plusMonths(Date date, long amountToAdd){
 		return plus(date, ChronoUnit.MONTHS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加月
+	 * @param localDateTime LocalDateTime
+	 * @param amountToAdd 增加的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime plusMonths(LocalDateTime localDateTime, long amountToAdd){
 		return (LocalDateTime) plus(localDateTime, ChronoUnit.MONTHS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加月
+	 * @param localDate LocalDate
+	 * @param amountToAdd 增加的值
+	 * @return LocalDate
+	 */
 	public static LocalDate plusMonths(LocalDate localDate, long amountToAdd){
 		return (LocalDate) plus(localDate, ChronoUnit.MONTHS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加星期
+	 * @param date Date
+	 * @param amountToAdd 增加的值
+	 * @return Date
+	 */
 	public static Date plusWeeks(Date date, long amountToAdd){
 		return plus(date, ChronoUnit.WEEKS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加星期
+	 * @param localDateTime LocalDateTime
+	 * @param amountToAdd 增加的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime plusWeeks(LocalDateTime localDateTime, long amountToAdd){
 		return (LocalDateTime) plus(localDateTime, ChronoUnit.WEEKS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加星期
+	 * @param localDate LocalDate
+	 * @param amountToAdd 增加的值
+	 * @return LocalDate
+	 */
 	public static LocalDate plusWeeks(LocalDate localDate, long amountToAdd){
 		return (LocalDate) plus(localDate, ChronoUnit.WEEKS, amountToAdd);
-	}	
-	
+	}
+
+	/**
+	 * 加天
+	 * @param date Date
+	 * @param amountToAdd 增加的值
+	 * @return Date
+	 */
 	public static Date plusDays(Date date, long amountToAdd){
 		return plus(date, ChronoUnit.DAYS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加天
+	 * @param localDateTime LocalDateTime
+	 * @param amountToAdd 增加的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime plusDays(LocalDateTime localDateTime, long amountToAdd){
 		return (LocalDateTime) plus(localDateTime, ChronoUnit.DAYS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加天
+	 * @param localDate LocalDate
+	 * @param amountToAdd 增加的值
+	 * @return LocalDate
+	 */
 	public static LocalDate plusDays(LocalDate localDate, long amountToAdd){
 		return (LocalDate) plus(localDate, ChronoUnit.DAYS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加小时
+	 * @param date Date
+	 * @param amountToAdd 增加的值
+	 * @return Date
+	 */
 	public static Date plusHours(Date date, long amountToAdd){
 		return plus(date, ChronoUnit.HOURS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加小时
+	 * @param localDateTime LocalDateTime
+	 * @param amountToAdd 增加的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime plusHours(LocalDateTime localDateTime, long amountToAdd){
 		return (LocalDateTime) plus(localDateTime, ChronoUnit.HOURS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加小时
+	 * @param localTime LocalTime
+	 * @param amountToAdd 增加的值
+	 * @return LocalTime
+	 */
 	public static LocalTime plusHours(LocalTime localTime, long amountToAdd){
 		return (LocalTime) plus(localTime, ChronoUnit.HOURS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加分钟
+	 * @param date Date
+	 * @param amountToAdd 增加的值
+	 * @return Date
+	 */
 	public static Date plusMinutes(Date date, long amountToAdd){
 		return plus(date, ChronoUnit.MINUTES, amountToAdd);
 	}
-	
+
+	/**
+	 * 加分钟
+	 * @param localDateTime LocalDateTime
+	 * @param amountToAdd 增加的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime plusMinutes(LocalDateTime localDateTime, long amountToAdd){
 		return (LocalDateTime) plus(localDateTime, ChronoUnit.MINUTES, amountToAdd);
 	}
-	
+
+	/**
+	 * 加分钟
+	 * @param localTime LocalTime
+	 * @param amountToAdd 增加的值
+	 * @return LocalTime
+	 */
 	public static LocalTime plusMinutes(LocalTime localTime, long amountToAdd){
 		return (LocalTime) plus(localTime, ChronoUnit.MINUTES, amountToAdd);
 	}
-	
+
+	/**
+	 * 加秒
+	 * @param date Date
+	 * @param amountToAdd 增加的值
+	 * @return Date
+	 */
 	public static Date plusSeconds(Date date, long amountToAdd){
 		return plus(date, ChronoUnit.SECONDS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加秒
+	 * @param localDateTime LocalDateTime
+	 * @param amountToAdd 增加的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime plusSeconds(LocalDateTime localDateTime, long amountToAdd){
 		return (LocalDateTime) plus(localDateTime, ChronoUnit.SECONDS, amountToAdd);
 	}
-	
+
+	/**
+	 * 加秒
+	 * @param localTime LocalTime
+	 * @param amountToAdd 增加的值
+	 * @return LocalTime
+	 */
 	public static LocalTime plusSeconds(LocalTime localTime, long amountToAdd){
 		return (LocalTime) plus(localTime, ChronoUnit.SECONDS, amountToAdd);
 	}
 	
 	/**
 	 * 增加毫秒
-	 * @param date
-	 * @param amountToAdd
+	 * @param date Date
+	 * @param amountToAdd 增加的值
 	 * @return Date
 	 */
 	public static Date plusMillis(Date date, long amountToAdd){
 		return plus(date, ChronoUnit.MILLIS, amountToAdd);
 	}
-	
+
+	/**
+	 * 增加毫秒
+	 * @param localDateTime LocalDateTime
+	 * @param amountToAdd 增加的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime plusMillis(LocalDateTime localDateTime, long amountToAdd){
 		return (LocalDateTime) plus(localDateTime, ChronoUnit.MILLIS, amountToAdd);
 	}
-	
+
+	/**
+	 * 增加毫秒
+	 * @param localTime LocalTime
+	 * @param amountToAdd 增加的值
+	 * @return LocalTime
+	 */
 	public static LocalTime plusMillis(LocalTime localTime, long amountToAdd){
 		return (LocalTime) plus(localTime, ChronoUnit.MILLIS, amountToAdd);
 	}
@@ -816,103 +947,241 @@ public class DateTimeCalculatorUtil {
 	// minus two times
 	
 	/**
-	 * 减少年
-	 * @param date
-	 * @param amountToSubtract
+	 * 减年
+	 * @param date Date
+	 * @param amountToSubtract 减少的值
 	 * @return Date
 	 */
 	public static Date minusYears(Date date, long amountToSubtract){
 		return minus(date, ChronoUnit.YEARS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减年
+	 * @param localDateTime LocalDateTime
+	 * @param amountToSubtract 减少的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime minusYears(LocalDateTime localDateTime, long amountToSubtract){
 		return (LocalDateTime) minus(localDateTime, ChronoUnit.YEARS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减年
+	 * @param localDate LocalDate
+	 * @param amountToSubtract 减少的值
+	 * @return LocalDate
+	 */
 	public static LocalDate minusYears(LocalDate localDate, long amountToSubtract){
 		return (LocalDate) minus(localDate, ChronoUnit.YEARS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减月
+	 * @param date Date
+	 * @param amountToSubtract 减少的值
+	 * @return Date
+	 */
 	public static Date minusMonths(Date date, long amountToSubtract){
 		return minus(date, ChronoUnit.MONTHS, amountToSubtract);
 	}
-	
-	public static LocalDateTime minusMonths(LocalDateTime localDateTime, long amountToAdd){
-		return (LocalDateTime) minus(localDateTime, ChronoUnit.MONTHS, amountToAdd);
+
+	/**
+	 * 减月
+	 * @param localDateTime LocalDateTime
+	 * @param amountToSubtract 减少的值
+	 * @return LocalDateTime
+	 */
+	public static LocalDateTime minusMonths(LocalDateTime localDateTime, long amountToSubtract){
+		return (LocalDateTime) minus(localDateTime, ChronoUnit.MONTHS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减月
+	 * @param localDate LocalDate
+	 * @param amountToSubtract 减少的值
+	 * @return LocalDate
+	 */
 	public static LocalDate minusMonths(LocalDate localDate, long amountToSubtract){
 		return (LocalDate) minus(localDate, ChronoUnit.MONTHS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减星期
+	 * @param date Date
+	 * @param amountToSubtract 减少的值
+	 * @return Date
+	 */
 	public static Date minusWeeks(Date date, long amountToSubtract){
 		return minus(date, ChronoUnit.WEEKS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减星期
+	 * @param localDateTime LocalDateTime
+	 * @param amountToSubtract 减少的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime minusWeeks(LocalDateTime localDateTime, long amountToSubtract){
 		return (LocalDateTime) minus(localDateTime, ChronoUnit.WEEKS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减星期
+	 * @param localDate LocalDate
+	 * @param amountToSubtract 减少的值
+	 * @return LocalDate
+	 */
 	public static LocalDate minusWeeks(LocalDate localDate, long amountToSubtract){
 		return (LocalDate) minus(localDate, ChronoUnit.WEEKS, amountToSubtract);
-	}	
-	
+	}
+
+	/**
+	 * 减天
+	 * @param date Date
+	 * @param amountToSubtract 减少的值
+	 * @return Date
+	 */
 	public static Date minusDays(Date date, long amountToSubtract){
 		return minus(date, ChronoUnit.DAYS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减天
+	 * @param localDateTime LocalDateTime
+	 * @param amountToSubtract 减少的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime minusDays(LocalDateTime localDateTime, long amountToSubtract){
 		return (LocalDateTime) minus(localDateTime, ChronoUnit.DAYS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减天
+	 * @param localDate LocalDate
+	 * @param amountToSubtract 减少的值
+	 * @return LocalDate
+	 */
 	public static LocalDate minusDays(LocalDate localDate, long amountToSubtract){
 		return (LocalDate) minus(localDate, ChronoUnit.DAYS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减小时
+	 * @param date Date
+	 * @param amountToSubtract 减少的值
+	 * @return Date
+	 */
 	public static Date minusHours(Date date, long amountToSubtract){
 		return minus(date, ChronoUnit.HOURS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减小时
+	 * @param localDateTime LocalDateTime
+	 * @param amountToSubtract 减少的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime minusHours(LocalDateTime localDateTime, long amountToSubtract){
 		return (LocalDateTime) minus(localDateTime, ChronoUnit.HOURS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减小时
+	 * @param localTime LocalTime
+	 * @param amountToSubtract 减少的值
+	 * @return LocalTime
+	 */
 	public static LocalTime minusHours(LocalTime localTime, long amountToSubtract){
 		return (LocalTime) minus(localTime, ChronoUnit.HOURS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减分钟
+	 * @param date Date
+	 * @param amountToSubtract 减少的值
+	 * @return Date
+	 */
 	public static Date minusMinutes(Date date, long amountToSubtract){
 		return minus(date, ChronoUnit.MINUTES, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减分钟
+	 * @param localDateTime LocalDateTime
+	 * @param amountToSubtract 减少的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime minusMinutes(LocalDateTime localDateTime, long amountToSubtract){
 		return (LocalDateTime) minus(localDateTime, ChronoUnit.MINUTES, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减分钟
+	 * @param localTime LocalTime
+	 * @param amountToSubtract 减少的值
+	 * @return LocalTime
+	 */
 	public static LocalTime minusMinutes(LocalTime localTime, long amountToSubtract){
 		return (LocalTime) minus(localTime, ChronoUnit.MINUTES, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减秒
+	 * @param date Date
+	 * @param amountToSubtract 减少的值
+	 * @return Date
+	 */
 	public static Date minusSeconds(Date date, long amountToSubtract){
 		return minus(date, ChronoUnit.SECONDS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减秒
+	 * @param localDateTime LocalDateTime
+	 * @param amountToSubtract 减少的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime minusSeconds(LocalDateTime localDateTime, long amountToSubtract){
 		return (LocalDateTime) minus(localDateTime, ChronoUnit.SECONDS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减秒
+	 * @param localTime LocalTime
+	 * @param amountToSubtract 减少的值
+	 * @return LocalTime
+	 */
 	public static LocalTime minusSeconds(LocalTime localTime, long amountToSubtract){
 		return (LocalTime) minus(localTime, ChronoUnit.SECONDS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减毫秒
+	 * @param date Date
+	 * @param amountToSubtract 减少的值
+	 * @return Date
+	 */
 	public static Date minusMillis(Date date, long amountToSubtract){
 		return minus(date, ChronoUnit.MILLIS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减毫秒
+	 * @param localDateTime LocalDateTime
+	 * @param amountToSubtract 减少的值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime minusMillis(LocalDateTime localDateTime, long amountToSubtract){
 		return (LocalDateTime) minus(localDateTime, ChronoUnit.MILLIS, amountToSubtract);
 	}
-	
+
+	/**
+	 * 减毫秒
+	 * @param localTime LocalTime
+	 * @param amountToSubtract 减少的值
+	 * @return LocalTime
+	 */
 	public static LocalTime minusMillis(LocalTime localTime, long amountToSubtract){
 		return (LocalTime) minus(localTime, ChronoUnit.MILLIS, amountToSubtract);
 	}	
@@ -920,93 +1189,243 @@ public class DateTimeCalculatorUtil {
 	// modify property
 	
 	/**
-	 * 修改年属性
-	 * @param date
-	 * @param newValue
+	 * 修改年
+	 * @param date Date
+	 * @param newValue 新值
 	 * @return Date
 	 */
 	public static Date withYear(Date date, long newValue){
 		return with(date, ChronoField.YEAR, newValue);
 	}
-	
+
+	/**
+	 * 修改年
+	 * @param localDateTime LocalDateTime
+	 * @param newValue 新值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime withYear(LocalDateTime localDateTime, long newValue){
 		return (LocalDateTime) with(localDateTime, ChronoField.YEAR, newValue);
 	}
-	
+
+	/**
+	 * 修改年
+	 * @param localDate LocalDate
+	 * @param newValue 新值
+	 * @return LocalDate
+	 */
 	public static LocalDate withYear(LocalDate localDate, long newValue){
 		return (LocalDate) with(localDate, ChronoField.YEAR, newValue);
 	}
-	
+
+	/**
+	 * 修改月
+	 * @param date Date
+	 * @param newValue 新值
+	 * @return Date
+	 */
 	public static Date withMonth(Date date, long newValue){
 		return with(date, ChronoField.MONTH_OF_YEAR, newValue);
 	}
-	
+
+	/**
+	 * 修改月
+	 * @param localDateTime LocalDateTime
+	 * @param newValue 新值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime withMonth(LocalDateTime localDateTime, long newValue){
 		return (LocalDateTime) with(localDateTime, ChronoField.MONTH_OF_YEAR, newValue);
 	}
-	
+
+	/**
+	 * 修改月
+	 * @param localDate LocalDate
+	 * @param newValue 新值
+	 * @return LocalDate
+	 */
 	public static LocalDate withMonth(LocalDate localDate, long newValue){
 		return (LocalDate) with(localDate, ChronoField.MONTH_OF_YEAR, newValue);
 	}
-	
+
+	/**
+	 * 修改天
+	 * @param date Date
+	 * @param newValue 新值
+	 * @return Date
+	 */
 	public static Date withDayOfMonth(Date date, long newValue){
 		return with(date, ChronoField.DAY_OF_MONTH, newValue);
 	}
-	
+
+	/**
+	 * 修改天
+	 * @param localDateTime LocalDateTime
+	 * @param newValue 新值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime withDayOfMonth(LocalDateTime localDateTime, long newValue){
 		return (LocalDateTime) with(localDateTime, ChronoField.DAY_OF_MONTH, newValue);
 	}
-	
+
+	/**
+	 * 修改天
+	 * @param localDate LocalDate
+	 * @param newValue 新值
+	 * @return LocalDate
+	 */
 	public static LocalDate withDayOfMonth(LocalDate localDate, long newValue){
 		return (LocalDate) with(localDate, ChronoField.DAY_OF_MONTH, newValue);
-	}	
-	
+	}
+
+	/**
+	 * 修改一年中的天
+	 * @param date Date
+	 * @param newValue 新值
+	 * @return Date
+	 */
 	public static Date withDayOfYear(Date date, long newValue){
 		return with(date, ChronoField.DAY_OF_YEAR, newValue);
 	}
-	
+
+	/**
+	 * 修改一年中的天
+	 * @param localDateTime LocalDateTime
+	 * @param newValue 新值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime withDayOfYear(LocalDateTime localDateTime, long newValue){
 		return (LocalDateTime) with(localDateTime, ChronoField.DAY_OF_YEAR, newValue);
 	}
-	
+
+	/**
+	 * 修改一年中的天
+	 * @param localDate LocalDate
+	 * @param newValue 新值
+	 * @return LocalDate
+	 */
 	public static LocalDate withDayOfYear(LocalDate localDate, long newValue){
 		return (LocalDate) with(localDate, ChronoField.DAY_OF_YEAR, newValue);
 	}
-	
+
+	/**
+	 * 修改小时
+	 * @param date Date
+	 * @param newValue 新值
+	 * @return Date
+	 */
 	public static Date withHour(Date date, long newValue){
 		return with(date, ChronoField.HOUR_OF_DAY, newValue);
 	}
-	
+
+	/**
+	 * 修改小时
+	 * @param localDateTime LocalDateTime
+	 * @param newValue 新值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime withHour(LocalDateTime localDateTime, long newValue){
 		return (LocalDateTime) with(localDateTime, ChronoField.HOUR_OF_DAY, newValue);
 	}
-	
+
+	/**
+	 * 修改小时
+	 * @param localTime LocalTime
+	 * @param newValue 新值
+	 * @return LocalTime
+	 */
 	public static LocalTime withHour(LocalTime localTime, long newValue){
 		return (LocalTime) with(localTime, ChronoField.HOUR_OF_DAY, newValue);
 	}
-	
+
+	/**
+	 * 修改分钟
+	 * @param date Date
+	 * @param newValue 新值
+	 * @return Date
+	 */
 	public static Date withMinute(Date date, long newValue){
 		return with(date, ChronoField.MINUTE_OF_HOUR, newValue);
 	}
-	
+
+	/**
+	 * 修改分钟
+	 * @param localDateTime LocalDateTime
+	 * @param newValue 新值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime withMinute(LocalDateTime localDateTime, long newValue){
 		return (LocalDateTime) with(localDateTime, ChronoField.MINUTE_OF_HOUR, newValue);
 	}
-	
+
+	/**
+	 * 修改分钟
+	 * @param localTime LocalTime
+	 * @param newValue 新值
+	 * @return LocalTime
+	 */
 	public static LocalTime withMinute(LocalTime localTime, long newValue){
 		return (LocalTime) with(localTime, ChronoField.MINUTE_OF_HOUR, newValue);
 	}
-	
+
+	/**
+	 * 修改秒
+	 * @param date Date
+	 * @param newValue 新值
+	 * @return Date
+	 */
 	public static Date withSecond(Date date, long newValue){
 		return with(date, ChronoField.SECOND_OF_MINUTE, newValue);
 	}
-	
+
+	/**
+	 * 修改秒
+	 * @param localDateTime LocalDateTime
+	 * @param newValue 新值
+	 * @return LocalDateTime
+	 */
 	public static LocalDateTime withSecond(LocalDateTime localDateTime, long newValue){
 		return (LocalDateTime) with(localDateTime, ChronoField.SECOND_OF_MINUTE, newValue);
 	}
-	
+
+	/**
+	 * 修改秒
+	 * @param localTime LocalTime
+	 * @param newValue 新值
+	 * @return LocalTime
+	 */
 	public static LocalTime withSecond(LocalTime localTime, long newValue){
 		return (LocalTime) with(localTime, ChronoField.SECOND_OF_MINUTE, newValue);
+	}
+
+	/**
+	 * 修改毫秒
+	 * @param date Date
+	 * @param newValue 新值
+	 * @return Date
+	 */
+	public static Date withMilli(Date date, long newValue){
+		return with(date, ChronoField.MILLI_OF_SECOND, newValue);
+	}
+
+	/**
+	 * 修改毫秒
+	 * @param localDateTime LocalDateTime
+	 * @param newValue 新值
+	 * @return LocalDateTime
+	 */
+	public static LocalDateTime withMilli(LocalDateTime localDateTime, long newValue){
+		return (LocalDateTime) with(localDateTime, ChronoField.MILLI_OF_SECOND, newValue);
+	}
+
+	/**
+	 * 修改毫秒
+	 * @param localTime LocalTime
+	 * @param newValue 新值
+	 * @return LocalTime
+	 */
+	public static LocalTime withMilli(LocalTime localTime, long newValue){
+		return (LocalTime) with(localTime, ChronoField.MILLI_OF_SECOND, newValue);
 	}
 	
 	// get the difference between two times
@@ -1014,8 +1433,8 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取2个日期的相差年月天的年数部分，不是相差总年数，
 	 * 比如2020-02-29 2021-03-07，返回1
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenYears(LocalDateTime startInclusive, LocalDateTime endExclusive){
@@ -1028,8 +1447,8 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取2个日期的相差年月天的年数部分，不是相差总年数，
 	 * 比如2020-02-29 2021-03-07，返回1
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenYears(Date startInclusive, Date endExclusive){
@@ -1042,8 +1461,8 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取2个日期的相差年月天的年数部分，不是相差总年数，
 	 * 比如2020-02-29 2021-03-07，返回1
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenYears(LocalDate startInclusive, LocalDate endExclusive){
@@ -1053,8 +1472,8 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取2个日期的相差年月天的月数部分，不是相差总月数，
 	 * 比如2020-02-29 2021-03-07，返回0
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenMonths(LocalDateTime startInclusive, LocalDateTime endExclusive){
@@ -1067,8 +1486,8 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取2个日期的相差年月天的月数部分，不是相差总月数，
 	 * 比如2020-02-29 2021-03-07，返回0
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenMonths(Date startInclusive, Date endExclusive){
@@ -1081,8 +1500,8 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取2个日期的相差年月天的月数部分，不是相差总月数，
 	 * 比如2020-02-29 2021-03-07，返回0
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenMonths(LocalDate startInclusive, LocalDate endExclusive){
@@ -1092,8 +1511,8 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取2个日期的相差年月天的天数部分，不是相差总天数，
 	 * 比如2020-02-29 2021-03-07，返回7
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenDays(LocalDateTime startInclusive, LocalDateTime endExclusive){
@@ -1106,8 +1525,8 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取2个日期的相差年月天的天数部分，不是相差总天数，
 	 * 比如2020-02-29 2021-03-07，返回7
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenDays(Date startInclusive, Date endExclusive){
@@ -1120,8 +1539,8 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 获取2个日期的相差年月天的天数部分，不是相差总天数，
 	 * 比如2020-02-29 2021-03-07，返回7
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenDays(LocalDate startInclusive, LocalDate endExclusive){
@@ -1130,8 +1549,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总天数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalDays(LocalDateTime startInclusive, LocalDateTime endExclusive){
@@ -1140,8 +1559,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总天数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalDays(Date startInclusive, Date endExclusive){
@@ -1152,8 +1571,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总小时数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalHours(LocalDateTime startInclusive, LocalDateTime endExclusive){
@@ -1162,8 +1581,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总小时数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalHours(LocalTime startInclusive, LocalTime endExclusive){
@@ -1172,8 +1591,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总小时数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalHours(Date startInclusive, Date endExclusive){
@@ -1184,8 +1603,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总分钟数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalMinutes(LocalDateTime startInclusive, LocalDateTime endExclusive){
@@ -1194,8 +1613,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总分钟数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalMinutes(LocalTime startInclusive, LocalTime endExclusive){
@@ -1204,8 +1623,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总分钟数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalMinutes(Date startInclusive, Date endExclusive){
@@ -1216,8 +1635,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总秒数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalSeconds(LocalDateTime startInclusive, LocalDateTime endExclusive){
@@ -1226,8 +1645,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总秒数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalSeconds(LocalTime startInclusive, LocalTime endExclusive){
@@ -1236,8 +1655,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总秒数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalSeconds(Date startInclusive, Date endExclusive){
@@ -1248,8 +1667,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总毫秒数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalMillis(LocalDateTime startInclusive, LocalDateTime endExclusive){
@@ -1258,8 +1677,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总毫秒数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalMillis(LocalTime startInclusive, LocalTime endExclusive){
@@ -1268,8 +1687,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总毫秒数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalMillis(Date startInclusive, Date endExclusive){
@@ -1280,8 +1699,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总纳秒数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalNanos(LocalDateTime startInclusive, LocalDateTime endExclusive){
@@ -1290,8 +1709,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总纳秒数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalNanos(LocalTime startInclusive, LocalTime endExclusive){
@@ -1300,8 +1719,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差总纳秒数
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return long
 	 */
 	public static long betweenTotalNanos(Date startInclusive, Date endExclusive){
@@ -1315,7 +1734,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期值 1-7，星期一到星期日
-	 * @param date
+	 * @param date Date
 	 * @return int
 	 */
 	public static int getDayOfWeek(Date date){
@@ -1324,7 +1743,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期值 1-7，星期一到星期日
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return int
 	 */
 	public static int getDayOfWeek(LocalDateTime localDateTime){
@@ -1334,7 +1753,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期值 1-7，星期一到星期日
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return int
 	 */
 	public static int getDayOfWeek(LocalDate localDate){
@@ -1344,7 +1763,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期值 1-7，星期一到星期日
-	 * @param instant
+	 * @param instant Instant
 	 * @return int
 	 */
 	public static int getDayOfWeek(Instant instant){
@@ -1353,7 +1772,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期英文全称，比如Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday
-	 * @param date
+	 * @param date Date
 	 * @return String
 	 */
 	public static String getDayOfWeekEnLong(Date date){
@@ -1362,7 +1781,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期英文全称，比如Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return String
 	 */
 	public static String getDayOfWeekEnLong(LocalDateTime localDateTime){
@@ -1372,7 +1791,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期英文全称，比如Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return String
 	 */
 	public static String getDayOfWeekEnLong(LocalDate localDate){
@@ -1382,7 +1801,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期英文全称，比如Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday
-	 * @param instant
+	 * @param instant Instant
 	 * @return String
 	 */
 	public static String getDayOfWeekEnLong(Instant instant){
@@ -1391,7 +1810,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期英文简称，比如Mon
-	 * @param date
+	 * @param date Date
 	 * @return String
 	 */
 	public static String getDayOfWeekEnShort(Date date){
@@ -1400,7 +1819,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期英文简称，比如Mon
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return String
 	 */
 	public static String getDayOfWeekEnShort(LocalDateTime localDateTime){
@@ -1410,7 +1829,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期英文简称，比如Mon
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return String
 	 */
 	public static String getDayOfWeekEnShort(LocalDate localDate){
@@ -1420,7 +1839,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期英文简称，比如Mon
-	 * @param instant
+	 * @param instant Instant
 	 * @return String
 	 */
 	public static String getDayOfWeekEnShort(Instant instant){
@@ -1429,7 +1848,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期英文简称大写，比如MON
-	 * @param date
+	 * @param date Date
 	 * @return String
 	 */
 	public static String getDayOfWeekEnShortUpper(Date date){
@@ -1438,7 +1857,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期英文简称大写，比如MON
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return String
 	 */
 	public static String getDayOfWeekEnShortUpper(LocalDateTime localDateTime){
@@ -1448,7 +1867,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期英文简称大写，比如MON
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return String
 	 */
 	public static String getDayOfWeekEnShortUpper(LocalDate localDate){
@@ -1458,7 +1877,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期英文简称大写，比如MON
-	 * @param instant
+	 * @param instant Instant
 	 * @return String
 	 */
 	public static String getDayOfWeekEnShortUpper(Instant instant){
@@ -1468,7 +1887,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期中文，比如星期一
-	 * @param date
+	 * @param date Date
 	 * @return String
 	 */
 	public static String getDayOfWeekCn(Date date){
@@ -1477,7 +1896,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期中文，比如星期一
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return String
 	 */
 	public static String getDayOfWeekCn(LocalDateTime localDateTime){
@@ -1487,7 +1906,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期中文，比如星期一
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return String
 	 */
 	public static String getDayOfWeekCn(LocalDate localDate){
@@ -1497,7 +1916,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期中文，比如星期一
-	 * @param instant
+	 * @param instant Instant
 	 * @return String
 	 */
 	public static String getDayOfWeekCn(Instant instant){
@@ -1506,7 +1925,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期中文简称，比如星期一为一
-	 * @param date
+	 * @param date Date
 	 * @return String
 	 */
 	public static String getDayOfWeekCnShort(Date date){
@@ -1515,7 +1934,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期中文简称，比如星期一为一
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return String
 	 */
 	public static String getDayOfWeekCnShort(LocalDateTime localDateTime){
@@ -1525,7 +1944,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期中文简称，比如星期一为一
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return String
 	 */
 	public static String getDayOfWeekCnShort(LocalDate localDate){
@@ -1535,7 +1954,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取星期中文简称，比如星期一为一
-	 * @param instant
+	 * @param instant Instant
 	 * @return String
 	 */
 	public static String getDayOfWeekCnShort(Instant instant){
@@ -1544,7 +1963,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取当前月的第一天
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return LocalDate
 	 */
 	public static LocalDate firstDayOfMonth(LocalDate localDate){
@@ -1554,7 +1973,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取当前月的第一天
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime firstDayOfMonth(LocalDateTime localDateTime){
@@ -1564,7 +1983,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取当前月的第一天
-	 * @param date
+	 * @param date Date
 	 * @return Date
 	 */
 	public static Date firstDayOfMonth(Date date){
@@ -1573,7 +1992,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取当前月的最后一天
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return LocalDate
 	 */
 	public static LocalDate lastDayOfMonth(LocalDate localDate){
@@ -1583,7 +2002,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取当前月的最后一天
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime lastDayOfMonth(LocalDateTime localDateTime){
@@ -1593,7 +2012,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取当前月的最后一天
-	 * @param date
+	 * @param date Date
 	 * @return Date
 	 */
 	public static Date lastDayOfMonth(Date date){
@@ -1602,7 +2021,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 判断是否闰年
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return boolean
 	 */
 	public static boolean isLeapYear(LocalDate localDate){
@@ -1612,7 +2031,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 判断是否闰年
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return boolean
 	 */
 	public static boolean isLeapYear(LocalDateTime localDateTime){
@@ -1622,7 +2041,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 判断是否闰年
-	 * @param date
+	 * @param date Date
 	 * @return boolean
 	 */
 	public static boolean isLeapYear(Date date){
@@ -1631,7 +2050,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 判断是否闰年
-	 * @param year
+	 * @param year 年
 	 * @return boolean
 	 */
 	public static boolean isLeapYear(int year){
@@ -1640,7 +2059,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 下一个闰年
-	 * @param year
+	 * @param year 年
 	 * @return int
 	 */
 	public static int nextLeapYear(int year){
@@ -1655,7 +2074,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 下一个闰年
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime nextLeapYear(LocalDateTime localDateTime){
@@ -1664,7 +2083,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 下一个闰年
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return LocalDate
 	 */
 	public static LocalDate nextLeapYear(LocalDate localDate){
@@ -1673,7 +2092,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 下一个闰年
-	 * @param date
+	 * @param date Date
 	 * @return Date
 	 */
 	public static Date nextLeapYear(Date date){
@@ -1682,7 +2101,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 判断是否工作日 （周一到周五）
-	 * @param date
+	 * @param date Date
 	 * @return boolean
 	 */
 	public static boolean isWorkDay(Date date){
@@ -1696,7 +2115,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 判断是否工作日 （周一到周五）
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return boolean
 	 */
 	public static boolean isWorkDay(LocalDateTime localDateTime){
@@ -1710,7 +2129,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 判断是否工作日 （周一到周五）
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return boolean
 	 */
 	public static boolean isWorkDay(LocalDate localDate){
@@ -1724,7 +2143,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 判断是否周末（周六周日）
-	 * @param date
+	 * @param date Date
 	 * @return boolean
 	 */
 	public static boolean isWeekend(Date date){
@@ -1733,7 +2152,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 判断是否周末（周六周日）
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return boolean
 	 */
 	public static boolean isWeekend(LocalDateTime localDateTime){
@@ -1742,7 +2161,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 判断是否周末（周六周日）
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return boolean
 	 */
 	public static boolean isWeekend(LocalDate localDate){
@@ -1751,7 +2170,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月的天数
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return int
 	 */
 	public static int lengthOfMonth(LocalDate localDate){
@@ -1761,7 +2180,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月的天数
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return int
 	 */
 	public static int lengthOfMonth(LocalDateTime localDateTime){
@@ -1771,7 +2190,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月的天数
-	 * @param date
+	 * @param date Date
 	 * @return int
 	 */
 	public static int lengthOfMonth(Date date){
@@ -1780,7 +2199,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 *  获取年的天数
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return int
 	 */
 	public static int lengthOfYear(LocalDate localDate){
@@ -1790,7 +2209,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取年的天数
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return int
 	 */
 	public static int lengthOfYear(LocalDateTime localDateTime){
@@ -1800,7 +2219,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取年的天数
-	 * @param date
+	 * @param date Date
 	 * @return int
 	 */
 	public static int lengthOfYear(Date date){
@@ -1809,8 +2228,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 下一个星期几
-	 * @param localDate
-	 * @param dayOfWeek
+	 * @param localDate 日期
+	 * @param dayOfWeek 星期
 	 * @return LocalDate
 	 */
 	public static LocalDate next(LocalDate localDate, DayOfWeek dayOfWeek){
@@ -1820,8 +2239,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 下一个星期几
-	 * @param localDateTime
-	 * @param dayOfWeek
+	 * @param localDateTime 日期
+	 * @param dayOfWeek 星期
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime next(LocalDateTime localDateTime, DayOfWeek dayOfWeek){
@@ -1830,8 +2249,8 @@ public class DateTimeCalculatorUtil {
 
 	/**
 	 * 下一个星期几
-	 * @param date
-	 * @param dayOfWeek
+	 * @param date 日期
+	 * @param dayOfWeek 星期
 	 * @return Date
 	 */
 	public static Date next(Date date, DayOfWeek dayOfWeek){
@@ -1841,8 +2260,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 上一个星期几
-	 * @param localDate
-	 * @param dayOfWeek
+	 * @param localDate 日期
+	 * @param dayOfWeek 星期
 	 * @return LocalDate
 	 */
 	public static LocalDate previous(LocalDate localDate, DayOfWeek dayOfWeek){
@@ -1852,8 +2271,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 上一个星期几
-	 * @param localDateTime
-	 * @param dayOfWeek
+	 * @param localDateTime 日期
+	 * @param dayOfWeek 星期
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime previous(LocalDateTime localDateTime, DayOfWeek dayOfWeek){
@@ -1862,8 +2281,8 @@ public class DateTimeCalculatorUtil {
 
 	/**
 	 * 上一个星期几
-	 * @param date
-	 * @param dayOfWeek
+	 * @param date 日期
+	 * @param dayOfWeek 星期
 	 * @return Date
 	 */
 	public static Date previous(Date date, DayOfWeek dayOfWeek){
@@ -1872,7 +2291,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获下一个工作日
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return LocalDate
 	 */
 	public static LocalDate nextWorkDay(LocalDate localDate){
@@ -1882,7 +2301,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获下一个工作日
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime nextWorkDay(LocalDateTime localDateTime){
@@ -1892,7 +2311,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获下一个工作日
-	 * @param date
+	 * @param date Date
 	 * @return Date
 	 */
 	public static Date nextWorkDay(Date date){
@@ -1924,7 +2343,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取当前美国东部标准时区（纽约、华盛顿）
+	 * 获取当前美国东部标准时区
 	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime getZonedDateTimeNowOfEST(){
@@ -1943,9 +2362,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 日期加操作
-	 * @param temporal
-	 * @param unit
-	 * @param amountToAdd
+	 * @param temporal Temporal
+	 * @param unit 单位
+	 * @param amountToAdd 增加的值 增加的值
 	 * @return Temporal
 	 */
 	public static Temporal plus(Temporal temporal, TemporalUnit unit, long amountToAdd) {
@@ -1955,9 +2374,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * date日期加操作
-	 * @param date
-	 * @param unit
-	 * @param amountToAdd
+	 * @param date Date
+	 * @param unit 单位
+	 * @param amountToAdd 增加的值 增加的值
 	 * @return Date
 	 */
 	public static Date plus(Date date, TemporalUnit unit, long amountToAdd) {
@@ -1966,9 +2385,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 日期减操作
-	 * @param temporal
-	 * @param unit
-	 * @param amountToSubtract
+	 * @param temporal Temporal
+	 * @param unit 单位
+	 * @param amountToSubtract 减少的值
 	 * @return Temporal
 	 */
 	public static Temporal minus(Temporal temporal, TemporalUnit unit, long amountToSubtract) {
@@ -1978,9 +2397,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * date日期减操作
-	 * @param date
-	 * @param unit
-	 * @param amountToSubtract
+	 * @param date 日期
+	 * @param unit 单位
+	 * @param amountToSubtract 减少的值
 	 * @return Date
 	 */
 	public static Date minus(Date date, TemporalUnit unit, long amountToSubtract) {
@@ -1989,9 +2408,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 根据field修改属性
-	 * @param temporal
-	 * @param field
-	 * @param newValue
+	 * @param temporal Temporal
+	 * @param field 属性
+	 * @param newValue 新值
 	 * @return Temporal
 	 */
 	public static Temporal with(Temporal temporal, TemporalField field, long newValue) {
@@ -2001,9 +2420,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 根据field修改属性
-	 * @param date
-	 * @param field
-	 * @param newValue
+	 * @param date 日期
+	 * @param field 属性
+	 * @param newValue 新值
 	 * @return Date
 	 */
 	public static Date with(Date date, TemporalField field, long newValue) {
@@ -2012,8 +2431,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的总的天时分秒毫秒纳秒
-	 * @param startInclusive
-	 * @param endExclusive
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
 	 * @return Duration
 	 */
 	public static Duration durationBetween(Temporal startInclusive, Temporal endExclusive){
@@ -2022,8 +2441,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取2个日期的相差年月日部分属性
-	 * @param startDateInclusive
-	 * @param endDateExclusive
+	 * @param startDateInclusive 开始时间
+	 * @param endDateExclusive 结束时间
 	 * @return Period
 	 */
 	public static Period periodBetween(LocalDate startDateInclusive, LocalDate endDateExclusive){
@@ -2032,7 +2451,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取时区当前时间
-	 * @param zoneId
+	 * @param zoneId 时区
 	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime getZonedDateTimeNow(String zoneId){
@@ -2042,7 +2461,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 时区转换计算
-	 * @param zonedDateTime
+	 * @param zonedDateTime ZonedDateTime
 	 * @param zoneId 例如 Asia/Shanghai
 	 * @return ZonedDateTime
 	 */
@@ -2053,8 +2472,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 时区转换计算
-	 * @param zonedDateTime
-	 * @param zone
+	 * @param zonedDateTime ZonedDateTime
+	 * @param zone 时区
 	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime transform(ZonedDateTime zonedDateTime, ZoneId zone){
@@ -2065,7 +2484,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 时区转换计算
-	 * @param date
+	 * @param date Date
 	 * @param zoneId 目标时区
 	 * @return 日期 yyyy-MM-dd HH:mm:ss
 	 */
@@ -2076,7 +2495,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 时区转换计算
-	 * @param date
+	 * @param date Date
 	 * @param zone 目标时区
 	 * @return 日期 yyyy-MM-dd HH:mm:ss
 	 */
@@ -2087,8 +2506,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 比较2个时间Date
-	 * @param date1
-	 * @param date2
+	 * @param date1 时间1
+	 * @param date2 时间2
 	 * @return int date1 大于 date2 返回1， date1 小于 date2 返回-1，date1 等于date2 返回0
 	 */
 	public static int compare(Date date1, Date date2){
@@ -2097,8 +2516,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 比较2个时间,可用于LocalDateTime,LocalDate,LocalTime,Instant
-	 * @param temporal1
-	 * @param temporal2
+	 * @param temporal1 时间1
+	 * @param temporal2 时间2
 	 * @return int temporal1 大于 temporal2 返回1， temporal1 小于 temporal2 返回-1，temporal1 等于temporal2 返回0
 	 */
 	public static int compare(Temporal temporal1, Temporal temporal2){
@@ -2225,7 +2644,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获date起始时间
-	 * @param date
+	 * @param date Date
 	 * @return Date
 	 */
 	public static Date startTimeOfDate(Date date){
@@ -2234,7 +2653,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取date结束时间
-	 * @param date
+	 * @param date Date
 	 * @return Date
 	 */
 	public static Date endTimeOfDate(Date date){
@@ -2243,8 +2662,8 @@ public class DateTimeCalculatorUtil {
 
 	/**
 	 * 获取指定年月的第一天起始时间
-	 * @param year
-	 * @param month
+	 * @param year 年
+	 * @param month 月
 	 * @return Date
 	 */
 	public static Date startTimeOfSpecialMonth(int year, int month){
@@ -2253,8 +2672,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取指定年月的最后一天结束时间
-	 * @param year
-	 * @param month
+	 * @param year 年
+	 * @param month 月
 	 * @return Date
 	 */
 	public static Date endTimeOfSpecialMonth(int year, int month){
@@ -2263,9 +2682,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取指定日期的起始时间
-	 * @param year
-	 * @param month
-	 * @param dayOfMonth
+	 * @param year 年
+	 * @param month 月
+	 * @param dayOfMonth 日
 	 * @return Date
 	 */
 	public static Date startTimeOfDate(int year, int month, int dayOfMonth){
@@ -2274,9 +2693,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取指定日期的结束时间
-	 * @param year
-	 * @param month
-	 * @param dayOfMonth
+	 * @param year 年
+	 * @param month 月
+	 * @param dayOfMonth 日
 	 * @return Date
 	 */
 	public static Date endTimeOfDate(int year, int month, int dayOfMonth){
@@ -2285,7 +2704,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取第一季度起始日期的开始时间
-	 * @param year
+	 * @param year 年
 	 * @return Date
 	 */
 	public static Date startTimeOfFirstQuarter(int year){
@@ -2294,7 +2713,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取第二季度起始日期的开始时间
-	 * @param year
+	 * @param year 年
 	 * @return Date
 	 */
 	public static Date startTimeOfSecondQuarter(int year){
@@ -2303,7 +2722,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取第三季度起始日期的开始时间
-	 * @param year
+	 * @param year 年
 	 * @return Date
 	 */
 	public static Date startTimeOfThirdQuarter(int year){
@@ -2312,7 +2731,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取第四季度起始日期的开始时间
-	 * @param year
+	 * @param year 年
 	 * @return Date
 	 */
 	public static Date startTimeOfFourthQuarter(int year){
@@ -2321,7 +2740,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取第一季度结束日期的开始时间
-	 * @param year
+	 * @param year 年
 	 * @return Date
 	 */
 	public static Date endTimeOfFirstQuarter(int year){
@@ -2330,7 +2749,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取第二季度结束日期的开始时间
-	 * @param year
+	 * @param year 年
 	 * @return Date
 	 */
 	public static Date endTimeOfSecondQuarter(int year){
@@ -2339,7 +2758,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取第三季度结束日期的开始时间
-	 * @param year
+	 * @param year 年
 	 * @return Date
 	 */
 	public static Date endTimeOfThirdQuarter(int year){
@@ -2348,7 +2767,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取第四季度结束日期的开始时间
-	 * @param year
+	 * @param year 年
 	 * @return Date
 	 */
 	public static Date endTimeOfFourthQuarter(int year){
@@ -2357,7 +2776,6 @@ public class DateTimeCalculatorUtil {
 
 	/**
 	 * 获取当前季度起始日期的开始时间
-	 * @param year
 	 * @return Date
 	 */
 	public static Date startTimeOfCurrentQuarter(){
@@ -2369,7 +2787,6 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取当前季度结束日期的时间
-	 * @param year
 	 * @return Date
 	 */
 	public static Date endTimeOfCurrentQuarter(){
@@ -2381,7 +2798,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取指定年起始日期的开始时间
-	 * @param year
+	 * @param year 年
 	 * @return Date
 	 */
 	public static Date startTimeOfYear(int year){
@@ -2390,7 +2807,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取指定年结束日期的开始时间
-	 * @param year
+	 * @param year 年
 	 * @return Date
 	 */
 	public static Date endTimeOfYear(int year){
@@ -2399,7 +2816,6 @@ public class DateTimeCalculatorUtil {
 
 	/**
 	 * 获取当前年起始日期的开始时间
-	 * @param year
 	 * @return Date
 	 */
 	public static Date startTimeOfCurrentYear(){
@@ -2408,7 +2824,6 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取当前年结束日期的时间
-	 * @param year
 	 * @return Date
 	 */
 	public static Date endTimeOfCurrentYear(){
@@ -2419,8 +2834,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 相同月日比较判断，用于生日，节日等周期性的日期比较判断。
-	 * @param localDate1
-	 * @param monthDay
+	 * @param localDate1 日期1
+	 * @param monthDay 月日
 	 * @return boolean
 	 */
 	public static boolean isSameMonthDay(LocalDate localDate1, MonthDay monthDay){
@@ -2431,40 +2846,40 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 相同月日比较判断，用于生日，节日等周期性的日期比较判断。
-	 * @param localDate1
-	 * @param monthDayStr MM-dd格式
+	 * @param localDate1 日期1
+	 * @param monthDayStr  月日字符串 MM-dd格式
 	 * @return boolean
 	 */
 	public static boolean isSameMonthDay(LocalDate localDate1, String monthDayStr){
 		Objects.requireNonNull(monthDayStr, "monthDayStr");
 		return isSameMonthDay(localDate1, MonthDay.parse(MONTHDAY_FORMAT_PRE + monthDayStr));
 	}
-	
+
 	/**
 	 * 相同月日比较判断，用于生日，节日等周期性的日期比较判断。
-	 * @param localDate1
-	 * @param localDate2
+	 * @param localDate1 日期1
+	 * @param localDate2 日期2
 	 * @return boolean
 	 */
 	public static boolean isSameMonthDay(LocalDate localDate1, LocalDate localDate2){
 		Objects.requireNonNull(localDate2, "localDate2");
 		return isSameMonthDay(localDate1, MonthDay.of(localDate2.getMonthValue(), localDate2.getDayOfMonth()));
 	}
-	
+
 	/**
 	 * 相同月日比较判断，用于生日，节日等周期性的日期比较判断。
-	 * @param date
-	 * @param monthDayStr MM-dd格式
+	 * @param date 日期
+	 * @param monthDayStr 月日字符串，MM-dd格式
 	 * @return boolean
 	 */
 	public static boolean isSameMonthDay(Date date, String monthDayStr){
 		return isSameMonthDay(DateTimeConverterUtil.toLocalDate(date), monthDayStr);
 	}
-	
+
 	/**
 	 * 相同月日比较判断，用于生日，节日等周期性的日期比较判断。
-	 * @param date1
-	 * @param date2
+	 * @param date1 日期1
+	 * @param date2 日期2
 	 * @return boolean
 	 */
 	public static boolean isSameMonthDay(Date date1, Date date2){
@@ -2472,28 +2887,28 @@ public class DateTimeCalculatorUtil {
 		Objects.requireNonNull(date2, "date2");
 		return isSameMonthDay(DateTimeConverterUtil.toLocalDate(date1), DateTimeConverterUtil.toLocalDate(date2));
 	}
-	
+
 	/**
 	 * 相同月日比较判断，与当前日期对比，用于生日，节日等周期性的日期比较判断
-	 * @param monthDayStr MM-dd格式
+	 * @param monthDayStr 月日字符串，MM-dd格式
 	 * @return boolean
 	 */
 	public static boolean isSameMonthDayOfNow(String monthDayStr){
 		return isSameMonthDay(LocalDate.now(), monthDayStr);
 	}
-	
+
 	/**
 	 * 下个固定月日相差天数，用于生日，节日等周期性的日期推算
-	 * @param localDate1
-	 * @param month
-	 * @param dayOfMonth
+	 * @param localDate1 日期1
+	 * @param month 月
+	 * @param dayOfMonth 日
 	 * @return long
 	 */
 	public static long betweenNextSameMonthDay(LocalDate localDate1, int month, int dayOfMonth) {
 		Objects.requireNonNull(localDate1, "localDate1");
 		MonthDay monthDay1 = MonthDay.of(localDate1.getMonthValue(), localDate1.getDayOfMonth());
 		MonthDay monthDay2 = MonthDay.of(month, dayOfMonth);
-		
+
 		// localDate1 月日 小于 month dayOfMonth
 		if (monthDay1.compareTo(monthDay2) == -1) {
 			return betweenTotalDays(localDate1.atStartOfDay(),
@@ -2512,11 +2927,11 @@ public class DateTimeCalculatorUtil {
 			}
 		}
 	}
-	
+
 	/**
 	 * 下个固定月日相差天数，用于生日，节日等周期性的日期推算
-	 * @param localDate
-	 * @param monthDayStr MM-dd格式
+	 * @param localDate 日期
+	 * @param monthDayStr 月日字符串，MM-dd格式
 	 * @return long
 	 */
 	public static long betweenNextSameMonthDay(LocalDate localDate, String monthDayStr) {
@@ -2524,11 +2939,11 @@ public class DateTimeCalculatorUtil {
 		MonthDay monthDay2 = MonthDay.parse(MONTHDAY_FORMAT_PRE + monthDayStr);
 		return betweenNextSameMonthDay(localDate, monthDay2.getMonthValue(), monthDay2.getDayOfMonth());
 	}
-	
+
 	/**
 	 * 下个固定月日相差天数，用于生日，节日等周期性的日期推算
-	 * @param date
-	 * @param monthDayStr MM-dd格式
+	 * @param date 日期
+	 * @param monthDayStr 月日字符串，MM-dd格式
 	 * @return long
 	 */
 	public static long betweenNextSameMonthDay(Date date, String monthDayStr) {
@@ -2537,10 +2952,10 @@ public class DateTimeCalculatorUtil {
 		return betweenNextSameMonthDay(DateTimeConverterUtil.toLocalDate(date), monthDay2.getMonthValue(),
 				monthDay2.getDayOfMonth());
 	}
-	
+
 	/**
 	 * 下个固定月日相差天数，与当前日期对比，用于生日，节日等周期性的日期推算
-	 * @param monthDayStr MM-dd格式
+	 * @param monthDayStr 月日字符串，MM-dd格式
 	 * @return long
 	 */
 	public static long betweenNextSameMonthDayOfNow(String monthDayStr) {
@@ -2549,58 +2964,58 @@ public class DateTimeCalculatorUtil {
 		return betweenNextSameMonthDay(LocalDate.now(), monthDay2.getMonthValue(),
 				monthDay2.getDayOfMonth());
 	}
-	
+
 	/**
 	 * 下个固定月日相差日期，用于生日，节日等周期性的日期推算
-	 * @param localDate
-	 * @param monthDayStr MM-dd格式
+	 * @param localDate 日期
+	 * @param monthDayStr 月日字符串，MM-dd格式
 	 * @return LocalDate
 	 */
 	public static LocalDate nextSameMonthDay(LocalDate localDate, String monthDayStr){
 		return localDate.plusDays(betweenNextSameMonthDay(localDate, monthDayStr));
 	}
-	
+
 	/**
 	 * 下个固定月日相差日期，用于生日，节日等周期性的日期推算
-	 * @param date
-	 * @param monthDayStr MM-dd格式
+	 * @param date 日期
+	 * @param monthDayStr 月日字符串，MM-dd格式
 	 * @return Date
 	 */
 	public static Date nextSameMonthDay(Date date, String monthDayStr){
 		return DateTimeConverterUtil.toDate(nextSameMonthDay(DateTimeConverterUtil.toLocalDate(date), monthDayStr));
 	}
-	
+
 	/**
 	 * 下个固定月日相差日期，与当前日期对比，用于生日，节日等周期性的日期推算
-	 * @param monthDayStr MM-dd格式
+	 * @param monthDayStr 月日字符串，MM-dd格式
 	 * @return Date
 	 */
 	public static Date nextSameMonthDayOfNow(String monthDayStr){
 		return nextSameMonthDay(new Date(), monthDayStr);
 	}
-	
+
 	/**
 	 * 根据日期查询星座中文名称
-	 * @param monthDayStr MM-dd格式
+	 * @param monthDayStr 月日字符串，MM-dd格式
 	 * @return String
 	 */
 	public static String getConstellationNameCn(String monthDayStr){
 		return ConstellationNameEnum.getNameCnByMonthDay(monthDayStr);
 	}
-	
+
 	/**
 	 * 根据日期查询星座中文名称
-	 * @param date
+	 * @param date Date
 	 * @return String
 	 */
 	public static String getConstellationNameCn(Date date){
 		String monthDayStr = DateTimeFormatterUtil.format(date, DateTimeFormatterUtil.MM_DD_FMT);
 		return ConstellationNameEnum.getNameCnByMonthDay(monthDayStr);
 	}
-	
+
 	/**
 	 * 根据日期查询星座英文名称
-	 * @param monthDayStr MM-dd格式
+	 * @param monthDayStr 月日字符串，MM-dd格式
 	 * @return String
 	 */
 	public static String getConstellationNameEn(String monthDayStr){
@@ -2609,9 +3024,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取指定区间的时间列表，包含起始
-	 * @param startInclusive
-	 * @param endInclusive
-	 * @return List<LocalDateTime>
+	 * @param startInclusive 开始时间
+	 * @param endInclusive 结束时间
+	 * @return 时间列表
 	 */
 	public static List<LocalDateTime> getLocalDateTimeList(LocalDateTime startInclusive, LocalDateTime endInclusive){
 		Objects.requireNonNull(startInclusive, "startInclusive");
@@ -2629,9 +3044,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取指定区间的时间列表，包含起始
-	 * @param startInclusive
-	 * @param endInclusive
-	 * @return List<LocalDate>
+	 * @param startInclusive 开始时间
+	 * @param endInclusive 结束时间
+	 * @return 时间列表
 	 */
 	public static List<LocalDate> getLocalDateList(LocalDate startInclusive, LocalDate endInclusive){
 		return getLocalDateTimeList(DateTimeConverterUtil.toLocalDateTime(startInclusive),
@@ -2641,9 +3056,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取指定区间的时间列表，包含起始
-	 * @param startInclusive
-	 * @param endInclusive
-	 * @return List<Date>
+	 * @param startInclusive 开始时间
+	 * @param endInclusive 结束时间
+	 * @return 时间列表
 	 */
 	public static List<Date> getDateList(Date startInclusive, Date endInclusive){
 		return getLocalDateTimeList(DateTimeConverterUtil.toLocalDateTime(startInclusive),
@@ -2653,8 +3068,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 *  获取指定年月的所有日期列表
-	 * @param yearMonth
-	 * @return List<LocalDate>
+	 * @param yearMonth 年月
+	 * @return 时间列表
 	 */
 	public static List<LocalDate> getLocalDateList(YearMonth yearMonth){
 		Objects.requireNonNull(yearMonth, "yearMonth");
@@ -2669,8 +3084,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 *  获取指定年月的所有日期列表
-	 * @param yearMonthStr yyyy-MM
-	 * @return List<LocalDate>
+	 * @param yearMonthStr 年月字符串，格式： yyyy-MM
+	 * @return 时间列表
 	 */
 	public static List<LocalDate> getLocalDateList(String yearMonthStr){
 		Objects.requireNonNull(yearMonthStr, "yearMonthStr");
@@ -2680,9 +3095,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 *  获取指定年月的所有日期列表
-	 * @param year
-	 * @param month
-	 * @return List<LocalDate>
+	 * @param year 年
+	 * @param month 月
+	 * @return 时间列表
 	 */
 	public static List<LocalDate> getLocalDateList(int year, int month){
 		YearMonth yearMonth = YearMonth.of(year, month);
@@ -2691,8 +3106,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 *  获取指定年月的所有日期列表
-	 * @param yearMonth
-	 * @return List<LocalDateTime>
+	 * @param yearMonth 年月
+	 * @return 时间列表
 	 */
 	public static List<LocalDateTime> getLocalDateTimeList(YearMonth yearMonth){
 		return getLocalDateList(yearMonth).stream()
@@ -2701,8 +3116,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 *  获取指定年月的所有日期列表
-	 * @param yearMonthStr yyyy-MM
-	 * @return List<LocalDateTime>
+	 * @param yearMonthStr 年月字符串，格式： yyyy-MM
+	 * @return 时间列表
 	 */
 	public static List<LocalDateTime> getLocalDateTimeList(String yearMonthStr){
 		return getLocalDateList(yearMonthStr).stream()
@@ -2711,9 +3126,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 *  获取指定年月的所有日期列表
-	 * @param year
-	 * @param month
-	 * @return List<LocalDateTime>
+	 * @param year 年
+	 * @param month 月
+	 * @return 时间列表
 	 */
 	public static List<LocalDateTime> getLocalDateTimeList(int year, int month){
 		return getLocalDateList(YearMonth.of(year, month)).stream()
@@ -2722,8 +3137,8 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取指定年月的所有日期列表
-	 * @param yearMonthStr yyyy-MM
-	 * @return List<Date>
+	 * @param yearMonthStr 年月字符串，格式： yyyy-MM
+	 * @return 时间列表
 	 */
 	public static List<Date> getDateList(String yearMonthStr){
 		return getLocalDateList(yearMonthStr).stream().map(localDate -> DateTimeConverterUtil.toDate(localDate))
@@ -2732,9 +3147,9 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取指定年月的所有日期列表
-	 * @param year
-	 * @param month
-	 * @return List<Date>
+	 * @param year 年
+	 * @param month 月
+	 * @return 时间列表
 	 */
 	public static List<Date> getDateList(int year, int month){
 		return getLocalDateList(YearMonth.of(year, month)).stream().map(localDate -> DateTimeConverterUtil.toDate(localDate))
@@ -2743,7 +3158,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 判断是否过期，（输入年月小于当前年月）
-	 * @param yearMonth
+	 * @param yearMonth 年月
 	 * @return boolean
 	 */
 	public static boolean isExpiry(YearMonth yearMonth){
@@ -2756,7 +3171,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 判断是否过期，（输入年月小于当前年月）
-	 * @param yearMonthStr yyyy-MM
+	 * @param yearMonthStr 年月字符串，格式： yyyy-MM
 	 * @return boolean
 	 */
 	public static boolean isExpiry(String yearMonthStr){
@@ -2767,7 +3182,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 是否为生日
-	 * @param birthDay
+	 * @param birthDay 生日
 	 * @return boolean
 	 */
 	public static boolean isBirthDay(LocalDate birthDay){
@@ -2777,7 +3192,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 是否为生日
-	 * @param birthDay
+	 * @param birthDay 生日
 	 * @return boolean
 	 */
 	public static boolean isBirthDay(Date birthDay){
@@ -2787,7 +3202,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 是否为生日
-	 * @param birthDay
+	 * @param birthDay 生日
 	 * @return boolean
 	 */
 	public static boolean isBirthDay(LocalDateTime birthDay){
@@ -2797,7 +3212,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 减少时间精度到秒，其他补0，返回如，2020-04-23 15:18:13
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime reduceAccuracyToSecond(LocalDateTime localDateTime) {
@@ -2809,7 +3224,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 减少时间精度到秒，其他补0，返回如，2020-04-23 15:18:13
-	 * @param date
+	 * @param date Date
 	 * @return Date
 	 */
 	public static Date reduceAccuracyToSecond(Date date) {
@@ -2819,7 +3234,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 减少时间精度到分，其他补0，返回如，2020-04-23 15:18:00
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime reduceAccuracyToMinute(LocalDateTime localDateTime) {
@@ -2831,7 +3246,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 减少时间精度到分，其他补0，返回如，2020-04-23 15:18:00
-	 * @param date
+	 * @param date Date
 	 * @return Date
 	 */
 	public static Date reduceAccuracyToMinute(Date date) {
@@ -2841,7 +3256,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 减少时间精度到小时，其他补0，返回如，2020-04-23 15:00:00
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime reduceAccuracyToHour(LocalDateTime localDateTime) {
@@ -2852,7 +3267,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 减少时间精度到小时，其他补0，返回如，2020-04-23 15:00:00
-	 * @param date
+	 * @param date Date
 	 * @return Date
 	 */
 	public static Date reduceAccuracyToHour(Date date) {
@@ -2862,7 +3277,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 减少时间精度到天，其他补0，返回如，2020-04-23 00:00:00
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime reduceAccuracyToDay(LocalDateTime localDateTime) {
@@ -2873,7 +3288,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 减少时间精度到天，其他补0，返回如，2020-04-23 00:00:00
-	 * @param date
+	 * @param date Date
 	 * @return Date
 	 */
 	public static Date reduceAccuracyToDay(Date date) {
@@ -2883,7 +3298,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 日期所在月中第几周
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @param locale 地区 为null 是取系统默认地区
 	 * @return 周数
 	 */
@@ -2895,7 +3310,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 日期所在月中第几周
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return 周数
 	 */
 	public static int weekOfMonth(LocalDate localDate){
@@ -2904,7 +3319,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 日期所在月中第几周
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return 周数
 	 */
 	public static int weekOfMonth(LocalDateTime localDateTime){
@@ -2913,7 +3328,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 日期所在月中第几周
-	 * @param date
+	 * @param date Date
 	 * @return 周数
 	 */
 	public static int weekOfMonth(Date date){
@@ -2930,7 +3345,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 日期所在年中第几周
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @param locale 地区 为null 是取系统默认地区
 	 * @return 周数
 	 */
@@ -2942,7 +3357,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 日期所在年中第几周
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return 周数
 	 */
 	public static int weekOfYear(LocalDate localDate){
@@ -2951,7 +3366,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 日期所在年中第几周
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return 周数
 	 */
 	public static int weekOfYear(LocalDateTime localDateTime){
@@ -2960,7 +3375,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 日期所在年中第几周
-	 * @param date
+	 * @param date Date
 	 * @return 周数
 	 */
 	public static int weekOfYear(Date date){
@@ -2977,7 +3392,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 是否为周一
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return 是 true 否 false
 	 */
 	public static boolean isMonday(LocalDate localDate){
@@ -2987,7 +3402,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 是否为周一
-	 * @param date
+	 * @param date Date
 	 * @return 是 true 否 false
 	 */
 	public static boolean isMonday(Date date){
@@ -2996,7 +3411,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 是否为周一
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return 是 true 否 false
 	 */
 	public static boolean isZhouYi(LocalDate localDate){
@@ -3005,7 +3420,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 是否为周一
-	 * @param date
+	 * @param date Date
 	 * @return 是 true 否 false
 	 */
 	public static boolean isZhouYi(Date date){
@@ -3014,7 +3429,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 是否为周五
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return 是 true 否 false
 	 */
 	public static boolean isFriday(LocalDate localDate){
@@ -3024,7 +3439,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 是否为周五
-	 * @param date
+	 * @param date Date
 	 * @return 是 true 否 false
 	 */
 	public static boolean isFriday(Date date){
@@ -3033,7 +3448,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 是否为周五
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return 是 true 否 false
 	 */
 	public static boolean isZhouWu(LocalDate localDate){
@@ -3042,7 +3457,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 是否为周五
-	 * @param date
+	 * @param date Date
 	 * @return 是 true 否 false
 	 */
 	public static boolean isZhouWu(Date date){
@@ -3051,7 +3466,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取指定时间对应的十二时辰
-	 * @param localTime
+	 * @param localTime LocalTime
 	 * @return 十二时辰名称
 	 */
 	public static String getTwelveTwo(LocalTime localTime){
@@ -3060,7 +3475,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取指定时间对应的十二时辰
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return 十二时辰名称
 	 */
 	public static String getTwelveTwo(LocalDateTime localDateTime){
@@ -3069,7 +3484,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取指定时间对应的十二时辰
-	 * @param localDateTime
+	 * @param date Date
 	 * @return 十二时辰名称
 	 */
 	public static String getTwelveTwo(Date date){

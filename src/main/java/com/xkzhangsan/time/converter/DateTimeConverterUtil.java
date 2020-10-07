@@ -18,7 +18,6 @@ import java.util.Objects;
  * 
  * 注意，ZonedDateTime相关的转换，尤其是其他时间转ZonedDateTime，要注意时间和对应时区一致。<br>
 * @author xkzhangsan
-* @date 2019年12月1日
 *
  */
 public class DateTimeConverterUtil {
@@ -28,7 +27,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * LocalDateTime转Date
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return Date
 	 */
 	public static Date toDate(LocalDateTime localDateTime) {
@@ -38,7 +37,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * LocalDate转Date
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return Date
 	 */
 	public static Date toDate(LocalDate localDate) {
@@ -49,7 +48,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalTime转Date
 	 * 以当天的日期+LocalTime组成新的LocalDateTime转换为Date
-	 * @param localTime
+	 * @param localTime LocalTime
 	 * @return Date
 	 */
 	public static Date toDate(LocalTime localTime) {
@@ -59,7 +58,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * Instant转Date
-	 * @param instant
+	 * @param instant Instant
 	 * @return Date
 	 */
 	public static Date toDate(Instant instant) {
@@ -68,7 +67,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 时间戳epochMilli毫秒转Date
-	 * @param epochMilli
+	 * @param epochMilli 时间戳
 	 * @return Date
 	 */
 	public static Date toDate(long epochMilli){
@@ -79,7 +78,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * ZonedDateTime转Date
 	 * 注意时间对应的时区和默认时区差异
-	 * @param zonedDateTime
+	 * @param zonedDateTime ZonedDateTime
 	 * @return Date
 	 */
 	public static Date toDate(ZonedDateTime zonedDateTime) {
@@ -91,8 +90,8 @@ public class DateTimeConverterUtil {
 	 * YearMonth转Date
 	 * 注意dayOfMonth范围：1到31之间，最大值根据月份确定特殊情况，如2月闰年29，非闰年28
 	 * 如果要转换为当月最后一天，可以使用下面方法：toDateEndOfMonth(YearMonth)
-	 * @param yearMonth
-	 * @param dayOfMonth
+	 * @param yearMonth YearMonth
+	 * @param dayOfMonth 天
 	 * @return Date
 	 */
 	public static Date toDate(YearMonth yearMonth, int dayOfMonth) {
@@ -102,7 +101,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * YearMonth转Date，转换为当月第一天
-	 * @param yearMonth
+	 * @param yearMonth YearMonth
 	 * @return Date
 	 */
 	public static Date toDateStartOfMonth(YearMonth yearMonth) {
@@ -111,7 +110,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * YearMonth转Date，转换为当月最后一天
-	 * @param yearMonth
+	 * @param yearMonth YearMonth
 	 * @return Date
 	 */
 	public static Date toDateEndOfMonth(YearMonth yearMonth) {
@@ -121,7 +120,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * Date转LocalDateTime
-	 * @param date
+	 * @param date Date
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(Date date) {
@@ -131,7 +130,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * Timestamp转LocalDateTime
-	 * @param timestamp
+	 * @param timestamp Timestamp
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(Timestamp timestamp) {
@@ -141,7 +140,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * LocalDate转LocalDateTime
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(LocalDate localDate) {
@@ -152,7 +151,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalTime转LocalDateTime
 	 * 以当天的日期+LocalTime组成新的LocalDateTime
-	 * @param localTime
+	 * @param localTime LocalTime
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(LocalTime localTime) {
@@ -162,7 +161,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * Instant转LocalDateTime
-	 * @param instant
+	 * @param instant Instant
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(Instant instant) {
@@ -171,7 +170,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 时间戳epochMilli毫秒转LocalDateTime
-	 * @param epochMilli
+	 * @param epochMilli 时间戳
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(long epochMilli) {
@@ -181,7 +180,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * temporal转LocalDateTime
-	 * @param temporal
+	 * @param temporal TemporalAccessor
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(TemporalAccessor temporal) {
@@ -191,7 +190,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * ZonedDateTime转LocalDateTime
 	 * 注意时间对应的时区和默认时区差异
-	 * @param zonedDateTime
+	 * @param zonedDateTime ZonedDateTime
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(ZonedDateTime zonedDateTime) {
@@ -201,7 +200,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * Date转LocalDate
-	 * @param date
+	 * @param date Date
 	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(Date date) {
@@ -210,7 +209,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * LocalDateTime转LocalDate
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(LocalDateTime localDateTime) {
@@ -220,7 +219,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * Instant转LocalDate
-	 * @param instant
+	 * @param instant Instant
 	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(Instant instant) {
@@ -229,7 +228,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 时间戳epochMilli毫秒转LocalDate
-	 * @param epochMilli
+	 * @param epochMilli 时间戳
 	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(long epochMilli) {
@@ -239,7 +238,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * temporal转LocalDate
-	 * @param temporal
+	 * @param temporal TemporalAccessor
 	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(TemporalAccessor temporal) {
@@ -249,7 +248,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * ZonedDateTime转LocalDate
 	 * 注意时间对应的时区和默认时区差异
-	 * @param zonedDateTime
+	 * @param zonedDateTime ZonedDateTime
 	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(ZonedDateTime zonedDateTime) {
@@ -261,8 +260,8 @@ public class DateTimeConverterUtil {
 	 * YearMonth转LocalDate
 	 * 注意dayOfMonth范围：1到31之间，最大值根据月份确定特殊情况，如2月闰年29，非闰年28
 	 * 如果要转换为当月最后一天，可以使用下面方法：toLocalDateEndOfMonth(YearMonth)
-	 * @param yearMonth
-	 * @param dayOfMonth
+	 * @param yearMonth YearMonth
+	 * @param dayOfMonth 天
 	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(YearMonth yearMonth, int dayOfMonth) {
@@ -272,7 +271,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * YearMonth转LocalDate，转换为当月第一天
-	 * @param yearMonth
+	 * @param yearMonth YearMonth
 	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDateStartOfMonth(YearMonth yearMonth) {
@@ -281,7 +280,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * YearMonth转LocalDate，转换为当月最后一天
-	 * @param yearMonth
+	 * @param yearMonth YearMonth
 	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDateEndOfMonth(YearMonth yearMonth) {
@@ -291,7 +290,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * Date转LocalTime
-	 * @param date
+	 * @param date Date
 	 * @return LocalTime
 	 */
 	public static LocalTime toLocalTime(Date date) {
@@ -300,7 +299,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * LocalDateTime转LocalTime
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return LocalTime
 	 */
 	public static LocalTime toLocalTime(LocalDateTime localDateTime) {
@@ -310,7 +309,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * Instant转LocalTime
-	 * @param instant
+	 * @param instant Instant
 	 * @return LocalTime
 	 */
 	public static LocalTime toLocalTime(Instant instant) {
@@ -319,7 +318,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * temporal转LocalTime
-	 * @param temporal
+	 * @param temporal TemporalAccessor
 	 * @return LocalTime
 	 */
 	public static LocalTime toLocalTime(TemporalAccessor temporal) {
@@ -329,7 +328,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * ZonedDateTime转LocalTime
 	 * 注意时间对应的时区和默认时区差异
-	 * @param zonedDateTime
+	 * @param zonedDateTime ZonedDateTime
 	 * @return LocalTime
 	 */
 	public static LocalTime toLocalTime(ZonedDateTime zonedDateTime) {
@@ -339,7 +338,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * Date转Instant
-	 * @param date
+	 * @param date Date
 	 * @return Instant
 	 */
 	public static Instant toInstant(Date date) {
@@ -349,7 +348,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * Timestamp转Instant
-	 * @param timestamp
+	 * @param timestamp Timestamp
 	 * @return Instant
 	 */
 	public static Instant toInstant(Timestamp timestamp) {
@@ -359,7 +358,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * LocalDateTime转Instant
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return Instant
 	 */
 	public static Instant toInstant(LocalDateTime localDateTime) {
@@ -369,7 +368,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * LocalDate转Instant
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return Instant
 	 */
 	public static Instant toInstant(LocalDate localDate) {
@@ -379,7 +378,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalTime转Instant
 	 * 以当天的日期+LocalTime组成新的LocalDateTime转换为Instant
-	 * @param localTime
+	 * @param localTime LocalTime
 	 * @return Instant
 	 */
 	public static Instant toInstant(LocalTime localTime) {
@@ -388,7 +387,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 时间戳epochMilli毫秒转Instant
-	 * @param epochMilli
+	 * @param epochMilli 时间戳
 	 * @return Instant
 	 */
 	public static Instant toInstant(long epochMilli) {
@@ -398,7 +397,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * temporal转Instant
-	 * @param temporal
+	 * @param temporal TemporalAccessor
 	 * @return Instant
 	 */
 	public static Instant toInstant(TemporalAccessor temporal) {
@@ -408,7 +407,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * ZonedDateTime转Instant
 	 * 注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
-	 * @param zonedDateTime
+	 * @param zonedDateTime ZonedDateTime
 	 * @return Instant
 	 */
 	public static Instant toInstant(ZonedDateTime zonedDateTime) {
@@ -419,7 +418,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Date转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
-	 * @param date
+	 * @param date Date
 	 * @return 时间戳
 	 */
 	public static long toEpochMilli(Date date){
@@ -430,7 +429,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Timestamp转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
-	 * @param timestamp
+	 * @param timestamp Timestamp
 	 * @return 时间戳
 	 */
 	public static long toEpochMilli(Timestamp timestamp){
@@ -441,7 +440,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalDateTime转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return 时间戳
 	 */
 	public static long toEpochMilli(LocalDateTime localDateTime){
@@ -451,7 +450,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalDate转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return 时间戳
 	 */
 	public static long toEpochMilli(LocalDate localDate){
@@ -461,7 +460,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * Instant转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
-	 * @param instant
+	 * @param instant Instant
 	 * @return 时间戳
 	 */
 	public static long toEpochMilli(Instant instant){
@@ -472,7 +471,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * ZonedDateTime转时间戳，注意，zonedDateTime时区必须和当前系统时区一致，不然会出现问题
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
-	 * @param zonedDateTime
+	 * @param zonedDateTime ZonedDateTime
 	 * @return 时间戳
 	 */
 	public static long toEpochMilli(ZonedDateTime zonedDateTime) {
@@ -482,7 +481,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * Date转ZonedDateTime，时区为系统默认时区
-	 * @param date
+	 * @param date Date
 	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(Date date) {
@@ -492,7 +491,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * Date转ZonedDateTime
-	 * @param date
+	 * @param date Date
 	 * @param zoneId 目标时区
 	 * @return ZonedDateTime
 	 */
@@ -503,7 +502,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * Date转ZonedDateTime
-	 * @param date
+	 * @param date Date
 	 * @param zone 目标时区
 	 * @return ZonedDateTime
 	 */
@@ -515,7 +514,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * LocalDateTime转ZonedDateTime，时区为系统默认时区
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(LocalDateTime localDateTime) {
@@ -527,8 +526,8 @@ public class DateTimeConverterUtil {
 	 * LocalDateTime转ZonedDateTime，时区为zoneId对应时区
 	 * 注意，需要保证localDateTime和zoneId是对应的，不然会出现错误
 	 * 
-	 * @param localDateTime
-	 * @param zoneId
+	 * @param localDateTime LocalDateTime
+	 * @param zoneId LocalDateTime
 	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(LocalDateTime localDateTime, String zoneId) {
@@ -539,7 +538,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * LocalDate转ZonedDateTime，时区为系统默认时区
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return ZonedDateTime such as 2020-02-19T00:00+08:00[Asia/Shanghai]
 	 */
 	public static ZonedDateTime toZonedDateTime(LocalDate localDate) {
@@ -550,7 +549,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalTime转ZonedDateTime
 	 * 以当天的日期+LocalTime组成新的ZonedDateTime，时区为系统默认时区
-	 * @param localTime
+	 * @param localTime LocalTime
 	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(LocalTime localTime) {
@@ -560,7 +559,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * Instant转ZonedDateTime，时区为系统默认时区
-	 * @param instant
+	 * @param instant Instant
 	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(Instant instant) {
@@ -569,7 +568,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 时间戳epochMilli毫秒转ZonedDateTime，时区为系统默认时区
-	 * @param epochMilli
+	 * @param epochMilli 时间戳
 	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(long epochMilli) {
@@ -580,7 +579,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * temporal转ZonedDateTime，时区为系统默认时区
-	 * @param temporal
+	 * @param temporal TemporalAccessor
 	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(TemporalAccessor temporal) {
@@ -589,7 +588,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * Date转YearMonth
-	 * @param date
+	 * @param date Date
 	 * @return YearMonth
 	 */
 	public static YearMonth toYearMonth(Date date){
@@ -599,7 +598,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * LocalDateTime转YearMonth
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return YearMonth
 	 */
 	public static YearMonth toYearMonth(LocalDateTime localDateTime){
@@ -609,7 +608,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * LocalDate转YearMonth
-	 * @param localDate
+	 * @param localDate LocalDate
 	 * @return YearMonth
 	 */
 	public static YearMonth toYearMonth(LocalDate localDate){
@@ -619,7 +618,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * Instant转YearMonth
-	 * @param instant
+	 * @param instant Instant
 	 * @return YearMonth
 	 */
 	public static YearMonth toYearMonth(Instant instant){
@@ -629,7 +628,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * ZonedDateTime转YearMonth
-	 * @param zonedDateTime
+	 * @param zonedDateTime ZonedDateTime
 	 * @return YearMonth
 	 */
 	public static YearMonth toYearMonth(ZonedDateTime zonedDateTime){
@@ -639,7 +638,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * Date转Timestamp
-	 * @param date
+	 * @param date Date
 	 * @return Timestamp
 	 */
 	public static Timestamp toTimestamp(Date date){
@@ -649,7 +648,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * LocalDateTime转Timestamp
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @return Timestamp
 	 */
 	public static Timestamp toTimestamp(LocalDateTime localDateTime){
@@ -659,7 +658,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * Instant转Timestamp
-	 * @param instant
+	 * @param instant Instant
 	 * @return Timestamp
 	 */
 	public static Timestamp toTimestamp(Instant instant){
@@ -669,7 +668,7 @@ public class DateTimeConverterUtil {
 
 	/**
 	 * 时间戳epochMilli转Timestamp
-	 * @param epochMilli
+	 * @param epochMilli 时间戳
 	 * @return Timestamp
 	 */
 	public static Timestamp toTimestamp(long epochMilli){

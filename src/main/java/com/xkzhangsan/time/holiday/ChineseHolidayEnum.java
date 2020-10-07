@@ -13,8 +13,6 @@ import java.util.Objects;
  * 
  * 农历相关，仅支持公历1900-2100年的农历，使用{@link LunarDate}
 * @author xkzhangsan
-* @date 2019年12月30日
-* @version 0.2 试用
  */
 public enum ChineseHolidayEnum implements Holiday{
 	
@@ -56,7 +54,7 @@ public enum ChineseHolidayEnum implements Holiday{
 	
 	/**
 	 * 根据时间获取农历节日枚举
-	 * @param temporal
+	 * @param temporal Temporal
 	 * @return ChineseHolidayEnum
 	 */
 	@Deprecated
@@ -85,7 +83,7 @@ public enum ChineseHolidayEnum implements Holiday{
 	
 	/**
 	 * 根据时间获取农历节日名称
-	 * @param temporal
+	 * @param temporal Temporal
 	 * @return String
 	 */
 	public static String getHolidayName(Temporal temporal) {
@@ -94,8 +92,8 @@ public enum ChineseHolidayEnum implements Holiday{
 	
 	/**
 	 * 对比农历月日，比如，农历生日等
-	 * @param temporal
-	 * @param monthDay
+	 * @param temporal Temporal
+	 * @param monthDay 月日字符串
 	 * @return boolean
 	 */
 	public static boolean compareLunarMonthDay(Temporal temporal, String monthDay) {

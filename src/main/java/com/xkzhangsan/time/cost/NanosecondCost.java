@@ -4,7 +4,6 @@ package com.xkzhangsan.time.cost;
  * 计算耗时，单位纳秒<br>
  * 
 * @author xkzhangsan
-* @date 2020年8月8日
  */
 public final class NanosecondCost implements Cost{
 	

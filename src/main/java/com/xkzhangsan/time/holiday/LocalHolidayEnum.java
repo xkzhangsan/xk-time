@@ -14,11 +14,7 @@ import java.util.Objects;
 /**
  * 公历常见假日
  * 
-* @ClassName: LocalHolidayEnum 
-* @Description: LocalHolidayEnum
 * @author xkzhangsan
-* @date 2019年12月30日
-* @version 0.2 试用
  */
 public enum LocalHolidayEnum implements Holiday{
 
@@ -79,7 +75,7 @@ public enum LocalHolidayEnum implements Holiday{
 	
 	/**
 	 * 根据时间获取节日枚举
-	 * @param temporal
+	 * @param temporal Temporal
 	 * @return LocalHolidayEnum
 	 */
 	@Deprecated
@@ -115,7 +111,7 @@ public enum LocalHolidayEnum implements Holiday{
 	
 	/**
 	 * 根据时间获取节日名称
-	 * @param temporal
+	 * @param temporal Temporal
 	 * @return String
 	 */
 	public static String getHolidayName(Temporal temporal) {
@@ -124,8 +120,8 @@ public enum LocalHolidayEnum implements Holiday{
 	
 	/**
 	 * 对比月日
-	 * @param temporal
-	 * @param monthDay
+	 * @param temporal Temporal
+	 * @param monthDay 月日字符串
 	 * @return boolean
 	 */
 	public static boolean compareMonthDay(Temporal temporal, String monthDay){

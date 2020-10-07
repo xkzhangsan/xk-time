@@ -9,24 +9,23 @@ package com.xkzhangsan.time.cost;
  *		Cost cost = CostUtil.startMillisecondCost();
  *		TimeUnit.MILLISECONDS.sleep(1000);
  *		long millisecond = cost.stop();
- * <pre>
+ * </pre>
  * <p>2.计算耗时，自定义任务名称，输出耗时结果
  * <pre>
  *		Cost cost = CostUtil.startMillisecondCost("millisecondCostTest");
  *		TimeUnit.MILLISECONDS.sleep(1000);
  *		cost.stopAndPrint();
  *		// millisecondCostTest cost: 1000 ms
- * <pre>
+ * </pre>
  * <p>3.计算耗时，返回精确计时，带3小数的结果，使用ROUND_DOWN 舍弃超过3位的小数部分
  * <pre>
  *		Cost cost = CostUtil.startMillisecondCost();
  *		TimeUnit.NANOSECONDS.sleep(1000_500_000);
  *		cost.stopAccurate();
  *		// 1001.238
- * <pre>
+ * </pre>
  * 
  * @author xkzhangsan
- * @date 2020年8月8日
  */
 public class CostUtil {
 	
@@ -43,8 +42,8 @@ public class CostUtil {
 	
 	/**
 	 * 开始计时，单位纳秒，返回cost对象
-	 * @param name
-	 * @return
+	 * @param name 任务名称
+	 * @return 返回cost对象
 	 */
 	public static Cost startNanosecondCost(String name){
 		return new NanosecondCost(name);

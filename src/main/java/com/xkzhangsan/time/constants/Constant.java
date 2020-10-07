@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
  * 常量
  *
  * @author xkzhangsan
- * @date 2020年02月29日
  */
 public class Constant {
 	
@@ -83,7 +82,7 @@ public class Constant {
 	/**
 	 * MonthDay 默认解析前缀
 	 * 解析字符串需要加前缀，如"--12-03"
-	 * @see java.time.MonthDay.parse(CharSequence)
+	 * @see java.time.MonthDay#parse(CharSequence)
 	 */
 	public static final String MONTHDAY_FORMAT_PRE = "--";
 
