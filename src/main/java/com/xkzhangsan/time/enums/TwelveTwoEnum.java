@@ -11,7 +11,6 @@ import com.xkzhangsan.time.converter.DateTimeConverterUtil;
  * 十二时辰枚举，包含英文全称，中文全称，时间范围
  * 
  * @author xkzhangsan
- * @date 2020年08-01
  */
 public enum TwelveTwoEnum {
 	
@@ -58,7 +57,7 @@ public enum TwelveTwoEnum {
 
 	/**
 	 * 根据时间查询时辰名称枚举
-	 * @param localTime
+	 * @param localTime LocalTime
 	 * @return TwelveHoursEnum
 	 */
 	public static TwelveTwoEnum getTwelveHoursEnum(LocalTime localTime){
@@ -79,9 +78,9 @@ public enum TwelveTwoEnum {
 
 	/**
 	 * 时间区间判断
-	 * @param localTime
-	 * @param timeStart
-	 * @param timeEnd
+	 * @param localTime LocalTime
+	 * @param timeStart 开始时间
+	 * @param timeEnd 结束时间
 	 * @return 在区间 true，不在 false
 	 */
 	private static boolean isBetween(LocalTime localTime, LocalTime timeStart, LocalTime timeEnd) {
@@ -90,9 +89,9 @@ public enum TwelveTwoEnum {
 	
 	/**
 	 * 是否子时
-	 * @param localTime
-	 * @param timeStart
-	 * @param timeEnd
+	 * @param localTime LocalTime
+	 * @param timeStart 开始时间
+	 * @param timeEnd 结束时间
 	 * @return 是 true， 否 false
 	 */
 	private static boolean isZiShi(LocalTime localTime, LocalTime timeStart, LocalTime timeEnd) {
@@ -113,7 +112,7 @@ public enum TwelveTwoEnum {
 
 	/**
 	 * 根据时间查询时辰名称
-	 * @param localTime
+	 * @param localTime LocalTime
 	 * @return String
 	 */
 	public static String getNameCn(LocalTime localTime){
@@ -123,7 +122,7 @@ public enum TwelveTwoEnum {
 	
 	/**
 	 * 根据时间查询时辰名称
-	 * @param date
+	 * @param date Date
 	 * @return String
 	 */
 	public static String getNameCn(Date date){

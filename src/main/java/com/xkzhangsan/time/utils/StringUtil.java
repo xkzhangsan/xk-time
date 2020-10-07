@@ -6,13 +6,12 @@ import com.xkzhangsan.time.constants.Constant;
  * 字符串工具类
  *
  * @author xkzhangsan
- * @date 2020年03月23日
  */
 public class StringUtil {
 
     /**
      * 判断是否为空字符串
-     * @param str
+     * @param str 字符串
      * @return boolean 如果为空，则返回true
      */
     public static boolean isEmpty(String str){
@@ -30,8 +29,8 @@ public class StringUtil {
     
 	/**
 	 * 是否纯数字
-	 * @param str
-	 * @return
+	 * @param str 字符串
+	 * @return boolean
 	 */
 	public static boolean isNumeric(String str){
 		if(str == null){
@@ -51,12 +50,13 @@ public class StringUtil {
     	}
         return Constant.START_WITH_WORD_REGEX.matcher(str).matches();
     }
-    
-    /**
-     * 计算字符出现次数
-     * @param str 如果不为空，则返回0
-     * @return boolean
-     */
+
+	/**
+	 * 计算字符出现次数
+	 * @param str 如果不为空，则返回0
+	 * @param target 需要计算的字符串
+	 * @return 出现次数
+	 */
     public static int countWord(String str, String target){
     	if(str == null){
     		return 0;

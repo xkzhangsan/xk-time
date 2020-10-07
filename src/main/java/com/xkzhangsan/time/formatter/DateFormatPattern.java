@@ -4,7 +4,6 @@ package com.xkzhangsan.time.formatter;
  * 日期格式化常用模板
  * 
  * @author xkzhangsan
- * @date 2020年5月23日
  */
 public class DateFormatPattern {
 	

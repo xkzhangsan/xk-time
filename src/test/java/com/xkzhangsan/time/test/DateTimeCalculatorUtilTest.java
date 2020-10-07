@@ -23,7 +23,6 @@ import java.util.Set;
 /**
  * 日期计算测试类
  * @author xkzhangsan
- * @date 2020年4月29日
  */
 public class DateTimeCalculatorUtilTest {
 	
@@ -92,6 +91,10 @@ public class DateTimeCalculatorUtilTest {
 		Assert.assertEquals(16,DateTimeCalculatorUtil.getHour(DateTimeCalculatorUtil.withHour(date, 16)));
 		Assert.assertEquals(29,DateTimeCalculatorUtil.getMinute(DateTimeCalculatorUtil.withMinute(date, 29)));
 		Assert.assertEquals(14,DateTimeCalculatorUtil.getSecond(DateTimeCalculatorUtil.withSecond(date, 14)));
+
+		//修改毫秒
+		LocalDateTime localDateTime = LocalDateTime.of(2020,4,29,17,30,15,100_000_000);
+		Assert.assertEquals(300,DateTimeCalculatorUtil.getMillisecond(DateTimeCalculatorUtil.withMilli(localDateTime, 300)));
 	}
 	
 

@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
  * 计算耗时，单位毫秒<br>
  * 
 * @author xkzhangsan
-* @date 2020年8月8日
  */
 public final class MillisecondCost implements Cost{
 	

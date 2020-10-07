@@ -79,15 +79,6 @@
 				<profiles.active>beta</profiles.active>
 			</properties>
 		</profile>
-		<profile>
-		        <id>disable-java8-doclint</id>
-		        <activation>
-		            <jdk>[1.8,)</jdk>
-		        </activation>
-		        <properties>
-		            <additionalparam>-Xdoclint:none</additionalparam>
-		        </properties>
-		</profile>
 	</profiles>
 	<build>
 		<plugins>
@@ -103,13 +94,15 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.7</version>
+				<version>3.1.1</version>
 				<configuration>
-					<aggregate>true</aggregate>
+					<sourceFileExcludes>
+						<sourceFileExclude>com/xkzhangsan/time/cron/CronExpression.java</sourceFileExclude>
+					</sourceFileExcludes>
 				</configuration>
 				<executions>
 					<execution>
-						<id>attach-javadocs</id>
+						<phase>package</phase>
 						<goals>
 							<goal>jar</goal>
 						</goals>

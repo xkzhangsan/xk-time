@@ -12,7 +12,6 @@ package com.xkzhangsan.time.test;
 /**
  * 日期计算，性能测试类
 * @author xkzhangsan
-* @date 2020年4月22日
  */
 public class DateTimeCalculatorPerformanceTest {
 

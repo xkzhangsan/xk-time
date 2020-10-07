@@ -15,7 +15,6 @@ import java.util.Map;
  * 日
  * 
  * @author xkzhangsan
- * @date 2020年03月18日
  */
 public class DayWrapper implements Serializable {
 
@@ -115,7 +114,7 @@ public class DayWrapper implements Serializable {
 	/**
 	 * 创建DayWrapper
 	 * 
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 */
 	public DayWrapper(LocalDateTime localDateTime) {
 		this(localDateTime, false);
@@ -124,7 +123,7 @@ public class DayWrapper implements Serializable {
 	/**
 	 * 创建DayWrapper
 	 * 
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @param includeLunarDate
 	 *            是否包含农历
 	 */
@@ -135,7 +134,7 @@ public class DayWrapper implements Serializable {
 	/**
 	 * 创建DayWrapper
 	 * 
-	 * @param localDateTime
+	 * @param localDateTime LocalDateTime
 	 * @param includeLunarDate
 	 *            是否包含农历
 	 * @param includeHoliday

@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
  * 计算秒耗时，单位 秒<br>
  * 
 * @author xkzhangsan
-* @date 2020年8月8日
  */
 public final class SecondCost implements Cost{
 	

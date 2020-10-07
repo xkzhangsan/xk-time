@@ -9,7 +9,6 @@ package com.xkzhangsan.time.test;
 /**
  * 日期格式化解析，性能测试类
 * @author xkzhangsan
-* @date 2020年5月23日
  */
 public class DateTimeFormatterPerformanceTest {
 

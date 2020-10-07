@@ -14,12 +14,14 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 日历工具类 <br>
  * 包括：<br>
+ * <pre>
  *  1.生成指定时间的日历方法，generateCalendar* 比如generateCalendar(int year, int
  * month) 生成指定年月的日历<br>
- *  2.生成指定时间的日历，包含农历和所有节假日信息方法，generateCalendarWithHoliday*， 比如generateCalendarWithHoliday(int year, int month, Map<String, String> localHolidayMap,
-			Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap)生成指定年月的日历，包含农历和所有节假日信息，可以自定义节假日和工作日等。<br>
+ *  2.生成指定时间的日历，包含农历和所有节假日信息方法，generateCalendarWithHoliday*， 比如
+ *  {@code generateCalendarWithHoliday(int year, int month, Map<String, String> localHolidayMap,
+			Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap) } 生成指定年月的日历，包含农历和所有节假日信息，可以自定义节假日和工作日等。<br>
+   </pre>
  * @author xkzhangsan
- * @date 2020年03月18日
  */
 public class CalendarUtil {
 
@@ -29,8 +31,8 @@ public class CalendarUtil {
 	/**
 	 * 生成指定年月的日历
 	 * 
-	 * @param year
-	 * @param month
+	 * @param year 年
+	 * @param month 月
 	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendar(int year, int month) {
@@ -39,9 +41,9 @@ public class CalendarUtil {
 
 	/**
 	 * 生成指定年月的日历， 包含农历信息
-	 * 
-	 * @param year
-	 * @param month
+	 *
+	 * @param year 年
+	 * @param month 月
 	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendarWithLunar(int year, int month) {
@@ -50,9 +52,9 @@ public class CalendarUtil {
 
 	/**
 	 * 生成指定年月的日历，包含公历节假日信息
-	 * 
-	 * @param year
-	 * @param month
+	 *
+	 * @param year 年
+	 * @param month 月
 	 * @param localHolidayMap
 	 *            自定义公历节日数据，特殊节日如，"母亲节", "5-W-2-7"
 	 *            5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天，为null时，使用默认数据 LocalHolidayEnum
@@ -67,8 +69,8 @@ public class CalendarUtil {
 	
 	/**
 	 * 生成指定年月的日历，包含农历和所有节假日信息
-	 * @param year
-	 * @param month
+	 * @param year 年
+	 * @param month 月
 	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendarWithHoliday(int year, int month) {
@@ -77,9 +79,9 @@ public class CalendarUtil {
 
 	/**
 	 * 生成指定年月的日历，包含农历和所有节假日信息，使用自定义数据
-	 * 
-	 * @param year
-	 * @param month
+	 *
+	 * @param year 年
+	 * @param month 月
 	 * @param localHolidayMap
 	 *            自定义公历节日数据，特殊节日如，"母亲节", "5-W-2-7"
 	 *            5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天，为null时，使用默认数据 LocalHolidayEnum
@@ -97,11 +99,11 @@ public class CalendarUtil {
 
 	/**
 	 * 生成指定年月的日历，包含农历和所有节假日信息
-	 * 
-	 * @param year
-	 * @param month
-	 * @param includeLunarDate
-	 * @param includeHoliday
+	 *
+	 * @param year 年
+	 * @param month 月
+	 * @param includeLunarDate 包含农历
+	 * @param includeHoliday 包含节日
 	 * @param localHolidayMap
 	 *            自定义公历节日数据，特殊节日如，"母亲节", "5-W-2-7"
 	 *            5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天，为null时，使用默认数据 LocalHolidayEnum
@@ -156,7 +158,7 @@ public class CalendarUtil {
 	/**
 	 * 生成指定年月的日历
 	 * 
-	 * @param year
+	 * @param year 年
 	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendar(int year) {
@@ -166,7 +168,7 @@ public class CalendarUtil {
 	/**
 	 * 生成指定年月的日历， 包含农历信息
 	 * 
-	 * @param year
+	 * @param year 年
 	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendarWithLunar(int year) {
@@ -176,7 +178,7 @@ public class CalendarUtil {
 	/**
 	 * 生成指定年月的日历，包含公历节假日信息
 	 * 
-	 * @param year
+	 * @param year 年
 	 * @param localHolidayMap
 	 *            自定义公历节日数据，特殊节日如，"母亲节", "5-W-2-7"
 	 *            5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天，为null时，使用默认数据 LocalHolidayEnum
@@ -190,7 +192,7 @@ public class CalendarUtil {
 	
 	/**
 	 * 生成指定年月的日历，包含农历和所有节假日信息
-	 * @param year
+	 * @param year 年
 	 * @return CalendarWrapper
 	 */
 	public static CalendarWrapper generateCalendarWithHoliday(int year) {
@@ -200,7 +202,7 @@ public class CalendarUtil {
 	/**
 	 * 生成指定年月的日历，包含农历和所有节假日信息，使用自定义数据
 	 * 
-	 * @param year
+	 * @param year 年
 	 * @param localHolidayMap
 	 *            自定义公历节日数据，特殊节日如，"母亲节", "5-W-2-7"
 	 *            5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天，为null时，使用默认数据 LocalHolidayEnum
@@ -219,9 +221,9 @@ public class CalendarUtil {
 	/**
 	 * 生成指定年月的日历，包含农历和所有节假日信息
 	 * 
-	 * @param year
-	 * @param includeLunarDate
-	 * @param includeHoliday
+	 * @param year 年
+	 * @param includeLunarDate 包含农历
+	 * @param includeHoliday 包含节日
 	 * @param localHolidayMap
 	 *            自定义公历节日数据，特殊节日如，"母亲节", "5-W-2-7"
 	 *            5表示5月，W表示星期，2表示第二个星期，7表示星期的第7天，为null时，使用默认数据 LocalHolidayEnum

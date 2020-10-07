@@ -11,7 +11,6 @@ import com.xkzhangsan.time.cost.CostUtil;
 /**
  * 计算耗时测试类
  * @author xkzhangsan
- * @date 2020年8月8日
  */
 public class CostUitlTest {
 	

@@ -11,7 +11,6 @@ import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
  * 星座名称枚举，包含英文全称，中文全称，时间范围
  * 
  * @author xkzhangsan
- * @date 2020年02-29
  */
 public enum ConstellationNameEnum {
 	
