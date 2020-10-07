@@ -13,7 +13,6 @@ import java.util.List;
 /**
  * cron表达式测试类
 * @author xkzhangsan
-* @date 2020年4月16日
 */
 public class CronExpressionUtilTest {
 

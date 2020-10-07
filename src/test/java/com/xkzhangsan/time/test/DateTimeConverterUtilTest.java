@@ -17,7 +17,6 @@ import java.util.Date;
 /**
  * 日期转换测试
  * @author xkzhangsan
- * @date 2020年4月29日
  */
 public class DateTimeConverterUtilTest {
 	
