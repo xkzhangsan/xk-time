@@ -219,6 +219,10 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 （3）计算耗时，返回精确计时，带3小数的结果，使用ROUND_DOWN 舍弃超过3位的小数部分等。  
   
   
+# 更多详细文档
+- [JavaDoc 文档](https://apidoc.gitee.com/xkzhangsan/xk-time) 
+
+
 # 参与项目  
 ## 1.提bug和建议  
 - [Issues](https://github.com/xkzhangsan/xk-time/issues)    
@@ -226,4 +230,4 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 ## 2.贡献代码  
 （1）fork项目。  
 （2）在dev分支修改。  
-（3）提交pull request。  
+（3）提交pull request。 
