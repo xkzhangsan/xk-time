@@ -26,9 +26,9 @@
 xk-time is a tool for time conversion, calculation, formatting, parsing, calendar and cron expression, etc., using Java8, thread-safe, easy to use, up to 70 commonly used date formatting templates, support Java8 time class and Date , Lightweight, no third party dependence.
   
   
-## 安装项目  
+# 安装项目  
 
-#### （1）Maven  
+### （1）Maven  
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
@@ -36,35 +36,35 @@ xk-time is a tool for time conversion, calculation, formatting, parsing, calenda
     </dependency>    
       
         
-#### （2）Gradle        
+### （2）Gradle        
     compile group: 'com.github.xkzhangsan', name: 'xk-time', version: '2.1.2'  
       
-#### 注意：Android谨慎使用，Android端因为需要兼容低版本而不支持Java8，建议继续使用其他工具，如果有需要本项目相关的功能，可以参考源码实现，或留言给我。感谢支持！  
+### 注意：Android谨慎使用，Android端因为需要兼容低版本而不支持Java8，建议继续使用其他工具，如果有需要本项目相关的功能，可以参考源码实现，或留言给我。感谢支持！  
     
-## 为什么要开发这个工具？ 
+# 为什么要开发这个工具？ 
  
-#### （1）java8以前的Date API设计不太好，使用不方便，往往会有线程安全问题。  
+### （1）Java8以前的Date API设计不太好，使用不方便，往往会有线程安全问题。  
  
 xk-time工具包，使用java8 api，其中Instant、LocalDate、LocalDateTime、LocalTime、ZonedDateTime等都是线程安全的类，而且增加了更丰富的方法，在此基础上开发相关工具类，线程安全，让使用更方便。  
 
-#### （2）常见的DateUtil，往往将时间转换，计算，格式化，解析等功能都放在同一个类中，导致类功能复杂，方法太多，查找不方便。  
+### （2）常见的DateUtil，往往将时间转换，计算，格式化，解析等功能都放在同一个类中，导致类功能复杂，方法太多，查找不方便。  
  
 xk-time工具包，将上面功能按照时间转换，时间计算，时间格式化解析分成3个工具类：DateTimeConverterUtil，DateTimeCalculatorUtil，DateTimeFormatterUtil，每个类只做一个种功能，方便使用。  
  
-#### （3）为了将与时间紧密相关的节假日、农历、二十四节气、十二星座、十二生肖、十二时辰和日历等功能集中起来开发成工具，方便使用。  
+### （3）为了将与时间紧密相关的节假日、农历、二十四节气、十二星座、十二生肖、十二时辰和日历等功能集中起来开发成工具，方便使用。  
   
   
   
   
 
-
-## 1.日期转换工具类   DateTimeConverterUtil 
+# 主要功能说明
+### 1.日期转换工具类   DateTimeConverterUtil 
 包含Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime、YearMonth、Timestamp和long等互相转换    
  注意，ZonedDateTime相关的转换，尤其是其他时间转ZonedDateTime，要注意时间和对应时区一致。  
 
 详细使用可以查看相关测试代码。  
 
-## 2.日期计算工具类  DateTimeCalculatorUtil 
+### 2.日期计算工具类  DateTimeCalculatorUtil 
 包括：  
 （1）获取时间属性方法（支持年月日时分秒毫秒，星期，时间戳等），get* 比如getYear(Date date) 获取年部分，getMonthCnLong(Date date)获取月份中文，getDayOfWeekCn(Date date)，获取星期中文。   
   
@@ -112,7 +112,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
   
 详细使用可以查看相关测试代码。  
 
-## 3.日期格式化和解析工具类  DateTimeFormatterUtil 
+### 3.日期格式化和解析工具类  DateTimeFormatterUtil 
 包含常用日期格式如：  
  yyyy-MM-dd  
  HH:mm:ss  
@@ -158,14 +158,14 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
   
 详细使用可以查看相关测试代码。  
 
-## 4.日历工具类  CalendarUtil 
+### 4.日历工具类  CalendarUtil 
 包括：  
 （1）生成指定时间的日历（包含年、月和日层级关系的日历）方法，generateCalendar* 比如generateCalendar(int year, int month) 生成指定年月的日历。   
 （2）生成指定时间的日历（包含年、月和日层级关系的日历），包含农历和所有节假日信息方法，generateCalendarWithHoliday*， 比generateCalendarWithHoliday(int year, int month, Map<String, String> localHolidayMap,Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap)生成指定年月的日历，包含农历和所有节假日信息，可以自定义节假日和工作日等。   
 
 详细使用可以查看相关测试代码。  
 
-## 5.农历日期类 LunarDate    
+### 5.农历日期类 LunarDate    
 包含：  
 （1）农历日期年月日计算。  
 （2）农历岁次，生肖属相计算。  
@@ -174,7 +174,7 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
    
 详细使用可以查看相关测试代码。  
  
-## 6.节假日计算类 Holiday      
+### 6.节假日计算类 Holiday      
 包含：  
 （1）公历节假日计算， getLocalHoliday* 比如getLocalHoliday(Date date) 计算date的公历节日，getLocalHoliday(Date date, Map<String, String> localHolidayMap) 可以传入自定义公历节日数据。   
 （2）农历节假日计算， getChineseHoliday* 比如getChineseHoliday(Date date) 计算date的农历节日，getChineseHoliday(Date date, Map<String, String> chineseHolidayMap) 可以传入自定义农历节日数据。  
@@ -184,7 +184,7 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
 
 详细使用可以查看相关测试代码。      
     
-## 7.Cron表达式工具类 CronExpressionUtil    
+### 7.Cron表达式工具类 CronExpressionUtil    
   
 cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小时（0-23） 日期（1-31） 月份（1-12的整数或者 JAN-DEC） 星期（1-7的整数或者 SUN-SAT （1=SUN）） 年份（可选，1970-2099）  
 所有字段均可使用特殊字符：, - * / 分别是枚举，范围，任意，间隔  
@@ -209,7 +209,7 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 详细使用可以查看相关测试代码。              
   
   
-## 8.计算耗时工具 CostUtil
+### 8.计算耗时工具 CostUtil
   
   计算耗时工具，支持秒，毫秒，纳秒
   
@@ -224,10 +224,10 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 
 
 # 参与项目  
-## 1.提bug和建议  
+### 1.提bug和建议  
 - [Issues](https://github.com/xkzhangsan/xk-time/issues)    
   
-## 2.贡献代码  
+### 2.贡献代码  
 （1）fork项目。  
 （2）在dev分支修改。  
 （3）提交pull request。 
