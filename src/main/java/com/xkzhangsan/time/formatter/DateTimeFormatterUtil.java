@@ -2,9 +2,12 @@ package com.xkzhangsan.time.formatter;
 
 import static com.xkzhangsan.time.enums.ZoneIdEnum.CTT;
 
+import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
 import com.xkzhangsan.time.constants.Constant;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
+import com.xkzhangsan.time.enums.CommonTimeEnum;
 import com.xkzhangsan.time.utils.ArrayUtil;
+import com.xkzhangsan.time.utils.CollectionUtil;
 import com.xkzhangsan.time.utils.StringUtil;
 
 import java.time.DateTimeException;
@@ -20,6 +23,7 @@ import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -1473,6 +1477,48 @@ public class DateTimeFormatterUtil {
 			return true;
 		} catch (Exception e) {
 			return false;
+		}
+	}
+
+	/**
+	 * 解析自然语言时间
+	 * @param text 自然语言时间
+	 * @param  map 自定义自然语言map
+	 * @return Date
+	 */
+	public static Date parseNaturalLanguageToDate(String text, Map<String, String> map){
+		if(StringUtil.isEmpty(text)){
+			return null;
+		}
+		text = text.trim();
+
+		boolean isCommonTimeMap = false;
+		if(CollectionUtil.isEmpty(map)){
+			map = CommonTimeEnum.convertToMap();
+			isCommonTimeMap = true;
+		}
+		if(! map.containsKey(text)){
+			return null;
+		}
+
+		String targetMethod = null;
+		if(isCommonTimeMap){
+			targetMethod = map.get(text);
+		}else{
+			String key = map.get(text);
+			Map<String, String> commonTimeMap = CommonTimeEnum.convertToMap();
+			if(commonTimeMap.containsKey(key)){
+				targetMethod = commonTimeMap.get(key);
+			}
+		}
+
+		//执行结果
+		CommonTimeEnum targetCommonTime = CommonTimeEnum.getCommonTimeEnumByCode(targetMethod);
+		switch (targetCommonTime){
+			case TODAY :
+				return DateTimeCalculatorUtil.today();
+			default:
+				return null;
 		}
 	}
 	

@@ -574,5 +574,14 @@ public class DateTimeFormatterUtilTest {
 		//解析为LocalDateTime
 		Assert.assertEquals(LocalDateTime.of(2020, 12, 31, 0, 0),DateTimeFormatterUtil.parseToLocalDateTime("2020-12-31", new String[]{"MM", "yyyy-MM-dd"}));
 	}
+
+	/**
+	 * 解析自然语言时间
+	 */
+	@Test
+	public void parseNaturalLanguageTest(){
+		System.out.println(DateTimeFormatterUtil.parseNaturalLanguageToDate("今天", null));
+		System.out.println(DateTimeFormatterUtil.parseNaturalLanguageToDate("today", null));
+	}
 	
 }
