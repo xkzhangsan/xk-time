@@ -3642,5 +3642,79 @@ public class DateTimeCalculatorUtil {
 	public static String getTwelveTwo(){
 		return TwelveTwoEnum.getNameCn(LocalTime.now());
 	}
-	
+
+	// 以当前时间为参考的，常用时间（明天，下周，下月，明年等）计算
+
+	/**
+	 * 今天
+	 * @return Date
+	 */
+	public static Date today(){
+		return new Date();
+	}
+
+	/**
+	 * 明天
+	 * @return Date
+	 */
+	public static Date tomorrow(){
+		return plusDays(today(), 1);
+	}
+
+	/**
+	 * 下周
+	 * @return Date
+	 */
+	public static Date nextWeek(){
+		return plusWeeks(today(), 1);
+	}
+
+	/**
+	 * 下月
+	 * @return Date
+	 */
+	public static Date nextMonth(){
+		return plusMonths(today(), 1);
+	}
+
+	/**
+	 * 明年
+	 * @return Date
+	 */
+	public static Date nextYear(){
+		return plusYears(today(), 1);
+	}
+
+	/**
+	 * 昨天
+	 * @return Date
+	 */
+	public static Date yesterday(){
+		return minusDays(today(), 1);
+	}
+
+	/**
+	 * 上周
+	 * @return Date
+	 */
+	public static Date lastWeek(){
+		return minusWeeks(today(), 1);
+	}
+
+	/**
+	 * 上月
+	 * @return Date
+	 */
+	public static Date lastMonth(){
+		return minusMonths(today(), 1);
+	}
+
+	/**
+	 * 去年
+	 * @return Date
+	 */
+	public static Date lastYear(){
+		return minusYears(today(), 1);
+	}
+
 }

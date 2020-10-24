@@ -588,7 +588,31 @@ public class DateTimeCalculatorUtilTest {
 				DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfYear(2019)));
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfCurrentYear()));
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfCurrentYear()));
-	}	
+	}
+
+	/**
+	 * 以当前时间为参考的，常用时间（明天，下周，下月，明年等）计算测试
+	 */
+	@Test
+	public void todayTest(){
+		Assert.assertEquals(LocalDateTime.now().getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.today()));
+
+		Assert.assertEquals(LocalDateTime.now().plusDays(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.tomorrow()));
+
+		Assert.assertEquals(LocalDateTime.now().plusWeeks(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.nextWeek()));
+
+		Assert.assertEquals(LocalDateTime.now().plusMonths(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.nextMonth()));
+
+		Assert.assertEquals(LocalDateTime.now().plusYears(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.nextYear()));
+
+		Assert.assertEquals(LocalDateTime.now().minusDays(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.yesterday()));
+
+		Assert.assertEquals(LocalDateTime.now().minusWeeks(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.lastWeek()));
+
+		Assert.assertEquals(LocalDateTime.now().minusMonths(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.lastMonth()));
+
+		Assert.assertEquals(LocalDateTime.now().minusYears(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.lastYear()));
+	}
 
 	@Test
 	public void durationBetween(){
