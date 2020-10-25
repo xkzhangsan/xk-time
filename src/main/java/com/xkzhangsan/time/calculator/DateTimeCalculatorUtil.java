@@ -60,9 +60,10 @@ import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
  * 17.周数计算方法，weekof*， 比如weekOfMonth(Date date)，日期所在月中第几周<br>
  * 18.判断星期一，星期五方法，isMonday*,isZhouYi*， 比如isZhouYi(Date date)，是否为周一<br>
  * 19.十二时辰计算方法，getTwelveTwo*， 比如getTwelveTwo(Date date)，获取指定时间对应的十二时辰<br>
- * 20.季度计算方法，getQuarter*， 比如getQuarter(Date date)，获取指定时间对应的季度<br> * 
- * 21.获取季度准确的起始时间方法（四个季度），startTimeOf*Quarter， 比如startTimeOfFirstQuarter(int year)，获取指定年的第一季度开始时间<br> *
- * 22.获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间<br> *
+ * 20.季度计算方法，getQuarter*， 比如getQuarter(Date date)，获取指定时间对应的季度<br>
+ * 21.获取季度准确的起始时间方法（四个季度），startTimeOf*Quarter， 比如startTimeOfFirstQuarter(int year)，获取指定年的第一季度开始时间<br>
+ * 22.获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间<br>
+ * 23.常用时间（明天，下周，下月，明年等）计算方法，比如tomorrow()，计算明天，返回Date<br>
  *  
 * @author xkzhangsan
 *
@@ -101,7 +102,18 @@ public class DateTimeCalculatorUtil {
 	public static int getYear(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return localDateTime.getYear();
-	}	
+	}
+
+	/**
+	 * 获取年，比如2020
+	 * LocalDateTime LocalDate ZonedDateTime 可以直接getYear()
+	 * @param localDate localDate
+	 * @return int
+	 */
+	public static int getYear(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.getYear();
+	}
 	
 	/**
 	 * 获取月， 比如 1
@@ -123,6 +135,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月， 比如 1
+	 * LocalDateTime LocalDate ZonedDateTime 可以直接getMonthValue()
 	 * @param localDateTime LocalDateTime
 	 * @return int
 	 */
@@ -133,6 +146,7 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取月， 比如 1
+	 * LocalDateTime LocalDate ZonedDateTime 可以直接getMonthValue()
 	 * @param localDate LocalDate
 	 * @return int
 	 */
@@ -359,6 +373,17 @@ public class DateTimeCalculatorUtil {
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return localDateTime.getDayOfMonth();
 	}
+
+	/**
+	 * 获取天
+	 * LocalDateTime LocalDate ZonedDateTime 可以直接.getDayOfMonth()
+	 * @param localDate localDate
+	 * @return int
+	 */
+	public static int getDayOfMonth(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.getDayOfMonth();
+	}
 	
 	/**
 	 * 获取天（一年中）
@@ -387,6 +412,17 @@ public class DateTimeCalculatorUtil {
 	public static int getDayOfYear(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return localDateTime.getDayOfYear();
+	}
+
+	/**
+	 * 获取天（一年中）
+	 * LocalDateTime LocalDate ZonedDateTime 可以直接.getDayOfYear()获取
+	 * @param localDate localDate
+	 * @return int
+	 */
+	public static int getDayOfYear(LocalDate localDate){
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.getDayOfYear();
 	}
 	
 	/**
@@ -433,7 +469,18 @@ public class DateTimeCalculatorUtil {
 	public static int getHour(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return localDateTime.getHour();
-	}	
+	}
+
+	/**
+	 * 获取小时
+	 * LocalDateTime LocalTime ZonedDateTime 可以直接.getHour()获取
+	 * @param localTime localTime
+	 * @return int
+	 */
+	public static int getHour(LocalTime localTime){
+		Objects.requireNonNull(localTime, "localTime");
+		return localTime.getHour();
+	}
 	
 	/**
 	 * 获取分钟
@@ -462,7 +509,18 @@ public class DateTimeCalculatorUtil {
 	public static int getMinute(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return localDateTime.getMinute();
-	}	
+	}
+
+	/**
+	 * 获取分钟
+	 * LocalDateTime LocalTime ZonedDateTime 可以直接.getMinute()获取
+	 * @param localTime localTime
+	 * @return int
+	 */
+	public static int getMinute(LocalTime localTime){
+		Objects.requireNonNull(localTime, "localTime");
+		return localTime.getMinute();
+	}
 	
 	/**
 	 * 获取秒
@@ -484,13 +542,24 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取秒
-	 * LocalDateTime LocalTime ZonedDateTime 可以直接.getMinute()获取
+	 * LocalDateTime LocalTime ZonedDateTime 可以直接.getSecond()获取
 	 * @param localDateTime LocalDateTime
 	 * @return int
 	 */
 	public static int getSecond(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return localDateTime.getSecond();
+	}
+
+	/**
+	 * 获取秒
+	 * LocalDateTime LocalTime ZonedDateTime 可以直接.getSecond()获取
+	 * @param localTime localTime
+	 * @return int
+	 */
+	public static int getSecond(LocalTime localTime){
+		Objects.requireNonNull(localTime, "localTime");
+		return localTime.getSecond();
 	}
 	
 	/**
@@ -513,13 +582,32 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取毫秒
-	 * LocalDateTime LocalTime ZonedDateTime 可以直接.getMinute()获取
 	 * @param localDateTime LocalDateTime
 	 * @return int
 	 */
 	public static int getMillisecond(LocalDateTime localDateTime){
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		return localDateTime.getNano()/1_000_000;
+	}
+
+	/**
+	 * 获取毫秒
+	 * @param localTime localTime
+	 * @return int
+	 */
+	public static int getMillisecond(LocalTime localTime){
+		Objects.requireNonNull(localTime, "localTime");
+		return localTime.getNano()/1_000_000;
+	}
+
+	/**
+	 * 获取毫秒
+	 * @param zonedDateTime zonedDateTime
+	 * @return int
+	 */
+	public static int getMillisecond(ZonedDateTime zonedDateTime){
+		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+		return zonedDateTime.getNano()/1_000_000;
 	}
 	
 	/**
@@ -609,6 +697,21 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static Date getDate(int year, int month, int dayOfMonth, int hour, int minute, int second){
 		return DateTimeConverterUtil.toDate(LocalDateTime.of(year, month, dayOfMonth, hour, minute, second));
+	}
+
+	/**
+	 * 根据年月日时分秒毫秒创建Date
+	 * @param year 年
+	 * @param month 月
+	 * @param dayOfMonth 日
+	 * @param hour 时
+	 * @param minute 分
+	 * @param second 秒
+	 * @param milliOfSecond 毫秒
+	 * @return Date
+	 */
+	public static Date getDate(int year, int month, int dayOfMonth, int hour, int minute, int second, int milliOfSecond){
+		return DateTimeConverterUtil.toDate(LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, milliOfSecond*1000_000));
 	}
 
 	/**
@@ -721,7 +824,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime plusYears(LocalDateTime localDateTime, long amountToAdd){
-		return (LocalDateTime) plus(localDateTime, ChronoUnit.YEARS, amountToAdd);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.plusYears(amountToAdd);
 	}
 
 	/**
@@ -731,7 +835,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDate
 	 */
 	public static LocalDate plusYears(LocalDate localDate, long amountToAdd){
-		return (LocalDate) plus(localDate, ChronoUnit.YEARS, amountToAdd);
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.plusYears(amountToAdd);
 	}
 
 	/**
@@ -751,7 +856,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime plusMonths(LocalDateTime localDateTime, long amountToAdd){
-		return (LocalDateTime) plus(localDateTime, ChronoUnit.MONTHS, amountToAdd);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.plusMonths(amountToAdd);
 	}
 
 	/**
@@ -761,7 +867,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDate
 	 */
 	public static LocalDate plusMonths(LocalDate localDate, long amountToAdd){
-		return (LocalDate) plus(localDate, ChronoUnit.MONTHS, amountToAdd);
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.plusMonths(amountToAdd);
 	}
 
 	/**
@@ -781,7 +888,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime plusWeeks(LocalDateTime localDateTime, long amountToAdd){
-		return (LocalDateTime) plus(localDateTime, ChronoUnit.WEEKS, amountToAdd);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.plusWeeks(amountToAdd);
 	}
 
 	/**
@@ -791,7 +899,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDate
 	 */
 	public static LocalDate plusWeeks(LocalDate localDate, long amountToAdd){
-		return (LocalDate) plus(localDate, ChronoUnit.WEEKS, amountToAdd);
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.plusWeeks(amountToAdd);
 	}
 
 	/**
@@ -811,7 +920,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime plusDays(LocalDateTime localDateTime, long amountToAdd){
-		return (LocalDateTime) plus(localDateTime, ChronoUnit.DAYS, amountToAdd);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.plusDays(amountToAdd);
 	}
 
 	/**
@@ -821,7 +931,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDate
 	 */
 	public static LocalDate plusDays(LocalDate localDate, long amountToAdd){
-		return (LocalDate) plus(localDate, ChronoUnit.DAYS, amountToAdd);
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.plusDays(amountToAdd);
 	}
 
 	/**
@@ -841,7 +952,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime plusHours(LocalDateTime localDateTime, long amountToAdd){
-		return (LocalDateTime) plus(localDateTime, ChronoUnit.HOURS, amountToAdd);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.plusHours(amountToAdd);
 	}
 
 	/**
@@ -851,7 +963,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalTime
 	 */
 	public static LocalTime plusHours(LocalTime localTime, long amountToAdd){
-		return (LocalTime) plus(localTime, ChronoUnit.HOURS, amountToAdd);
+		Objects.requireNonNull(localTime, "localTime");
+		return localTime.plusHours(amountToAdd);
 	}
 
 	/**
@@ -871,7 +984,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime plusMinutes(LocalDateTime localDateTime, long amountToAdd){
-		return (LocalDateTime) plus(localDateTime, ChronoUnit.MINUTES, amountToAdd);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.plusMinutes(amountToAdd);
 	}
 
 	/**
@@ -881,7 +995,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalTime
 	 */
 	public static LocalTime plusMinutes(LocalTime localTime, long amountToAdd){
-		return (LocalTime) plus(localTime, ChronoUnit.MINUTES, amountToAdd);
+		Objects.requireNonNull(localTime, "localTime");
+		return localTime.plusMinutes(amountToAdd);
 	}
 
 	/**
@@ -901,7 +1016,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime plusSeconds(LocalDateTime localDateTime, long amountToAdd){
-		return (LocalDateTime) plus(localDateTime, ChronoUnit.SECONDS, amountToAdd);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.plusSeconds(amountToAdd);
 	}
 
 	/**
@@ -911,7 +1027,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalTime
 	 */
 	public static LocalTime plusSeconds(LocalTime localTime, long amountToAdd){
-		return (LocalTime) plus(localTime, ChronoUnit.SECONDS, amountToAdd);
+		Objects.requireNonNull(localTime, "localTime");
+		return localTime.plusSeconds(amountToAdd);
 	}
 	
 	/**
@@ -963,7 +1080,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime minusYears(LocalDateTime localDateTime, long amountToSubtract){
-		return (LocalDateTime) minus(localDateTime, ChronoUnit.YEARS, amountToSubtract);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.minusYears(amountToSubtract);
 	}
 
 	/**
@@ -973,7 +1091,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDate
 	 */
 	public static LocalDate minusYears(LocalDate localDate, long amountToSubtract){
-		return (LocalDate) minus(localDate, ChronoUnit.YEARS, amountToSubtract);
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.minusYears(amountToSubtract);
 	}
 
 	/**
@@ -993,7 +1112,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime minusMonths(LocalDateTime localDateTime, long amountToSubtract){
-		return (LocalDateTime) minus(localDateTime, ChronoUnit.MONTHS, amountToSubtract);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.minusMonths(amountToSubtract);
 	}
 
 	/**
@@ -1003,7 +1123,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDate
 	 */
 	public static LocalDate minusMonths(LocalDate localDate, long amountToSubtract){
-		return (LocalDate) minus(localDate, ChronoUnit.MONTHS, amountToSubtract);
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.minusMonths(amountToSubtract);
 	}
 
 	/**
@@ -1023,7 +1144,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime minusWeeks(LocalDateTime localDateTime, long amountToSubtract){
-		return (LocalDateTime) minus(localDateTime, ChronoUnit.WEEKS, amountToSubtract);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.minusWeeks(amountToSubtract);
 	}
 
 	/**
@@ -1033,7 +1155,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDate
 	 */
 	public static LocalDate minusWeeks(LocalDate localDate, long amountToSubtract){
-		return (LocalDate) minus(localDate, ChronoUnit.WEEKS, amountToSubtract);
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.minusWeeks(amountToSubtract);
 	}
 
 	/**
@@ -1053,7 +1176,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime minusDays(LocalDateTime localDateTime, long amountToSubtract){
-		return (LocalDateTime) minus(localDateTime, ChronoUnit.DAYS, amountToSubtract);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.minusDays(amountToSubtract);
 	}
 
 	/**
@@ -1063,7 +1187,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDate
 	 */
 	public static LocalDate minusDays(LocalDate localDate, long amountToSubtract){
-		return (LocalDate) minus(localDate, ChronoUnit.DAYS, amountToSubtract);
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.minusDays(amountToSubtract);
 	}
 
 	/**
@@ -1083,7 +1208,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime minusHours(LocalDateTime localDateTime, long amountToSubtract){
-		return (LocalDateTime) minus(localDateTime, ChronoUnit.HOURS, amountToSubtract);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.minusHours(amountToSubtract);
 	}
 
 	/**
@@ -1093,7 +1219,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalTime
 	 */
 	public static LocalTime minusHours(LocalTime localTime, long amountToSubtract){
-		return (LocalTime) minus(localTime, ChronoUnit.HOURS, amountToSubtract);
+		Objects.requireNonNull(localTime, "localTime");
+		return localTime.minusHours(amountToSubtract);
 	}
 
 	/**
@@ -1113,7 +1240,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime minusMinutes(LocalDateTime localDateTime, long amountToSubtract){
-		return (LocalDateTime) minus(localDateTime, ChronoUnit.MINUTES, amountToSubtract);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.minusMinutes(amountToSubtract);
 	}
 
 	/**
@@ -1123,7 +1251,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalTime
 	 */
 	public static LocalTime minusMinutes(LocalTime localTime, long amountToSubtract){
-		return (LocalTime) minus(localTime, ChronoUnit.MINUTES, amountToSubtract);
+		Objects.requireNonNull(localTime, "localTime");
+		return localTime.minusMinutes(amountToSubtract);
 	}
 
 	/**
@@ -1143,7 +1272,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime minusSeconds(LocalDateTime localDateTime, long amountToSubtract){
-		return (LocalDateTime) minus(localDateTime, ChronoUnit.SECONDS, amountToSubtract);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.minusSeconds(amountToSubtract);
 	}
 
 	/**
@@ -1153,7 +1283,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalTime
 	 */
 	public static LocalTime minusSeconds(LocalTime localTime, long amountToSubtract){
-		return (LocalTime) minus(localTime, ChronoUnit.SECONDS, amountToSubtract);
+		Objects.requireNonNull(localTime, "localTime");
+		return localTime.minusSeconds(amountToSubtract);
 	}
 
 	/**
@@ -1205,7 +1336,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime withYear(LocalDateTime localDateTime, long newValue){
-		return (LocalDateTime) with(localDateTime, ChronoField.YEAR, newValue);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.withYear((int) newValue);
 	}
 
 	/**
@@ -1215,7 +1347,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDate
 	 */
 	public static LocalDate withYear(LocalDate localDate, long newValue){
-		return (LocalDate) with(localDate, ChronoField.YEAR, newValue);
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.withYear((int) newValue);
 	}
 
 	/**
@@ -1235,7 +1368,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime withMonth(LocalDateTime localDateTime, long newValue){
-		return (LocalDateTime) with(localDateTime, ChronoField.MONTH_OF_YEAR, newValue);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.withMonth((int) newValue);
 	}
 
 	/**
@@ -1245,7 +1379,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDate
 	 */
 	public static LocalDate withMonth(LocalDate localDate, long newValue){
-		return (LocalDate) with(localDate, ChronoField.MONTH_OF_YEAR, newValue);
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.withMonth((int) newValue);
 	}
 
 	/**
@@ -1265,7 +1400,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime withDayOfMonth(LocalDateTime localDateTime, long newValue){
-		return (LocalDateTime) with(localDateTime, ChronoField.DAY_OF_MONTH, newValue);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.withDayOfMonth((int) newValue);
 	}
 
 	/**
@@ -1275,7 +1411,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDate
 	 */
 	public static LocalDate withDayOfMonth(LocalDate localDate, long newValue){
-		return (LocalDate) with(localDate, ChronoField.DAY_OF_MONTH, newValue);
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.withDayOfMonth((int) newValue);
 	}
 
 	/**
@@ -1295,7 +1432,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime withDayOfYear(LocalDateTime localDateTime, long newValue){
-		return (LocalDateTime) with(localDateTime, ChronoField.DAY_OF_YEAR, newValue);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.withDayOfYear((int) newValue);
 	}
 
 	/**
@@ -1305,7 +1443,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDate
 	 */
 	public static LocalDate withDayOfYear(LocalDate localDate, long newValue){
-		return (LocalDate) with(localDate, ChronoField.DAY_OF_YEAR, newValue);
+		Objects.requireNonNull(localDate, "localDate");
+		return localDate.withDayOfYear((int) newValue);
 	}
 
 	/**
@@ -1325,7 +1464,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime withHour(LocalDateTime localDateTime, long newValue){
-		return (LocalDateTime) with(localDateTime, ChronoField.HOUR_OF_DAY, newValue);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.withHour((int) newValue);
 	}
 
 	/**
@@ -1335,7 +1475,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalTime
 	 */
 	public static LocalTime withHour(LocalTime localTime, long newValue){
-		return (LocalTime) with(localTime, ChronoField.HOUR_OF_DAY, newValue);
+		Objects.requireNonNull(localTime, "localTime");
+		return localTime.withHour((int) newValue);
 	}
 
 	/**
@@ -1355,7 +1496,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime withMinute(LocalDateTime localDateTime, long newValue){
-		return (LocalDateTime) with(localDateTime, ChronoField.MINUTE_OF_HOUR, newValue);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.withMinute((int) newValue);
 	}
 
 	/**
@@ -1365,7 +1507,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalTime
 	 */
 	public static LocalTime withMinute(LocalTime localTime, long newValue){
-		return (LocalTime) with(localTime, ChronoField.MINUTE_OF_HOUR, newValue);
+		Objects.requireNonNull(localTime, "localTime");
+		return localTime.withMinute((int) newValue);
 	}
 
 	/**
@@ -1385,7 +1528,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime withSecond(LocalDateTime localDateTime, long newValue){
-		return (LocalDateTime) with(localDateTime, ChronoField.SECOND_OF_MINUTE, newValue);
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.withSecond((int) newValue);
 	}
 
 	/**
@@ -1395,7 +1539,8 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalTime
 	 */
 	public static LocalTime withSecond(LocalTime localTime, long newValue){
-		return (LocalTime) with(localTime, ChronoField.SECOND_OF_MINUTE, newValue);
+		Objects.requireNonNull(localTime, "localTime");
+		return localTime.withSecond((int) newValue);
 	}
 
 	/**
@@ -3498,5 +3643,79 @@ public class DateTimeCalculatorUtil {
 	public static String getTwelveTwo(){
 		return TwelveTwoEnum.getNameCn(LocalTime.now());
 	}
-	
+
+	// 以当前时间为参考的，常用时间（明天，下周，下月，明年等）计算
+
+	/**
+	 * 今天
+	 * @return Date
+	 */
+	public static Date today(){
+		return new Date();
+	}
+
+	/**
+	 * 明天
+	 * @return Date
+	 */
+	public static Date tomorrow(){
+		return plusDays(today(), 1);
+	}
+
+	/**
+	 * 下周
+	 * @return Date
+	 */
+	public static Date nextWeek(){
+		return plusWeeks(today(), 1);
+	}
+
+	/**
+	 * 下月
+	 * @return Date
+	 */
+	public static Date nextMonth(){
+		return plusMonths(today(), 1);
+	}
+
+	/**
+	 * 明年
+	 * @return Date
+	 */
+	public static Date nextYear(){
+		return plusYears(today(), 1);
+	}
+
+	/**
+	 * 昨天
+	 * @return Date
+	 */
+	public static Date yesterday(){
+		return minusDays(today(), 1);
+	}
+
+	/**
+	 * 上周
+	 * @return Date
+	 */
+	public static Date lastWeek(){
+		return minusWeeks(today(), 1);
+	}
+
+	/**
+	 * 上月
+	 * @return Date
+	 */
+	public static Date lastMonth(){
+		return minusMonths(today(), 1);
+	}
+
+	/**
+	 * 去年
+	 * @return Date
+	 */
+	public static Date lastYear(){
+		return minusYears(today(), 1);
+	}
+
 }

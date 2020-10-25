@@ -2,9 +2,12 @@ package com.xkzhangsan.time.formatter;
 
 import static com.xkzhangsan.time.enums.ZoneIdEnum.CTT;
 
+import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
 import com.xkzhangsan.time.constants.Constant;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
+import com.xkzhangsan.time.enums.CommonTimeEnum;
 import com.xkzhangsan.time.utils.ArrayUtil;
+import com.xkzhangsan.time.utils.CollectionUtil;
 import com.xkzhangsan.time.utils.StringUtil;
 
 import java.time.DateTimeException;
@@ -20,6 +23,7 @@ import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -61,7 +65,10 @@ import java.util.Objects;
  * 12.验证日期格式是否正确方法，isValidDate*， 比如isValidDate(String text)，验证yyyy-MM-dd 格式字符串是否正确 <br>
  * 
  * 13.根据自定义模板数组解析方法， 比如parseToDate(String text, String[] dateFormatPatterns)，dateFormatPatterns 支持多种模板，只要其中一个解析成功就返回对应Date <br>
- * 
+ *
+ * 14.解析自然语言时间，今天，明天，下周，下月，明年，昨天，上周，上月，去年等， 比如parseNaturalLanguageToDate(String text), <br>
+ * {@code parseNaturalLanguageToDate(String text, Map<String, String> naturalLanguageMap)} 支持自定义解析自然语言时间map <br>
+ *
  * 注意：格式化和解析与系统时区不同的时间时，使用自定义时区格式化方法，或可以使用withZone方法重新设置时区，比如：<br>
  * YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")<br>
  *
@@ -1474,6 +1481,74 @@ public class DateTimeFormatterUtil {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	/**
+	 * 解析自然语言时间，今天，明天，下周，下月，明年，昨天，上周，上月，去年等。
+	 * @param text 自然语言时间，待解析字符串
+	 * @param  naturalLanguageMap 自定义自然语言时间map，其中key自定义，value需为 com.xkzhangsan.time.enums.CommonTimeEnum中的code；
+	 *                            可以为空，默认使用com.xkzhangsan.time.enums.CommonTimeEnum解析。
+	 * @return Date
+	 */
+	public static Date parseNaturalLanguageToDate(String text, Map<String, String> naturalLanguageMap){
+		if(StringUtil.isEmpty(text)){
+			return null;
+		}
+		text = text.trim();
+
+		boolean isCommonTimeMap = false;
+		if(CollectionUtil.isEmpty(naturalLanguageMap)){
+			naturalLanguageMap = CommonTimeEnum.convertToMap();
+			isCommonTimeMap = true;
+		}
+		if(! naturalLanguageMap.containsKey(text) || StringUtil.isEmpty(naturalLanguageMap.get(text))){
+			return null;
+		}
+
+		String targetMethod = null;
+		if(isCommonTimeMap){
+			targetMethod = naturalLanguageMap.get(text);
+		}else{
+			String code = naturalLanguageMap.get(text);
+			Map<String, String> commonTimeMap = CommonTimeEnum.convertToMap();
+			if(commonTimeMap.containsKey(code)){
+				targetMethod = commonTimeMap.get(code);
+			}
+		}
+
+		//执行结果
+		CommonTimeEnum targetCommonTime = CommonTimeEnum.getCommonTimeEnumByCode(targetMethod);
+		switch (targetCommonTime){
+			case TODAY :
+				return DateTimeCalculatorUtil.today();
+			case TOMORROW:
+				return DateTimeCalculatorUtil.tomorrow();
+			case NEXTWEEK:
+				return DateTimeCalculatorUtil.nextWeek();
+			case NEXTMONTH:
+				return DateTimeCalculatorUtil.nextMonth();
+			case NEXTYEAR:
+				return DateTimeCalculatorUtil.nextYear();
+			case YESTERDAY:
+				return DateTimeCalculatorUtil.yesterday();
+			case LASTWEEK:
+				return DateTimeCalculatorUtil.lastWeek();
+			case LASTMONTH:
+				return DateTimeCalculatorUtil.lastMonth();
+			case LASTYEAR:
+				return DateTimeCalculatorUtil.lastYear();
+			default:
+				return null;
+		}
+	}
+
+	/**
+	 * 解析自然语言时间，今天，明天，下周，下月，明年，昨天，上周，上月，去年等。
+	 * @param text 自然语言时间，待解析字符串
+	 * @return Date
+	 */
+	public static Date parseNaturalLanguageToDate(String text){
+		return parseNaturalLanguageToDate(text, null);
 	}
 	
 	

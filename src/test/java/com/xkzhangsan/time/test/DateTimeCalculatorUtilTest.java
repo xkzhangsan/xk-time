@@ -27,7 +27,7 @@ import java.util.Set;
 public class DateTimeCalculatorUtilTest {
 	
 	/**
-	 * 获取时间年月日时分秒
+	 * 获取时间年月日时分秒毫秒
 	 */
 	@Test
 	public void dateCalculatorGetTest(){
@@ -46,12 +46,12 @@ public class DateTimeCalculatorUtilTest {
 	}
 	
 	/**
-	 * date年月日时分秒增加
+	 * date年月日时分秒毫秒增加
 	 */
 	@Test
 	public void dateCalculatorPlusTest(){
-		//2020-04-29T17:30:15
-		Date date = DateTimeCalculatorUtil.getDate(2020,4,29,17,30,15);
+		//2020-04-29T17:30:15.30
+		Date date = DateTimeCalculatorUtil.getDate(2020,4,29,17,30,15, 30);
 
 		Assert.assertEquals(2020+1,DateTimeCalculatorUtil.getYear(DateTimeCalculatorUtil.plusYears(date, 1)));
 		Assert.assertEquals(4+1,DateTimeCalculatorUtil.getMonth(DateTimeCalculatorUtil.plusMonths(date, 1)));
@@ -59,15 +59,52 @@ public class DateTimeCalculatorUtilTest {
 		Assert.assertEquals(17+1,DateTimeCalculatorUtil.getHour(DateTimeCalculatorUtil.plusHours(date, 1)));
 		Assert.assertEquals(30+1,DateTimeCalculatorUtil.getMinute(DateTimeCalculatorUtil.plusMinutes(date, 1)));
 		Assert.assertEquals(15+1,DateTimeCalculatorUtil.getSecond(DateTimeCalculatorUtil.plusSeconds(date, 1)));
+		Assert.assertEquals(30+1,DateTimeCalculatorUtil.getMillisecond(DateTimeCalculatorUtil.plusMillis(date, 1)));
+	}
+
+	/**
+	 * date年月日时分秒毫秒增加 LocalDateTime
+	 */
+	@Test
+	public void dateCalculatorPlusTest2(){
+		//2020-04-29T17:30:15.30
+		LocalDateTime localDateTime = LocalDateTime.of(2020,4,29,17,30,15, 30*1000_000);
+
+		Assert.assertEquals(2020+1,DateTimeCalculatorUtil.getYear(DateTimeCalculatorUtil.plusYears(localDateTime, 1)));
+		Assert.assertEquals(4+1,DateTimeCalculatorUtil.getMonth(DateTimeCalculatorUtil.plusMonths(localDateTime, 1)));
+		Assert.assertEquals(29+1,DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.plusDays(localDateTime, 1)));
+		Assert.assertEquals(17+1,DateTimeCalculatorUtil.getHour(DateTimeCalculatorUtil.plusHours(localDateTime, 1)));
+		Assert.assertEquals(30+1,DateTimeCalculatorUtil.getMinute(DateTimeCalculatorUtil.plusMinutes(localDateTime, 1)));
+		Assert.assertEquals(15+1,DateTimeCalculatorUtil.getSecond(DateTimeCalculatorUtil.plusSeconds(localDateTime, 1)));
+		Assert.assertEquals(30+1,DateTimeCalculatorUtil.getMillisecond(DateTimeCalculatorUtil.plusMillis(localDateTime, 1)));
+	}
+
+	/**
+	 * date年月日时分秒毫秒增加 LocalDate LocalTime
+	 */
+	@Test
+	public void dateCalculatorPlusTest3(){
+		//2020-04-29T17:30:15.30
+		LocalDate localDate = LocalDate.of(2020,4,29);
+
+		Assert.assertEquals(2020+1,DateTimeCalculatorUtil.getYear(DateTimeCalculatorUtil.plusYears(localDate, 1)));
+		Assert.assertEquals(4+1,DateTimeCalculatorUtil.getMonth(DateTimeCalculatorUtil.plusMonths(localDate, 1)));
+		Assert.assertEquals(29+1,DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.plusDays(localDate, 1)));
+
+		LocalTime localTime = LocalTime.of(17,30,15, 30*1000_000);
+		Assert.assertEquals(17+1,DateTimeCalculatorUtil.getHour(DateTimeCalculatorUtil.plusHours(localTime, 1)));
+		Assert.assertEquals(30+1,DateTimeCalculatorUtil.getMinute(DateTimeCalculatorUtil.plusMinutes(localTime, 1)));
+		Assert.assertEquals(15+1,DateTimeCalculatorUtil.getSecond(DateTimeCalculatorUtil.plusSeconds(localTime, 1)));
+		Assert.assertEquals(30+1,DateTimeCalculatorUtil.getMillisecond(DateTimeCalculatorUtil.plusMillis(localTime, 1)));
 	}
 	
 	/**
-	 * date年月日时分秒减少
+	 * date年月日时分秒毫秒减少
 	 */
 	@Test
 	public void dateCalculatorMinusTest(){
-		//2020-04-29T17:30:15
-		Date date = DateTimeCalculatorUtil.getDate(2020,4,29,17,30,15);
+		//2020-04-29T17:30:15.30
+		Date date = DateTimeCalculatorUtil.getDate(2020,4,29,17,30,15, 30);
 
 		Assert.assertEquals(2020-1,DateTimeCalculatorUtil.getYear(DateTimeCalculatorUtil.minusYears(date, 1)));
 		Assert.assertEquals(4-1,DateTimeCalculatorUtil.getMonth(DateTimeCalculatorUtil.minusMonths(date, 1)));
@@ -75,15 +112,52 @@ public class DateTimeCalculatorUtilTest {
 		Assert.assertEquals(17-1,DateTimeCalculatorUtil.getHour(DateTimeCalculatorUtil.minusHours(date, 1)));
 		Assert.assertEquals(30-1,DateTimeCalculatorUtil.getMinute(DateTimeCalculatorUtil.minusMinutes(date, 1)));
 		Assert.assertEquals(15-1,DateTimeCalculatorUtil.getSecond(DateTimeCalculatorUtil.minusSeconds(date, 1)));
+		Assert.assertEquals(30-1,DateTimeCalculatorUtil.getMillisecond(DateTimeCalculatorUtil.minusMillis(date, 1)));
+	}
+
+	/**
+	 * date年月日时分秒毫秒减少 LocalDateTime
+	 */
+	@Test
+	public void dateCalculatorMinusTest2(){
+		//2020-04-29T17:30:15.30
+		LocalDateTime localDateTime = LocalDateTime.of(2020,4,29,17,30,15, 30*1000_000);
+
+		Assert.assertEquals(2020-1,DateTimeCalculatorUtil.getYear(DateTimeCalculatorUtil.minusYears(localDateTime, 1)));
+		Assert.assertEquals(4-1,DateTimeCalculatorUtil.getMonth(DateTimeCalculatorUtil.minusMonths(localDateTime, 1)));
+		Assert.assertEquals(29-1,DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.minusDays(localDateTime, 1)));
+		Assert.assertEquals(17-1,DateTimeCalculatorUtil.getHour(DateTimeCalculatorUtil.minusHours(localDateTime, 1)));
+		Assert.assertEquals(30-1,DateTimeCalculatorUtil.getMinute(DateTimeCalculatorUtil.minusMinutes(localDateTime, 1)));
+		Assert.assertEquals(15-1,DateTimeCalculatorUtil.getSecond(DateTimeCalculatorUtil.minusSeconds(localDateTime, 1)));
+		Assert.assertEquals(30-1,DateTimeCalculatorUtil.getMillisecond(DateTimeCalculatorUtil.minusMillis(localDateTime, 1)));
+	}
+
+	/**
+	 * date年月日时分秒毫秒减少 LocalDate LocalTime
+	 */
+	@Test
+	public void dateCalculatorMinusTest3(){
+		//2020-04-29T17:30:15.30
+		LocalDate localDate = LocalDate.of(2020,4,29);
+
+		Assert.assertEquals(2020-1,DateTimeCalculatorUtil.minusYears(localDate, 1).getYear());
+		Assert.assertEquals(4-1,DateTimeCalculatorUtil.minusMonths(localDate, 1).getMonth().getValue());
+		Assert.assertEquals(29-1,DateTimeCalculatorUtil.minusDays(localDate, 1).getDayOfMonth());
+
+		LocalTime localTime = LocalTime.of(17,30,15, 30*1000_000);
+		Assert.assertEquals(17-1,DateTimeCalculatorUtil.minusHours(localTime, 1).getHour());
+		Assert.assertEquals(30-1,DateTimeCalculatorUtil.minusMinutes(localTime, 1).getMinute());
+		Assert.assertEquals(15-1,DateTimeCalculatorUtil.minusSeconds(localTime, 1).getSecond());
+		Assert.assertEquals(30-1,DateTimeCalculatorUtil.getMillisecond(DateTimeCalculatorUtil.minusMillis(localTime, 1)));
 	}
 	
 	/**
-	 * Date年月日时分秒属性值修改
+	 * Date年月日时分秒毫秒属性值修改
 	 */
 	@Test
 	public void dateCalculatorWithTest(){
-		//2020-04-29T17:30:15
-		Date date = DateTimeCalculatorUtil.getDate(2020,4,29,17,30,15);
+		//2020-04-29T17:30:15.30
+		Date date = DateTimeCalculatorUtil.getDate(2020,4,29,17,30,15, 30);
 
 		Assert.assertEquals(2019,DateTimeCalculatorUtil.getYear(DateTimeCalculatorUtil.withYear(date, 2019)));
 		Assert.assertEquals(3,DateTimeCalculatorUtil.getMonth(DateTimeCalculatorUtil.withMonth(date, 3)));
@@ -91,10 +165,43 @@ public class DateTimeCalculatorUtilTest {
 		Assert.assertEquals(16,DateTimeCalculatorUtil.getHour(DateTimeCalculatorUtil.withHour(date, 16)));
 		Assert.assertEquals(29,DateTimeCalculatorUtil.getMinute(DateTimeCalculatorUtil.withMinute(date, 29)));
 		Assert.assertEquals(14,DateTimeCalculatorUtil.getSecond(DateTimeCalculatorUtil.withSecond(date, 14)));
+		Assert.assertEquals(15,DateTimeCalculatorUtil.getMillisecond(DateTimeCalculatorUtil.withMilli(date, 15)));
+	}
 
-		//修改毫秒
-		LocalDateTime localDateTime = LocalDateTime.of(2020,4,29,17,30,15,100_000_000);
-		Assert.assertEquals(300,DateTimeCalculatorUtil.getMillisecond(DateTimeCalculatorUtil.withMilli(localDateTime, 300)));
+	/**
+	 * Date年月日时分秒毫秒属性值修改 LocalDateTime
+	 */
+	@Test
+	public void dateCalculatorWithTest2(){
+		//2020-04-29T17:30:15.30
+		LocalDateTime localDateTime = LocalDateTime.of(2020,4,29,17,30,15, 30*1000_000);
+
+		Assert.assertEquals(2019,DateTimeCalculatorUtil.getYear(DateTimeCalculatorUtil.withYear(localDateTime, 2019)));
+		Assert.assertEquals(3,DateTimeCalculatorUtil.getMonth(DateTimeCalculatorUtil.withMonth(localDateTime, 3)));
+		Assert.assertEquals(28,DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.withDayOfMonth(localDateTime, 28)));
+		Assert.assertEquals(16,DateTimeCalculatorUtil.getHour(DateTimeCalculatorUtil.withHour(localDateTime, 16)));
+		Assert.assertEquals(29,DateTimeCalculatorUtil.getMinute(DateTimeCalculatorUtil.withMinute(localDateTime, 29)));
+		Assert.assertEquals(14,DateTimeCalculatorUtil.getSecond(DateTimeCalculatorUtil.withSecond(localDateTime, 14)));
+		Assert.assertEquals(15,DateTimeCalculatorUtil.getMillisecond(DateTimeCalculatorUtil.withMilli(localDateTime, 15)));
+	}
+
+	/**
+	 * Date年月日时分秒毫秒属性值修改
+	 */
+	@Test
+	public void dateCalculatorWithTest3(){
+		//2020-04-29T17:30:15.30
+		LocalDate localDate = LocalDate.of(2020,4,29);
+
+		Assert.assertEquals(2019,DateTimeCalculatorUtil.withYear(localDate, 2019).getYear());
+		Assert.assertEquals(3,DateTimeCalculatorUtil.withMonth(localDate, 3).getMonth().getValue());
+		Assert.assertEquals(28,DateTimeCalculatorUtil.withDayOfMonth(localDate, 28).getDayOfMonth());
+
+		LocalTime localTime = LocalTime.of(17,30,15, 30);
+		Assert.assertEquals(16,DateTimeCalculatorUtil.withHour(localTime, 16).getHour());
+		Assert.assertEquals(29,DateTimeCalculatorUtil.withMinute(localTime, 29).getMinute());
+		Assert.assertEquals(14,DateTimeCalculatorUtil.withSecond(localTime, 14).getSecond());
+		Assert.assertEquals(15,DateTimeCalculatorUtil.getMillisecond(DateTimeCalculatorUtil.withMilli(localTime, 15)));
 	}
 	
 
@@ -481,7 +588,31 @@ public class DateTimeCalculatorUtilTest {
 				DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfYear(2019)));
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfCurrentYear()));
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfCurrentYear()));
-	}	
+	}
+
+	/**
+	 * 以当前时间为参考的，常用时间（明天，下周，下月，明年等）计算测试
+	 */
+	@Test
+	public void todayTest(){
+		Assert.assertEquals(LocalDateTime.now().getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.today()));
+
+		Assert.assertEquals(LocalDateTime.now().plusDays(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.tomorrow()));
+
+		Assert.assertEquals(LocalDateTime.now().plusWeeks(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.nextWeek()));
+
+		Assert.assertEquals(LocalDateTime.now().plusMonths(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.nextMonth()));
+
+		Assert.assertEquals(LocalDateTime.now().plusYears(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.nextYear()));
+
+		Assert.assertEquals(LocalDateTime.now().minusDays(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.yesterday()));
+
+		Assert.assertEquals(LocalDateTime.now().minusWeeks(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.lastWeek()));
+
+		Assert.assertEquals(LocalDateTime.now().minusMonths(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.lastMonth()));
+
+		Assert.assertEquals(LocalDateTime.now().minusYears(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.lastYear()));
+	}
 
 	@Test
 	public void durationBetween(){
