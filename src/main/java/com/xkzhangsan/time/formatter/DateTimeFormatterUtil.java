@@ -1481,34 +1481,35 @@ public class DateTimeFormatterUtil {
 	}
 
 	/**
-	 * 解析自然语言时间
-	 * @param text 自然语言时间
-	 * @param  map 自定义自然语言map
+	 * 解析自然语言时间，今天，明天，下周，下月，明年，昨天，上周，上月，去年等。
+	 * @param text 自然语言时间，待解析字符串
+	 * @param  naturalLanguageMap 自定义自然语言时间map，其中key自定义，value需为 com.xkzhangsan.time.enums.CommonTimeEnum中的code；
+	 *                            可以为空，默认使用com.xkzhangsan.time.enums.CommonTimeEnum解析。
 	 * @return Date
 	 */
-	public static Date parseNaturalLanguageToDate(String text, Map<String, String> map){
+	public static Date parseNaturalLanguageToDate(String text, Map<String, String> naturalLanguageMap){
 		if(StringUtil.isEmpty(text)){
 			return null;
 		}
 		text = text.trim();
 
 		boolean isCommonTimeMap = false;
-		if(CollectionUtil.isEmpty(map)){
-			map = CommonTimeEnum.convertToMap();
+		if(CollectionUtil.isEmpty(naturalLanguageMap)){
+			naturalLanguageMap = CommonTimeEnum.convertToMap();
 			isCommonTimeMap = true;
 		}
-		if(! map.containsKey(text)){
+		if(! naturalLanguageMap.containsKey(text) || StringUtil.isEmpty(naturalLanguageMap.get(text))){
 			return null;
 		}
 
 		String targetMethod = null;
 		if(isCommonTimeMap){
-			targetMethod = map.get(text);
+			targetMethod = naturalLanguageMap.get(text);
 		}else{
-			String key = map.get(text);
+			String code = naturalLanguageMap.get(text);
 			Map<String, String> commonTimeMap = CommonTimeEnum.convertToMap();
-			if(commonTimeMap.containsKey(key)){
-				targetMethod = commonTimeMap.get(key);
+			if(commonTimeMap.containsKey(code)){
+				targetMethod = commonTimeMap.get(code);
 			}
 		}
 
@@ -1517,9 +1518,34 @@ public class DateTimeFormatterUtil {
 		switch (targetCommonTime){
 			case TODAY :
 				return DateTimeCalculatorUtil.today();
+			case TOMORROW:
+				return DateTimeCalculatorUtil.tomorrow();
+			case NEXTWEEK:
+				return DateTimeCalculatorUtil.nextWeek();
+			case NEXTMONTH:
+				return DateTimeCalculatorUtil.nextMonth();
+			case NEXTYEAR:
+				return DateTimeCalculatorUtil.nextYear();
+			case YESTERDAY:
+				return DateTimeCalculatorUtil.yesterday();
+			case LASTWEEK:
+				return DateTimeCalculatorUtil.lastWeek();
+			case LASTMONTH:
+				return DateTimeCalculatorUtil.lastMonth();
+			case LASTYEAR:
+				return DateTimeCalculatorUtil.lastYear();
 			default:
 				return null;
 		}
+	}
+
+	/**
+	 * 解析自然语言时间，今天，明天，下周，下月，明年，昨天，上周，上月，去年等。
+	 * @param text 自然语言时间，待解析字符串
+	 * @return Date
+	 */
+	public static Date parseNaturalLanguageToDate(String text){
+		return parseNaturalLanguageToDate(text, null);
 	}
 	
 	

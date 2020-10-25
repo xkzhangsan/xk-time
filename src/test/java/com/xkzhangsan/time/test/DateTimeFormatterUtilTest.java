@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 日期格式化和解析测试类
@@ -580,8 +582,23 @@ public class DateTimeFormatterUtilTest {
 	 */
 	@Test
 	public void parseNaturalLanguageTest(){
-		System.out.println(DateTimeFormatterUtil.parseNaturalLanguageToDate("今天", null));
-		System.out.println(DateTimeFormatterUtil.parseNaturalLanguageToDate("today", null));
+		Assert.assertEquals(LocalDateTime.now().getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeFormatterUtil.parseNaturalLanguageToDate("今天")));
+
+		//自定义自然语言时间map
+		Map<String, String> map = new HashMap<>();
+		map.put("当天", "today");
+		Assert.assertEquals(LocalDateTime.now().getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeFormatterUtil.parseNaturalLanguageToDate("当天", map)));
+
+		Assert.assertEquals(LocalDateTime.now().plusDays(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeFormatterUtil.parseNaturalLanguageToDate("明天")));
+		Assert.assertEquals(LocalDateTime.now().plusWeeks(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeFormatterUtil.parseNaturalLanguageToDate("下周")));
+		Assert.assertEquals(LocalDateTime.now().plusMonths(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeFormatterUtil.parseNaturalLanguageToDate("下月")));
+		Assert.assertEquals(LocalDateTime.now().plusYears(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeFormatterUtil.parseNaturalLanguageToDate("明年")));
+
+		Assert.assertEquals(LocalDateTime.now().minusDays(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeFormatterUtil.parseNaturalLanguageToDate("昨天")));
+		Assert.assertEquals(LocalDateTime.now().minusWeeks(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeFormatterUtil.parseNaturalLanguageToDate("上周")));
+		Assert.assertEquals(LocalDateTime.now().minusMonths(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeFormatterUtil.parseNaturalLanguageToDate("上月")));
+		Assert.assertEquals(LocalDateTime.now().minusYears(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeFormatterUtil.parseNaturalLanguageToDate("去年")));
+
 	}
 	
 }
