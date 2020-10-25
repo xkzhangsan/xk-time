@@ -1515,9 +1515,16 @@ public class DateTimeFormatterUtil {
 				targetMethod = commonTimeMap.get(code);
 			}
 		}
+		if(targetMethod == null){
+			return null;
+		}
 
 		//执行结果
 		CommonTimeEnum targetCommonTime = CommonTimeEnum.getCommonTimeEnumByCode(targetMethod);
+		if(targetCommonTime == null){
+			return null;
+		}
+		
 		switch (targetCommonTime){
 			case TODAY :
 				return DateTimeCalculatorUtil.today();
