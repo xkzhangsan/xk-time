@@ -63,6 +63,7 @@ import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
  * 20.季度计算方法，getQuarter*， 比如getQuarter(Date date)，获取指定时间对应的季度<br> * 
  * 21.获取季度准确的起始时间方法（四个季度），startTimeOf*Quarter， 比如startTimeOfFirstQuarter(int year)，获取指定年的第一季度开始时间<br> *
  * 22.获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间<br> *
+ * 23.常用时间（明天，下周，下月，明年等）计算方法，比如tomorrow()，计算明天，返回Date<br> *
  *  
 * @author xkzhangsan
 *

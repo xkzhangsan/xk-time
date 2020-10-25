@@ -109,6 +109,9 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
 （21）获取季度准确的起始时间方法（四个季度），startTimeOf*Quarter， 比如startTimeOfFirstQuarter(int year)，获取指定年的第一季度   
   
 （22） 获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间  
+
+（23）常用时间（明天，下周，下月，明年等）计算方法，比如tomorrow()，计算明天，返回Date  
+  
   
 详细使用可以查看相关测试代码。  
 
@@ -152,6 +155,10 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
 （12）验证日期格式是否正确方法，isValidDate*， 比如isValidDate(String text)，验证yyyy-MM-dd 格式字符串是否正确。  
   
 （13）根据自定义模板数组解析方法， 比如parseToDate(String text, String[] dateFormatPatterns)，dateFormatPatterns 支持多种模板，只要其中一个解析成功就返回对应Date。  
+
+（14）解析自然语言时间，今天，明天，下周，下月，明年，昨天，上周，上月，去年等， 比如parseNaturalLanguageToDate(String text),  
+ parseNaturalLanguageToDate(String text, Map<String, String> naturalLanguageMap) 支持自定义解析自然语言时间map  
+  
   
  注意：格式化和解析与系统时区不同的时间时，使用自定义时区格式化方法，或可以使用withZone方法重新设置时区，比如：  
  YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris") 。  

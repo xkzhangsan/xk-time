@@ -65,7 +65,10 @@ import java.util.Objects;
  * 12.验证日期格式是否正确方法，isValidDate*， 比如isValidDate(String text)，验证yyyy-MM-dd 格式字符串是否正确 <br>
  * 
  * 13.根据自定义模板数组解析方法， 比如parseToDate(String text, String[] dateFormatPatterns)，dateFormatPatterns 支持多种模板，只要其中一个解析成功就返回对应Date <br>
- * 
+ *
+ * 14.解析自然语言时间，今天，明天，下周，下月，明年，昨天，上周，上月，去年等， 比如parseNaturalLanguageToDate(String text),
+ * parseNaturalLanguageToDate(String text, Map<String, String> naturalLanguageMap) 支持自定义解析自然语言时间map <br>
+ *
  * 注意：格式化和解析与系统时区不同的时间时，使用自定义时区格式化方法，或可以使用withZone方法重新设置时区，比如：<br>
  * YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")<br>
  *
