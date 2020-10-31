@@ -2696,15 +2696,15 @@ public class DateTimeCalculatorUtil {
 	 * @return LocalTime
 	 */
 	public static LocalTime startTimeOfDay(){
-		return LocalTime.of(0, 0, 0);
+		return LocalTime.MIN;
 	}
 	
 	/**
-	 * 一天开始时间 23:59:59
+	 * 一天结束时间 23:59:59.999999999
 	 * @return LocalTime
 	 */
 	public static LocalTime endTimeOfDay(){
-		return LocalTime.of(23, 59, 59);
+		return LocalTime.MAX;
 	}
 	
 	/**
