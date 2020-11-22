@@ -1573,6 +1573,26 @@ public class DateTimeCalculatorUtil {
 		return (LocalTime) with(localTime, ChronoField.MILLI_OF_SECOND, newValue);
 	}
 	
+	/**
+	 * 修改星期
+	 * @param date Date
+	 * @param newValue 新值 1-7
+	 * @return Date
+	 */
+	public static Date withDayOfWeek(Date date, long newValue){
+		return with(date, ChronoField.DAY_OF_WEEK, newValue);
+	}
+
+	/**
+	 * 修改星期
+	 * @param localDateTime LocalDateTime
+	 * @param newValue 新值 1-7
+	 * @return LocalDateTime
+	 */
+	public static LocalDateTime withDayOfWeek(LocalDateTime localDateTime, long newValue){
+		return (LocalDateTime) with(localDateTime, ChronoField.DAY_OF_WEEK, newValue);
+	}
+	
 	// get the difference between two times
 	
 	/**
@@ -2700,10 +2720,18 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 一天结束时间 23:59:59.999999999
+	 * 一天开始时间 23:59:59
 	 * @return LocalTime
 	 */
 	public static LocalTime endTimeOfDay(){
+		return LocalTime.of(23, 59, 59);
+	}	
+	
+	/**
+	 * 一天结束时间 精确时间到纳秒 23:59:59.999999999
+	 * @return LocalTime
+	 */
+	public static LocalTime endAccuracyTimeOfDay(){
 		return LocalTime.MAX;
 	}
 	
@@ -2803,6 +2831,15 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static Date endTimeOfDate(Date date){
 		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).atTime(endTimeOfDay()));
+	}
+	
+	/**
+	 * 获取date结束时间，精确时间到纳秒 23:59:59.999999999
+	 * @param date Date
+	 * @return Date
+	 */
+	public static Date endAccuracyTimeOfDate(Date date){
+		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).atTime(endAccuracyTimeOfDay()));
 	}
 
 	/**
