@@ -49,7 +49,7 @@ import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
  * 6.其他常用方法，比如isLeapYear(Date date) 判断是否闰年，isWeekend(Date date) 判断是否周末，isExpiry(String yearMonthStr) 是否过期等<br>
  * 7.时区转换计算方法，transform*，比如transform(ZonedDateTime zonedDateTime, String zoneId)<br>
  * 8.比较2个时间大小和相等方法，compare*，比如compare(Date date1, Date date2)<br>
- * 9.获取准确的起始时间方法，start*,end*，比如startTimeOfMonth() 当月起始时间 当月第一天日期+00:00:00 endTimeOfMonth() 当月最后一天日期+23:59:59<br>
+ * 9.获取准确的起始时间方法，start*,end*，比如startTimeOfMonth() 当月起始时间 当月第一天日期+00:00:00 endTimeOfMonth() 当月最后一天日期+23:59:59 精确到秒；endAccuracyTimeOf*，精确到毫秒（Date），精确到纳秒（LocalDateTime）<br>
  * 10.相同月日比较判断方法，isSameMonthDay*，betweenNextSameMonthDay*，nextSameMonthDay*， 比如用于生日，节日等周期性的日期比较判断<br>
  * 11.星座计算方法，getConstellation*，比如getConstellationNameCn(String monthDayStr)，根据日期计算星座<br>
  * 12.计算指定年月或起始时间区间的时间列表，get*List， 比如getDateList(int year, int month)，计算指定年月的时间列表<br>
@@ -64,7 +64,8 @@ import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
  * 21.获取季度准确的起始时间方法（四个季度），startTimeOf*Quarter， 比如startTimeOfFirstQuarter(int year)，获取指定年的第一季度开始时间<br>
  * 22.获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间<br>
  * 23.常用时间（明天，下周，下月，明年等）计算方法，比如tomorrow()，计算明天，返回Date<br>
- *  
+ * 24.修改星期值方法 withDayOfWeek*，比如withDayOfWeek(Date date, long newValue)，修改星期为指定值newValue，返回Date<br>
+ *   
 * @author xkzhangsan
 *
  */
@@ -1593,6 +1594,16 @@ public class DateTimeCalculatorUtil {
 		return (LocalDateTime) with(localDateTime, ChronoField.DAY_OF_WEEK, newValue);
 	}
 	
+	/**
+	 * 修改星期
+	 * @param localDate LocalDate
+	 * @param newValue 新值 1-7
+	 * @return LocalDateTime
+	 */
+	public static LocalDate withDayOfWeek(LocalDate localDate, long newValue){
+		return (LocalDate) with(localDate, ChronoField.DAY_OF_WEEK, newValue);
+	}	
+	
 	// get the difference between two times
 	
 	/**
@@ -2825,7 +2836,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 获取date结束时间
+	 * 获取date结束时间 精确到秒 23:59:59
 	 * @param date Date
 	 * @return Date
 	 */
@@ -2833,14 +2844,36 @@ public class DateTimeCalculatorUtil {
 		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).atTime(endTimeOfDay()));
 	}
 	
+	
 	/**
-	 * 获取date结束时间，精确时间到纳秒 23:59:59.999999999
+	 * 获localDateTime结束时间，精确时间到纳秒 23:59:59.999000000 （转换为Date会丢失毫秒以后数据）
 	 * @param date Date
 	 * @return Date
 	 */
 	public static Date endAccuracyTimeOfDate(Date date){
 		return DateTimeConverterUtil.toDate(DateTimeConverterUtil.toLocalDate(date).atTime(endAccuracyTimeOfDay()));
 	}
+	
+	/**
+	 * 获localDateTime起始时间
+	 * @param localDateTime LocalDateTime
+	 * @return LocalDateTime
+	 */
+	public static LocalDateTime startTimeOfLocalDateTime(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.with(startTimeOfDay());
+	}	
+	
+	/**
+	 * 获取localDateTime结束时间，精确时间到纳秒 23:59:59.999999999
+	 * @param localDateTime LocalDateTime
+	 * @return LocalDateTime
+	 */
+	public static LocalDateTime endAccuracyTimeOfLocalDateTime(LocalDateTime localDateTime){
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		return localDateTime.with(endAccuracyTimeOfDay());
+	}
+
 
 	/**
 	 * 获取指定年月的第一天起始时间

@@ -9,8 +9,19 @@ import com.xkzhangsan.time.utils.CollectionUtil;
 import com.xkzhangsan.time.utils.StringUtil;
 
 /**
- * 时间自然语言解析工具类
- * 
+ * 时间自然语言分析工具类<br>
+ * 修改自 https://github.com/shinyke/Time-NLP<br>
+ *做了一些修改如下：<br>
+ *（1）封装属性，重命名使符合驼峰命名标准。<br>
+ *（2）将加载正则资源文件改为单例加载。<br>
+ *（3）将类按照功能重新划分为单独的多个类。<br>
+ *（4）使用Java8日期API重写。<br>
+ *（5）增加注释说明，优化代码。<br>
+ *  <br>
+ *  包括功能：  <br>
+ *（1）以当前时间为基础分析时间自然语言。  <br>
+ *（2）以指定时间为基础分析时间自然语言。 <br>
+ *
  * @author xkzhangsan
  */
 public class TimeNLPUtil {
@@ -18,10 +29,21 @@ public class TimeNLPUtil {
 	private TimeNLPUtil(){
 	}
 	
+	/**
+	 * 时间自然语言分析
+	 * @param text 待分析文本
+	 * @return 结果列表
+	 */
 	public static List<TimeNLP> parse(String text){
 		return parse(text, null);
 	}
 	
+	/**
+	 * 时间自然语言分析
+	 * @param text 待分析文本 
+	 * @param timeBase 指定时间
+	 * @return 结果列表
+	 */
 	public static List<TimeNLP> parse(String text, String timeBase){
 		// 文本预处理
 		if(StringUtil.isEmpty(text)){

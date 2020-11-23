@@ -82,7 +82,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
   
 （8）比较2个时间大小和相等方法，compare*，比如compare(Date date1, Date date2)  
   
-（9）获取准确的起始时间方法，start*,end*，比如startTimeOfMonth() 当月起始时间 当月第一天日期+00:00:00，endTimeOfMonth() 当月最后一天日期+23:59:59。  
+（9）获取准确的起始时间方法，start*,end*，比如startTimeOfMonth() 当月起始时间 当月第一天日期+00:00:00，endTimeOfMonth() 当月最后一天日期+23:59:59  精确到秒；endAccuracyTimeOf*，精确到毫秒（Date），精确到纳秒（LocalDateTime）。    
   
 （10）相同月日比较判断方法，isSameMonthDay*，betweenNextSameMonthDay*，nextSameMonthDay*， 比如用于生日，节日等周期性的日期比较判断。  
   
@@ -104,14 +104,16 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
   
 （19）十二时辰计算方法，getTwelveTwo*， 比如getTwelveTwo(Date date)，获取指定时间对应的十二时辰。  
   
-（20）季度计算方法，getQuarter*， 比如getQuarter(Date date)，获取指定时间对应的季度    
+（20）季度计算方法，getQuarter*， 比如getQuarter(Date date)，获取指定时间对应的季度。    
   
-（21）获取季度准确的起始时间方法（四个季度），startTimeOf*Quarter， 比如startTimeOfFirstQuarter(int year)，获取指定年的第一季度   
+（21）获取季度准确的起始时间方法（四个季度），startTimeOf*Quarter， 比如startTimeOfFirstQuarter(int year)，获取指定年的第一季度。   
   
-（22） 获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间  
+（22） 获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间。    
 
-（23）常用时间（明天，下周，下月，明年等）计算方法，比如tomorrow()，计算明天，返回Date  
-  
+（23）常用时间（明天，下周，下月，明年等）计算方法，比如tomorrow()，计算明天，返回Date。  
+
+（24）修改星期值方法 withDayOfWeek*，比如withDayOfWeek(Date date, long newValue)，修改星期为指定值newValue，返回Date。  
+    
   
 详细使用可以查看相关测试代码。  
 
@@ -225,7 +227,24 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 （2）计算耗时，自定义任务名称，输出耗时结果。  
 （3）计算耗时，返回精确计时，带3小数的结果，使用ROUND_DOWN 舍弃超过3位的小数部分等。  
   
+详细使用可以查看相关测试代码。     
   
+### 9.时间自然语言分析工具类（NLP） TimeNLPUtil  
+  
+修改自 https://github.com/shinyke/Time-NLP  
+做了一些修改如下：  
+（1）封装属性，重命名使符合驼峰命名标准。  
+（2）将加载正则资源文件改为单例加载。  
+（3）将类按照功能重新划分为单独的多个类。  
+（4）使用Java8日期API重写。  
+（5）增加注释说明，优化代码。  
+    
+  包括功能：   
+（1）以当前时间为基础分析时间自然语言。  
+（2）以指定时间为基础分析时间自然语言。  
+    
+  详细使用可以查看相关测试代码。     
+    
 # 更多详细文档
 - [JavaDoc 文档](https://apidoc.gitee.com/xkzhangsan/xk-time) 
 

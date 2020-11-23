@@ -166,6 +166,8 @@ public class DateTimeCalculatorUtilTest {
 		Assert.assertEquals(29,DateTimeCalculatorUtil.getMinute(DateTimeCalculatorUtil.withMinute(date, 29)));
 		Assert.assertEquals(14,DateTimeCalculatorUtil.getSecond(DateTimeCalculatorUtil.withSecond(date, 14)));
 		Assert.assertEquals(15,DateTimeCalculatorUtil.getMillisecond(DateTimeCalculatorUtil.withMilli(date, 15)));
+		// 修改DayOfWeek，原DayOfWeek为3，修改为1 （对比 3-2=1）
+		Assert.assertEquals(DateTimeCalculatorUtil.getDayOfWeek(date)-2, DateTimeCalculatorUtil.getDayOfWeek(DateTimeCalculatorUtil.withDayOfWeek(date, 1)));
 	}
 
 	/**
@@ -374,6 +376,19 @@ public class DateTimeCalculatorUtilTest {
 		//指定日期
 		Assert.assertEquals(DateTimeFormatterUtil.formatToDateStr(DateTimeCalculatorUtil.getDate(2019, 10, 1))+" 00:00:00",DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.startTimeOfDate(2019, 10, 1)));
 		Assert.assertEquals(DateTimeFormatterUtil.formatToDateStr(DateTimeCalculatorUtil.getDate(2019, 10, 1))+" 23:59:59",DateTimeFormatterUtil.formatToDateTimeStr(DateTimeCalculatorUtil.endTimeOfDate(2019, 10, 1)));
+		
+		//精确结束时间
+		Assert.assertEquals("2019-10-01 23:59:59.999000000",DateTimeFormatterUtil.format(
+				DateTimeCalculatorUtil.endAccuracyTimeOfDate(DateTimeCalculatorUtil.getDate(2019, 10, 1)),
+				DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSSSSSSSS_FMT));
+		
+		Assert.assertEquals("2019-10-01 00:00:00.000000000",DateTimeFormatterUtil.format(
+				DateTimeCalculatorUtil.startTimeOfLocalDateTime(LocalDateTime.of(2019, 10, 1,1,1)),
+				DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSSSSSSSS_FMT));
+		
+		Assert.assertEquals("2019-10-01 23:59:59.999999999",DateTimeFormatterUtil.format(
+				DateTimeCalculatorUtil.endAccuracyTimeOfLocalDateTime(LocalDateTime.of(2019, 10, 1,1,1)),
+				DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_SSSSSSSSS_FMT));
 	}
 	
 	/**

@@ -20,7 +20,7 @@ import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 import com.xkzhangsan.time.utils.CollectionUtil;
 
 /**
- * 时间自然语言解析
+ * 时间自然语言分析
  * 
  * 修改自 https://github.com/shinyke/Time-NLP
  * @author xkzhangsan
