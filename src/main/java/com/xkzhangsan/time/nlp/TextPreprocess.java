@@ -14,7 +14,8 @@ public class TextPreprocess {
 	}
 
 	public static String preprocess(String text){
-		text = delKeyword(text, "\\s+"); // 清理空白符
+//		text = delKeyword(text, "\\s+"); // 清理空白符 直接删除空格会影响部分格式识别错误，比如2016-07-19 00:00:00
+		text = text.trim();
 		text = delKeyword(text, "[的]+"); // 清理语气助词
 		text = numberTranslator(text);// 大写数字转化
 		return text;

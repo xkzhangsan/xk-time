@@ -15,6 +15,9 @@ import com.xkzhangsan.time.nlp.TimeNLPUtil;
  */
 public class TimeNLPUtilTest {
 
+	/**
+	 * 常见实例
+	 */
 	@Test
 	public void timeNLPTest(){
 		List<TimeNLP> timeNLPList = TimeNLPUtil.parse("Hi，all.下周一下午三点开会");;
@@ -64,5 +67,24 @@ public class TimeNLPUtilTest {
         for(int i = 0; i < timeNLPList.size(); i++){
             System.out.println("时间文本:"+timeNLPList.get(i).getTimeExpression() +",对应时间:"+ timeNLPList.get(i).getTimeNormFormat());
         }
+	}
+	
+	/**
+	 * 标准时间
+	 */
+	@Test
+	public void normStandardTimeTest(){
+		List<TimeNLP> timeNLPList = TimeNLPUtil.parse("2016-07-19对应时间");
+		System.out.println("2016-07-19对应时间");
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-" + timeNLPList.get(0).getIsAllDayTime());
+		
+		timeNLPList = TimeNLPUtil.parse("2016-07-19 15:30:10对应时间");;
+        System.out.println("2016-07-19 15:30:10对应时间");
+        System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-" + timeNLPList.get(0).getIsAllDayTime());
+        
+        timeNLPList = TimeNLPUtil.parse("2016-07-19 15:30对应时间");;
+        System.out.println("2016-07-19 15:30对应时间");
+        System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-" + timeNLPList.get(0).getIsAllDayTime());
+
 	}
 }

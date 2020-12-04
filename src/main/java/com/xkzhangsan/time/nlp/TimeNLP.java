@@ -111,6 +111,29 @@ public class TimeNLP {
     }
 
     /**
+     * 标准时间解析
+	 * <pre>
+	 *     yyyy-MM-dd HH:mm:ss
+	 *     yyyy-MM-dd HH:mm
+	 *     yyyy-MM-dd
+	 * </pre>
+     * @return LocalDateTime
+     */
+	private LocalDateTime normStandardTime() {
+		LocalDateTime localDateTime = null;
+		String rule = "\\d{4}-\\d{1,2}-\\d{1,2}( \\d{1,2}:\\d{1,2}(:\\d{1,2})?)?";
+        Pattern pattern = Pattern.compile(rule);
+        Matcher match = pattern.matcher(timeExpression);
+        if (match.find()) {
+        	try{
+        		localDateTime = DateTimeFormatterUtil.smartParseToLocalDateTime(timeExpression);
+        	}catch(Exception e){
+        	}
+        }
+		return localDateTime;
+	}
+	
+    /**
      * 年-规范化方法
      * <p>
      * 该方法识别时间表达式单元的年字段
@@ -872,73 +895,76 @@ public class TimeNLP {
      * 具体识别每个字段的值
      */
     public void timeNormalization() {
-        normYear();
-        normMonth();
-        normDay();
-        normMonthFuzzyDay();/**add by kexm*/
-        normBaseRelated();
-        normCurRelated();
-        normHour();
-        normMinute();
-        normSecond();
-        normTotal();
-        modifyTimeBase();
+	    //标准时间解析
+		LocalDateTime localDateTime = normStandardTime();
+	    if(localDateTime == null){
+	    	normYear();
+	        normMonth();
+	        normDay();
+	        normMonthFuzzyDay();/**add by kexm*/
+	        normBaseRelated();
+	        normCurRelated();
+	        normHour();
+	        normMinute();
+	        normSecond();
+	        normTotal();
+	        modifyTimeBase();
 
-        timeContextOrigin.setTunit(timeContext.getTunit().clone());
+	        String[] timeGrid = new String[6];
+	        timeGrid = timeContextOrigin.getTimeBase().split("-");
+
+	        int tunitpointer = 5;
+	        while (tunitpointer >= 0 && timeContext.getTunit()[tunitpointer] < 0) {
+	            tunitpointer--;
+	        }
+	        for (int i = 0; i < tunitpointer; i++) {
+	            if (timeContext.getTunit()[i] < 0)
+	                timeContext.getTunit()[i] = Integer.parseInt(timeGrid[i]);
+	        }
+	        String[] resultTmp = new String[6];
+	        resultTmp[0] = String.valueOf(timeContext.getTunit()[0]);
+	        if (timeContext.getTunit()[0] >= 10 && timeContext.getTunit()[0] < 100) {
+	            resultTmp[0] = "19" + String.valueOf(timeContext.getTunit()[0]);
+	        }
+	        if (timeContext.getTunit()[0] > 0 && timeContext.getTunit()[0] < 10) {
+	            resultTmp[0] = "200" + String.valueOf(timeContext.getTunit()[0]);
+	        }
+
+	        for (int i = 1; i < 6; i++) {
+	            resultTmp[i] = String.valueOf(timeContext.getTunit()[i]);
+	        }
+
+	        localDateTime = LocalDateTime.of(1970, 1, 1, 0, 0);
+	        if (Integer.parseInt(resultTmp[0]) != -1) {
+	            timeNorm += resultTmp[0] + "年";
+	            localDateTime = localDateTime.withYear(Integer.valueOf(resultTmp[0]));
+	            if (Integer.parseInt(resultTmp[1]) != -1) {
+	                timeNorm += resultTmp[1] + "月";
+	                localDateTime = localDateTime.withMonth(Integer.valueOf(resultTmp[1]));
+	                if (Integer.parseInt(resultTmp[2]) != -1) {
+	                    timeNorm += resultTmp[2] + "日";
+	                    localDateTime = localDateTime.withDayOfMonth(Integer.valueOf(resultTmp[2]));
+	                    if (Integer.parseInt(resultTmp[3]) != -1) {
+	                        timeNorm += resultTmp[3] + "时";
+	                        localDateTime = localDateTime.withHour(Integer.valueOf(resultTmp[3]));
+	                        if (Integer.parseInt(resultTmp[4]) != -1) {
+	                            timeNorm += resultTmp[4] + "分";
+	                            localDateTime = localDateTime.withMinute(Integer.valueOf(resultTmp[4]));
+	                            if (Integer.parseInt(resultTmp[5]) != -1) {
+	                                timeNorm += resultTmp[5] + "秒";
+	                                localDateTime = localDateTime.withSecond(Integer.valueOf(resultTmp[5]));
+	                            }
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	    }
+        	
+		timeContextOrigin.setTunit(timeContext.getTunit().clone());
         timeContext.setTimeBase(timeContextOrigin.getTimeBase());
         timeContext.setOldTimeBase(timeContextOrigin.getOldTimeBase());
-
-        String[] timeGrid = new String[6];
-        timeGrid = timeContextOrigin.getTimeBase().split("-");
-
-        int tunitpointer = 5;
-        while (tunitpointer >= 0 && timeContext.getTunit()[tunitpointer] < 0) {
-            tunitpointer--;
-        }
-        for (int i = 0; i < tunitpointer; i++) {
-            if (timeContext.getTunit()[i] < 0)
-                timeContext.getTunit()[i] = Integer.parseInt(timeGrid[i]);
-        }
-        String[] resultTmp = new String[6];
-        resultTmp[0] = String.valueOf(timeContext.getTunit()[0]);
-        if (timeContext.getTunit()[0] >= 10 && timeContext.getTunit()[0] < 100) {
-            resultTmp[0] = "19" + String.valueOf(timeContext.getTunit()[0]);
-        }
-        if (timeContext.getTunit()[0] > 0 && timeContext.getTunit()[0] < 10) {
-            resultTmp[0] = "200" + String.valueOf(timeContext.getTunit()[0]);
-        }
-
-        for (int i = 1; i < 6; i++) {
-            resultTmp[i] = String.valueOf(timeContext.getTunit()[i]);
-        }
-
-        LocalDateTime localDateTime = LocalDateTime.of(1970, 1, 1, 0, 0);
-        if (Integer.parseInt(resultTmp[0]) != -1) {
-            timeNorm += resultTmp[0] + "年";
-            localDateTime = localDateTime.withYear(Integer.valueOf(resultTmp[0]));
-            if (Integer.parseInt(resultTmp[1]) != -1) {
-                timeNorm += resultTmp[1] + "月";
-                localDateTime = localDateTime.withMonth(Integer.valueOf(resultTmp[1]));
-                if (Integer.parseInt(resultTmp[2]) != -1) {
-                    timeNorm += resultTmp[2] + "日";
-                    localDateTime = localDateTime.withDayOfMonth(Integer.valueOf(resultTmp[2]));
-                    if (Integer.parseInt(resultTmp[3]) != -1) {
-                        timeNorm += resultTmp[3] + "时";
-                        localDateTime = localDateTime.withHour(Integer.valueOf(resultTmp[3]));
-                        if (Integer.parseInt(resultTmp[4]) != -1) {
-                            timeNorm += resultTmp[4] + "分";
-                            localDateTime = localDateTime.withMinute(Integer.valueOf(resultTmp[4]));
-                            if (Integer.parseInt(resultTmp[5]) != -1) {
-                                timeNorm += resultTmp[5] + "秒";
-                                localDateTime = localDateTime.withSecond(Integer.valueOf(resultTmp[5]));
-                            }
-                        }
-                    }
-                }
-            }
-        }
         time = DateTimeConverterUtil.toDate(localDateTime);
-
         timeNormFormat = DateTimeFormatterUtil.format(localDateTime, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT);
     }
 
