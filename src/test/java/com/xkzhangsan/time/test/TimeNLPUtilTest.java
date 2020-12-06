@@ -21,7 +21,6 @@ public class TimeNLPUtilTest {
 	@Test
 	public void timeNLPTest() {
 		List<TimeNLP> timeNLPList = TimeNLPUtil.parse("Hi，all.下周一下午三点开会");
-		;
 		System.out.println("Hi，all.下周一下午三点开会");
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
 				+ timeNLPList.get(0).getIsAllDayTime());
