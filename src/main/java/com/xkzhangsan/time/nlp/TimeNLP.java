@@ -399,15 +399,22 @@ public class TimeNLP {
      * 该方法识别时间表达式单元的秒字段
      */
     public void normSecond() {
+    	//特殊情况排查，比如30秒后
+		String rule = "(\\d+(秒钟|秒|sec)[以之]?[前后])";
+		Pattern pattern = Pattern.compile(rule);
+		Matcher match = pattern.matcher(timeExpression);
+		if (match.find()) {
+			return;
+		}
 		/*
 		 * 添加了省略“分”说法的时间
 		 * 如17点15分32
 		 * modified by 曹零
 		 */
-        String rule = "([0-5]?[0-9](?=秒))|((?<=分)[0-5]?[0-9])";
+        rule = "([0-5]?[0-9](?=秒))|((?<=分)[0-5]?[0-9])";
 
-        Pattern pattern = Pattern.compile(rule);
-        Matcher match = pattern.matcher(timeExpression);
+        pattern = Pattern.compile(rule);
+        match = pattern.matcher(timeExpression);
         if (match.find()) {
             timeContext.getTunit()[5] = Integer.parseInt(match.group());
             isAllDayTime = false;
@@ -544,7 +551,7 @@ public class TimeNLP {
     }
 
     /**
-     * 设置以上文时间为基准的时间偏移计算
+     * 设置以上文时间为基准的时间偏移计算，日期部分
      */
     public void normBaseRelated() {
         String[] timeGrid = new String[6];
@@ -555,14 +562,14 @@ public class TimeNLP {
         //设置结果
         LocalDateTime localDateTime = LocalDateTime.of(ini[0], ini[1], ini[2], ini[3], ini[4], ini[5]);
 
-        boolean[] flag = {false, false, false};//观察时间表达式是否因当前相关时间表达式而改变时间
+        boolean flag = false;//观察时间表达式是否因当前相关时间表达式而改变时间
 
 
         String rule = "\\d+(?=天[以之]?前)";
         Pattern pattern = Pattern.compile(rule);
         Matcher match = pattern.matcher(timeExpression);
         if (match.find()) {
-            flag[2] = true;
+        	flag = true;
             int day = Integer.parseInt(match.group());
             localDateTime = localDateTime.minusDays(day);
         }
@@ -571,7 +578,7 @@ public class TimeNLP {
         pattern = Pattern.compile(rule);
         match = pattern.matcher(timeExpression);
         if (match.find()) {
-            flag[2] = true;
+        	flag = true;
             int day = Integer.parseInt(match.group());
             localDateTime = localDateTime.plusDays(day);
         }
@@ -580,7 +587,7 @@ public class TimeNLP {
         pattern = Pattern.compile(rule);
         match = pattern.matcher(timeExpression);
         if (match.find()) {
-            flag[1] = true;
+        	flag = true;
             int month = Integer.parseInt(match.group());
             localDateTime = localDateTime.minusMonths(month);
         }
@@ -589,7 +596,7 @@ public class TimeNLP {
         pattern = Pattern.compile(rule);
         match = pattern.matcher(timeExpression);
         if (match.find()) {
-            flag[1] = true;
+        	flag = true;
             int month = Integer.parseInt(match.group());
             localDateTime = localDateTime.plusMonths(month);
         }
@@ -598,7 +605,7 @@ public class TimeNLP {
         pattern = Pattern.compile(rule);
         match = pattern.matcher(timeExpression);
         if (match.find()) {
-            flag[0] = true;
+        	flag = true;
             int year = Integer.parseInt(match.group());
             localDateTime = localDateTime.minusYears(year);
         }
@@ -607,20 +614,148 @@ public class TimeNLP {
         pattern = Pattern.compile(rule);
         match = pattern.matcher(timeExpression);
         if (match.find()) {
-            flag[0] = true;
+        	flag = true;
             int year = Integer.parseInt(match.group());
             localDateTime = localDateTime.plusYears(year);
         }
 
-        String s = DateTimeFormatterUtil.format(localDateTime, "yyyy-MM-dd-HH-mm-ss");
-        String[] time_fin = s.split("-");
-        if (flag[0] || flag[1] || flag[2]) {
-            timeContext.getTunit()[0] = Integer.parseInt(time_fin[0]);
+        if(flag){
+        	setUnitValues(localDateTime);
         }
-        if (flag[1] || flag[2])
-            timeContext.getTunit()[1] = Integer.parseInt(time_fin[1]);
-        if (flag[2])
-            timeContext.getTunit()[2] = Integer.parseInt(time_fin[2]);
+    }
+    
+    /**
+     * 设置以上文时间为基准的时间偏移计算，时间部分
+     */
+    public void normBaseTimeRelated() {
+        String[] timeGrid = new String[6];
+        timeGrid = timeContextOrigin.getTimeBase().split("-");
+        int[] ini = new int[6];
+        for (int i = 0; i < 6; i++)
+            ini[i] = Integer.parseInt(timeGrid[i]);
+        //设置结果
+        LocalDateTime localDateTime = LocalDateTime.of(ini[0], ini[1], ini[2], ini[3], ini[4], ini[5]);
+
+        boolean flag = false;//观察时间表达式是否因当前相关时间表达式而改变时间
+
+        String rule = "\\d+(?=个?半?(小时|钟头|h|H)[以之]?前)";
+        Pattern pattern = Pattern.compile(rule);
+        Matcher match = pattern.matcher(timeExpression);
+        if (match.find()) {
+            flag = true;
+            int hour = Integer.parseInt(match.group());
+            localDateTime = localDateTime.minusHours(hour);
+        }
+
+        rule = "\\d+(?=个?半?(小时|钟头|h|H)[以之]?后)";
+        pattern = Pattern.compile(rule);
+        match = pattern.matcher(timeExpression);
+        if (match.find()) {
+            flag = true;
+            int hour = Integer.parseInt(match.group());
+            localDateTime = localDateTime.plusHours(hour);
+        }
+
+        rule = "半个?(小时|钟头)[以之]?前";
+        pattern = Pattern.compile(rule);
+        match = pattern.matcher(timeExpression);
+        if (match.find()) {
+            flag = true;
+            localDateTime = localDateTime.minusMinutes(30);
+        }
+
+        rule = "半个?(小时|钟头)[以之]?后";
+        pattern = Pattern.compile(rule);
+        match = pattern.matcher(timeExpression);
+        if (match.find()) {
+            flag = true;
+            localDateTime = localDateTime.plusMinutes(30);
+        }
+        
+        rule = "\\d+(?=(分钟|min)[以之]?前)";
+        pattern = Pattern.compile(rule);
+        Matcher matchMinuteBefore = pattern.matcher(timeExpression);
+        if (matchMinuteBefore.find()) {
+            flag = true;
+            int minute = Integer.parseInt(matchMinuteBefore.group());
+            localDateTime = localDateTime.minusMinutes(minute);
+        }
+
+        rule = "\\d+(?=(分钟|min)[以之]?后)";
+        pattern = Pattern.compile(rule);
+        Matcher matchMinuteAfter = pattern.matcher(timeExpression);
+        if (matchMinuteAfter.find()) {
+            flag = true;
+            int minute = Integer.parseInt(matchMinuteAfter.group());
+            localDateTime = localDateTime.plusMinutes(minute);
+        }
+        
+        //1个小时10分钟前，组合处理
+        if(matchMinuteBefore.find()){
+            rule = "\\d+(?=个?半?(小时|钟头|h|H))";
+            pattern = Pattern.compile(rule);
+            match = pattern.matcher(timeExpression);
+            if (match.find()) {
+                flag = true;
+                int hour = Integer.parseInt(match.group());
+                localDateTime = localDateTime.minusHours(hour);
+            }
+        }
+        
+        if(matchMinuteAfter.find()){
+            rule = "\\d+(?=个?半?(小时|钟头|h|H))";
+            pattern = Pattern.compile(rule);
+            match = pattern.matcher(timeExpression);
+            if (match.find()) {
+                flag = true;
+                int hour = Integer.parseInt(match.group());
+                localDateTime = localDateTime.plusHours(hour);
+            }
+        }
+        
+        rule = "\\d+(?=(秒钟|秒|sec)[以之]?前)";
+        pattern = Pattern.compile(rule);
+        Matcher matchSecondBefore = pattern.matcher(timeExpression);
+        if (matchSecondBefore.find()) {
+            flag = true;
+            int second = Integer.parseInt(matchSecondBefore.group());
+            localDateTime = localDateTime.minusSeconds(second);
+        }
+
+        rule = "\\d+(?=(秒钟|秒|sec)[以之]?后)";
+        pattern = Pattern.compile(rule);
+        Matcher matchSecondAfter = pattern.matcher(timeExpression);
+        if (matchSecondAfter.find()) {
+            flag = true;
+            int second = Integer.parseInt(matchSecondAfter.group());
+            localDateTime = localDateTime.plusSeconds(second);
+        }
+        
+        if(matchSecondBefore.find()){
+        	rule = "\\d+(?=(分钟|min))";
+            pattern = Pattern.compile(rule);
+            match = pattern.matcher(timeExpression);
+            if (match.find()) {
+                flag = true;
+                int minute = Integer.parseInt(match.group());
+                localDateTime = localDateTime.minusMinutes(minute);
+            }
+        }
+        
+        if(matchSecondAfter.find()){
+        	rule = "\\d+(?=(分钟|min))";
+            pattern = Pattern.compile(rule);
+            match = pattern.matcher(timeExpression);
+            if (match.find()) {
+                flag = true;
+                int minute = Integer.parseInt(match.group());
+                localDateTime = localDateTime.plusMinutes(minute);
+            }
+        }
+
+        if(flag){
+        	setUnitValues(localDateTime);
+        }
     }
 
     /**
@@ -917,6 +1052,7 @@ public class TimeNLP {
 	        normDay();
 	        normMonthFuzzyDay();/**add by kexm*/
 	        normBaseRelated();
+	        normBaseTimeRelated();
 	        normCurRelated();
 	        normHour();
 	        normMinute();
@@ -1067,6 +1203,21 @@ public class TimeNLP {
             }
         }
         return list;
+    }
+    
+    /**
+     * 根据修改时间设置unit值
+     * @param localDateTime
+     */
+    private void setUnitValues(LocalDateTime localDateTime){
+        String s = DateTimeFormatterUtil.format(localDateTime, "yyyy-MM-dd-HH-mm-ss");
+        String[] time_fin = s.split("-");
+        timeContext.getTunit()[0] = Integer.parseInt(time_fin[0]);
+        timeContext.getTunit()[1] = Integer.parseInt(time_fin[1]);
+        timeContext.getTunit()[2] = Integer.parseInt(time_fin[2]);
+        timeContext.getTunit()[3] = Integer.parseInt(time_fin[3]);
+        timeContext.getTunit()[4] = Integer.parseInt(time_fin[4]);
+        timeContext.getTunit()[5] = Integer.parseInt(time_fin[5]);
     }
 
     // get set
