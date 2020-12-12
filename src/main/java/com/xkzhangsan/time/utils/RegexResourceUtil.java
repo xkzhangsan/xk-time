@@ -53,10 +53,23 @@ public class RegexResourceUtil {
     	return result;
     }
     
+    public static String matcher(String rule, String text) throws Exception {
+    	String result = "";
+    	Pattern pattern = Pattern.compile(rule); 
+    	Matcher match = pattern.matcher(text);
+    	while (match.find()) {
+    		result = match.group();
+    	}
+    	return result;
+    }    
+    
     public static void main(String[] args) throws Exception {
     	String filePath = RegexResourceUtil.class.getClassLoader().getResource("TimeRegex.Gzip").getFile();
     	Pattern pattern = readModel(filePath);
+    	System.out.println(pattern.pattern());
     	String[] result = matcher(pattern, "明天");
     	System.out.println(result);
+    	
+        System.out.println(matcher("\\d+(分钟|分|min)[以之]?[前后]","10分后"));
 	}
 }

@@ -349,10 +349,19 @@ public class TimeNLP {
      * 该方法识别时间表达式单元的分字段
      */
     public void normMinute() {
-        String rule = "([0-5]?[0-9](?=分(?!钟)))|((?<=((?<!小)[点时]))[0-5]?[0-9](?!刻))";
+    	
+    	//特殊情况排查，比如30分后
+		String rule = "(\\d+(分钟|分|min)[以之]?[前后])";
+		Pattern pattern = Pattern.compile(rule);
+		Matcher match = pattern.matcher(timeExpression);
+		if (match.find()) {
+			return;
+		}
+		
+        rule = "([0-5]?[0-9](?=分(?!钟)))|((?<=((?<!小)[点时]))[0-5]?[0-9](?!刻))";
 
-        Pattern pattern = Pattern.compile(rule);
-        Matcher match = pattern.matcher(timeExpression);
+        pattern = Pattern.compile(rule);
+        match = pattern.matcher(timeExpression);
         if (match.find()) {
             if (!match.group().equals("")) {
                 timeContext.getTunit()[4] = Integer.parseInt(match.group());
@@ -672,7 +681,7 @@ public class TimeNLP {
             localDateTime = localDateTime.plusMinutes(30);
         }
         
-        rule = "\\d+(?=(分钟|min)[以之]?前)";
+        rule = "\\d+(?=(分钟|分|min)[以之]?前)";
         pattern = Pattern.compile(rule);
         Matcher matchMinuteBefore = pattern.matcher(timeExpression);
         if (matchMinuteBefore.find()) {
@@ -681,7 +690,7 @@ public class TimeNLP {
             localDateTime = localDateTime.minusMinutes(minute);
         }
 
-        rule = "\\d+(?=(分钟|min)[以之]?后)";
+        rule = "\\d+(?=(分钟|分|min)[以之]?后)";
         pattern = Pattern.compile(rule);
         Matcher matchMinuteAfter = pattern.matcher(timeExpression);
         if (matchMinuteAfter.find()) {
