@@ -117,6 +117,11 @@ public class TimeNLPUtilTest {
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
 				+ timeNLPList.get(0).getIsAllDayTime());
 		
+		timeNLPList = TimeNLPUtil.parse("1钟头后对应时间");
+		System.out.println("1钟头后对应时间");
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+				+ timeNLPList.get(0).getIsAllDayTime());		
+		
 		timeNLPList = TimeNLPUtil.parse("1个半小时后对应时间");
 		System.out.println("1个半小时后对应时间");
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
@@ -126,6 +131,11 @@ public class TimeNLPUtilTest {
 		System.out.println("1小时50分钟后对应时间");
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
 				+ timeNLPList.get(0).getIsAllDayTime());
+		
+		timeNLPList = TimeNLPUtil.parse("1小时50分后对应时间");
+		System.out.println("1小时50分后对应时间");
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+				+ timeNLPList.get(0).getIsAllDayTime());		
 		
 		timeNLPList = TimeNLPUtil.parse("10分钟后对应时间");
 		System.out.println("10分钟后对应时间");
