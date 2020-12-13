@@ -161,5 +161,17 @@ public class TimeNLPUtilTest {
 		System.out.println("1个半小时前对应时间");
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
 				+ timeNLPList.get(0).getIsAllDayTime());
+	}
+	
+	/**
+	 * 当前时间是上午10点，那么下午三点 会识别为明天下午三点问题
+	 */
+	@Test
+	public void normHourTest2() {
+		System.out.println("当前时间:"+DateTimeCalculatorUtil.getEpochMilliFormat());
+		List<TimeNLP> timeNLPList = TimeNLPUtil.parse("下午3点对应时间");
+		System.out.println("下午3点对应时间");
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+				+ timeNLPList.get(0).getIsAllDayTime());
 	}	
 }

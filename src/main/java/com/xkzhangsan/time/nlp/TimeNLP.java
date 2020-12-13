@@ -1166,10 +1166,22 @@ public class TimeNLP {
             localDateTime = LocalDateTime.of(Integer.valueOf(ini[0]).intValue(), Integer.valueOf(ini[1]).intValue(), Integer.valueOf(ini[2]).intValue()
                     , Integer.valueOf(ini[3]).intValue(), Integer.valueOf(ini[4]).intValue(), Integer.valueOf(ini[5]).intValue());
         }
-
+        
         int curTime = localDateTime.get((TemporalField) TUNIT_MAP.get(checkTimeIndex));
-        if (curTime < timeContext.getTunit()[checkTimeIndex]) {
-            return;
+        //下午时间特殊处理，修复当前时间是上午10点，那么下午三点 会识别为明天下午三点问题
+        if(checkTimeIndex == 3 && timeContext.getTunit()[3] >= 0 && timeContext.getTunit()[3] <= 11){
+        	String rule = "(下午)|(午后)|(pm)|(PM)";
+            Pattern pattern = Pattern.compile(rule);
+            Matcher match = pattern.matcher(timeExpression);
+            if (match.find()) {
+            	if (curTime < (timeContext.getTunit()[3] + 12)) {
+            		return;
+            	}
+            }
+        }else{
+        	if (curTime < timeContext.getTunit()[checkTimeIndex]) {
+        		return;
+        	}
         }
         //准备增加的时间单位是被检查的时间的上一级，将上一级时间+1
         localDateTime = localDateTime.plus(1, (TemporalUnit) TUNIT_MAP.get(checkTimeIndex - 1 + 10));
