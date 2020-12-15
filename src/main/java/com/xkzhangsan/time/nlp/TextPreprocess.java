@@ -17,6 +17,7 @@ public class TextPreprocess {
 //		text = delKeyword(text, "\\s+"); // 清理空白符 直接删除空格会影响部分格式识别错误，比如2016-07-19 00:00:00
 		text = text.trim();
 		text = delKeyword(text, "[的]+"); // 清理语气助词
+		text = delDecimalStr(text); // 清理非日期小数
 		text = numberTranslator(text);// 大写数字转化
 		return text;
 	}
@@ -267,4 +268,28 @@ public class TextPreprocess {
 			return 9;
 		else return -1;
 	}
+	
+	/**
+	 * 清理非日期小数 比如4.5等
+	 * @param target
+	 * @return 处理过的字符串
+	 */
+	private static String delDecimalStr(String target){
+		String rule = "{0,1}\\d+\\.\\d*|{0,1}\\d*\\.\\d+";
+		String ruleDate = "[日号]";
+		Pattern p = Pattern.compile(rule);
+		Matcher m = p.matcher(target);
+		Pattern pDate = Pattern.compile(ruleDate);
+		Matcher mDate = pDate.matcher(target);
+		StringBuffer sb = new StringBuffer(); 
+		boolean result = m.find();
+		while(result) {
+			if(!mDate.find()){
+				m.appendReplacement(sb, "");
+			}
+			result = m.find(); 
+		}
+		m.appendTail(sb);
+		return sb.toString();
+	}	
 }

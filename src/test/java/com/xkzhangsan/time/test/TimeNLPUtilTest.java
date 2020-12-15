@@ -8,6 +8,7 @@ import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 import com.xkzhangsan.time.nlp.TimeNLP;
 import com.xkzhangsan.time.nlp.TimeNLPUtil;
+import com.xkzhangsan.time.utils.CollectionUtil;
 
 /**
  * 时间自然语言解析工具类测试
@@ -171,6 +172,27 @@ public class TimeNLPUtilTest {
 		System.out.println("当前时间:"+DateTimeCalculatorUtil.getEpochMilliFormat());
 		List<TimeNLP> timeNLPList = TimeNLPUtil.parse("下午3点对应时间");
 		System.out.println("下午3点对应时间");
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+				+ timeNLPList.get(0).getIsAllDayTime());
+	}	
+	
+	/**
+	 * 数字解析异常问题验证
+	 */
+	@Test
+	public void normDecimalStrTest() {
+		System.out.println("当前时间:"+DateTimeCalculatorUtil.getEpochMilliFormat());
+		List<TimeNLP> timeNLPList = TimeNLPUtil.parse("4.5对应时间");
+		System.out.println("4.5对应时间");
+		if(CollectionUtil.isNotEmpty(timeNLPList)){
+			System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+					+ timeNLPList.get(0).getIsAllDayTime());
+		}else{
+			System.out.println("无匹配结果");
+		}
+		
+		timeNLPList = TimeNLPUtil.parse("4.5日对应时间");
+		System.out.println("4.5日对应时间");
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
 				+ timeNLPList.get(0).getIsAllDayTime());
 	}	
