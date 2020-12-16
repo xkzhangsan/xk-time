@@ -191,6 +191,15 @@ public class TimeNLPUtilTest {
 			System.out.println("无匹配结果");
 		}
 		
+		timeNLPList = TimeNLPUtil.parse("4.5元日对应时间");
+		System.out.println("4.5元日对应时间");
+		if(CollectionUtil.isNotEmpty(timeNLPList)){
+			System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+					+ timeNLPList.get(0).getIsAllDayTime());
+		}else{
+			System.out.println("无匹配结果");
+		}
+		
 		timeNLPList = TimeNLPUtil.parse("4.5日对应时间");
 		System.out.println("4.5日对应时间");
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"

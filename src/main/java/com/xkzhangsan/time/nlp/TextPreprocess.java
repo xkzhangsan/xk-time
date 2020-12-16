@@ -1,5 +1,7 @@
 package com.xkzhangsan.time.nlp;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -275,16 +277,21 @@ public class TextPreprocess {
 	 * @return 处理过的字符串
 	 */
 	private static String delDecimalStr(String target){
+		String ruleDateFlag = "[日号]";
+		Pattern pDateFlag = Pattern.compile(ruleDateFlag);
+		Matcher mDateFlag = pDateFlag.matcher(target);
+		Set<Integer> dateFlagSet = new HashSet<>();
+		while(mDateFlag.find()){
+			dateFlagSet.add(mDateFlag.start());
+		}
+		
 		String rule = "{0,1}\\d+\\.\\d*|{0,1}\\d*\\.\\d+";
-		String ruleDate = "[日号]";
 		Pattern p = Pattern.compile(rule);
 		Matcher m = p.matcher(target);
-		Pattern pDate = Pattern.compile(ruleDate);
-		Matcher mDate = pDate.matcher(target);
 		StringBuffer sb = new StringBuffer(); 
 		boolean result = m.find();
 		while(result) {
-			if(!mDate.find()){
+			if(!dateFlagSet.contains(m.end())){
 				m.appendReplacement(sb, "");
 			}
 			result = m.find(); 
