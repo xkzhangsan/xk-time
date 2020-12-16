@@ -20,10 +20,10 @@
 <br>
   
   
-### xk-time 是时间转换，计算，格式化，解析，日历，cron表达式和NLP等的工具，使用Java8，线程安全，简单易用，多达70几种常用日期格式化模板，支持Java8时间类和Date，轻量级，无第三方依赖。  
+### xk-time 是时间转换，时间计算，时间格式化，时间解析，日历，时间cron表达式和时间NLP等的工具，使用Java8，线程安全，简单易用，多达70几种常用日期格式化模板，支持Java8时间类和Date，轻量级，无第三方依赖。    
   
   
-xk-time is a tool for time conversion, calculation, formatting, parsing, calendar, cron expression and NLP, etc., using Java8, thread-safe, easy to use, up to 70 commonly used date formatting templates, support Java8 time class and Date , Lightweight, no third party dependence.
+xk-time is a tool for time conversion, time calculation, time formatting, time parsing, calendar, time cron expression and time NLP, etc. It uses Java8, thread-safe, easy to use, and more than 70 common date formatting templates , Support Java8 time class and Date, lightweight, no third-party dependencies.  
   
   
 # 安装项目  

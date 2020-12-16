@@ -277,12 +277,12 @@ public class TextPreprocess {
 	 * @return 处理过的字符串
 	 */
 	private static String delDecimalStr(String target){
-		String ruleDateFlag = "[日号]";
-		Pattern pDateFlag = Pattern.compile(ruleDateFlag);
-		Matcher mDateFlag = pDateFlag.matcher(target);
+		String dateFlagRule = "[日号]";
+		Pattern dateFlagPattern = Pattern.compile(dateFlagRule);
+		Matcher dateFlagMatcher = dateFlagPattern.matcher(target);
 		Set<Integer> dateFlagSet = new HashSet<>();
-		while(mDateFlag.find()){
-			dateFlagSet.add(mDateFlag.start());
+		while(dateFlagMatcher.find()){
+			dateFlagSet.add(dateFlagMatcher.start());
 		}
 		
 		String rule = "{0,1}\\d+\\.\\d*|{0,1}\\d*\\.\\d+";
