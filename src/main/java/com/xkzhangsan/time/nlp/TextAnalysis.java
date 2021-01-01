@@ -1,12 +1,11 @@
 package com.xkzhangsan.time.nlp;
 
+import com.xkzhangsan.time.utils.RegexResourceUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.xkzhangsan.time.constants.Constant;
-import com.xkzhangsan.time.utils.RegexResourceUtil;
 
 /**
  * 根据正则文件分析文本中的时间字符串
@@ -29,7 +28,7 @@ public class TextAnalysis {
 	
 	public static TextAnalysis getInstance(){
 		if(instance == null){
-			synchronized(Constant.class){
+			synchronized(TextAnalysis.class){
 				if(instance == null){
 					instance = new TextAnalysis();
 				}
@@ -37,7 +36,12 @@ public class TextAnalysis {
 		}
 		return instance;
 	}
-	
+
+    /**
+     * 根据正则集合识别出时间词语
+     * @param text 待处理文本
+     * @return 时间词语
+     */
 	public List<String> analysis(String text){
 		Matcher match;
         int startline = -1, endline = -1;
