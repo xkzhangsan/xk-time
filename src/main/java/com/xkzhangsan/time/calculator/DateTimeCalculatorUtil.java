@@ -1,13 +1,6 @@
 package com.xkzhangsan.time.calculator;
 
-import com.xkzhangsan.time.TemporalAdjusterExtension;
-import com.xkzhangsan.time.converter.DateTimeConverterUtil;
-import com.xkzhangsan.time.enums.ConstellationNameEnum;
-import com.xkzhangsan.time.enums.MonthNameEnum;
-import com.xkzhangsan.time.enums.TwelveTwoEnum;
-import com.xkzhangsan.time.enums.WeekNameEnum;
-import com.xkzhangsan.time.enums.ZoneIdEnum;
-import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
+import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
 
 import java.time.DateTimeException;
 import java.time.DayOfWeek;
@@ -33,10 +26,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
+import com.xkzhangsan.time.TemporalAdjusterExtension;
+import com.xkzhangsan.time.converter.DateTimeConverterUtil;
+import com.xkzhangsan.time.enums.ConstellationNameEnum;
+import com.xkzhangsan.time.enums.MonthNameEnum;
+import com.xkzhangsan.time.enums.TwelveTwoEnum;
+import com.xkzhangsan.time.enums.WeekNameEnum;
+import com.xkzhangsan.time.enums.ZoneIdEnum;
+import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
+import com.xkzhangsan.time.holiday.ChineseHolidayData;
 
 /**
  * 日期计算工具类<br>
@@ -65,6 +67,8 @@ import static com.xkzhangsan.time.constants.Constant.MONTHDAY_FORMAT_PRE;
  * 22.获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间<br>
  * 23.常用时间（明天，下周，下月，明年等）计算方法，比如tomorrow()，计算明天，返回Date<br>
  * 24.修改星期值方法 withDayOfWeek*，比如withDayOfWeek(Date date, long newValue)，修改星期为指定值newValue，返回Date<br>
+ * 25.中国工作日计算（将放假信息包含在内，暂只支持2021年），包括判断当前日期是否为工作日和下一个工作日等方法， isChineseWorkDay*，isNextChineseWorkDay*，比如isChineseWorkDay(Date)，isNextChineseWorkDay(Date date)<br>
+ * 
  *   
 * @author xkzhangsan
 *
@@ -2342,6 +2346,88 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static boolean isWeekend(LocalDate localDate){
 		return ! isWorkDay(localDate);
+	}
+	
+	/**
+	 * 判断是否中国工作日，包含法定节假日调整日期，暂只支持2021年，其他年份会抛出异常 
+	 * @param date Date
+	 * @return boolean
+	 */
+	public static boolean isChineseWorkDay(Date date){
+		return isChineseWorkDay(DateTimeConverterUtil.toLocalDateTime(date));
+	}
+	
+	/**
+	 * 判断是否中国工作日，包含法定节假日调整日期，支持年份见{@link ChineseHolidayData}，其他年份会使用isWorkDay判断(周一到周五为工作日) 
+	 * @param localDateTime LocalDateTime
+	 * @return boolean
+	 */
+	public static boolean isChineseWorkDay(LocalDateTime localDateTime){
+		int year = getYear(localDateTime);
+		if(! ChineseHolidayData.isSupported(year)){
+			System.out.println("Warning isChineseWorkDay Unsupported year:" + year + ",use isWorkDay(define as Monday-Friday).");
+			return isWorkDay(localDateTime);
+		}
+		Map<String, Integer> dateTypeMap = ChineseHolidayData.convertToMap(year);
+		Integer dateType = dateTypeMap.get(DateTimeFormatterUtil.formatToDateStr(localDateTime));
+		if(dateType != null){
+			return dateType == 1 ? true : false;
+		}
+		return isWorkDay(localDateTime);
+	}
+	
+	/**
+	 * 判断是否中国工作日，包含法定节假日调整日期，支持年份见{@link ChineseHolidayData}，其他年份会使用isWorkDay判断(周一到周五为工作日)
+	 * @param localDate LocalDate
+	 * @return boolean
+	 */
+	public static boolean isChineseWorkDay(LocalDate localDate){
+		return isChineseWorkDay(DateTimeConverterUtil.toLocalDateTime(localDate));
+	}
+	
+	/**
+	 * 下一个中国工作日，包含法定节假日调整日期，支持年份见{@link ChineseHolidayData}，其他年份会使用isWorkDay判断(周一到周五为工作日)
+	 * @param date Date
+	 * @return Date
+	 */
+	public static Date nextChineseWorkDay(Date date){
+		while(date != null){
+			date = plusDays(date, 1);
+			if(isChineseWorkDay(DateTimeConverterUtil.toLocalDate(date))){
+				return date;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * 下一个中国工作日，包含法定节假日调整日期，支持年份见{@link ChineseHolidayData}，其他年份会使用isWorkDay判断(周一到周五为工作日)
+	 * @param localDateTime LocalDateTime
+	 * @return LocalDateTime
+	 */
+	public static LocalDateTime nextChineseWorkDay(LocalDateTime localDateTime){
+		while(localDateTime != null){
+			localDateTime = plusDays(localDateTime, 1);
+			if(isChineseWorkDay(localDateTime)){
+				return localDateTime;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * 下一个中国工作日，包含法定节假日调整日期，支持年份见{@link ChineseHolidayData}，其他年份会使用isWorkDay判断(周一到周五为工作日)
+	 * @param localDate LocalDate
+	 * @return LocalDate
+	 */
+	public static LocalDate nextChineseWorkDay(LocalDate localDate){
+		while(localDate != null){
+			localDate = plusDays(localDate, 1);
+			if(isChineseWorkDay(localDate)){
+				return localDate;
+			}
+		}
+		return null;
 	}
 	
 	/**

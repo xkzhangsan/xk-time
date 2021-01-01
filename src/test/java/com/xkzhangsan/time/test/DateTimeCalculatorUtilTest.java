@@ -628,6 +628,19 @@ public class DateTimeCalculatorUtilTest {
 
 		Assert.assertEquals(LocalDateTime.now().minusYears(1).getDayOfMonth(), DateTimeCalculatorUtil.getDayOfMonth(DateTimeCalculatorUtil.lastYear()));
 	}
+	
+	/**
+	 * 中国法定节假日相关的工作日测试
+	 */
+	@Test
+	public void chineseWorkDayTest(){
+		//指定日期是否是工作日
+		System.out.println(DateTimeCalculatorUtil.isChineseWorkDay(DateTimeCalculatorUtil.getDate(2021, 2, 20)));
+		System.out.println(DateTimeCalculatorUtil.isChineseWorkDay(LocalDate.of(2021, 2, 20)));
+		
+		//下一个工作日
+		System.out.println(DateTimeCalculatorUtil.nextChineseWorkDay(LocalDate.of(2021, 2, 19)));
+	}	
 
 	@Test
 	public void durationBetween(){
