@@ -109,12 +109,14 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
 （21）获取季度准确的起始时间方法（四个季度），startTimeOf*Quarter， 比如startTimeOfFirstQuarter(int year)，获取指定年的第一季度。   
   
 （22） 获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间。    
-
-（23）常用时间（明天，下周，下月，明年等）计算方法，比如tomorrow()，计算明天，返回Date。  
-
-（24）修改星期值方法 withDayOfWeek*，比如withDayOfWeek(Date date, long newValue)，修改星期为指定值newValue，返回Date。  
-    
   
+（23）常用时间（明天，下周，下月，明年等）计算方法，比如tomorrow()，计算明天，返回Date。  
+  
+（24）修改星期值方法 withDayOfWeek*，比如withDayOfWeek(Date date, long newValue)，修改星期为指定值newValue，返回Date。  
+  
+（25）中国工作日计算（将放假信息包含在内，暂只支持2021年），包括判断当前日期是否为工作日和下一个工作日等方法， isChineseWorkDay*，isNextChineseWorkDay*，比  如isChineseWorkDay(Date)，isNextChineseWorkDay(Date date)。        
+  
+    
 详细使用可以查看相关测试代码。  
 
 ### 3.日期格式化和解析工具类  DateTimeFormatterUtil 
@@ -183,7 +185,7 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
    
 详细使用可以查看相关测试代码。  
  
-### 6.节假日计算类 Holiday      
+### 6.节假日计算工具类 HolidayUtil      
 包含：  
 （1）公历节假日计算， getLocalHoliday* 比如getLocalHoliday(Date date) 计算date的公历节日，getLocalHoliday(Date date, Map<String, String> localHolidayMap) 可以传入自定义公历节日数据。   
 （2）农历节假日计算， getChineseHoliday* 比如getChineseHoliday(Date date) 计算date的农历节日，getChineseHoliday(Date date, Map<String, String> chineseHolidayMap) 可以传入自定义农历节日数据。  
@@ -231,6 +233,10 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
   
 ### 9.时间自然语言分析工具类（NLP） TimeNLPUtil  
   
+  包括功能：   
+（1）以当前时间为基础分析时间自然语言。  
+（2）以指定时间为基础分析时间自然语言。  
+  
 修改自 https://github.com/shinyke/Time-NLP  
 做了一些修改如下：  
 （1）封装属性，重命名使符合驼峰命名标准。  
@@ -243,10 +249,8 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 （8）修复原项目中的issue：修复当前时间是上午10点，那么下午三点 会识别为明天下午三点问题。   
 （9）修复原项目中的issue：修复小数解析异常问题。   
     
-  包括功能：   
-（1）以当前时间为基础分析时间自然语言。  
-（2）以指定时间为基础分析时间自然语言。  
-    
+注意：NLP会有一定的识别失败率，在不断迭代开发提高成功率。    
+  
   详细使用可以查看相关测试代码。     
     
 # 更多详细文档

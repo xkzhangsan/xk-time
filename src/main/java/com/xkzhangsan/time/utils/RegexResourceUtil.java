@@ -19,6 +19,12 @@ import java.util.zip.GZIPOutputStream;
  */
 public class RegexResourceUtil {
 
+    /**
+     * 获取Pattern
+     * @param file 文件路径
+     * @return Pattern 正则对象
+     * @throws Exception 异常
+     */
 	public static Pattern readModel(String file) throws Exception {
         ObjectInputStream in;
         if (file.startsWith("jar:file") || file.startsWith("file:")) {
@@ -34,7 +40,13 @@ public class RegexResourceUtil {
         Pattern p = (Pattern) in.readObject();
         return Pattern.compile(p.pattern());
     }
-    
+
+    /**
+     * 修改 Model
+     * @param p 正则对象
+     * @param path 文件保存路径
+     * @throws Exception 异常
+     */
     public static void writeModel(Object p, String path) throws Exception {
         ObjectOutputStream out = new ObjectOutputStream(
                 new BufferedOutputStream(new GZIPOutputStream(new FileOutputStream(path))));

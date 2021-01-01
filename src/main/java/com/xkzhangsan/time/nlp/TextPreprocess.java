@@ -15,6 +15,11 @@ public class TextPreprocess {
 	private TextPreprocess(){
 	}
 
+	/**
+	 * 文本预处理
+	 * @param text 待处理文本
+	 * @return 处理后的文本
+	 */
 	public static String preprocess(String text){
 //		text = delKeyword(text, "\\s+"); // 清理空白符 直接删除空格会影响部分格式识别错误，比如2016-07-19 00:00:00
 		text = text.trim();
