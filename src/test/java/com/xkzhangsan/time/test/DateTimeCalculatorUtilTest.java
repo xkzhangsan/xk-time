@@ -635,11 +635,11 @@ public class DateTimeCalculatorUtilTest {
 	@Test
 	public void chineseWorkDayTest(){
 		//指定日期是否是工作日
-		System.out.println(DateTimeCalculatorUtil.isChineseWorkDay(DateTimeCalculatorUtil.getDate(2021, 2, 20)));
-		System.out.println(DateTimeCalculatorUtil.isChineseWorkDay(LocalDate.of(2021, 2, 20)));
+		Assert.assertEquals(true,DateTimeCalculatorUtil.isChineseWorkDay(DateTimeCalculatorUtil.getDate(2021, 2, 20)));
+		Assert.assertEquals(true,DateTimeCalculatorUtil.isChineseWorkDay(LocalDate.of(2021, 2, 20)));
 		
 		//下一个工作日
-		System.out.println(DateTimeCalculatorUtil.nextChineseWorkDay(LocalDate.of(2021, 2, 19)));
+		Assert.assertEquals("2021-02-20",DateTimeCalculatorUtil.nextChineseWorkDay(LocalDate.of(2021, 2, 19)).toString());
 	}	
 
 	@Test
