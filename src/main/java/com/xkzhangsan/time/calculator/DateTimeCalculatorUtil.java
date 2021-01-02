@@ -67,7 +67,7 @@ import com.xkzhangsan.time.holiday.ChineseHolidayData;
  * 22.获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间<br>
  * 23.常用时间（明天，下周，下月，明年等）计算方法，比如tomorrow()，计算明天，返回Date<br>
  * 24.修改星期值方法 withDayOfWeek*，比如withDayOfWeek(Date date, long newValue)，修改星期为指定值newValue，返回Date<br>
- * 25.中国工作日计算（将放假信息包含在内，暂只支持2021年），包括判断当前日期是否为工作日和下一个工作日等方法， isChineseWorkDay*，isNextChineseWorkDay*，比如isChineseWorkDay(Date)，isNextChineseWorkDay(Date date)<br>
+ * 25.中国工作日计算（将放假信息包含在内，暂只支持2021年），包括判断当前日期是否为工作日和下一个工作日等方法， isChineseWorkDay*，nextChineseWorkDay*，比如isChineseWorkDay(Date)，nextChineseWorkDay(Date date)<br>
  * 
  *   
 * @author xkzhangsan
@@ -3209,23 +3209,21 @@ public class DateTimeCalculatorUtil {
 		Objects.requireNonNull(localDate1, "localDate1");
 		MonthDay monthDay1 = MonthDay.of(localDate1.getMonthValue(), localDate1.getDayOfMonth());
 		MonthDay monthDay2 = MonthDay.of(month, dayOfMonth);
-
+		// 闰年2月29
+		MonthDay leapMonthDay = MonthDay.of(2, 29);
+		if (leapMonthDay.equals(monthDay2)) {
+			LocalDate nextLeapYear = nextLeapYear(localDate1);
+			return betweenTotalDays(localDate1.atStartOfDay(),
+					nextLeapYear.withMonth(month).withDayOfMonth(dayOfMonth).atStartOfDay());
+		}
 		// localDate1 月日 小于 month dayOfMonth
 		if (monthDay1.compareTo(monthDay2) == -1) {
 			return betweenTotalDays(localDate1.atStartOfDay(),
 					localDate1.withMonth(month).withDayOfMonth(dayOfMonth).atStartOfDay());
 		} else {
-			// 闰年2月29
-			MonthDay leapMonthDay = MonthDay.of(2, 29);
-			if (leapMonthDay.equals(monthDay2)) {
-				LocalDate nextLeapYear = nextLeapYear(localDate1);
-				return betweenTotalDays(localDate1.atStartOfDay(),
-						nextLeapYear.withMonth(month).withDayOfMonth(dayOfMonth).atStartOfDay());
-			} else {
-				LocalDate next = localDate1.plusYears(1);
-				return betweenTotalDays(localDate1.atStartOfDay(),
-						next.withMonth(month).withDayOfMonth(dayOfMonth).atStartOfDay());
-			}
+			LocalDate next = localDate1.plusYears(1);
+			return betweenTotalDays(localDate1.atStartOfDay(),
+					next.withMonth(month).withDayOfMonth(dayOfMonth).atStartOfDay());
 		}
 	}
 
