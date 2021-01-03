@@ -38,7 +38,7 @@ import com.xkzhangsan.time.enums.TwelveTwoEnum;
 import com.xkzhangsan.time.enums.WeekNameEnum;
 import com.xkzhangsan.time.enums.ZoneIdEnum;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
-import com.xkzhangsan.time.holiday.ChineseHolidayData;
+import com.xkzhangsan.time.utils.StringUtil;
 
 /**
  * 日期计算工具类<br>
@@ -67,7 +67,8 @@ import com.xkzhangsan.time.holiday.ChineseHolidayData;
  * 22.获取年准确的起始时间方法，startTimeOfYear， 比如startTimeOfYear(int year)，获取指定年的开始时间<br>
  * 23.常用时间（明天，下周，下月，明年等）计算方法，比如tomorrow()，计算明天，返回Date<br>
  * 24.修改星期值方法 withDayOfWeek*，比如withDayOfWeek(Date date, long newValue)，修改星期为指定值newValue，返回Date<br>
- * 25.中国工作日计算（将放假信息包含在内，暂只支持2021年），包括判断当前日期是否为工作日和下一个工作日等方法， isChineseWorkDay*，nextChineseWorkDay*，比如isChineseWorkDay(Date)，nextChineseWorkDay(Date date)<br>
+ * 25.中国工作日计算（将放假信息包含在内），包括判断当前日期是否为工作日和下一个工作日等方法， isChineseWorkDay*，nextChineseWorkDay*，比如isChineseWorkDay(Date, String holidayData)，nextChineseWorkDay(Date date, String holidayData)<br>
+ * 节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断<br>
  * 
  *   
 * @author xkzhangsan
@@ -2349,26 +2350,24 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 判断是否中国工作日，包含法定节假日调整日期，暂只支持2021年，其他年份会抛出异常 
+	 * 判断是否中国工作日，包含法定节假日调整日期，节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。
 	 * @param date Date
+	 * @param holidayData 放假信息0表示放假，1表示工作日，如：2021-01-01:0,2021-02-07:1
 	 * @return boolean
 	 */
-	public static boolean isChineseWorkDay(Date date){
-		return isChineseWorkDay(DateTimeConverterUtil.toLocalDateTime(date));
+	public static boolean isChineseWorkDay(Date date, String holidayData){
+		return isChineseWorkDay(DateTimeConverterUtil.toLocalDateTime(date), holidayData);
 	}
 	
 	/**
-	 * 判断是否中国工作日，包含法定节假日调整日期，支持年份见{@link ChineseHolidayData}，其他年份会使用isWorkDay判断(周一到周五为工作日) 
+	 * 判断是否中国工作日，包含法定节假日调整日期，节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。
 	 * @param localDateTime LocalDateTime
+	 * @param holidayData 放假信息0表示放假，1表示工作日，如：2021-01-01:0,2021-02-07:1
 	 * @return boolean
 	 */
-	public static boolean isChineseWorkDay(LocalDateTime localDateTime){
-		int year = getYear(localDateTime);
-		if(! ChineseHolidayData.isSupported(year)){
-			System.out.println("Warning isChineseWorkDay Unsupported year:" + year + ",use isWorkDay(define as Monday-Friday).");
-			return isWorkDay(localDateTime);
-		}
-		Map<String, Integer> dateTypeMap = ChineseHolidayData.convertToMap(year);
+	public static boolean isChineseWorkDay(LocalDateTime localDateTime, String holidayData){
+		Objects.requireNonNull(holidayData, "holidayData");
+		Map<String, Integer> dateTypeMap = StringUtil.convertHolidayDataToMap(holidayData);
 		Integer dateType = dateTypeMap.get(DateTimeFormatterUtil.formatToDateStr(localDateTime));
 		if(dateType != null){
 			return dateType == 1 ? true : false;
@@ -2377,23 +2376,25 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 判断是否中国工作日，包含法定节假日调整日期，支持年份见{@link ChineseHolidayData}，其他年份会使用isWorkDay判断(周一到周五为工作日)
+	 * 判断是否中国工作日，包含法定节假日调整日期，节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。
 	 * @param localDate LocalDate
+	 * @param holidayData 放假信息0表示放假，1表示工作日，如：2021-01-01:0,2021-02-07:1
 	 * @return boolean
 	 */
-	public static boolean isChineseWorkDay(LocalDate localDate){
-		return isChineseWorkDay(DateTimeConverterUtil.toLocalDateTime(localDate));
+	public static boolean isChineseWorkDay(LocalDate localDate, String holidayData){
+		return isChineseWorkDay(DateTimeConverterUtil.toLocalDateTime(localDate), holidayData);
 	}
 	
 	/**
-	 * 下一个中国工作日，包含法定节假日调整日期，支持年份见{@link ChineseHolidayData}，其他年份会使用isWorkDay判断(周一到周五为工作日)
+	 * 下一个中国工作日，包含法定节假日调整日期，节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。
 	 * @param date Date
+	 * @param holidayData 放假信息0表示放假，1表示工作日，如：2021-01-01:0,2021-02-07:1
 	 * @return Date
 	 */
-	public static Date nextChineseWorkDay(Date date){
+	public static Date nextChineseWorkDay(Date date, String holidayData){
 		while(date != null){
 			date = plusDays(date, 1);
-			if(isChineseWorkDay(DateTimeConverterUtil.toLocalDate(date))){
+			if(isChineseWorkDay(DateTimeConverterUtil.toLocalDate(date), holidayData)){
 				return date;
 			}
 		}
@@ -2401,14 +2402,15 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 下一个中国工作日，包含法定节假日调整日期，支持年份见{@link ChineseHolidayData}，其他年份会使用isWorkDay判断(周一到周五为工作日)
+	 * 下一个中国工作日，包含法定节假日调整日期，节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。
 	 * @param localDateTime LocalDateTime
+	 * @param holidayData 放假信息0表示放假，1表示工作日，如：2021-01-01:0,2021-02-07:1
 	 * @return LocalDateTime
 	 */
-	public static LocalDateTime nextChineseWorkDay(LocalDateTime localDateTime){
+	public static LocalDateTime nextChineseWorkDay(LocalDateTime localDateTime, String holidayData){
 		while(localDateTime != null){
 			localDateTime = plusDays(localDateTime, 1);
-			if(isChineseWorkDay(localDateTime)){
+			if(isChineseWorkDay(localDateTime, holidayData)){
 				return localDateTime;
 			}
 		}
@@ -2416,14 +2418,15 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 下一个中国工作日，包含法定节假日调整日期，支持年份见{@link ChineseHolidayData}，其他年份会使用isWorkDay判断(周一到周五为工作日)
+	 * 下一个中国工作日，包含法定节假日调整日期，节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。
 	 * @param localDate LocalDate
+	 * @param holidayData 放假信息0表示放假，1表示工作日，如：2021-01-01:0,2021-02-07:1
 	 * @return LocalDate
 	 */
-	public static LocalDate nextChineseWorkDay(LocalDate localDate){
+	public static LocalDate nextChineseWorkDay(LocalDate localDate, String holidayData){
 		while(localDate != null){
 			localDate = plusDays(localDate, 1);
-			if(isChineseWorkDay(localDate)){
+			if(isChineseWorkDay(localDate, holidayData)){
 				return localDate;
 			}
 		}

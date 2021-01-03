@@ -634,12 +634,14 @@ public class DateTimeCalculatorUtilTest {
 	 */
 	@Test
 	public void chineseWorkDayTest(){
+		//2021年放假信息
+		String holidayData = "2021-01-01:0,2021-02-07:1,2021-02-11:0,2021-02-12:0,2021-02-15:0,2021-02-16:0,2021-02-17:0,2021-02-20:1,2021-04-05:0,2021-04-25:1,2021-05-03:0,2021-05-04:0,2021-05-05:0,2021-05-08:1,2021-06-14:0,2021-09-18:1,2021-09-20:0,2021-09-21:0,2021-09-26:1,2021-10-01:0,2021-10-04:0,2021-10-05:0,2021-10-06:0,2021-10-07:0,2021-10-09:1";
 		//指定日期是否是工作日
-		Assert.assertEquals(true,DateTimeCalculatorUtil.isChineseWorkDay(DateTimeCalculatorUtil.getDate(2021, 2, 20)));
-		Assert.assertEquals(true,DateTimeCalculatorUtil.isChineseWorkDay(LocalDate.of(2021, 2, 20)));
+		Assert.assertEquals(true,DateTimeCalculatorUtil.isChineseWorkDay(DateTimeCalculatorUtil.getDate(2021, 2, 20), holidayData));
+		Assert.assertEquals(true,DateTimeCalculatorUtil.isChineseWorkDay(LocalDate.of(2021, 2, 20), holidayData));
 		
 		//下一个工作日
-		Assert.assertEquals("2021-02-20",DateTimeCalculatorUtil.nextChineseWorkDay(LocalDate.of(2021, 2, 19)).toString());
+		Assert.assertEquals("2021-02-20",DateTimeCalculatorUtil.nextChineseWorkDay(LocalDate.of(2021, 2, 19), holidayData).toString());
 	}	
 
 	@Test

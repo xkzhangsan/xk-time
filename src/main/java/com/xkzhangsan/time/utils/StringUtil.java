@@ -1,5 +1,8 @@
 package com.xkzhangsan.time.utils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.xkzhangsan.time.constants.Constant;
 
 /**
@@ -77,4 +80,23 @@ public class StringUtil {
     	}
         return Constant.CHINESE_REGEX.matcher(str).find();
     }
+    
+    /**
+     * 转换节日数据为map
+     * @param holidayData
+     * @return 返回节日map
+     */
+	public static Map<String, Integer> convertHolidayDataToMap(String holidayData){
+		Map<String, Integer> dateTypeMap = new HashMap<>();
+		if(isEmpty(holidayData)){
+			return dateTypeMap;
+		}
+		
+		String[] dateTypeArr = holidayData.replace(" ", "").split(",");
+		for(String dateType : dateTypeArr){
+			String[] arr = dateType.split(":");
+			dateTypeMap.put(arr[0], Integer.valueOf(arr[1]));
+		}
+		return dateTypeMap;
+	}
 }
