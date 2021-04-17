@@ -70,6 +70,7 @@ public class BaseCache<K, V> implements Serializable {
 	 *
 	 * @param key
 	 *            键
+	 * @param supplier 提供者
 	 * @return 值
 	 */
 	public V get(K key, Supplier<V> supplier) {

@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.xkzhangsan.time.enums.RegexEnum;
+import com.xkzhangsan.time.utils.RegexCache;
 
 /**
  * 文本预处理
