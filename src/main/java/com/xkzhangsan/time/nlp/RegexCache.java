@@ -62,7 +62,7 @@ public class RegexCache {
 	/**
 	 * 删除正则缓存
 	 *
-	 * @param key
+	 * @param rule 正则
 	 *            键
 	 * @return 移除的值
 	 */
@@ -73,7 +73,7 @@ public class RegexCache {
 	/**
 	 * 删除正则缓存
 	 *
-	 * @param key
+	 * @param rule 正则
 	 *            键
 	 * @param flags
 	 *            正则标识位集合 {@link Pattern}

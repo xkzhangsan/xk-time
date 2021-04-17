@@ -2,10 +2,14 @@ package com.xkzhangsan.time.nlp;
 
 import com.xkzhangsan.time.utils.RegexResourceUtil;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.GZIPInputStream;
 
 /**
  * 根据正则文件分析文本中的时间字符串
@@ -20,7 +24,10 @@ public class TextAnalysis {
 
 	private TextAnalysis(){
 		try {
-			pattern = RegexResourceUtil.readModel(Thread.currentThread().getContextClassLoader().getResource("TimeRegex.Gzip").getFile());
+            InputStream resourceAsStream = RegexResourceUtil.class.getClassLoader().getResourceAsStream("TimeRegex.Gzip");
+            ObjectInputStream in = new ObjectInputStream(
+                    new BufferedInputStream(new GZIPInputStream((resourceAsStream))));
+            pattern = RegexResourceUtil.readModel(in);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

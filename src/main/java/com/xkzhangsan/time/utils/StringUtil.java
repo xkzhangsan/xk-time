@@ -83,7 +83,7 @@ public class StringUtil {
     
     /**
      * 转换节日数据为map
-     * @param holidayData
+     * @param holidayData 节日map
      * @return 返回节日map
      */
 	public static Map<String, Integer> convertHolidayDataToMap(String holidayData){

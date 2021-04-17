@@ -35,8 +35,8 @@ public class RegexResourceUtil {
         }
         return readModel(in);
     }
-	
-    private static Pattern readModel(ObjectInputStream in) throws Exception {
+
+    public static Pattern readModel(ObjectInputStream in) throws Exception {
         Pattern p = (Pattern) in.readObject();
         return Pattern.compile(p.pattern());
     }
