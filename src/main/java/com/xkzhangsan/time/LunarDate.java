@@ -18,6 +18,7 @@ import java.util.Date;
  * 1.农历日期年月日计算<br>
  * 2.农历岁次，生肖属相计算<br>
  * 3.二十四节气计算<br>
+ * 4.农历转公历<br>
  * 仅支持公历1900-2100年的农历转换<br>
  *
 * @author xkzhangsan
@@ -95,6 +96,11 @@ public final class LunarDate implements Temporal, Serializable{
 	 * 标准日期
 	 */
 	private final LocalDate localDate;
+	
+	/**
+	 * 标准日期
+	 */
+	private Date date;
 
 	/**
 	 * 农历日期，中文，例如 二〇二〇年正月初一
@@ -135,6 +141,21 @@ public final class LunarDate implements Temporal, Serializable{
 	 * 农历日
 	 */
 	private int lDay;
+	
+	/**
+	 * 农历年
+	 */
+	private int gYear;
+
+	/**
+	 * 农历月
+	 */
+	private int gMonth;
+
+	/**
+	 * 农历日
+	 */
+	private int gDay;	
 
 	/**
 	 * 农历年，中文
@@ -184,6 +205,11 @@ public final class LunarDate implements Temporal, Serializable{
 		int year = localDate.getYear();
 		int month = localDate.getMonthValue();
 		int day = localDate.getDayOfMonth();
+		this.gYear = year;
+		this.gMonth = month;
+		this.gDay = day;
+		this.date = DateTimeConverterUtil.toDate(localDate);
+		
 		long[] l = calElement(year, month, day);
 		
 		this.lYear = (int) l[0];
@@ -253,6 +279,114 @@ public final class LunarDate implements Temporal, Serializable{
 	public static LunarDate from(Temporal temporal) {
 		return new LunarDate(DateTimeConverterUtil.toLocalDate(temporal));
 	}
+	
+	/**
+	 * 根据农历年月日生成农历日期
+	 * 
+	 * @param lYear
+	 *            农历年
+	 * @param lMonth
+	 *            农历月
+	 * @param lDay
+	 *            农历日
+	 * @return LunarDate
+	 */
+	public static LunarDate of(int lYear, int lMonth, int lDay){
+		return of(lYear, lMonth, lDay, false);
+	}
+	
+	/**
+	 * 根据农历年月日生成农历日期
+	 * 
+	 * @param lYear
+	 *            农历年
+	 * @param lMonth
+	 *            农历月
+	 * @param lDay
+	 *            农历日
+	 * @param isLeapMonth
+	 *            是否是农历闰月
+	 * @return LunarDate
+	 */
+	public static LunarDate of(int lYear, int lMonth, int lDay, boolean isLeapMonth){
+		return from(lunarToSolar(lYear, lMonth, lDay, isLeapMonth));
+	}
+	
+	/**
+	 * 农历转公历日期
+	 * 
+	 * @param lYear
+	 *            农历年
+	 * @param lMonth
+	 *            农历月
+	 * @param lDay
+	 *            农历日
+	 * @param isLeapMonth
+	 *            是否是农历闰月
+	 * @return Date
+	 */
+	public static Date lunarToSolar(int lYear, int lMonth, int lDay, boolean isLeapMonth) {
+		int leapMonth = leapMonth(lYear);
+
+		// 传参要求计算该闰月公历 但该年得出的闰月与传参的月份并不同
+		if (isLeapMonth && (leapMonth != lMonth)) {
+			return null;
+		}
+
+		// 超出了最大极限值
+		if (lYear == 2100 && lMonth == 12 && lDay > 1 || lYear == 1900 && lMonth == 1 && lDay < 31) {
+			return null;
+		}
+
+		int day = monthDays(lYear, lMonth);
+		int _day = day;
+		if (isLeapMonth) {
+			_day = leapMonthDays(lYear);
+		}
+
+		// 参数合法性效验
+		if (lYear < 1900 || lYear > 2100 || lDay > _day) {
+			return null;
+		}
+
+		// 计算农历的时间差
+		int offset = 0;
+		for (int i = 1900; i < lYear; i++) {
+			offset += lunarYearDays(i);
+		}
+		int leap = 0;
+		boolean isAdd = false;
+		for (int i = 1; i < lMonth; i++) {
+			leap = leapMonth(lYear);
+			if (!isAdd) {// 处理闰月
+				if (leap <= i && leap > 0) {
+					offset += leapMonthDays(lYear);
+					isAdd = true;
+				}
+			}
+			offset += monthDays(lYear, i);
+		}
+
+		// 转换闰月农历 需补充该年闰月的前一个月的时差
+		if (isLeapMonth) {
+			offset += day;
+		}
+
+		// 2203804800000L为1900年农历正月一日的公历时间为1900年1月30日0时0分0秒(该时间也是本农历的最开始起始点)的毫秒值
+		return new Date((offset + lDay - 31) * 86400000L - 2203804800000L);
+	}
+	
+	/**
+	 * 二十节气转公历日期
+	 * @param year 公历年
+	 * @param index 第一个节气，小寒 为第一个
+	 * @return Date
+	 */
+    public static Date solarTermToDate(int year, int index){
+    	int month=index/2 +1;
+    	int day = solarTerm(year, index);
+		return DateTimeCalculatorUtil.getDate(year, month, day);
+    }	
 
 	/**
 	 * 传回农历year年的总天数
@@ -614,6 +748,38 @@ public final class LunarDate implements Temporal, Serializable{
 		this.gDate = gDate;
 	}
 
+	public int getgYear() {
+		return gYear;
+	}
+
+	public void setgYear(int gYear) {
+		this.gYear = gYear;
+	}
+
+	public int getgMonth() {
+		return gMonth;
+	}
+
+	public void setgMonth(int gMonth) {
+		this.gMonth = gMonth;
+	}
+
+	public int getgDay() {
+		return gDay;
+	}
+
+	public void setgDay(int gDay) {
+		this.gDay = gDay;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	@Override
 	public String toString() {
 		return "LunarDate [localDate=" + localDate + ",lDateCn=" + lDateCn + ", suiCi=" + suiCi + ", lAnimal=" + lAnimal + ", lYear=" + lYear
@@ -678,14 +844,5 @@ public final class LunarDate implements Temporal, Serializable{
 	public long until(Temporal endExclusive, TemporalUnit unit) {
 		return localDate.until(endExclusive, unit);
 	}
-	
-    public static void main(String[] args) {
-    	LunarDate now = LunarDate.now();
-        System.out.println(now.toString());
-        System.out.println(now.formatLongCnWithChineseHoliday());
-        System.out.println(now.getlDateCn());
-        System.out.println(now.getlDate());
-        System.out.println(now.getgDate());
-    }
 	
 }

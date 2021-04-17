@@ -2,11 +2,10 @@ package com.xkzhangsan.time.utils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
@@ -19,26 +18,20 @@ import java.util.zip.GZIPOutputStream;
  */
 public class RegexResourceUtil {
 
+	
     /**
      * 获取Pattern
-     * @param file 文件路径
+     * @param fileName 文件名称
      * @return Pattern 正则对象
      * @throws Exception 异常
      */
-	public static Pattern readModel(String file) throws Exception {
-        ObjectInputStream in;
-        if (file.startsWith("jar:file") || file.startsWith("file:")) {
-            in = new ObjectInputStream(new BufferedInputStream(new GZIPInputStream(new URL(file).openStream())));
-        } else {
-            in = new ObjectInputStream(
-                    new BufferedInputStream(new GZIPInputStream(new FileInputStream(file))));
-        }
-        return readModel(in);
-    }
-	
-    private static Pattern readModel(ObjectInputStream in) throws Exception {
-        Pattern p = (Pattern) in.readObject();
-        return Pattern.compile(p.pattern());
+	public static Pattern readModel(String fileName) throws Exception {
+		try(InputStream resourceAsStream = RegexResourceUtil.class.getClassLoader().getResourceAsStream(fileName)){
+			ObjectInputStream in = new ObjectInputStream(
+	                new BufferedInputStream(new GZIPInputStream((resourceAsStream))));
+			Pattern p = (Pattern) in.readObject();
+	        return Pattern.compile(p.pattern());
+		}
     }
 
     /**
@@ -76,8 +69,7 @@ public class RegexResourceUtil {
     }    
     
     public static void main(String[] args) throws Exception {
-    	String filePath = RegexResourceUtil.class.getClassLoader().getResource("TimeRegex.Gzip").getFile();
-    	Pattern pattern = readModel(filePath);
+    	Pattern pattern = readModel("TimeRegex.Gzip");
     	System.out.println(pattern.pattern());
     	String[] result = matcher(pattern, "明天");
     	System.out.println(result);

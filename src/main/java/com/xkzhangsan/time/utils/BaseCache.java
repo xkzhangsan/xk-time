@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 /**
  * 缓存基础类
  * 
- * 修改自：cn.hutool.core.lang.SimpleCache<K, V>
+ * 修改自：{@code cn.hutool.core.lang.SimpleCache<K, V> }
  * 
  * @author xkzhangsan
  */

@@ -1,11 +1,11 @@
 package com.xkzhangsan.time.nlp;
 
-import com.xkzhangsan.time.utils.RegexResourceUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.xkzhangsan.time.utils.RegexResourceUtil;
 
 /**
  * 根据正则文件分析文本中的时间字符串
@@ -20,7 +20,7 @@ public class TextAnalysis {
 
 	private TextAnalysis(){
 		try {
-			pattern = RegexResourceUtil.readModel(Thread.currentThread().getContextClassLoader().getResource("TimeRegex.Gzip").getFile());
+            pattern = RegexResourceUtil.readModel("TimeRegex.Gzip");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

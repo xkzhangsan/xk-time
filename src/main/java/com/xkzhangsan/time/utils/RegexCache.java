@@ -1,4 +1,4 @@
-package com.xkzhangsan.time.nlp;
+package com.xkzhangsan.time.utils;
 
 import java.util.function.Supplier;
 import java.util.regex.Pattern;
@@ -62,7 +62,7 @@ public class RegexCache {
 	/**
 	 * 删除正则缓存
 	 *
-	 * @param rule 正则
+	 * @param key
 	 *            键
 	 * @return 移除的值
 	 */
@@ -73,7 +73,7 @@ public class RegexCache {
 	/**
 	 * 删除正则缓存
 	 *
-	 * @param rule 正则
+	 * @param key
 	 *            键
 	 * @param flags
 	 *            正则标识位集合 {@link Pattern}
