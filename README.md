@@ -32,12 +32,12 @@ xk-time is a tool for time conversion, time calculation, time formatting, time p
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>3.0.1</version>    
+      <version>3.0.2</version>    
     </dependency>    
       
         
 ### （2）Gradle        
-    compile group: 'com.github.xkzhangsan', name: 'xk-time', version: '3.0.1'  
+    compile group: 'com.github.xkzhangsan', name: 'xk-time', version: '3.0.2'  
       
 ### 注意：Android谨慎使用，Android端因为需要兼容低版本而不支持Java8，建议继续使用其他工具，如果有需要本项目相关的功能，可以参考源码实现，或留言给我。感谢支持！  
     
@@ -183,6 +183,7 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
 （1）农历日期年月日计算。  
 （2）农历岁次，生肖属相计算。  
 （3）二十四节气计算等  
+（4）农历转公历  
  注意： 仅支持公历1900-2100年的农历转换。    
    
 详细使用可以查看相关测试代码。  
@@ -250,6 +251,7 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 （7）修复原项目中的issue：1小时后，1个半小时后，1小时50分钟等解析问题；并且支持到秒，比如50秒后，10分钟30秒后等。     
 （8）修复原项目中的issue：修复当前时间是上午10点，那么下午三点 会识别为明天下午三点问题。   
 （9）修复原项目中的issue：修复小数解析异常问题。   
+（10）性能优化，将使用到的正则预编译后放到缓存中，下次直接使用，提高性能。    
     
 注意：NLP会有一定的识别失败率，在不断迭代开发提高成功率。    
   
@@ -271,9 +273,6 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
   
   
 # 开发计划  
-### 1.时间自然语言分析工具类（NLP） TimeNLPUtil 性能优化  
-原项目代码中大量使用正则，但未预编译，速度比较慢，现在将使用到的正则预编译后放到缓存中，下次直接使用，提高性能。
-  
-### 2.时间自然语言分析工具类（NLP） TimeNLPUtil 支持节假日识别  
-（1）常见节假日，比如元旦、春节、清明节、劳动节、端午节、中秋节和春节等节假日支持。  
+### 1.时间自然语言分析工具类（NLP） TimeNLPUtil 支持节假日识别  
+（1）常见节假日，比如元旦、春节、清明节、劳动节、端午节、中秋节等节假日支持。  
 （2）24节气支持。
