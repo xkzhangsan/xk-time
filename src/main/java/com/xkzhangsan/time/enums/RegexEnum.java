@@ -2,7 +2,8 @@ package com.xkzhangsan.time.enums;
 
 import java.util.regex.Pattern;
 
-import com.xkzhangsan.time.nlp.RegexCache;
+import com.xkzhangsan.time.utils.RegexCache;
+
 
 /**
  * 正则枚举
