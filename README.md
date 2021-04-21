@@ -35,7 +35,7 @@ xk-time is a tool for time conversion, time calculation, time formatting, time p
       <version>3.0.2</version>    
     </dependency>    
       
-      Mini版本不包含 time nlp 功能，更简洁。
+      Mini版本不包含 time nlp 功能，更简洁。  
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
@@ -261,7 +261,7 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 （10）性能优化，将使用到的正则预编译后放到缓存中，下次直接使用，提高性能。    
     
 注意：NLP会有一定的识别失败率，在不断迭代开发提高成功率。    
-    Mini版本不包含此功能
+    Mini版本不包含此功能。  
   
   详细使用可以查看相关测试代码。     
     
