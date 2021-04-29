@@ -1,5 +1,7 @@
 package com.xkzhangsan.time.converter;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -11,6 +13,7 @@ import java.time.ZonedDateTime;
 import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 日期转换工具类<br>
@@ -673,5 +676,74 @@ public class DateTimeConverterUtil {
 	 */
 	public static Timestamp toTimestamp(long epochMilli){
 		return new Timestamp(epochMilli);
+	}
+	
+	/**
+	 * 单位转换
+	 * 
+	 * @param sourceDuration
+	 *            数量
+	 * @param sourceUnit
+	 *            原单位
+	 * @param targetUnit
+	 *            新单位
+	 * @return 返回结果
+	 */
+	public static long unitConversion(long sourceDuration, TimeUnit sourceUnit, TimeUnit targetUnit) {
+		return targetUnit.convert(sourceDuration, sourceUnit);
+	}
+
+	/**
+	 * 单位转换，精确计算
+	 * @param sourceDuration 数量
+	 * @param sourceUnit 原单位
+	 * @param targetUnit 新单位
+	 * @param scale 小数位数
+	 * @param roundingMode 舍入模式
+	 * @return 返回结果
+	 */
+	public static BigDecimal unitConversionPrecise(long sourceDuration, TimeUnit sourceUnit, TimeUnit targetUnit, int scale, RoundingMode roundingMode) {
+		return BigDecimal.valueOf(sourceDuration)
+				.multiply(BigDecimal.valueOf(sourceUnit.toNanos(1))).divide(BigDecimal.valueOf(targetUnit.toNanos(1)), scale, roundingMode);
+	}
+	
+	/**
+	 * 单位转换，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数
+	 * @param sourceDuration 数量
+	 * @param sourceUnit 原单位
+	 * @param targetUnit 新单位
+	 * @return 返回结果，保留1位小数，ROUND_DOWN 舍去多余小数
+	 */
+	public static BigDecimal unitConversionPrecise(long sourceDuration, TimeUnit sourceUnit, TimeUnit targetUnit) {
+		return unitConversionPrecise(sourceDuration, sourceUnit, targetUnit, 1, RoundingMode.DOWN);
+	}
+	
+	/**
+	 * 单位转换，分钟转小时
+	 * @param sourceDuration
+	 * @return 小时数
+	 */
+	public static long minuteToHour(long num){
+		return unitConversion(num, TimeUnit.MINUTES, TimeUnit.HOURS);
+	}
+	
+	/**
+	 * 单位转换，分钟转小时，保留1位小数，ROUND_DOWN 舍去多余小数
+	 * @param sourceDuration
+	 * @return 小时数，保留1位小数，ROUND_DOWN 舍去多余小数
+	 */
+	public static BigDecimal minuteToHourPrecise(long num){
+		return unitConversionPrecise(num, TimeUnit.MINUTES, TimeUnit.HOURS);
+	}
+	
+	/**
+	 * 单位转换，分钟转小时
+	 * @param num 天数
+	 * @param scale 小数位数
+	 * @param roundingMode 舍入模式 
+	 * @return 小时数
+	 */
+	public static BigDecimal minuteToHourPrecise(long num, int scale, RoundingMode roundingMode){
+		return unitConversionPrecise(num, TimeUnit.MINUTES, TimeUnit.HOURS, scale, roundingMode);
 	}
 }

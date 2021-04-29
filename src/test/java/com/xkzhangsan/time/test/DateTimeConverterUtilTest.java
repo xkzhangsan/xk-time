@@ -239,4 +239,12 @@ public class DateTimeConverterUtilTest {
 		Timestamp timestamp4 = DateTimeConverterUtil.toTimestamp(epochMilli);
 		Assert.assertEquals(timestamp, timestamp4);
 	}
+	
+	@Test
+	public void unitConversionTest(){
+		//底层使用TimeUnit.convert，不带小数
+		Assert.assertEquals(1, DateTimeConverterUtil.minuteToHour(90));
+		//精确计算，带1位小数
+		Assert.assertEquals(1.5, DateTimeConverterUtil.minuteToHourPrecise(90).doubleValue(), 0);
+	}
 }
