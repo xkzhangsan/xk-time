@@ -15,7 +15,7 @@ public class XkTimeConstant {
 	/**
 	 * 每周天数 7
 	 */
-	public static final int DAY_PER_WEEK = 7;
+	public static final int DAYS_PER_WEEK = 7;
 	
 	/**
 	 * 每天小时数 24
@@ -52,7 +52,7 @@ public class XkTimeConstant {
 	/**
 	 * 每周秒数 7*24*60*60
 	 */
-	public static final int SECONDS_PER_WEEK = DAY_PER_WEEK * SECONDS_PER_DAY;
+	public static final int SECONDS_PER_WEEK = DAYS_PER_WEEK * SECONDS_PER_DAY;
 	
 	//===========================转换为毫秒基本数值============================
 	/**
@@ -73,6 +73,6 @@ public class XkTimeConstant {
 	/**
 	 * 每星期毫秒数 7*24*60*60*1000
 	 */
-	public static final int MILLISECONDS_PER_WEEK = DAY_PER_WEEK * MILLISECONDS_PER_DAY;
+	public static final int MILLISECONDS_PER_WEEK = DAYS_PER_WEEK * MILLISECONDS_PER_DAY;
 	
 }
