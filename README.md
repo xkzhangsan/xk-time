@@ -66,9 +66,13 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
 
 # 主要功能说明
 ### 1.日期转换工具类   DateTimeConverterUtil 
-包含Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime、YearMonth、Timestamp和long等互相转换    
+包含：  
+（1）Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime、YearMonth、Timestamp和long等互相转换。    
+  
+（2）天、小时、分钟、秒和毫秒等时间单位相互转换，支持小单位到大单位的精确转换比如，90分钟转换为小时，为1.5小时。    
+  
  注意，ZonedDateTime相关的转换，尤其是其他时间转ZonedDateTime，要注意时间和对应时区一致。  
-
+  
 详细使用可以查看相关测试代码。  
 
 ### 2.日期计算工具类  DateTimeCalculatorUtil 
@@ -264,6 +268,15 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
     Mini版本不包含此功能。  
   
   详细使用可以查看相关测试代码。     
+    
+### 10.时间单位常量类 XkTimeConstant  
+  
+时间单位常量 ，方便计算，比如设置缓存时间 3天：  3*MILLISECONDS_PER_DAY （每天毫秒数 24*60*60*1000）     
+包含：     
+（1）基本单位换算数值，比如 MILLISECONDS_PER_SECONDS 每秒毫秒数 1000。  
+（2）转换为秒数基本数值，比如 SECONDS_PER_DAY 每天秒数 24*60*60。  
+（3）转换为毫秒基本数值，比如 MILLISECONDS_PER_DAY 每天毫秒数 24*60*60*1000。  
+  
     
 # 更多详细文档
 - [JavaDoc 文档](https://apidoc.gitee.com/xkzhangsan/xk-time) 
