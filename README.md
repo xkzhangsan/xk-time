@@ -32,19 +32,19 @@ xk-time is a tool for time conversion, time calculation, time formatting, time p
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>3.0.2</version>    
+      <version>3.1.0</version>    
     </dependency>    
       
       Mini版本不包含 time nlp 功能，更简洁。  
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>3.0.2.Mini</version>    
+      <version>3.1.0.Mini</version>    
     </dependency>    
             
         
 ### （2）Gradle        
-    compile group: 'com.github.xkzhangsan', name: 'xk-time', version: '3.0.2'  
+    compile group: 'com.github.xkzhangsan', name: 'xk-time', version: '3.1.0'  
       
 ### 注意：Android谨慎使用，Android端因为需要兼容低版本而不支持Java8，建议继续使用其他工具，如果有需要本项目相关的功能，可以参考源码实现，或留言给我。感谢支持！  
     
