@@ -15,13 +15,17 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
+
 /**
  * 日期转换工具类<br>
  * 包含：<br>
  * 
  * 1.Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime、YearMonth、Timestamp和long等互相转换<br>
  * 
- * 2.天、小时、分钟、秒和毫秒等时间单位相互转换，支持小单位到大单位的精确转换比如，90分钟转换为小时，为1.5小时。<br>
+ * 2.天、小时、分钟、秒和毫秒等时间单位相互转换，支持小单位到大单位的精确转换比如，minuteToHourPrecise(long num) 90分钟转换为小时，为1.5小时。<br>
+ * 
+ * 3.转换ZonedDateTime的同时支持转换为指定时区，比如toZonedDateTime(Date date, String zoneId) ,toZonedDateTimeAndTransformZone(LocalDateTime localDateTime, String targetZoneId)。<br>
  * 
  * 注意，ZonedDateTime相关的转换，尤其是其他时间转ZonedDateTime，要注意时间和对应时区一致。<br>
 * @author xkzhangsan
@@ -497,8 +501,8 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
-	 * Date转ZonedDateTime
-	 * @param date Date
+	 * Date转ZonedDateTime，可以直接转换为对应的时区
+	 * @param date Date 没有时区区分
 	 * @param zoneId 目标时区
 	 * @return ZonedDateTime
 	 */
@@ -530,17 +534,31 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
-	 * LocalDateTime转ZonedDateTime，时区为zoneId对应时区
-	 * 注意，需要保证localDateTime和zoneId是对应的，不然会出现错误
-	 * 
+	 * LocalDateTime转ZonedDateTime，时区为zoneId对应时区<br>
+	 * 注意，需要保证localDateTime和zoneId是对应的，不然会出现错误<br>
+	 * 比如，localDateTime是巴黎时区下的对象，zoneId也应该是巴黎时区id<br>
 	 * @param localDateTime LocalDateTime
-	 * @param zoneId LocalDateTime
+	 * @param zoneId 时区id
 	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(LocalDateTime localDateTime, String zoneId) {
 		Objects.requireNonNull(localDateTime, "localDateTime");
 		Objects.requireNonNull(zoneId, "zoneId");
 		return localDateTime.atZone(ZoneId.of(zoneId));
+	}
+	
+	/**
+	 * LocalDateTime转ZonedDateTime，当前时区的LocalDateTime转换为目标时区的ZonedDateTime<br>
+	 * 注意，需要保证localDateTime当前时区下的对象<br>
+	 * 
+	 * @param localDateTime LocalDateTime 系统默认时区的localDateTime对象
+	 * @param targetZoneId 目标时区id
+	 * @return ZonedDateTime
+	 */
+	public static ZonedDateTime toZonedDateTimeAndTransformZone(LocalDateTime localDateTime, String targetZoneId) {
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		Objects.requireNonNull(targetZoneId, "targetZoneId");
+		return DateTimeCalculatorUtil.transform(localDateTime.atZone(ZoneId.systemDefault()), targetZoneId);
 	}	
 
 	/**
