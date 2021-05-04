@@ -375,7 +375,7 @@ public class DateFormatPattern {
 	public static final String YYYY_MM_DD_T_HH_MM_SS_Z = "yyyy-MM-dd'T'HH:mm:ssZ";
 
 	/**
-	 * yyyy-MM-dd'T'HH:mm:ssxxx 比如：2020-05-23T17:06:30+08:00 2020-05-23T09:06:30+00:00
+	 * yyyy-MM-dd'T'HH:mm:ssxxx 比如：2020-05-23T17:06:30+08:00 2020-05-23T09:06:30+00:00 0时区时末尾 为+00:00
 	 */
 	public static final String YYYY_MM_DD_T_HH_MM_SS_XXX = "yyyy-MM-dd'T'HH:mm:ssxxx";
 	

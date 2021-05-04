@@ -69,8 +69,10 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
 包含：  
 （1）Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime、YearMonth、Timestamp和long等互相转换。    
   
-（2）天、小时、分钟、秒和毫秒等时间单位相互转换，支持小单位到大单位的精确转换比如，90分钟转换为小时，为1.5小时。    
+（2）天、小时、分钟、秒和毫秒等时间单位相互转换，支持小单位到大单位的精确转换比如，minuteToHourPrecise(long num) 90分钟转换为小时，为1.5小时。    
   
+（3）转换ZonedDateTime的同时支持转换为指定时区，比如toZonedDateTime(Date date, String zoneId)     ,toZonedDateTimeAndTransformZone(LocalDateTime localDateTime, String targetZoneId)。     
+   
  注意，ZonedDateTime相关的转换，尤其是其他时间转ZonedDateTime，要注意时间和对应时区一致。  
   
 详细使用可以查看相关测试代码。  

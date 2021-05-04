@@ -139,6 +139,11 @@ public class DateTimeConverterUtilTest {
 		//Asia/Shanghai
 		ZonedDateTime zonedDateTime6 = DateTimeConverterUtil.toZonedDateTime(LocalDateTime.now(), "Asia/Shanghai");
 		Assert.assertNotNull(zonedDateTime6);
+		
+		//Asia/Shanghai转Europe/Paris
+		ZonedDateTime zonedDateTime7 = DateTimeConverterUtil.toZonedDateTimeAndTransformZone(LocalDateTime.now(), "Europe/Paris");
+		ZonedDateTime zonedDateTime8 = DateTimeConverterUtil.toZonedDateTime(new Date(), "Europe/Paris");
+		Assert.assertEquals(zonedDateTime7.getZone(), zonedDateTime8.getZone());
 	}
 	
 	@Test
