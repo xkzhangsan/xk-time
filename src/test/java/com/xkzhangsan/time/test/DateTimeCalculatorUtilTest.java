@@ -642,6 +642,31 @@ public class DateTimeCalculatorUtilTest {
 		
 		//下一个工作日
 		Assert.assertEquals("2021-02-20",DateTimeCalculatorUtil.nextChineseWorkDay(LocalDate.of(2021, 2, 19), holidayData).toString());
+	}
+	
+	/**
+	 * 时间段重叠测试测试
+	 */
+	@Test
+	public void isOverlapTest(){
+		Date startDate1 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-10");
+		Date endDate1 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-20");
+		Date startDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-15");
+		Date endDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-06-01");
+		//不严格模式，首尾相连不重叠
+		System.out.println(DateTimeCalculatorUtil.isOverlap(startDate1, endDate1, startDate2, endDate2));
+		//严格模式，首尾相连重叠
+		System.out.println(DateTimeCalculatorUtil.isOverlap(startDate1, endDate1, startDate2, endDate2, true));
+		
+		//2021-05-29到2021-05-31和2021-05-31到2021-06-01
+		Date startDate3 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-29");
+		Date endDate3 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-31");
+		Date startDate4 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-31");
+		Date endDate4 = DateTimeFormatterUtil.parseDateStrToDate("2021-06-01");
+		//不严格模式，首尾相连不重叠
+		System.out.println(DateTimeCalculatorUtil.isOverlap(startDate3, endDate3, startDate4, endDate4));
+		//严格模式，首尾相连重叠
+		System.out.println(DateTimeCalculatorUtil.isOverlap(startDate3, endDate3, startDate4, endDate4, true));
 	}	
 
 	@Test
