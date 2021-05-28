@@ -1,5 +1,6 @@
 package com.xkzhangsan.time.enums;
 
+
 /**
  * 月份名称枚举，包含英文全称，英文简称，中文全称
  * 
@@ -19,6 +20,8 @@ public enum MonthNameEnum {
 	Oct(10, "October", "十月", "十"),
 	Nov(11, "November", "十一月", "十一"),
 	Dec(12, "December", "十二月", "十二"),;
+	
+	private static final MonthNameEnum[] ENUMS = MonthNameEnum.values();
 	
 	/**
 	 * 序号
@@ -54,14 +57,10 @@ public enum MonthNameEnum {
 	 * @return MonthNameEnum
 	 */
 	public static MonthNameEnum getByCode(int code){
-		if(code >=1 && code <= 12){
-			for(MonthNameEnum monthNameEnum : MonthNameEnum.values()){
-				if(monthNameEnum.getCode() == code){
-					return monthNameEnum;
-				}
-			}
+		if (code < 1 || code > 12) {
+			return null;
 		}
-		return null;
+		return ENUMS[code -1];
 	}
 	
 	/**
@@ -119,5 +118,4 @@ public enum MonthNameEnum {
 	public String getShortNameCn() {
 		return shortNameCn;
 	}
-
 }
