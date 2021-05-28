@@ -1,5 +1,6 @@
 package com.xkzhangsan.time.enums;
 
+
 /**
  * 星期名称枚举，包含英文全称，英文简称，中文
  * Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday
@@ -15,6 +16,7 @@ public enum WeekNameEnum {
 	Sat(6, "Saturday", "星期六"),
 	Sun(7, "Sunday", "星期日"),;
 	
+	private static final WeekNameEnum[] ENUMS = WeekNameEnum.values();
 	/**
 	 * 序号
 	 */
@@ -43,14 +45,10 @@ public enum WeekNameEnum {
 	 * @return WeekNameEnum
 	 */
 	public static WeekNameEnum getByCode(int code){
-		if(code >=1 && code <= 12){
-			for(WeekNameEnum monthNameEnum : WeekNameEnum.values()){
-				if(monthNameEnum.getCode() == code){
-					return monthNameEnum;
-				}
-			}
+		if (code < 1 || code > 7) {
+			return null;
 		}
-		return null;
+		return ENUMS[code -1];
 	}
 	
 	/**
@@ -94,6 +92,4 @@ public enum WeekNameEnum {
 	public String getNameCn() {
 		return nameCn;
 	}
-
-
 }
