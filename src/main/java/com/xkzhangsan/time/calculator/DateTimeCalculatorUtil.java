@@ -69,6 +69,7 @@ import com.xkzhangsan.time.utils.StringUtil;
  * 24.修改星期值方法 withDayOfWeek*，比如withDayOfWeek(Date date, long newValue)，修改星期为指定值newValue，返回Date<br>
  * 25.中国工作日计算（将放假信息包含在内），包括判断当前日期是否为工作日和下一个工作日等方法， isChineseWorkDay*，nextChineseWorkDay*，比如isChineseWorkDay(Date, String holidayData)，nextChineseWorkDay(Date date, String holidayData)<br>
  * 节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断<br>
+ * 26.判断2个时间段是否有重叠（交集）方法， isOverlap*，比如isOverlap(Date startDate1, Date endDate1, Date startDate2, Date endDate2)，重叠返回true。<br>
  * 
  *   
 * @author xkzhangsan
@@ -3874,5 +3875,102 @@ public class DateTimeCalculatorUtil {
 	public static Date lastYear(){
 		return minusYears(today(), 1);
 	}
+	
+	/**
+	 * 判断2个时间段是否有重叠（交集）
+	 * @param startDate1 时间段1开始时间戳
+	 * @param endDate1 时间段1结束时间戳
+	 * @param startDate2 时间段2开始时间戳
+	 * @param endDate2 时间段2结束时间戳
+	 * @param isStrict 是否严格重叠，true 严格，没有任何相交或相等；false 不严格，可以首尾相等，比如2021/5/29-2021/5/31和2021/5/31-2021/6/1，不重叠。
+	 * @return 返回是否重叠
+	 */
+	public static boolean isOverlap(long startDate1, long endDate1, long startDate2, long endDate2, boolean isStrict){
+		if(endDate1<startDate1){
+			throw new DateTimeException("endDate1不能小于startDate1");
+		}
+		if(endDate2<startDate2){
+			throw new DateTimeException("endDate2不能小于startDate2");
+		}
+		if(isStrict){
+			if(! (endDate1<startDate2 || startDate1>endDate2)){
+				return true;
+			}
+		}else{
+			if(! (endDate1<=startDate2 || startDate1>=endDate2)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * 判断2个时间段是否有重叠（交集）
+	 * @param startDate1 时间段1开始时间
+	 * @param endDate1 时间段1结束时间
+	 * @param startDate2 时间段2开始时间
+	 * @param endDate2 时间段2结束时间
+	 * @param isStrict 是否严格重叠，true 严格，没有任何相交或相等；false 不严格，可以首尾相等，比如2021-05-29到2021-05-31和2021-05-31到2021-06-01，不重叠。
+	 * @return 返回是否重叠
+	 */
+	public static boolean isOverlap(Date startDate1, Date endDate1, Date startDate2, Date endDate2, boolean isStrict){
+		Objects.requireNonNull(startDate1, "startDate1");
+		Objects.requireNonNull(endDate1, "endDate1");
+		Objects.requireNonNull(startDate2, "startDate2");
+		Objects.requireNonNull(endDate2, "endDate2");
+		return isOverlap(startDate1.getTime(), endDate1.getTime(), startDate2.getTime(), endDate2.getTime(), isStrict);
+	}
+	
+	/**
+	 * 判断2个时间段是否有重叠（交集），不严格模式，首尾相等不等于重叠
+	 * @param startDate1 时间段1开始时间
+	 * @param endDate1 时间段1结束时间
+	 * @param startDate2 时间段2开始时间
+	 * @param endDate2 时间段2结束时间
+	 * @return 返回是否重叠
+	 */
+	public static boolean isOverlap(Date startDate1, Date endDate1, Date startDate2, Date endDate2){
+		return isOverlap(startDate1, endDate1, startDate2, endDate2, false);
+	}
+	
+	/**
+	 * 判断2个时间段是否有重叠（交集）
+	 * @param startDate1 时间段1开始时间
+	 * @param endDate1 时间段1结束时间
+	 * @param startDate2 时间段2开始时间
+	 * @param endDate2 时间段2结束时间
+	 * @param isStrict 是否严格重叠，true 严格，没有任何相交或相等；false 不严格，可以首尾相等，比如2021-05-29到2021-05-31和2021-05-31到2021-06-01，不重叠。
+	 * @return 返回是否重叠
+	 */
+	public static boolean isOverlap(LocalDateTime startDate1, LocalDateTime endDate1, LocalDateTime startDate2, LocalDateTime endDate2, boolean isStrict){
+		Objects.requireNonNull(startDate1, "startDate1");
+		Objects.requireNonNull(endDate1, "endDate1");
+		Objects.requireNonNull(startDate2, "startDate2");
+		Objects.requireNonNull(endDate2, "endDate2");
+		return isOverlap(DateTimeConverterUtil.toEpochMilli(startDate1),
+				DateTimeConverterUtil.toEpochMilli(endDate1), 
+				DateTimeConverterUtil.toEpochMilli(startDate2), 
+				DateTimeConverterUtil.toEpochMilli(endDate2), isStrict);
+	}
+	
+	/**
+	 * 判断2个时间段是否有重叠（交集）
+	 * @param startDate1 时间段1开始时间
+	 * @param endDate1 时间段1结束时间
+	 * @param startDate2 时间段2开始时间
+	 * @param endDate2 时间段2结束时间
+	 * @param isStrict 是否严格重叠，true 严格，没有任何相交或相等；false 不严格，可以首尾相等，比如2021-05-29到2021-05-31和2021-05-31到2021-06-01，不重叠。
+	 * @return 返回是否重叠
+	 */	
+	public static boolean isOverlap(LocalDate startDate1, LocalDate endDate1, LocalDate startDate2, LocalDate endDate2, boolean isStrict){
+		Objects.requireNonNull(startDate1, "startDate1");
+		Objects.requireNonNull(endDate1, "endDate1");
+		Objects.requireNonNull(startDate2, "startDate2");
+		Objects.requireNonNull(endDate2, "endDate2");
+		return isOverlap(DateTimeConverterUtil.toEpochMilli(startDate1),
+				DateTimeConverterUtil.toEpochMilli(endDate1), 
+				DateTimeConverterUtil.toEpochMilli(startDate2), 
+				DateTimeConverterUtil.toEpochMilli(endDate2), isStrict);
+	}	
 
 }

@@ -131,6 +131,9 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
 比如  isChineseWorkDay(Date, String holidayData)，nextChineseWorkDay(Date date, String holidayData)，  
 节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。  
   
+（26）判断2个时间段是否有重叠（交集）方法， isOverlap*，比如isOverlap(Date startDate1, Date endDate1, Date startDate2, Date endDate2)，重叠返回true。  
+    
+      
     
 详细使用可以查看相关测试代码。  
 
