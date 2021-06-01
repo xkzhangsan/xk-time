@@ -23,6 +23,8 @@ import java.time.temporal.TemporalField;
 import java.time.temporal.TemporalUnit;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -38,6 +40,7 @@ import com.xkzhangsan.time.enums.TwelveTwoEnum;
 import com.xkzhangsan.time.enums.WeekNameEnum;
 import com.xkzhangsan.time.enums.ZoneIdEnum;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
+import com.xkzhangsan.time.utils.CollectionUtil;
 import com.xkzhangsan.time.utils.StringUtil;
 
 /**
@@ -3971,6 +3974,46 @@ public class DateTimeCalculatorUtil {
 				DateTimeConverterUtil.toEpochMilli(endDate1), 
 				DateTimeConverterUtil.toEpochMilli(startDate2), 
 				DateTimeConverterUtil.toEpochMilli(endDate2), isStrict);
-	}	
+	}
+	
+	/**
+	 * 判断多个时间段是否有重叠（交集）
+	 * @param timePairs 时间段数组
+	 * @param isStrict 是否严格重叠，true 严格，没有任何相交或相等；false 不严格，可以首尾相等，比如2021-05-29到2021-05-31和2021-05-31到2021-06-01，不重叠。
+	 * @return 返回是否重叠
+	 */
+	public static boolean isOverlap(TimePair[] timePairs, boolean isStrict){
+		if(timePairs==null || timePairs.length==0){
+			throw new DateTimeException("timePairs不能为空");
+		}
+		
+		Arrays.sort(timePairs, Comparator.comparingLong(TimePair::getStart));
+		
+        for(int i=1;i<timePairs.length;i++){
+        	if(isStrict){
+            	if(! (timePairs[i-1].getEnd()<timePairs[i].getStart())){
+            		return true;
+            	}
+        	}else{
+        		if(! (timePairs[i-1].getEnd()<=timePairs[i].getStart())){
+            		return true;
+            	} 
+        	}
+        }
+		return false;
+	}
+	
+	/**
+	 * 判断多个时间段是否有重叠（交集）
+	 * @param timePairList 时间段列表
+	 * @param isStrict 是否严格重叠，true 严格，没有任何相交或相等；false 不严格，可以首尾相等，比如2021-05-29到2021-05-31和2021-05-31到2021-06-01，不重叠。
+	 * @return 返回是否重叠
+	 */
+	public static boolean isOverlap(List<TimePair> timePairList, boolean isStrict){
+		if(CollectionUtil.isEmpty(timePairList)){
+			throw new DateTimeException("timePairList不能为空");
+		}
+		return isOverlap((TimePair[])timePairList.toArray(), isStrict);
+	}
 
 }

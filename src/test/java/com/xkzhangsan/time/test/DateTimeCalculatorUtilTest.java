@@ -1,6 +1,7 @@
 package com.xkzhangsan.time.test;
 
 import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
+import com.xkzhangsan.time.calculator.TimePair;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.enums.ZoneIdEnum;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
@@ -668,6 +669,26 @@ public class DateTimeCalculatorUtilTest {
 		Assert.assertFalse(DateTimeCalculatorUtil.isOverlap(startDate3, endDate3, startDate4, endDate4));
 		//严格模式，首尾相连重叠
 		Assert.assertTrue(DateTimeCalculatorUtil.isOverlap(startDate3, endDate3, startDate4, endDate4, true));
+		
+		
+		Date startDate5 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-10");
+		Date endDate5 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-12");
+		TimePair timePair0 = new TimePair(startDate5.getTime(), endDate5.getTime());
+		Date startDate6 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-03");
+		Date endDate6 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-10");
+		TimePair timePair1 = new TimePair(startDate6.getTime(), endDate6.getTime());
+		Date startDate7 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-25");
+		Date endDate7 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-26");
+		TimePair timePair2 = new TimePair(startDate7.getTime(), endDate7.getTime());
+		
+		TimePair[] timePairArray = new TimePair[3];
+		
+		timePairArray[0]=timePair0;
+		timePairArray[1]=timePair1;
+		timePairArray[2]=timePair2;
+		
+		Assert.assertFalse(DateTimeCalculatorUtil.isOverlap(timePairArray, false));
+		Assert.assertTrue(DateTimeCalculatorUtil.isOverlap(timePairArray, true));
 	}	
 
 	@Test
