@@ -75,7 +75,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
    
  注意，ZonedDateTime相关的转换，尤其是其他时间转ZonedDateTime，要注意时间和对应时区一致。  
   
-详细使用可以查看相关测试代码。  
+详细使用可以查看相关测试代码： DateTimeConverterUtilTest.  
 
 ### 2.日期计算工具类  DateTimeCalculatorUtil 
 包括：  
@@ -129,13 +129,14 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
   
 （25）中国工作日计算（将放假信息包含在内），包括判断当前日期是否为工作日和下一个工作日等方法， isChineseWorkDay*，nextChineseWorkDay*，  
 比如  isChineseWorkDay(Date, String holidayData)，nextChineseWorkDay(Date date, String holidayData)，  
-节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。  
+节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。 下面是我整理的2021年放假信息：  
+2021-01-01:0,2021-02-07:1,2021-02-11:0,2021-02-12:0,2021-02-15:0,2021-02-16:0,2021-02-17:0,2021-02-20:1,2021-04-05:0,2021-04-25:1,2021-05-03:0,2021-05-04:0,2021-05-05:0,2021-05-08:1,2021-06-14:0,2021-09-18:1,2021-09-20:0,2021-09-21:0,2021-09-26:1,2021-10-01:0,2021-10-04:0,2021-10-05:0,2021-10-06:0,2021-10-07:0,2021-10-09:1  
   
 （26）判断2个时间段是否有重叠（交集）方法， isOverlap*，比如isOverlap(Date startDate1, Date endDate1, Date startDate2, Date endDate2)，重叠返回true。  
     
       
     
-详细使用可以查看相关测试代码。  
+详细使用可以查看相关测试代码： DateTimeCalculatorUtilTest.  
 
 ### 3.日期格式化和解析工具类  DateTimeFormatterUtil 
 包含常用日期格式如：  
@@ -185,14 +186,14 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
  注意：格式化和解析与系统时区不同的时间时，使用自定义时区格式化方法，或可以使用withZone方法重新设置时区，比如：  
  YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris") 。  
   
-详细使用可以查看相关测试代码。  
+详细使用可以查看相关测试代码： DateTimeFormatterUtilTest.  
 
 ### 4.日历工具类  CalendarUtil 
 包括：  
 （1）生成指定时间的日历（包含年、月和日层级关系的日历）方法，generateCalendar* 比如generateCalendar(int year, int month) 生成指定年月的日历。   
 （2）生成指定时间的日历（包含年、月和日层级关系的日历），包含农历和所有节假日信息方法，generateCalendarWithHoliday*， 比generateCalendarWithHoliday(int year, int month, Map<String, String> localHolidayMap,Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap)生成指定年月的日历，包含农历和所有节假日信息，可以自定义节假日和工作日等。   
 
-详细使用可以查看相关测试代码。  
+详细使用可以查看相关测试代码： CalendarUtilTest.  
 
 ### 5.农历日期类 LunarDate    
 包含：  
@@ -202,7 +203,7 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
 （4）农历转公历  
  注意： 仅支持公历1900-2100年的农历转换。    
    
-详细使用可以查看相关测试代码。  
+详细使用可以查看相关测试代码： LunarDateTest.  
  
 ### 6.节假日计算工具类 HolidayUtil      
 包含：  
@@ -236,7 +237,7 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
     
 注意： 底层使用 quartz的CronExpression处理。  
 
-详细使用可以查看相关测试代码。              
+详细使用可以查看相关测试代码： CronExpressionUtilTest.              
   
   
 ### 8.计算耗时工具 CostUtil
@@ -248,7 +249,7 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 （2）计算耗时，自定义任务名称，输出耗时结果。  
 （3）计算耗时，返回精确计时，带3小数的结果，使用ROUND_DOWN 舍弃超过3位的小数部分等。  
   
-详细使用可以查看相关测试代码。     
+详细使用可以查看相关测试代码：CostUitlTest.     
   
 ### 9.时间自然语言分析工具类（NLP） TimeNLPUtil  
   
@@ -272,7 +273,7 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 注意：NLP会有一定的识别失败率，在不断迭代开发提高成功率。    
     Mini版本不包含此功能。  
   
-  详细使用可以查看相关测试代码。     
+  详细使用可以查看相关测试代码： TimeNLPUtilTest.     
     
 ### 10.时间单位常量类 XkTimeConstant  
   
@@ -282,6 +283,7 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 （2）转换为秒数基本数值，比如 SECONDS_PER_DAY 每天秒数 24\*60\*60。  
 （3）转换为毫秒基本数值，比如 MILLISECONDS_PER_DAY 每天毫秒数 24\*60\*60\*1000。  
   
+  详细使用可以查看相关测试代码： XkTimeConstantTest.    
     
 # 更多详细文档
 - [JavaDoc 文档](https://apidoc.gitee.com/xkzhangsan/xk-time) 
