@@ -40,6 +40,7 @@ import com.xkzhangsan.time.enums.TwelveTwoEnum;
 import com.xkzhangsan.time.enums.WeekNameEnum;
 import com.xkzhangsan.time.enums.ZoneIdEnum;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
+import com.xkzhangsan.time.utils.ArrayUtil;
 import com.xkzhangsan.time.utils.CollectionUtil;
 import com.xkzhangsan.time.utils.StringUtil;
 
@@ -3983,7 +3984,7 @@ public class DateTimeCalculatorUtil {
 	 * @return 返回是否重叠
 	 */
 	public static boolean isOverlap(TimePair[] timePairs, boolean isStrict){
-		if(timePairs==null || timePairs.length==0){
+		if(ArrayUtil.isEmpty(timePairs)){
 			throw new DateTimeException("timePairs不能为空");
 		}
 		
