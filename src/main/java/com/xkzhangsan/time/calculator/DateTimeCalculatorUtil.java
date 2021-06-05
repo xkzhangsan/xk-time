@@ -2372,7 +2372,7 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static boolean isChineseWorkDay(LocalDateTime localDateTime, String holidayData){
 		Objects.requireNonNull(holidayData, "holidayData");
-		Map<String, Integer> dateTypeMap = StringUtil.convertHolidayDataToMap(holidayData);
+		Map<String, Integer> dateTypeMap = StringUtil.convertHolidayDataToMapUseCache(holidayData);
 		Integer dateType = dateTypeMap.get(DateTimeFormatterUtil.formatToDateStr(localDateTime));
 		if(dateType != null){
 			return dateType == 1 ? true : false;
