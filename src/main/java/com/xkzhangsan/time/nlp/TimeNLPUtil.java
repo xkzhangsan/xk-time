@@ -3,7 +3,10 @@ package com.xkzhangsan.time.nlp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
 
+import com.xkzhangsan.time.constants.Constant;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 import com.xkzhangsan.time.utils.CollectionUtil;
 import com.xkzhangsan.time.utils.StringUtil;
@@ -15,6 +18,7 @@ import com.xkzhangsan.time.utils.StringUtil;
  *  包括功能：  <br>
  *（1）以当前时间为基础分析时间自然语言。  <br>
  *（2）以指定时间为基础分析时间自然语言。 <br>
+ *（3）不抛出异常并且限制时间内完成功能。<br>
  *
  * 修改自 https://github.com/shinyke/Time-NLP<br>
  * 做了一些修改如下：<br>
@@ -45,6 +49,34 @@ public class TimeNLPUtil {
 	 */
 	public static List<TimeNLP> parse(String text){
 		return parse(text, null);
+	}
+	
+	/**
+	 * 时间自然语言分析  不抛出异常，并且限制时间在3s中内完成
+	 * @param text 待分析文本
+	 * @return 结果列表
+	 */
+	public static List<TimeNLP> parseSafeAndTimeLimit(String text){
+		return parse(text, null, true, Constant.TIME_NLP_TIMEOUT);
+	}
+	
+	/**
+	 * 时间自然语言分析  不抛出异常，并且限制时间在指定时间内完成
+	 * @param text 待分析文本
+	 * @param timeout 超时时间 毫秒
+	 * @return 结果列表
+	 */
+	public static List<TimeNLP> parseSafe(String text, long timeout){
+		return parse(text, null, true, timeout);
+	}
+	
+	/**
+	 * 时间自然语言分析  不抛出异常
+	 * @param text 待分析文本
+	 * @return 结果列表
+	 */
+	public static List<TimeNLP> parseSafe(String text){
+		return parse(text, null, true, 0);
 	}
 	
 	/**
@@ -91,6 +123,46 @@ public class TimeNLPUtil {
         /**过滤无法识别的字段*/
         List<TimeNLP> timeNLPListResult = TimeNLP.filterTimeUnit(timeNLPList);
 		return timeNLPListResult;
+	}	
+	
+	/**
+	 * 时间自然语言分析
+	 * @param text 待分析文本 
+	 * @param timeBase 指定时间
+	 * @param isSafe true 不抛出异常，false 抛出异常 
+	 * @param timeout 超时时间
+	 * @return 结果列表
+	 */
+	public static List<TimeNLP> parse(String text, String timeBase, boolean isSafe, long timeout){
+		if(isSafe && timeout > 0){
+			try{
+				TimeNLPCallable timeNLPCallable = new TimeNLPCallable(text, timeBase);
+				FutureTask<List<TimeNLP>> futureTask = new FutureTask<>(timeNLPCallable);
+				new Thread(futureTask).start();
+				return futureTask.get(timeout, TimeUnit.MILLISECONDS);
+			}catch(Exception e){
+				e.printStackTrace();
+				return null;
+			}
+		}else if(isSafe){
+			try{
+				return parse(text, timeBase);
+			}catch(Exception e){
+				e.printStackTrace();
+				return null;
+			}
+		}else if(timeout > 0){
+			try{
+				TimeNLPCallable timeNLPCallable = new TimeNLPCallable(text, timeBase);
+				FutureTask<List<TimeNLP>> futureTask = new FutureTask<>(timeNLPCallable);
+				new Thread(futureTask).start();
+				return futureTask.get(timeout, TimeUnit.MILLISECONDS);
+			}catch(Exception e){
+				e.printStackTrace();
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		return parse(text, timeBase);
 	}	
 	
 }

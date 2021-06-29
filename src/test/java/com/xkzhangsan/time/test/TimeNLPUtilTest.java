@@ -204,5 +204,22 @@ public class TimeNLPUtilTest {
 		System.out.println("4.5日对应时间");
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
 				+ timeNLPList.get(0).getIsAllDayTime());
+	}
+	
+	/**
+	 * 不抛出异常并且限制时间内完成功能
+	 */
+	@Test
+	public void parseSafeAndTimeLimitTest() {
+		System.out.println("当前时间:"+DateTimeCalculatorUtil.getEpochMilliFormat());
+		List<TimeNLP> timeNLPList = TimeNLPUtil.parseSafeAndTimeLimit("下午3点对应时间");
+		System.out.println("下午3点对应时间");
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+				+ timeNLPList.get(0).getIsAllDayTime());
+		
+		List<TimeNLP> timeNLPList2 = TimeNLPUtil.parseSafe("下午3点对应时间", 1);
+		System.out.println("下午3点对应时间");
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList2.get(0).getTime()) + "-"
+				+ timeNLPList2.get(0).getIsAllDayTime());
 	}	
 }
