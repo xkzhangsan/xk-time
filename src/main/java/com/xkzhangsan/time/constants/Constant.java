@@ -106,6 +106,13 @@ public class Constant {
 	 */
 	public static final MonthDay CAPRICORN_END = MonthDay.parse(MONTHDAY_FORMAT_PRE +"01-19");
 	
+	
+	
+	/**
+	 * TimeNLP 默认解析超时时间 3s
+	 * 
+	 */
+	public static final long TIME_NLP_TIMEOUT = 3000;	
 	//===========================其他定义============================
 	
 	/**
