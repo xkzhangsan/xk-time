@@ -221,5 +221,10 @@ public class TimeNLPUtilTest {
 		System.out.println("下午3点对应时间");
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList2.get(0).getTime()) + "-"
 				+ timeNLPList2.get(0).getIsAllDayTime());
+		
+		List<TimeNLP> timeNLPList3 = TimeNLPUtil.parseUseThreadPool("下午3点对应时间");
+		System.out.println("下午3点对应时间");
+		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList3.get(0).getTime()) + "-"
+				+ timeNLPList3.get(0).getIsAllDayTime());
 	}	
 }
