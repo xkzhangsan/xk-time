@@ -4018,5 +4018,19 @@ public class DateTimeCalculatorUtil {
 		timePairList.toArray(timePairs);
 		return isOverlap(timePairs, isStrict);
 	}
+	
+	/**
+	 * 计算平均时间
+	 * @param dateList 待计算列表
+	 * @return 返回平均时间
+	 */
+	public static LocalTime averageTime(List<Date> dateList) {
+		if (CollectionUtil.isEmpty(dateList)) {
+			throw new DateTimeException("dateList不能为空");
+		}
+		double average = dateList.stream().mapToDouble(date -> DateTimeConverterUtil.toLocalTime(date).toNanoOfDay())
+				.average().getAsDouble();
+		return LocalTime.ofNanoOfDay(new Double(average).longValue());
+	}
 
 }

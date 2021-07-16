@@ -647,7 +647,7 @@ public class DateTimeCalculatorUtilTest {
 	}
 	
 	/**
-	 * 时间段重叠测试测试
+	 * 时间段重叠测试
 	 */
 	@Test
 	public void isOverlapTest(){
@@ -687,6 +687,20 @@ public class DateTimeCalculatorUtilTest {
 		list.add(timePair2);
 		Assert.assertFalse(DateTimeCalculatorUtil.isOverlap(list, false));
 		Assert.assertTrue(DateTimeCalculatorUtil.isOverlap(list, true));
+	}	
+	
+	/**
+	 * 平均时间计算测试
+	 */
+	@Test
+	public void averageTimeTest(){
+		Date ldt2 = DateTimeFormatterUtil.parseToDate("2019-12-01 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT);
+		Date ldt3 = DateTimeFormatterUtil.parseToDate("2019-12-02 13:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT);
+		List<Date> list = new ArrayList<>();
+		list.add(ldt2);
+		list.add(ldt3);
+		LocalTime lt = DateTimeCalculatorUtil.averageTime(list);
+		System.out.println(lt.toString());
 	}	
 
 	@Test
