@@ -1,6 +1,11 @@
 package com.xkzhangsan.time.test;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import org.junit.Test;
 
@@ -207,22 +212,30 @@ public class TimeNLPUtilTest {
 	}
 	
 	/**
-	 * 不抛出异常并且限制时间内完成功能
+	 * 并发执行，可限制时间内完成功能
+	 * 
+	 * @throws TimeoutException 
+	 * @throws ExecutionException 
+	 * @throws InterruptedException 
 	 */
 	@Test
-	public void parseSafeAndTimeLimitTest() {
+	public void parseConcurrentTest() throws InterruptedException, ExecutionException, TimeoutException {
+		//1.并发执行
 		System.out.println("当前时间:"+DateTimeCalculatorUtil.getEpochMilliFormat());
-		List<TimeNLP> timeNLPList = TimeNLPUtil.parseSafeAndTimeLimit("下午3点对应时间");
+		List<TimeNLP> timeNLPList = TimeNLPUtil.parseConcurrent("下午3点对应时间");
 		System.out.println("下午3点对应时间");
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
 				+ timeNLPList.get(0).getIsAllDayTime());
 		
-		List<TimeNLP> timeNLPList2 = TimeNLPUtil.parseSafe("下午3点对应时间", 1);
+		//2.限时30毫秒完成
+		List<TimeNLP> timeNLPList2 = TimeNLPUtil.parseConcurrent("下午3点对应时间", 30, TimeUnit.MILLISECONDS);
 		System.out.println("下午3点对应时间");
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList2.get(0).getTime()) + "-"
 				+ timeNLPList2.get(0).getIsAllDayTime());
 		
-		List<TimeNLP> timeNLPList3 = TimeNLPUtil.parseUseThreadPool("下午3点对应时间");
+		//3.使用自定义线程池
+		ExecutorService executorService = Executors.newCachedThreadPool();
+		List<TimeNLP> timeNLPList3 = TimeNLPUtil.parseConcurrent("下午3点对应时间", 30,TimeUnit.MILLISECONDS, executorService);
 		System.out.println("下午3点对应时间");
 		System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList3.get(0).getTime()) + "-"
 				+ timeNLPList3.get(0).getIsAllDayTime());
