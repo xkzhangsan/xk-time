@@ -17,6 +17,7 @@ import java.time.LocalTime;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -456,6 +457,13 @@ public class DateTimeCalculatorUtilTest {
 		//获取指定区间的时间列表，包含起始
 		List<Date> dateList2 = DateTimeCalculatorUtil.getDateList(dateList.get(0), dateList.get(dateList.size()-1));
         Assert.assertEquals(31,dateList2.size());
+        
+		//获取指定区间的时间列表，包含起始，指定单位的相同时间
+        Date start = DateTimeCalculatorUtil.getDate(2021, 1, 31);
+        Date end = DateTimeCalculatorUtil.getDate(2021, 7, 31);
+        
+		List<Date> dateList3 = DateTimeCalculatorUtil.getDateList(start, end, ChronoUnit.MONTHS);
+        Assert.assertEquals(7,dateList3.size());
 	}
 	
 	/**

@@ -3350,6 +3350,37 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
+	 * 获取指定区间的时间列表，包含起始，间隔指定单位的相同时间
+	 * @param startInclusive 开始时间
+	 * @param endInclusive 结束时间
+	 * @param unit 单位
+	 * @return 时间列表
+	 */
+	public static List<LocalDateTime> getLocalDateTimeList(LocalDateTime startInclusive, LocalDateTime endInclusive, ChronoUnit unit){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endInclusive, "endInclusive");
+		Objects.requireNonNull(unit, "unit");
+		if(startInclusive.isAfter(endInclusive)){
+			throw new DateTimeException("startInclusive must before or equal endInclusive!");
+		}
+		
+		int i = 1;
+		List<LocalDateTime> localDateTimeList = new ArrayList<LocalDateTime>();
+		LocalDateTime localDateTime = startInclusive;
+		localDateTimeList.add(localDateTime);
+		while(localDateTime.isBefore(endInclusive)){
+			localDateTime = (LocalDateTime) plus(startInclusive, unit, i);
+			if(localDateTime.isAfter(endInclusive) || localDateTime.equals(endInclusive)){
+				break;
+			}
+			localDateTimeList.add(localDateTime);
+			i++;
+		}
+		localDateTimeList.add(endInclusive);
+		return localDateTimeList;
+	}	
+	
+	/**
 	 * 获取指定区间的时间列表，包含起始
 	 * @param startInclusive 开始时间
 	 * @param endInclusive 结束时间
@@ -3370,6 +3401,19 @@ public class DateTimeCalculatorUtil {
 	public static List<Date> getDateList(Date startInclusive, Date endInclusive){
 		return getLocalDateTimeList(DateTimeConverterUtil.toLocalDateTime(startInclusive),
 				DateTimeConverterUtil.toLocalDateTime(endInclusive)).stream()
+						.map(localDateTime -> DateTimeConverterUtil.toDate(localDateTime)).collect(Collectors.toList());
+	}
+	
+	/**
+	 * 获取指定区间的时间列表，包含起始，间隔指定单位的相同时间
+	 * @param startInclusive 开始时间
+	 * @param endInclusive 结束时间
+	 * @param unit 单位
+	 * @return 时间列表
+	 */
+	public static List<Date> getDateList(Date startInclusive, Date endInclusive, ChronoUnit unit){
+		return getLocalDateTimeList(DateTimeConverterUtil.toLocalDateTime(startInclusive),
+				DateTimeConverterUtil.toLocalDateTime(endInclusive), unit).stream()
 						.map(localDateTime -> DateTimeConverterUtil.toDate(localDateTime)).collect(Collectors.toList());
 	}
 	
