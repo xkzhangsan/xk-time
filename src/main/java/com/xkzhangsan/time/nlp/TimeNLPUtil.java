@@ -21,7 +21,7 @@ import com.xkzhangsan.time.utils.StringUtil;
  *  包括功能：  <br>
  *（1）以当前时间为基础分析时间自然语言。  <br>
  *（2）以指定时间为基础分析时间自然语言。 <br>
- *（3）增加多种调用方式，比如parseConcurrent 并发执行，可设置超时时间等方式。<br>
+ *（3）增加多种调用方式，比如parseConcurrent 并发执行，可设置超时时间和自定义线程池等，提高执行效率。<br>
  *
  * 修改自 https://github.com/shinyke/Time-NLP<br>
  * 做了一些修改如下：<br>
