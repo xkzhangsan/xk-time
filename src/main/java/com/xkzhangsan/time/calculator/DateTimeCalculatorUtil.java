@@ -33,6 +33,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.xkzhangsan.time.TemporalAdjusterExtension;
+import com.xkzhangsan.time.constants.XkTimeConstant;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.enums.ConstellationNameEnum;
 import com.xkzhangsan.time.enums.MonthNameEnum;
@@ -73,8 +74,9 @@ import com.xkzhangsan.time.utils.StringUtil;
  * 24.修改星期值方法 withDayOfWeek*，比如withDayOfWeek(Date date, long newValue)，修改星期为指定值newValue，返回Date<br>
  * 25.中国工作日计算（将放假信息包含在内），包括判断当前日期是否为工作日和下一个工作日等方法， isChineseWorkDay*，nextChineseWorkDay*，比如isChineseWorkDay(Date, String holidayData)，nextChineseWorkDay(Date date, String holidayData)<br>
  * 节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断<br>
- * 26.判断2个时间段是否有重叠（交集）方法， isOverlap*，比如isOverlap(Date startDate1, Date endDate1, Date startDate2, Date endDate2)，重叠返回true。<br>
- * 
+ * 26.判断2个或多个时间段是否有重叠（交集）方法， isOverlap*，比如isOverlap(Date startDate1, Date endDate1, Date startDate2, Date endDate2)，重叠返回true。<br>
+ * 27.计算平均时间方法，averageTime*，比如averageTime(List<Date> dateList)，返回平均时间，比如"15:03:03"。
+ * 28.根据毫秒值计算倒计时方法，countdown*，比如countdown(long millis),返回倒计时，比如"27小时10分钟30秒"。
  *   
 * @author xkzhangsan
 *
@@ -3350,6 +3352,37 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
+	 * 获取指定区间的时间列表，包含起始，间隔指定单位的相同时间
+	 * @param startInclusive 开始时间
+	 * @param endInclusive 结束时间
+	 * @param unit 单位
+	 * @return 时间列表
+	 */
+	public static List<LocalDateTime> getLocalDateTimeList(LocalDateTime startInclusive, LocalDateTime endInclusive, ChronoUnit unit){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endInclusive, "endInclusive");
+		Objects.requireNonNull(unit, "unit");
+		if(startInclusive.isAfter(endInclusive)){
+			throw new DateTimeException("startInclusive must before or equal endInclusive!");
+		}
+		
+		int i = 1;
+		List<LocalDateTime> localDateTimeList = new ArrayList<LocalDateTime>();
+		LocalDateTime localDateTime = startInclusive;
+		localDateTimeList.add(localDateTime);
+		while(localDateTime.isBefore(endInclusive)){
+			localDateTime = (LocalDateTime) plus(startInclusive, unit, i);
+			if(localDateTime.isAfter(endInclusive) || localDateTime.equals(endInclusive)){
+				break;
+			}
+			localDateTimeList.add(localDateTime);
+			i++;
+		}
+		localDateTimeList.add(endInclusive);
+		return localDateTimeList;
+	}	
+	
+	/**
 	 * 获取指定区间的时间列表，包含起始
 	 * @param startInclusive 开始时间
 	 * @param endInclusive 结束时间
@@ -3370,6 +3403,19 @@ public class DateTimeCalculatorUtil {
 	public static List<Date> getDateList(Date startInclusive, Date endInclusive){
 		return getLocalDateTimeList(DateTimeConverterUtil.toLocalDateTime(startInclusive),
 				DateTimeConverterUtil.toLocalDateTime(endInclusive)).stream()
+						.map(localDateTime -> DateTimeConverterUtil.toDate(localDateTime)).collect(Collectors.toList());
+	}
+	
+	/**
+	 * 获取指定区间的时间列表，包含起始，间隔指定单位的相同时间
+	 * @param startInclusive 开始时间
+	 * @param endInclusive 结束时间
+	 * @param unit 单位
+	 * @return 时间列表
+	 */
+	public static List<Date> getDateList(Date startInclusive, Date endInclusive, ChronoUnit unit){
+		return getLocalDateTimeList(DateTimeConverterUtil.toLocalDateTime(startInclusive),
+				DateTimeConverterUtil.toLocalDateTime(endInclusive), unit).stream()
 						.map(localDateTime -> DateTimeConverterUtil.toDate(localDateTime)).collect(Collectors.toList());
 	}
 	
@@ -4018,5 +4064,60 @@ public class DateTimeCalculatorUtil {
 		timePairList.toArray(timePairs);
 		return isOverlap(timePairs, isStrict);
 	}
+	
+	/**
+	 * 计算平均时间
+	 * @param dateList 待计算列表
+	 * @return 返回平均时间，LocalTime.toString()可以返回格式化字符串，比如：15:03:03 
+	 */
+	public static LocalTime averageTime(List<Date> dateList) {
+		if (CollectionUtil.isEmpty(dateList)) {
+			throw new DateTimeException("dateList不能为空");
+		}
+		double average = dateList.stream().mapToDouble(date -> DateTimeConverterUtil.toLocalTime(date).toNanoOfDay())
+				.average().getAsDouble();
+		return LocalTime.ofNanoOfDay(new Double(average).longValue());
+	}
 
+	/**
+	 * 根据毫秒值计算倒计时
+	 * @param millis 相差毫秒值
+	 * @return 返回倒计时，millis <= 0 返回：0小时0分钟0秒
+	 */
+	public static String countdown(long millis){
+		if (millis <= 0) {
+            return "0小时0分钟0秒";
+        }
+		Duration duration = Duration.ofMillis(millis);
+		long hours =  duration.getSeconds() / XkTimeConstant.SECONDS_PER_HOUR;
+        int minutes = (int) ((duration.getSeconds() % XkTimeConstant.SECONDS_PER_HOUR) / XkTimeConstant.SECONDS_PER_MINUTE);
+        int seconds = (int) (duration.getSeconds() % XkTimeConstant.SECONDS_PER_MINUTE);
+        StringBuilder buf = new StringBuilder(24);
+        buf.append(hours).append("小时");
+        buf.append(minutes).append("分钟");
+        buf.append(seconds).append("秒");
+        return buf.toString();
+	}
+	
+	/**
+	 * 根据毫秒值计算倒计时，包含天数
+	 * @param millis 相差毫秒值
+	 * @return 返回倒计时，millis <= 0 返回：0天0小时0分钟0秒
+	 */
+	public static String countdownWithDay(long millis){
+		if (millis <= 0) {
+			return "0天0小时0分钟0秒";
+        }
+		Duration duration = Duration.ofMillis(millis);
+		long days =  duration.getSeconds() / XkTimeConstant.SECONDS_PER_DAY;
+		int hours =  (int) ((duration.getSeconds() % XkTimeConstant.SECONDS_PER_DAY) / XkTimeConstant.SECONDS_PER_HOUR);
+        int minutes = (int) ((duration.getSeconds() % XkTimeConstant.SECONDS_PER_HOUR) / XkTimeConstant.SECONDS_PER_MINUTE);
+        int seconds = (int) (duration.getSeconds() % XkTimeConstant.SECONDS_PER_MINUTE);
+        StringBuilder buf = new StringBuilder(24);
+        buf.append(days).append("天");
+        buf.append(hours).append("小时");
+        buf.append(minutes).append("分钟");
+        buf.append(seconds).append("秒");
+        return buf.toString();
+	}
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -21,7 +21,7 @@ import com.xkzhangsan.time.utils.StringUtil;
  *  包括功能：  <br>
  *（1）以当前时间为基础分析时间自然语言。  <br>
  *（2）以指定时间为基础分析时间自然语言。 <br>
- *（3）增加多种调用方式，比如不抛出异常，限制时间内完成和使用线程池等方式。<br>
+ *（3）增加多种调用方式，比如parseConcurrent 并发执行，可设置超时时间和自定义线程池等，提高执行效率。<br>
  *
  * 修改自 https://github.com/shinyke/Time-NLP<br>
  * 做了一些修改如下：<br>
@@ -55,70 +55,74 @@ public class TimeNLPUtil {
 	}
 	
 	/**
-	 * 时间自然语言分析，不抛出异常
-	 * @param text 待分析文本
+	 * 时间自然语言分析，使用线程池并发执行
+	 * 
+	 * @param text
+	 *            待分析文本
 	 * @return 结果列表
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 * @throws TimeoutException
 	 */
-	public static List<TimeNLP> parseSafe(String text){
-		return parse(text, null, true, 0, false);
+	public static List<TimeNLP> parseConcurrent(String text)
+			throws InterruptedException, ExecutionException, TimeoutException {
+		return parse(text, null, 0, null, null);
 	}
 
 	/**
-	 * 时间自然语言分析，不抛出异常，并且限制时间在指定时间内完成，注意：会创建一个线程异步完成
-	 * @param text 待分析文本
-	 * @param timeout 超时时间 毫秒
+	 * 时间自然语言分析，使用线程池并发执行，默认3秒超时
+	 * 
+	 * @param text
+	 *            待分析文本
 	 * @return 结果列表
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 * @throws TimeoutException
 	 */
-	public static List<TimeNLP> parseSafe(String text, long timeout){
-		return parse(text, null, true, timeout, false);
+	public static List<TimeNLP> parseConcurrentDefaultTime(String text)
+			throws InterruptedException, ExecutionException, TimeoutException {
+		return parse(text, null, Constant.TIME_NLP_TIMEOUT, TimeUnit.MILLISECONDS, null);
 	}
 
 	/**
-	 * 时间自然语言分析  不抛出异常，并且限制时间在3s中内完成，注意：会创建一个线程异步完成
-	 * @param text 待分析文本
+	 * 时间自然语言分析，使用线程池并发执行，设置超时时间和单位
+	 * 
+	 * @param text
+	 *            待分析文本
+	 * @param timeout
+	 *            超时时间
+	 * @param unit
+	 *            超时时间单位
 	 * @return 结果列表
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 * @throws TimeoutException
 	 */
-	public static List<TimeNLP> parseSafeAndTimeLimit(String text){
-		return parse(text, null, true, Constant.TIME_NLP_TIMEOUT, false);
+	public static List<TimeNLP> parseConcurrent(String text, long timeout, TimeUnit unit)
+			throws InterruptedException, ExecutionException, TimeoutException {
+		return parse(text, null, timeout, unit, null);
 	}
-	
+
 	/**
-	 * 时间自然语言分析，注意：会创建一个线程异步完成，使用线程池
-	 * @param text 待分析文本
+	 * 时间自然语言分析，使用线程池并发执行，设置超时时间和单位，使用自定义线程池
+	 * 
+	 * @param text
+	 *            待分析文本
+	 * @param timeout
+	 *            超时时间
+	 * @param unit
+	 *            超时时间单位
+	 * @param executorService
+	 *            自定义线程池
 	 * @return 结果列表
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 * @throws TimeoutException
 	 */
-	public static List<TimeNLP> parseUseThreadPool(String text){
-		return parse(text, null, false, 0, true);
+	public static List<TimeNLP> parseConcurrent(String text, long timeout, TimeUnit unit,
+			ExecutorService executorService) throws InterruptedException, ExecutionException, TimeoutException {
+		return parse(text, null, timeout, unit, executorService);
 	}
-	
-	/**
-	 * 时间自然语言分析，不抛出异常，注意：会创建一个线程异步完成，使用线程池
-	 * @param text 待分析文本
-	 * @return 结果列表
-	 */
-	public static List<TimeNLP> parseSafeUseThreadPool(String text){
-		return parse(text, null, true, 0, true);
-	}
-	
-	/**
-	 * 时间自然语言分析，不抛出异常，并且限制时间在指定时间内完成，注意：会创建一个线程异步完成，使用线程池
-	 * @param text 待分析文本
-	 * @param timeout 超时时间 毫秒
-	 * @return 结果列表
-	 */
-	public static List<TimeNLP> parseSafeUseThreadPool(String text, long timeout){
-		return parse(text, null, true, timeout, true);
-	}
-	
-	/**
-	 * 时间自然语言分析，不抛出异常，并且限制时间在3s内完成，注意：会创建一个线程异步完成，使用线程池
-	 * @param text 待分析文本
-	 * @return 结果列表
-	 */
-	public static List<TimeNLP> parseSafeAndTimeLimitUseThreadPool(String text){
-		return parse(text, null, true, Constant.TIME_NLP_TIMEOUT, true);
-	}
-	
 	
 	/**
 	 * 时间自然语言分析
@@ -167,87 +171,45 @@ public class TimeNLPUtil {
 	}	
 	
 	/**
-	 * 时间自然语言分析
-	 * @param text 待分析文本 
-	 * @param timeBase 指定时间
-	 * @param isSafe true 不抛出异常，false 抛出异常 
-	 * @param timeout 超时时间
-	 * @param useThreadPool 是否使用线程池
+	 * 时间自然语言分析，使用线程池并发执行
+	 * 
+	 * @param text
+	 *            待分析文本
+	 * @param timeBase
+	 *            指定时间
+	 * @param timeout
+	 *            超时时间
+	 * @param unit
+	 *            超时时间单位
+	 * @param executorService
+	 *            自定义线程池
 	 * @return 结果列表
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 * @throws TimeoutException
 	 */
-	public static List<TimeNLP> parse(String text, String timeBase, boolean isSafe, long timeout,
-			boolean useThreadPool) {
+	public static List<TimeNLP> parse(String text, String timeBase, long timeout, TimeUnit unit,
+			ExecutorService executorService) throws InterruptedException, ExecutionException, TimeoutException {
 		List<TimeNLP> result = null;
 		if (StringUtil.isEmpty(text)) {
 			return result;
 		}
 
-		if (!isSafe && timeout <= 0 && !useThreadPool) {
-			result = parse(text, timeBase);
-		}
-
-		if (isSafe && timeout > 0 && useThreadPool) {
-			try {
-				result = GlobalThreadPool.getGlobalThreadPool().submit(new TimeNLPCallable(text, null)).get(timeout,
-						TimeUnit.MILLISECONDS);
-			} catch (Exception e) {
-				e.printStackTrace();
+		if (timeout > 0) {
+			if (executorService != null) {
+				result = executorService.submit(new TimeNLPCallable(text, timeBase)).get(timeout, unit);
+			} else {
+				result = GlobalThreadPool.getGlobalThreadPool().submit(new TimeNLPCallable(text, timeBase)).get(timeout,
+						unit);
 			}
-		} else if (isSafe && timeout > 0) {
-			try {
-				TimeNLPCallable timeNLPCallable = new TimeNLPCallable(text, timeBase);
-				FutureTask<List<TimeNLP>> futureTask = new FutureTask<>(timeNLPCallable);
-				new Thread(futureTask).start();
-				result = futureTask.get(timeout, TimeUnit.MILLISECONDS);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (isSafe && useThreadPool) {
-			try {
-				result = GlobalThreadPool.getGlobalThreadPool().submit(new TimeNLPCallable(text, null)).get();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (timeout > 0 && useThreadPool) {
-			try {
-				result = GlobalThreadPool.getGlobalThreadPool().submit(new TimeNLPCallable(text, null)).get(timeout,
-						TimeUnit.MILLISECONDS);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				e.printStackTrace();
-			} catch (TimeoutException e) {
-				e.printStackTrace();
-			}
-		} else if (isSafe) {
-			try {
-				result = parse(text, timeBase);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (timeout > 0) {
-			TimeNLPCallable timeNLPCallable = new TimeNLPCallable(text, timeBase);
-			FutureTask<List<TimeNLP>> futureTask = new FutureTask<>(timeNLPCallable);
-			new Thread(futureTask).start();
-			try {
-				result = futureTask.get(timeout, TimeUnit.MILLISECONDS);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				e.printStackTrace();
-			} catch (TimeoutException e) {
-				e.printStackTrace();
-			}
-		} else if (useThreadPool) {
-			try {
-				result = GlobalThreadPool.getGlobalThreadPool().submit(new TimeNLPCallable(text, null)).get();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				e.printStackTrace();
+		} else {
+			if (executorService != null) {
+				result = executorService.submit(new TimeNLPCallable(text, timeBase)).get();
+			} else {
+				result = GlobalThreadPool.getGlobalThreadPool().submit(new TimeNLPCallable(text, timeBase)).get();
 			}
 		}
 		return result;
-	}	
+	}
 	
 }

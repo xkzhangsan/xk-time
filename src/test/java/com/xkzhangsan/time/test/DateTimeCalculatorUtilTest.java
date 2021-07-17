@@ -17,6 +17,7 @@ import java.time.LocalTime;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -456,6 +457,13 @@ public class DateTimeCalculatorUtilTest {
 		//获取指定区间的时间列表，包含起始
 		List<Date> dateList2 = DateTimeCalculatorUtil.getDateList(dateList.get(0), dateList.get(dateList.size()-1));
         Assert.assertEquals(31,dateList2.size());
+        
+		//获取指定区间的时间列表，包含起始，指定单位的相同时间
+        Date start = DateTimeCalculatorUtil.getDate(2021, 1, 31);
+        Date end = DateTimeCalculatorUtil.getDate(2021, 7, 31);
+        
+		List<Date> dateList3 = DateTimeCalculatorUtil.getDateList(start, end, ChronoUnit.MONTHS);
+        Assert.assertEquals(7,dateList3.size());
 	}
 	
 	/**
@@ -647,7 +655,7 @@ public class DateTimeCalculatorUtilTest {
 	}
 	
 	/**
-	 * 时间段重叠测试测试
+	 * 时间段重叠测试
 	 */
 	@Test
 	public void isOverlapTest(){
@@ -687,6 +695,33 @@ public class DateTimeCalculatorUtilTest {
 		list.add(timePair2);
 		Assert.assertFalse(DateTimeCalculatorUtil.isOverlap(list, false));
 		Assert.assertTrue(DateTimeCalculatorUtil.isOverlap(list, true));
+	}	
+	
+	/**
+	 * 平均时间计算测试
+	 */
+	@Test
+	public void averageTimeTest(){
+		Date ldt2 = DateTimeFormatterUtil.parseToDate("2019-12-01 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT);
+		Date ldt3 = DateTimeFormatterUtil.parseToDate("2019-12-02 13:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT);
+		List<Date> list = new ArrayList<>();
+		list.add(ldt2);
+		list.add(ldt3);
+		LocalTime lt = DateTimeCalculatorUtil.averageTime(list);
+		
+		Assert.assertEquals("15:03:03", lt.toString());
+	}
+	
+	/**
+	 * 倒计时计算测试
+	 */
+	@Test
+	public void countdownTest(){
+		long millis = 24*60*60*1000 + 3*60*60*1000 + 10*60*1000 + 30*1000;
+		
+		Assert.assertEquals("27小时10分钟30秒", DateTimeCalculatorUtil.countdown(millis));
+		
+		Assert.assertEquals("1天3小时10分钟30秒", DateTimeCalculatorUtil.countdownWithDay(millis));
 	}	
 
 	@Test
