@@ -33,6 +33,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.xkzhangsan.time.TemporalAdjusterExtension;
+import com.xkzhangsan.time.constants.XkTimeConstant;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.enums.ConstellationNameEnum;
 import com.xkzhangsan.time.enums.MonthNameEnum;
@@ -4066,7 +4067,7 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 计算平均时间
 	 * @param dateList 待计算列表
-	 * @return 返回平均时间
+	 * @return 返回平均时间，LocalTime.toString()可以返回格式化字符串，比如：15:03:03 
 	 */
 	public static LocalTime averageTime(List<Date> dateList) {
 		if (CollectionUtil.isEmpty(dateList)) {
@@ -4077,4 +4078,45 @@ public class DateTimeCalculatorUtil {
 		return LocalTime.ofNanoOfDay(new Double(average).longValue());
 	}
 
+	/**
+	 * 根据毫秒值计算倒计时
+	 * @param millis 相差毫秒值
+	 * @return 返回倒计时，millis <= 0 返回：0小时0分钟0秒
+	 */
+	public static String countdown(long millis){
+		if (millis <= 0) {
+            return "0小时0分钟0秒";
+        }
+		Duration duration = Duration.ofMillis(millis);
+		long hours =  duration.getSeconds() / XkTimeConstant.SECONDS_PER_HOUR;
+        int minutes = (int) ((duration.getSeconds() % XkTimeConstant.SECONDS_PER_HOUR) / XkTimeConstant.SECONDS_PER_MINUTE);
+        int seconds = (int) (duration.getSeconds() % XkTimeConstant.SECONDS_PER_MINUTE);
+        StringBuilder buf = new StringBuilder(24);
+        buf.append(hours).append("小时");
+        buf.append(minutes).append("分钟");
+        buf.append(seconds).append("秒");
+        return buf.toString();
+	}
+	
+	/**
+	 * 根据毫秒值计算倒计时，包含天数
+	 * @param millis 相差毫秒值
+	 * @return 返回倒计时，millis <= 0 返回：0天0小时0分钟0秒
+	 */
+	public static String countdownWithDay(long millis){
+		if (millis <= 0) {
+			return "0天0小时0分钟0秒";
+        }
+		Duration duration = Duration.ofMillis(millis);
+		long days =  duration.getSeconds() / XkTimeConstant.SECONDS_PER_DAY;
+		int hours =  (int) ((duration.getSeconds() % XkTimeConstant.SECONDS_PER_DAY) / XkTimeConstant.SECONDS_PER_HOUR);
+        int minutes = (int) ((duration.getSeconds() % XkTimeConstant.SECONDS_PER_HOUR) / XkTimeConstant.SECONDS_PER_MINUTE);
+        int seconds = (int) (duration.getSeconds() % XkTimeConstant.SECONDS_PER_MINUTE);
+        StringBuilder buf = new StringBuilder(24);
+        buf.append(days).append("天");
+        buf.append(hours).append("小时");
+        buf.append(minutes).append("分钟");
+        buf.append(seconds).append("秒");
+        return buf.toString();
+	}
 }

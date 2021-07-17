@@ -708,7 +708,20 @@ public class DateTimeCalculatorUtilTest {
 		list.add(ldt2);
 		list.add(ldt3);
 		LocalTime lt = DateTimeCalculatorUtil.averageTime(list);
-		System.out.println(lt.toString());
+		
+		Assert.assertEquals("15:03:03", lt.toString());
+	}
+	
+	/**
+	 * 倒计时计算测试
+	 */
+	@Test
+	public void countdownTest(){
+		long millis = 24*60*60*1000 + 3*60*60*1000 + 10*60*1000 + 30*1000;
+		
+		Assert.assertEquals("27小时10分钟30秒", DateTimeCalculatorUtil.countdown(millis));
+		
+		Assert.assertEquals("1天3小时10分钟30秒", DateTimeCalculatorUtil.countdownWithDay(millis));
 	}	
 
 	@Test
