@@ -75,7 +75,7 @@ import com.xkzhangsan.time.utils.StringUtil;
  * 25.中国工作日计算（将放假信息包含在内），包括判断当前日期是否为工作日和下一个工作日等方法， isChineseWorkDay*，nextChineseWorkDay*，比如isChineseWorkDay(Date, String holidayData)，nextChineseWorkDay(Date date, String holidayData)<br>
  * 节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断<br>
  * 26.判断2个或多个时间段是否有重叠（交集）方法， isOverlap*，比如isOverlap(Date startDate1, Date endDate1, Date startDate2, Date endDate2)，重叠返回true。<br>
- * 27.计算平均时间方法，averageTime*，比如averageTime(List<Date> dateList)，返回平均时间，比如"15:03:03"。
+ * 27.计算平均时间方法，averageTime*，比如{@code averageTime(List<Date> dateList)}，返回平均时间，比如"15:03:03"。
  * 28.根据毫秒值计算倒计时方法，countdown*，比如countdown(long millis),返回倒计时，比如"27小时10分钟30秒"。
  *   
 * @author xkzhangsan
@@ -4082,7 +4082,7 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 根据毫秒值计算倒计时
 	 * @param millis 相差毫秒值
-	 * @return 返回倒计时，millis <= 0 返回：0小时0分钟0秒
+	 * @return 返回倒计时，millis 小于等于0 返回：0小时0分钟0秒
 	 */
 	public static String countdown(long millis){
 		if (millis <= 0) {
@@ -4102,7 +4102,7 @@ public class DateTimeCalculatorUtil {
 	/**
 	 * 根据毫秒值计算倒计时，包含天数
 	 * @param millis 相差毫秒值
-	 * @return 返回倒计时，millis <= 0 返回：0天0小时0分钟0秒
+	 * @return 返回倒计时，millis 小于等于0 返回：0天0小时0分钟0秒
 	 */
 	public static String countdownWithDay(long millis){
 		if (millis <= 0) {

@@ -39,8 +39,7 @@ public class CommonCache {
 	/**
 	 * 先从缓存中查找，没有编译后放入缓存
 	 *
-	 * @param rule
-	 *            key 键
+	 * @param key 键
 	 * @param supplier
 	 *            提供者
 	 * @return Object
@@ -52,8 +51,7 @@ public class CommonCache {
 	/**
 	 * 删除缓存
 	 *
-	 * @param rule
-	 *             键
+	 * @param  key 键
 	 * @return 移除的值
 	 */
 	public static Object remove(String key) {

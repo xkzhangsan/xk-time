@@ -742,7 +742,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，天转小时
-	 * @param num
+	 * @param num 待转换值
 	 * @return 小时数
 	 */
 	public static long dayToHour(long num){
@@ -751,7 +751,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，天转分钟
-	 * @param num
+	 * @param num 待转换值
 	 * @return 分钟数
 	 */
 	public static long dayToMinute(long num){
@@ -760,7 +760,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，天转秒
-	 * @param num
+	 * @param num 待转换值
 	 * @return 秒数
 	 */
 	public static long dayToSecond(long num){
@@ -769,7 +769,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，天转毫秒
-	 * @param num
+	 * @param num 待转换值
 	 * @return 毫秒数
 	 */
 	public static long dayToMillisecond(long num){
@@ -778,7 +778,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，小时转分钟
-	 * @param num
+	 * @param num 待转换值
 	 * @return 分钟数
 	 */
 	public static long hourToMinute(long num){
@@ -787,7 +787,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，小时转秒
-	 * @param num
+	 * @param num 待转换值
 	 * @return 秒数
 	 */
 	public static long hourToSecond(long num){
@@ -796,7 +796,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，小时转毫秒
-	 * @param num
+	 * @param num 待转换值
 	 * @return 毫秒数
 	 */
 	public static long hourToMillisecond(long num){
@@ -805,7 +805,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，小时转天
-	 * @param num
+	 * @param num 待转换值
 	 * @return 天数
 	 */
 	public static long hourToDay(long num){
@@ -814,7 +814,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 小时转天，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数
-	 * @param num
+	 * @param num 待转换值
 	 * @return 天数，保留1位小数，ROUND_DOWN 舍去多余小数
 	 */
 	public static BigDecimal hourToDayPrecise(long num){
@@ -823,7 +823,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，分钟转秒
-	 * @param num
+	 * @param num 待转换值
 	 * @return 秒数
 	 */
 	public static long minuteToSecond(long num){
@@ -832,7 +832,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，分钟转毫秒
-	 * @param num
+	 * @param num 待转换值
 	 * @return 毫秒数
 	 */
 	public static long minuteToMillisecond(long num){
@@ -841,7 +841,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，分钟转小时
-	 * @param num
+	 * @param num 待转换值
 	 * @return 小时数
 	 */
 	public static long minuteToHour(long num){
@@ -850,7 +850,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 分钟转小时，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数
-	 * @param num
+	 * @param num 待转换值
 	 * @return 小时数，保留1位小数，ROUND_DOWN 舍去多余小数
 	 */
 	public static BigDecimal minuteToHourPrecise(long num){
@@ -859,7 +859,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，分钟转天
-	 * @param num
+	 * @param num 待转换值
 	 * @return 天数
 	 */
 	public static long minuteToDay(long num){
@@ -868,7 +868,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 分钟转天，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数
-	 * @param num
+	 * @param num 待转换值
 	 * @return 天数，保留1位小数，ROUND_DOWN 舍去多余小数
 	 */
 	public static BigDecimal minuteToDayPrecise(long num){
@@ -877,7 +877,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，秒转毫秒
-	 * @param num
+	 * @param num 待转换值
 	 * @return 毫秒数
 	 */
 	public static long secondToMillisecond(long num){
@@ -886,7 +886,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，秒转分钟
-	 * @param num
+	 * @param num 待转换值
 	 * @return 分钟数
 	 */
 	public static long secondToMinute(long num){
@@ -895,7 +895,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 秒转分钟，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数
-	 * @param num
+	 * @param num 待转换值
 	 * @return 分钟数，保留1位小数，ROUND_DOWN 舍去多余小数
 	 */
 	public static BigDecimal secondToMinutePrecise(long num){
@@ -904,7 +904,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，秒转小时
-	 * @param num
+	 * @param num 待转换值
 	 * @return 小时数
 	 */
 	public static long secondToHour(long num){
@@ -913,7 +913,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 秒转小时，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数
-	 * @param num
+	 * @param num 待转换值
 	 * @return 小时数，保留1位小数，ROUND_DOWN 舍去多余小数
 	 */
 	public static BigDecimal secondToHourPrecise(long num){
@@ -922,7 +922,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，秒转天
-	 * @param num
+	 * @param num 待转换值
 	 * @return 天数
 	 */
 	public static long secondToDay(long num){
@@ -931,7 +931,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 秒转天，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数
-	 * @param num
+	 * @param num 待转换值
 	 * @return 天数，保留1位小数，ROUND_DOWN 舍去多余小数
 	 */
 	public static BigDecimal secondToDayPrecise(long num){
@@ -940,7 +940,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，毫秒转秒
-	 * @param num
+	 * @param num 待转换值
 	 * @return 秒数
 	 */
 	public static long millisecondToSecond(long num){
@@ -949,7 +949,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 毫秒转秒，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数
-	 * @param num
+	 * @param num 待转换值
 	 * @return 秒数，保留1位小数，ROUND_DOWN 舍去多余小数
 	 */	
 	public static BigDecimal millisecondToSecondPrecise(long num){
@@ -958,7 +958,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 毫秒转秒，精确计算，保留3位小数，ROUND_DOWN 舍去多余小数
-	 * @param num
+	 * @param num 待转换值
 	 * @return 秒数，保留3位小数，ROUND_DOWN 舍去多余小数
 	 */	
 	public static BigDecimal millisecondToSecondPreciseThree(long num){
@@ -967,7 +967,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，毫秒转分钟
-	 * @param num
+	 * @param num 待转换值
 	 * @return 分钟数
 	 */
 	public static long millisecondToMinute(long num){
@@ -976,7 +976,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 毫秒转分钟，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数
-	 * @param num
+	 * @param num 待转换值
 	 * @return 分钟数，保留1位小数，ROUND_DOWN 舍去多余小数
 	 */	
 	public static BigDecimal millisecondToMinutePrecise(long num){
@@ -985,7 +985,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，毫秒转小时
-	 * @param num
+	 * @param num 待转换值
 	 * @return 小时数
 	 */
 	public static long millisecondToHour(long num){
@@ -994,7 +994,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 毫秒转小时，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数
-	 * @param num
+	 * @param num 待转换值
 	 * @return 小时数，保留1位小数，ROUND_DOWN 舍去多余小数
 	 */	
 	public static BigDecimal millisecondToHourPrecise(long num){
@@ -1003,7 +1003,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 单位转换，毫秒转天
-	 * @param num
+	 * @param num 待转换值
 	 * @return 天数
 	 */
 	public static long millisecondToDay(long num){
@@ -1012,7 +1012,7 @@ public class DateTimeConverterUtil {
 	
 	/**
 	 * 毫秒转天，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数
-	 * @param num
+	 * @param num 待转换值
 	 * @return 天数，保留1位小数，ROUND_DOWN 舍去多余小数
 	 */	
 	public static BigDecimal millisecondToDayPrecise(long num){

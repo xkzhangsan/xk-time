@@ -60,9 +60,9 @@ public class TimeNLPUtil {
 	 * @param text
 	 *            待分析文本
 	 * @return 结果列表
-	 * @throws InterruptedException
-	 * @throws ExecutionException
-	 * @throws TimeoutException
+	 * @throws InterruptedException 被中止异常
+	 * @throws ExecutionException 执行异常
+	 * @throws TimeoutException 超时异常
 	 */
 	public static List<TimeNLP> parseConcurrent(String text)
 			throws InterruptedException, ExecutionException, TimeoutException {
@@ -71,13 +71,13 @@ public class TimeNLPUtil {
 
 	/**
 	 * 时间自然语言分析，使用线程池并发执行，默认3秒超时
-	 * 
+	 *
 	 * @param text
 	 *            待分析文本
 	 * @return 结果列表
-	 * @throws InterruptedException
-	 * @throws ExecutionException
-	 * @throws TimeoutException
+	 * @throws InterruptedException 被中止异常
+	 * @throws ExecutionException 执行异常
+	 * @throws TimeoutException 超时异常
 	 */
 	public static List<TimeNLP> parseConcurrentDefaultTime(String text)
 			throws InterruptedException, ExecutionException, TimeoutException {
@@ -86,7 +86,7 @@ public class TimeNLPUtil {
 
 	/**
 	 * 时间自然语言分析，使用线程池并发执行，设置超时时间和单位
-	 * 
+	 *
 	 * @param text
 	 *            待分析文本
 	 * @param timeout
@@ -94,9 +94,9 @@ public class TimeNLPUtil {
 	 * @param unit
 	 *            超时时间单位
 	 * @return 结果列表
-	 * @throws InterruptedException
-	 * @throws ExecutionException
-	 * @throws TimeoutException
+	 * @throws InterruptedException 被中止异常
+	 * @throws ExecutionException 执行异常
+	 * @throws TimeoutException 超时异常
 	 */
 	public static List<TimeNLP> parseConcurrent(String text, long timeout, TimeUnit unit)
 			throws InterruptedException, ExecutionException, TimeoutException {
@@ -105,7 +105,7 @@ public class TimeNLPUtil {
 
 	/**
 	 * 时间自然语言分析，使用线程池并发执行，设置超时时间和单位，使用自定义线程池
-	 * 
+	 *
 	 * @param text
 	 *            待分析文本
 	 * @param timeout
@@ -115,18 +115,18 @@ public class TimeNLPUtil {
 	 * @param executorService
 	 *            自定义线程池
 	 * @return 结果列表
-	 * @throws InterruptedException
-	 * @throws ExecutionException
-	 * @throws TimeoutException
+	 * @throws InterruptedException 被中止异常
+	 * @throws ExecutionException 执行异常
+	 * @throws TimeoutException 超时异常
 	 */
 	public static List<TimeNLP> parseConcurrent(String text, long timeout, TimeUnit unit,
 			ExecutorService executorService) throws InterruptedException, ExecutionException, TimeoutException {
 		return parse(text, null, timeout, unit, executorService);
 	}
-	
+
 	/**
 	 * 时间自然语言分析
-	 * @param text 待分析文本 
+	 * @param text 待分析文本
 	 * @param timeBase 指定时间
 	 * @return 结果列表
 	 */
@@ -139,13 +139,13 @@ public class TimeNLPUtil {
 		if(StringUtil.isEmpty(text)){
 			return null;
 		}
-		
+
 		//时间名词匹配分析
 		List<String> timeStrs = TextAnalysis.getInstance().analysis(text);
 		if(CollectionUtil.isEmpty(timeStrs)){
 			return null;
 		}
-		
+
 		//解析
 		List<TimeNLP> timeNLPList = new ArrayList<>(timeStrs.size());
         /**时间上下文： 前一个识别出来的时间会是下一个时间的上下文，用于处理：周六3点到5点这样的多个时间的识别，第二个5点应识别到是周六的。*/
@@ -164,15 +164,15 @@ public class TimeNLPUtil {
         	timeNLPList.add(timeNLP);
             timeContext = timeNLP.getTimeContext();
         }
-        
+
         /**过滤无法识别的字段*/
         List<TimeNLP> timeNLPListResult = TimeNLP.filterTimeUnit(timeNLPList);
 		return timeNLPListResult;
-	}	
-	
+	}
+
 	/**
 	 * 时间自然语言分析，使用线程池并发执行
-	 * 
+	 *
 	 * @param text
 	 *            待分析文本
 	 * @param timeBase
@@ -184,9 +184,9 @@ public class TimeNLPUtil {
 	 * @param executorService
 	 *            自定义线程池
 	 * @return 结果列表
-	 * @throws InterruptedException
-	 * @throws ExecutionException
-	 * @throws TimeoutException
+	 * @throws InterruptedException 被中止异常
+	 * @throws ExecutionException 执行异常
+	 * @throws TimeoutException 超时异常
 	 */
 	public static List<TimeNLP> parse(String text, String timeBase, long timeout, TimeUnit unit,
 			ExecutorService executorService) throws InterruptedException, ExecutionException, TimeoutException {
