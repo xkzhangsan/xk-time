@@ -15,6 +15,7 @@ import java.time.Year;
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
@@ -3333,77 +3334,103 @@ public class DateTimeCalculatorUtil {
 	
 	/**
 	 * 获取指定区间的时间列表，包含起始
-	 * @param startInclusive 开始时间
-	 * @param endInclusive 结束时间
+	 * @param start 开始时间
+	 * @param end 结束时间
 	 * @return 时间列表
 	 */
-	public static List<LocalDateTime> getLocalDateTimeList(LocalDateTime startInclusive, LocalDateTime endInclusive){
-		Objects.requireNonNull(startInclusive, "startInclusive");
-		Objects.requireNonNull(endInclusive, "endInclusive");
-		if(startInclusive.isAfter(endInclusive)){
-			throw new DateTimeException("startInclusive must before or equal endInclusive!");
+	public static List<LocalDateTime> getLocalDateTimeList(LocalDateTime start, LocalDateTime end){
+		Objects.requireNonNull(start, "start");
+		Objects.requireNonNull(end, "end");
+		if(start.isAfter(end)){
+			throw new DateTimeException("start must before or equal end!");
 		}
 		List<LocalDateTime> localDateTimeList = new ArrayList<LocalDateTime>();
-		long days = betweenTotalDays(startInclusive, endInclusive)+1;
+		long days = betweenTotalDays(start, end)+1;
 		for(long i=0; i<days; i++){
-			localDateTimeList.add(startInclusive.plusDays(i));
+			localDateTimeList.add(start.plusDays(i));
 		}
 		return localDateTimeList;
 	}
 	
 	/**
 	 * 获取指定区间的时间列表，包含起始，间隔指定单位的相同时间
-	 * @param startInclusive 开始时间
-	 * @param endInclusive 结束时间
+	 * @param start 开始时间
+	 * @param end 结束时间
 	 * @param unit 单位
 	 * @return 时间列表
 	 */
-	public static List<LocalDateTime> getLocalDateTimeList(LocalDateTime startInclusive, LocalDateTime endInclusive, ChronoUnit unit){
-		Objects.requireNonNull(startInclusive, "startInclusive");
-		Objects.requireNonNull(endInclusive, "endInclusive");
+	public static List<LocalDateTime> getLocalDateTimeList(LocalDateTime start, LocalDateTime end, ChronoUnit unit){
+		Objects.requireNonNull(start, "start");
+		Objects.requireNonNull(end, "end");
 		Objects.requireNonNull(unit, "unit");
-		if(startInclusive.isAfter(endInclusive)){
-			throw new DateTimeException("startInclusive must before or equal endInclusive!");
+		if(start.isAfter(end)){
+			throw new DateTimeException("start must before or equal end!");
 		}
 		
 		int i = 1;
 		List<LocalDateTime> localDateTimeList = new ArrayList<LocalDateTime>();
-		LocalDateTime localDateTime = startInclusive;
+		LocalDateTime localDateTime = start;
 		localDateTimeList.add(localDateTime);
-		while(localDateTime.isBefore(endInclusive)){
-			localDateTime = (LocalDateTime) plus(startInclusive, unit, i);
-			if(localDateTime.isAfter(endInclusive) || localDateTime.equals(endInclusive)){
+		while(localDateTime.isBefore(end)){
+			localDateTime = (LocalDateTime) plus(start, unit, i);
+			if(localDateTime.isAfter(end) || localDateTime.equals(end)){
 				break;
 			}
 			localDateTimeList.add(localDateTime);
 			i++;
 		}
-		localDateTimeList.add(endInclusive);
+		localDateTimeList.add(end);
 		return localDateTimeList;
-	}	
+	}
+	
+	/**
+	 * 获取指定区间的格式化时间列表，包含起始
+	 * @param start 开始时间
+	 * @param end 结束时间
+	 * @param dateFormatPattern 格式化模板 @see com.xkzhangsan.time.formatter.DateFormatPattern
+	 * @return 格式化时间列表
+	 */
+	public static List<String> getLocalDateTimeFormatList(LocalDateTime start, LocalDateTime end, String dateFormatPattern){
+		DateTimeFormatter formatter = DateTimeFormatterUtil.getDateTimeFormatter(dateFormatPattern);
+		return getLocalDateTimeList(start, end).stream()
+				.map(localDateTime -> DateTimeFormatterUtil.format(localDateTime, formatter)).collect(Collectors.toList());
+	}
 	
 	/**
 	 * 获取指定区间的时间列表，包含起始
-	 * @param startInclusive 开始时间
-	 * @param endInclusive 结束时间
+	 * @param start 开始时间
+	 * @param end 结束时间
 	 * @return 时间列表
 	 */
-	public static List<LocalDate> getLocalDateList(LocalDate startInclusive, LocalDate endInclusive){
-		return getLocalDateTimeList(DateTimeConverterUtil.toLocalDateTime(startInclusive),
-				DateTimeConverterUtil.toLocalDateTime(endInclusive)).stream()
+	public static List<LocalDate> getLocalDateList(LocalDate start, LocalDate end){
+		return getLocalDateTimeList(DateTimeConverterUtil.toLocalDateTime(start),
+				DateTimeConverterUtil.toLocalDateTime(end)).stream()
 						.map(localDateTime -> localDateTime.toLocalDate()).collect(Collectors.toList());
 	}
 	
 	/**
 	 * 获取指定区间的时间列表，包含起始
-	 * @param startInclusive 开始时间
-	 * @param endInclusive 结束时间
+	 * @param start 开始时间
+	 * @param end 结束时间
 	 * @return 时间列表
 	 */
-	public static List<Date> getDateList(Date startInclusive, Date endInclusive){
-		return getLocalDateTimeList(DateTimeConverterUtil.toLocalDateTime(startInclusive),
-				DateTimeConverterUtil.toLocalDateTime(endInclusive)).stream()
+	public static List<Date> getDateList(Date start, Date end){
+		return getLocalDateTimeList(DateTimeConverterUtil.toLocalDateTime(start),
+				DateTimeConverterUtil.toLocalDateTime(end)).stream()
 						.map(localDateTime -> DateTimeConverterUtil.toDate(localDateTime)).collect(Collectors.toList());
+	}
+	
+	/**
+	 * 获取指定区间的格式化时间列表，包含起始
+	 * @param start 开始时间
+	 * @param end 结束时间
+	 * @param dateFormatPattern 格式化模板 @see com.xkzhangsan.time.formatter.DateFormatPattern
+	 * @return  格式化时间列表
+	 */
+	public static List<String> getDateFormatList(Date start, Date end, String dateFormatPattern){
+		DateTimeFormatter formatter = DateTimeFormatterUtil.getDateTimeFormatter(dateFormatPattern);
+		return getDateList(start, end).stream()
+				.map(date -> DateTimeFormatterUtil.format(date, formatter)).collect(Collectors.toList());
 	}
 	
 	/**
@@ -4066,6 +4093,44 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
+	 * 计算2个时间段是否有重叠（交集）时间
+	 * @param startDate1 时间段1开始时间戳
+	 * @param endDate1 时间段1结束时间戳
+	 * @param startDate2 时间段2开始时间戳
+	 * @param endDate2 时间段2结束时间戳
+	 * @return 返回是重叠时间，单位毫秒
+	 */
+	public static long overlapTime(long startDate1, long endDate1, long startDate2, long endDate2){
+		//不重叠，返回0
+		if(! isOverlap(startDate1, endDate1, startDate2, endDate2, false)){
+			return 0;
+		}
+		long overlapTime = 0;
+		if(startDate1 <= startDate2 && endDate2 <= endDate1){//1包含2，或相等
+			overlapTime = endDate2 - startDate2;
+		}else if(startDate2 <= startDate1 && endDate1 <= endDate2){//2包含1，或相等
+			overlapTime = endDate1 - startDate1;
+		}else if(startDate1 < startDate2){//1和2的开始重叠
+			overlapTime = endDate1 - startDate2;
+		}else if(endDate1 > endDate2){//1和2的结束重叠
+			overlapTime = endDate2 - startDate1;
+		}
+		return overlapTime;
+	}
+	
+	/**
+	 * 计算2个时间段是否有重叠（交集）时间
+	 * @param startDate1 时间段1开始时间戳
+	 * @param endDate1 时间段1结束时间戳
+	 * @param startDate2 时间段2开始时间戳
+	 * @param endDate2 时间段2结束时间戳
+	 * @return 返回是重叠时间，单位毫秒
+	 */
+	public static long overlapTime(Date startDate1, Date endDate1, Date startDate2, Date endDate2){
+		return overlapTime(startDate1.getTime(), endDate1.getTime(), startDate2.getTime(), endDate2.getTime());
+	}
+	
+	/**
 	 * 计算平均时间
 	 * @param dateList 待计算列表
 	 * @return 返回平均时间，LocalTime.toString()可以返回格式化字符串，比如：15:03:03 
@@ -4100,6 +4165,59 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
+	 * 根据当前时间和传入时间计算倒计时
+	 * @param date 时间参数
+	 * @param unitNames 单位，英文逗号分隔，比如"小时,分钟,秒"， "时,分,秒"，"时,分"
+	 * @return 返回倒计时，millis 小于等于0 返回：unitNames指定的格式，默认 0小时0分钟0秒
+	 */
+	public static String countdown(Date date, String unitNames){
+		Objects.requireNonNull(date, "date");
+		Date now = new Date();
+		return countdown(now.getTime()-date.getTime(), unitNames);
+	}
+	
+	/**
+	 * 根据起始时间计算倒计时
+	 * @param start 开始时间
+	 * @param end 结束时间
+	 * @param unitNames 单位，英文逗号分隔，比如"小时,分钟,秒"， "时,分,秒"，"时,分"
+	 * @return 返回倒计时，millis 小于等于0 返回：unitNames指定的格式，默认 0小时0分钟0秒
+	 */
+	public static String countdown(Date start, Date end, String unitNames){
+		Objects.requireNonNull(start, "start");
+		Objects.requireNonNull(end, "end");
+		return countdown(end.getTime()-start.getTime(), unitNames);
+	}
+	
+	/**
+	 * 根据毫秒值计算倒计时
+	 * @param millis 相差毫秒值
+	 * @param unitNames 单位，英文逗号分隔，比如"小时,分钟,秒"， "时,分,秒"，"时,分"
+	 * @return 返回倒计时，millis 小于等于0 返回：unitNames指定的格式，默认 0小时0分钟0秒
+	 */
+	public static String countdown(long millis, String unitNames){
+		StringBuilder buf = new StringBuilder(24);
+		long[] valueArr = new long[]{0, 0, 0};
+		
+		if(StringUtil.isEmpty(unitNames)){
+			unitNames = "小时,分钟,秒";
+		}
+		
+		if (millis <= 0) {
+			return getCountDownResult(unitNames, buf, valueArr);
+        }
+		
+		Duration duration = Duration.ofMillis(millis);
+		long hours =  duration.getSeconds() / XkTimeConstant.SECONDS_PER_HOUR;
+		valueArr[0] = hours;
+		int minutes = (int) ((duration.getSeconds() % XkTimeConstant.SECONDS_PER_HOUR) / XkTimeConstant.SECONDS_PER_MINUTE);
+		valueArr[1] = minutes;
+		int seconds = (int) (duration.getSeconds() % XkTimeConstant.SECONDS_PER_MINUTE);
+		valueArr[2] = seconds;
+        return getCountDownResult(unitNames, buf, valueArr);
+	}
+	
+	/**
 	 * 根据毫秒值计算倒计时，包含天数
 	 * @param millis 相差毫秒值
 	 * @return 返回倒计时，millis 小于等于0 返回：0天0小时0分钟0秒
@@ -4119,5 +4237,76 @@ public class DateTimeCalculatorUtil {
         buf.append(minutes).append("分钟");
         buf.append(seconds).append("秒");
         return buf.toString();
+	}
+	
+	/**
+	 * 根据毫秒值计算倒计时，包含天数
+	 * @param millis 相差毫秒值
+	 * @param unitNames 单位，英文逗号分隔，比如"天,小时,分钟,秒"， "天,时,分,秒"，"天,时,分"
+	 * @return 返回倒计时，millis 小于等于0 返回：unitNames指定的格式，默认0天0小时0分钟0秒 
+	 */
+	public static String countdownWithDay(long millis, String unitNames){
+		StringBuilder buf = new StringBuilder(24);
+		long[] valueArr = new long[]{0, 0, 0, 0};
+		
+		if(StringUtil.isEmpty(unitNames)){
+			unitNames = "天,小时,分钟,秒";
+		}
+		
+		if (millis <= 0) {
+			return getCountDownResult(unitNames, buf, valueArr);
+        }
+		Duration duration = Duration.ofMillis(millis);
+		long days =  duration.getSeconds() / XkTimeConstant.SECONDS_PER_DAY;
+		valueArr[0] = days;
+		int hours =  (int) ((duration.getSeconds() % XkTimeConstant.SECONDS_PER_DAY) / XkTimeConstant.SECONDS_PER_HOUR);
+		valueArr[1] = hours;
+		int minutes = (int) ((duration.getSeconds() % XkTimeConstant.SECONDS_PER_HOUR) / XkTimeConstant.SECONDS_PER_MINUTE);
+		valueArr[2] = minutes;
+		int seconds = (int) (duration.getSeconds() % XkTimeConstant.SECONDS_PER_MINUTE);
+		valueArr[3] = seconds;
+		return getCountDownResult(unitNames, buf, valueArr);
+	}
+	
+	/**
+	 * 根据当前时间和传入时间计算倒计时
+	 * @param date 时间参数
+	 * @param unitNames 单位，英文逗号分隔，比如"天,小时,分钟,秒"， "天,时,分,秒"，"天,时,分"
+	 * @return 返回倒计时，millis 小于等于0 返回：unitNames指定的格式，默认0天0小时0分钟0秒 
+	 */
+	public static String countdownWithDay(Date date, String unitNames){
+		Objects.requireNonNull(date, "date");
+		Date now = new Date();
+		return countdownWithDay(now.getTime()-date.getTime(), unitNames);
+	}
+	
+	/**
+	 * 根据起始时间计算倒计时
+	 * @param start 开始时间
+	 * @param end 结束时间
+	 * @param unitNames 单位，英文逗号分隔，比如"天,小时,分钟,秒"， "天,时,分,秒"，"天,时,分"
+	 * @return 返回倒计时，millis 小于等于0 返回：unitNames指定的格式，默认0天0小时0分钟0秒 
+	 */
+	public static String countdownWithDay(Date start, Date end, String unitNames){
+		Objects.requireNonNull(start, "start");
+		Objects.requireNonNull(end, "end");
+		return countdownWithDay(end.getTime()-start.getTime(), unitNames);
+	}
+	
+	//====================private======================
+	
+	/**
+	 * 获取倒计时格式化结果
+	 * @param unitNames unitNames 单位，英文逗号分隔，比如"天,小时,分钟,秒"， "天,时,分,秒"，"天,时,分","时,分,秒"
+	 * @param buf StringBuilder
+	 * @param valueArr 时间值数组
+	 * @return 返回倒计时格式化结果
+	 */
+	private static String getCountDownResult(String unitNames, StringBuilder buf, long[] valueArr) {
+		String[] unitNameArr = unitNames.split(",");
+		for(int i=0; i<unitNameArr.length; i++){
+			buf.append(valueArr[i]+unitNameArr[i]);
+		}
+		return buf.toString();
 	}
 }
