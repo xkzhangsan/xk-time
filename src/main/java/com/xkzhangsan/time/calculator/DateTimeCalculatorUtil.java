@@ -4093,7 +4093,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 计算2个时间段是否有重叠（交集）时间
+	 * 计算2个时间段的重叠（交集）时间
 	 * @param startDate1 时间段1开始时间戳
 	 * @param endDate1 时间段1结束时间戳
 	 * @param startDate2 时间段2开始时间戳
@@ -4119,7 +4119,7 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 计算2个时间段是否有重叠（交集）时间
+	 * 计算2个时间段的重叠（交集）时间
 	 * @param startDate1 时间段1开始时间戳
 	 * @param endDate1 时间段1结束时间戳
 	 * @param startDate2 时间段2开始时间戳
@@ -4165,15 +4165,15 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 根据当前时间和传入时间计算倒计时
-	 * @param date 时间参数
+	 * 根据传入时间和当前时间计算倒计时
+	 * @param start 开始时间
 	 * @param unitNames 单位，英文逗号分隔，比如"小时,分钟,秒"， "时,分,秒"，"时,分"
 	 * @return 返回倒计时，millis 小于等于0 返回：unitNames指定的格式，默认 0小时0分钟0秒
 	 */
-	public static String countdown(Date date, String unitNames){
-		Objects.requireNonNull(date, "date");
-		Date now = new Date();
-		return countdown(now.getTime()-date.getTime(), unitNames);
+	public static String countdown(Date start, String unitNames){
+		Objects.requireNonNull(start, "start");
+		Date end = new Date();
+		return countdown(end.getTime()-start.getTime(), unitNames);
 	}
 	
 	/**
@@ -4269,15 +4269,15 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
-	 * 根据当前时间和传入时间计算倒计时
-	 * @param date 时间参数
+	 * 根据传入时间和当前时间计算倒计时
+	 * @param start 时间参数
 	 * @param unitNames 单位，英文逗号分隔，比如"天,小时,分钟,秒"， "天,时,分,秒"，"天,时,分"
 	 * @return 返回倒计时，millis 小于等于0 返回：unitNames指定的格式，默认0天0小时0分钟0秒 
 	 */
-	public static String countdownWithDay(Date date, String unitNames){
-		Objects.requireNonNull(date, "date");
-		Date now = new Date();
-		return countdownWithDay(now.getTime()-date.getTime(), unitNames);
+	public static String countdownWithDay(Date start, String unitNames){
+		Objects.requireNonNull(start, "start");
+		Date end = new Date();
+		return countdownWithDay(end.getTime()-start.getTime(), unitNames);
 	}
 	
 	/**
