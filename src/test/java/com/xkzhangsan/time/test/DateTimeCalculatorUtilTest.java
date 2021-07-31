@@ -4,6 +4,7 @@ import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
 import com.xkzhangsan.time.calculator.TimePair;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.enums.ZoneIdEnum;
+import com.xkzhangsan.time.formatter.DateFormatPattern;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 import com.xkzhangsan.time.utils.CollectionUtil;
 import org.junit.Assert;
@@ -464,6 +465,12 @@ public class DateTimeCalculatorUtilTest {
         
 		List<Date> dateList3 = DateTimeCalculatorUtil.getDateList(start, end, ChronoUnit.MONTHS);
         Assert.assertEquals(7,dateList3.size());
+        
+        start = DateTimeCalculatorUtil.getDate(2021, 1, 1);
+        end = DateTimeCalculatorUtil.getDate(2021, 1, 31);
+        List<String> dateFormatList = DateTimeCalculatorUtil.getDateFormatList(start, end, DateFormatPattern.YYYY_MM_DD_CN);
+        Assert.assertEquals(31,dateFormatList.size());
+        Assert.assertEquals("2021年01月01日",dateFormatList.get(0));
 	}
 	
 	/**
@@ -695,7 +702,60 @@ public class DateTimeCalculatorUtilTest {
 		list.add(timePair2);
 		Assert.assertFalse(DateTimeCalculatorUtil.isOverlap(list, false));
 		Assert.assertTrue(DateTimeCalculatorUtil.isOverlap(list, true));
-	}	
+	}
+	
+	/**
+	 * 时间段重叠测试
+	 */
+	@Test
+	public void overlapTimeTest(){
+		//不重叠
+		Date startDate1 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-10");
+		Date endDate1 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-20");
+		Date startDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-20");
+		Date endDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-06-01");
+		Assert.assertEquals(DateTimeCalculatorUtil.overlapTime(startDate1, endDate1, startDate2, endDate2), 0);
+
+		//1和2完全相等 2021-05-10~2021-05-20 / 2021-05-10~2021-05-20 
+		Assert.assertEquals(DateTimeCalculatorUtil.overlapTime(startDate1, endDate1, startDate1, endDate1),
+				DateTimeCalculatorUtil.betweenTotalMillis(startDate1, endDate1));
+		
+		//1包含2 2021-05-10~2021-05-20 / 2021-05-10~2021-05-15
+		startDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-10");
+		endDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-15");
+		Assert.assertEquals(DateTimeCalculatorUtil.overlapTime(startDate1, endDate1, startDate2, endDate2), 
+				DateTimeCalculatorUtil.betweenTotalMillis(startDate2, endDate2));
+		
+		//2包含1 2021-05-10~2021-05-20 / 2021-05-05~2021-05-20
+		startDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-05");
+		endDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-20");
+		Assert.assertEquals(DateTimeCalculatorUtil.overlapTime(startDate1, endDate1, startDate2, endDate2), 
+				DateTimeCalculatorUtil.betweenTotalMillis(startDate1, endDate1));
+		
+		//1和2的开始重叠 2021-05-10~2021-05-20 / 2021-05-15~2021-05-25
+		startDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-15");
+		endDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-25");
+		Assert.assertEquals(DateTimeCalculatorUtil.overlapTime(startDate1, endDate1, startDate2, endDate2), 
+				DateTimeCalculatorUtil.betweenTotalMillis(startDate2, endDate1));
+		
+		//1和2的结束重叠 2021-05-10~2021-05-20 / 2021-05-05~2021-05-15
+		startDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-05");
+		endDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-15");
+		Assert.assertEquals(DateTimeCalculatorUtil.overlapTime(startDate1, endDate1, startDate2, endDate2), 
+				DateTimeCalculatorUtil.betweenTotalMillis(startDate1, endDate2));
+		
+		//2和1的开始重叠 2021-05-10~2021-05-20 / 2021-05-05~2021-05-15
+		startDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-05");
+		endDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-15");
+		Assert.assertEquals(DateTimeCalculatorUtil.overlapTime(startDate1, endDate1, startDate2, endDate2), 
+				DateTimeCalculatorUtil.betweenTotalMillis(startDate1, endDate2));
+		
+		//2和1的结束重叠 2021-05-10~2021-05-20 / 2021-05-15~2021-05-25
+		startDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-15");
+		endDate2 = DateTimeFormatterUtil.parseDateStrToDate("2021-05-25");
+		Assert.assertEquals(DateTimeCalculatorUtil.overlapTime(startDate1, endDate1, startDate2, endDate2), 
+				DateTimeCalculatorUtil.betweenTotalMillis(startDate2, endDate1));
+	}
 	
 	/**
 	 * 平均时间计算测试
@@ -720,8 +780,26 @@ public class DateTimeCalculatorUtilTest {
 		long millis = 24*60*60*1000 + 3*60*60*1000 + 10*60*1000 + 30*1000;
 		
 		Assert.assertEquals("27小时10分钟30秒", DateTimeCalculatorUtil.countdown(millis));
+		//指定格式 时,分,秒
+		Assert.assertEquals("27时10分30秒", DateTimeCalculatorUtil.countdown(millis, "时,分,秒"));
+		//指定格式 时,分
+		Assert.assertEquals("27时10分", DateTimeCalculatorUtil.countdown(millis, "时,分"));
 		
+		Date startDate1 = DateTimeFormatterUtil.parseDateTimeStrToDate("2021-05-19 12:00:00");
+		Date endDate1 = DateTimeFormatterUtil.parseDateTimeStrToDate("2021-05-20 15:30:30");
+		//指定格式 时,分,秒
+		Assert.assertEquals("27时30分30秒", DateTimeCalculatorUtil.countdown(startDate1, endDate1, "时,分,秒"));
+		//======================包含天===========================
 		Assert.assertEquals("1天3小时10分钟30秒", DateTimeCalculatorUtil.countdownWithDay(millis));
+		
+		//指定格式 天,时,分,秒
+		Assert.assertEquals("1天3时10分30秒", DateTimeCalculatorUtil.countdownWithDay(millis, "天,时,分,秒"));
+		//指定格式 时,分
+		Assert.assertEquals("1天3时10分", DateTimeCalculatorUtil.countdownWithDay(millis, "天,时,分"));
+		
+		//指定格式 天,时,分,秒
+		Assert.assertEquals("1天3时30分30秒", DateTimeCalculatorUtil.countdownWithDay(startDate1, endDate1, "天,时,分,秒"));
+		
 	}	
 
 	@Test

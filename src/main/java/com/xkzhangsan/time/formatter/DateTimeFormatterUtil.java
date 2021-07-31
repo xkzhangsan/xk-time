@@ -590,7 +590,14 @@ public class DateTimeFormatterUtil {
 	 */
 	public static final DateTimeFormatter EEE_MMM_DD_HH_MM_SS_ZZZ_YYYY_FMT = DateTimeFormatter.ofPattern(DateFormatPattern.EEE_MMM_DD_HH_MM_SS_ZZZ_YYYY, Locale.ENGLISH);
 	
-	
+    /**
+     * 根据格式化模板返回DateTimeFormatter，默认系统时区
+     * @param dateFormatPattern 格式化模板
+     * @return DateTimeFormatter
+     */
+    public static DateTimeFormatter getDateTimeFormatter(String dateFormatPattern){
+    	return DateTimeFormatter.ofPattern(dateFormatPattern).withZone(ZONE);
+    }
 	
 	// ==================================format==================================
 	
