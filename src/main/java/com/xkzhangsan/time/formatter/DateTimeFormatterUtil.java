@@ -1315,7 +1315,9 @@ public class DateTimeFormatterUtil {
 		text = text.trim();
 		int len = text.length();
 		if (!text.contains("[")) {
-			if (len == 24) {
+			if(text.contains("Z")){
+				return parseToLocalDateTime(text, ISO_DATE_TIME_FMT);
+			}else if (len == 24) {
 				// yyyy-MM-dd'T'HH:mm:ssZ
 				return parseToLocalDateTime(text, YYYY_MM_DD_T_HH_MM_SS_Z_FMT);
 			} else if (len == 28) {

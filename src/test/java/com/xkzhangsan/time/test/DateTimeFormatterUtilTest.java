@@ -427,6 +427,8 @@ public class DateTimeFormatterUtilTest {
 		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272+08:00").toString());
 		
 		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272+08:00").toString());
+		
+		Assert.assertEquals(date.toString(), DateTimeFormatterUtil.parseIsoToDate("2020-05-23T17:06:30.272Z").toString());
 	}
 	
 	/**
