@@ -26,46 +26,46 @@
 xk-time is a tool for time conversion, time calculation, time formatting, time parsing, calendar, time cron expression and time NLP, etc. It uses Java8, thread-safe, easy to use, and more than 70 common date formatting templates , Support Java8 time class and Date, lightweight, no third-party dependencies.  
   
   
-# 安装项目  
+# 1 安装项目  
 
-### （1）Maven  
+### 1.1 Maven  
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>3.2.0</version>    
+      <version>3.2.1</version>    
     </dependency>    
       
       Mini版本不包含 time nlp 功能，更简洁。  
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>3.2.0.Mini</version>    
+      <version>3.2.1.Mini</version>    
     </dependency>    
             
         
-### （2）Gradle        
-    compile group: 'com.github.xkzhangsan', name: 'xk-time', version: '3.2.0'  
+### 1.2 Gradle        
+    compile group: 'com.github.xkzhangsan', name: 'xk-time', version: '3.2.1'  
       
 ### 注意：Android谨慎使用，Android端因为需要兼容低版本而不支持Java8，建议继续使用其他工具，如果有需要本项目相关的功能，可以参考源码实现，或留言给我。感谢支持！  
     
-# 为什么要开发这个工具？ 
+# 2 为什么要开发这个工具？ 
  
-### （1）Java8以前的Date API设计不太好，使用不方便，往往会有线程安全问题。  
+### 2.1 Java8以前的Date API设计不太好，使用不方便，往往会有线程安全问题。  
  
 xk-time工具包，使用java8 api，其中Instant、LocalDate、LocalDateTime、LocalTime、ZonedDateTime等都是线程安全的类，而且增加了更丰富的方法，在此基础上开发相关工具类，线程安全，让使用更方便。  
 
-### （2）常见的DateUtil，往往将时间转换，计算，格式化，解析等功能都放在同一个类中，导致类功能复杂，方法太多，查找不方便。  
+### 2.2 常见的DateUtil，往往将时间转换，计算，格式化，解析等功能都放在同一个类中，导致类功能复杂，方法太多，查找不方便。  
  
 xk-time工具包，将上面功能按照时间转换，时间计算，时间格式化解析分成3个工具类：DateTimeConverterUtil，DateTimeCalculatorUtil，DateTimeFormatterUtil，每个类只做一个种功能，方便使用。  
  
-### （3）为了将与时间紧密相关的节假日、农历、二十四节气、十二星座、十二生肖、十二时辰和日历等功能集中起来开发成工具，方便使用。  
+### 2.3 为了将与时间紧密相关的节假日、农历、二十四节气、十二星座、十二生肖、十二时辰和日历等功能集中起来开发成工具，方便使用。  
   
   
   
   
 
-# 主要功能说明
-### 1.日期转换工具类   DateTimeConverterUtil 
+# 3 主要功能说明
+### 3.1 日期转换工具类   DateTimeConverterUtil 
 包含：  
 （1）Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime、YearMonth、Timestamp、时间戳和TemporalAccessor等互相转换。    
   
@@ -77,7 +77,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
   
 详细使用可以查看相关测试代码： DateTimeConverterUtilTest.  
 
-### 2.日期计算工具类  DateTimeCalculatorUtil 
+### 3.2 日期计算工具类  DateTimeCalculatorUtil 
 包括：  
 （1）获取时间属性方法（支持年月日时分秒毫秒，星期，时间戳等），get* 比如getYear(Date date) 获取年部分，getMonthCnLong(Date date)获取月份中文，getDayOfWeekCn(Date date)，获取星期中文。   
   
@@ -136,12 +136,16 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
     
 （27）计算平均时间方法，averageTime*，比如averageTime(List<Date> dateList)，返回平均时间，比如"15:03:03"。  
   
-（28）根据毫秒值计算倒计时方法，countdown*，比如countdown(long millis),返回倒计时，比如"27小时10分钟30秒"。      
-      
+（28）根据毫秒值计算倒计时方法，支持支持传入时间对象和指定格式，countdown*，比如countdown(long millis),返回倒计时，比如"27小时10分钟30秒"。  
+  
+ （29）获取指定区间的格式化时间列表 方法，比如getDateFormatList(Date start, Date end, String dateFormatPattern) 支持传入格式化模板。    
+   
+ （30）计算2个时间段的重叠（交集）时间方法，比如overlapTime(Date startDate1, Date endDate1, Date startDate2, Date endDate2)，返回毫秒值。    
     
+      
 详细使用可以查看相关测试代码： DateTimeCalculatorUtilTest.  
 
-### 3.日期格式化和解析工具类  DateTimeFormatterUtil 
+### 3.3 日期格式化和解析工具类  DateTimeFormatterUtil 
 包含常用日期格式如：  
  yyyy-MM-dd  
  HH:mm:ss  
@@ -191,14 +195,14 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
   
 详细使用可以查看相关测试代码： DateTimeFormatterUtilTest.  
 
-### 4.日历工具类  CalendarUtil 
+### 3.4 日历工具类  CalendarUtil 
 包括：  
 （1）生成指定时间的日历（包含年、月和日层级关系的日历）方法，generateCalendar* 比如generateCalendar(int year, int month) 生成指定年月的日历。   
 （2）生成指定时间的日历（包含年、月和日层级关系的日历），包含农历和所有节假日信息方法，generateCalendarWithHoliday*， 比generateCalendarWithHoliday(int year, int month, Map<String, String> localHolidayMap,Map<String, String> chineseHolidayMap, Map<String, Integer> dateTypeMap)生成指定年月的日历，包含农历和所有节假日信息，可以自定义节假日和工作日等。   
 
 详细使用可以查看相关测试代码： CalendarUtilTest.  
 
-### 5.农历日期类 LunarDate    
+### 3.5 农历日期类 LunarDate    
 包含：  
 （1）农历日期年月日计算。  
 （2）农历岁次，生肖属相计算。  
@@ -208,7 +212,7 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
    
 详细使用可以查看相关测试代码： LunarDateTest.  
  
-### 6.节假日计算工具类 HolidayUtil      
+### 3.6 节假日计算工具类 HolidayUtil      
 包含：  
 （1）公历节假日计算， getLocalHoliday* 比如getLocalHoliday(Date date) 计算date的公历节日，getLocalHoliday(Date date, Map<String, String> localHolidayMap) 可以传入自定义公历节日数据。   
 （2）农历节假日计算， getChineseHoliday* 比如getChineseHoliday(Date date) 计算date的农历节日，getChineseHoliday(Date date, Map<String, String> chineseHolidayMap) 可以传入自定义农历节日数据。  
@@ -218,7 +222,7 @@ parseToDate(String text, DateTimeFormatter formatter) 根据 formatter解析为 
 
 详细使用可以查看相关测试代码。      
     
-### 7.Cron表达式工具类 CronExpressionUtil    
+### 3.7 Cron表达式工具类 CronExpressionUtil    
   
 cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小时（0-23） 日期（1-31） 月份（1-12的整数或者 JAN-DEC） 星期（1-7的整数或者 SUN-SAT （1=SUN）） 年份（可选，1970-2099）  
 所有字段均可使用特殊字符：, - * / 分别是枚举，范围，任意，间隔  
@@ -243,7 +247,7 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
 详细使用可以查看相关测试代码： CronExpressionUtilTest.              
   
   
-### 8.计算耗时工具 CostUtil
+### 3.8 计算耗时工具 CostUtil
   
   计算耗时工具，支持秒，毫秒，纳秒
   
@@ -254,7 +258,7 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
   
 详细使用可以查看相关测试代码：CostUitlTest.     
   
-### 9.时间自然语言分析工具类（NLP） TimeNLPUtil  
+### 3.9 时间自然语言分析工具类（NLP） TimeNLPUtil  
   
   包括功能：   
 （1）以当前时间为基础分析时间自然语言。  
@@ -279,7 +283,7 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
   
   详细使用可以查看相关测试代码： TimeNLPUtilTest.     
     
-### 10.时间单位常量类 XkTimeConstant  
+### 3.10 时间单位常量类 XkTimeConstant  
   
 时间单位常量 ，方便计算单位换算，比如设置缓存时间 3天：  3\*MILLISECONDS_PER_DAY （每天毫秒数 24\*60\*60\*1000）     
 包含：     
@@ -289,22 +293,22 @@ cron表达式从左到右（用空格隔开）：秒（0-59） 分（0-59） 小
   
   详细使用可以查看相关测试代码： XkTimeConstantTest.    
     
-# 更多详细文档
+# 4 更多详细文档
 - [JavaDoc 文档](https://apidoc.gitee.com/xkzhangsan/xk-time) 
 
 
-# 参与项目  
-### 1.提bug和建议  
+# 5 参与项目  
+### 5.1 提bug和建议  
 - [Issues](https://github.com/xkzhangsan/xk-time/issues)    
   
-### 2.贡献代码  
+### 5.2 贡献代码  
 （1）fork项目。  
 （2）在dev分支修改。  
 （3）提交pull request。 
   
   
   
-# 开发计划  
-### 1.时间自然语言分析工具类（NLP） TimeNLPUtil 支持节假日识别  
+# 6 开发计划  
+### 6.1 时间自然语言分析工具类（NLP） TimeNLPUtil 支持节假日识别  
 （1）常见节假日，比如元旦、春节、清明节、劳动节、端午节、中秋节等节假日支持。  
 （2）24节气支持。
