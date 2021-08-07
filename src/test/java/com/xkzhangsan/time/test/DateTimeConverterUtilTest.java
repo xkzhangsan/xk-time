@@ -5,14 +5,18 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.OffsetTime;
 import java.time.YearMonth;
 import java.time.ZonedDateTime;
+import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.xkzhangsan.time.LunarDate;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
 import com.xkzhangsan.time.formatter.DateTimeFormatterUtil;
 
@@ -332,4 +336,64 @@ public class DateTimeConverterUtilTest {
 		//精确计算，带1位小数
 		Assert.assertEquals(0.5, DateTimeConverterUtil.millisecondToDayPrecise(12*60*60*1000).doubleValue(), 0);
 	}
+	
+	@Test
+	public void temporalAccessorToZonedDateTimeTest(){
+		TemporalAccessor temporalInstant = Instant.now();
+		DateTimeConverterUtil.toZonedDateTime(temporalInstant);
+		
+		TemporalAccessor temporalLocalDate = LocalDate.now();
+		DateTimeConverterUtil.toZonedDateTime(temporalLocalDate);
+		
+		TemporalAccessor temporalLocalDateTime = LocalDateTime.now();
+		DateTimeConverterUtil.toZonedDateTime(temporalLocalDateTime);
+		
+		TemporalAccessor temporalLocalTime = LocalTime.now();
+		DateTimeConverterUtil.toZonedDateTime(temporalLocalTime);
+		
+		TemporalAccessor temporalZonedDateTime = ZonedDateTime.now();
+		DateTimeConverterUtil.toZonedDateTime(temporalZonedDateTime);
+		
+		TemporalAccessor temporalOffsetDateTime = OffsetDateTime.now();
+		DateTimeConverterUtil.toZonedDateTime(temporalOffsetDateTime);
+		
+		TemporalAccessor temporalOffsetTime = OffsetTime.now();
+		DateTimeConverterUtil.toZonedDateTime(temporalOffsetTime);
+		
+		TemporalAccessor temporalLunarDate = LunarDate.now();
+		DateTimeConverterUtil.toZonedDateTime(temporalLunarDate);
+		
+	}
+	
+	@Test
+	public void temporalAccessorConverterTest(){
+		TemporalAccessor temporal = ZonedDateTime.now();
+
+		Date date = DateTimeConverterUtil.toDate(temporal);
+		Assert.assertNotNull(date);
+		
+		LocalDateTime localDateTime = DateTimeConverterUtil.toLocalDateTime(temporal);
+		Assert.assertNotNull(localDateTime);
+
+		LocalDate localDate = DateTimeConverterUtil.toLocalDate(temporal);
+		Assert.assertNotNull(localDate);
+
+		LocalTime localTime = DateTimeConverterUtil.toLocalTime(temporal);
+		Assert.assertNotNull(localTime);
+
+		Instant instant = DateTimeConverterUtil.toInstant(temporal);
+		Assert.assertNotNull(instant);
+
+		ZonedDateTime zonedDateTime = DateTimeConverterUtil.toZonedDateTime(temporal);
+		Assert.assertNotNull(zonedDateTime);
+		
+		Timestamp timestamp = DateTimeConverterUtil.toTimestamp(temporal);
+		Assert.assertNotNull(timestamp);
+		
+		YearMonth yearMonth = DateTimeConverterUtil.toYearMonth(temporal);
+		Assert.assertNotNull(yearMonth);
+		
+		long tpochMilli = DateTimeConverterUtil.toEpochMilli(temporal);
+		Assert.assertTrue(tpochMilli >0);
+	}	
 }

@@ -67,7 +67,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
 # 主要功能说明
 ### 1.日期转换工具类   DateTimeConverterUtil 
 包含：  
-（1）Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime、YearMonth、Timestamp和long等互相转换。    
+（1）Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime、YearMonth、Timestamp、时间戳和TemporalAccessor等互相转换。    
   
 （2）天、小时、分钟、秒和毫秒等时间单位相互转换，支持小单位到大单位的精确转换比如，minuteToHourPrecise(long num) 90分钟转换为小时，为1.5小时。    
   
