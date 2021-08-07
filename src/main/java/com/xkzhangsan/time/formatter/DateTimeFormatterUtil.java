@@ -1179,6 +1179,7 @@ public class DateTimeFormatterUtil {
 	 * yyyy-MM-dd'T'HH:mm:ssxxx		2020-05-23T17:06:30+08:00
 	 * yyyy-MM-dd'T'HH:mm:ss.SSSZ		2020-05-23T17:06:30.272+0800
 	 * yyyy-MM-dd'T'HH:mm:ss.SSSxxx		2020-05-23T17:06:30.272+08:00
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSXXX		2020-05-23T09:06:30.272Z
 	 * 
 	 * =====================其他格式=====================
 	 * EEE MMM dd HH:mm:ss zzz yyyy	 	Sat May 23 17:06:30 CST 2020
@@ -1221,6 +1222,7 @@ public class DateTimeFormatterUtil {
 	 * yyyy-MM-dd'T'HH:mm:ssxxx		2020-05-23T17:06:30+08:00
 	 * yyyy-MM-dd'T'HH:mm:ss.SSSZ		2020-05-23T17:06:30.272+0800
 	 * yyyy-MM-dd'T'HH:mm:ss.SSSxxx		2020-05-23T17:06:30.272+08:00
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSXXX		2020-05-23T09:06:30.272Z
 	 * 
 	 * =====================其他格式=====================
 	 *  EEE MMM dd HH:mm:ss zzz yyyy	 	Sat May 23 17:06:30 CST 2020
@@ -1299,6 +1301,7 @@ public class DateTimeFormatterUtil {
 	 * yyyy-MM-dd'T'HH:mm:ssxxx		2020-05-23T17:06:30+08:00
 	 * yyyy-MM-dd'T'HH:mm:ss.SSSZ		2020-05-23T17:06:30.272+0800
 	 * yyyy-MM-dd'T'HH:mm:ss.SSSxxx		2020-05-23T17:06:30.272+08:00
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSXXX		2020-05-23T09:06:30.272Z
 	 * </pre>
 	 * @param text 待解析字符串
 	 * @return LocalDateTime
@@ -1351,6 +1354,7 @@ public class DateTimeFormatterUtil {
 	 * yyyy-MM-dd'T'HH:mm:ssxxx		2020-05-23T17:06:30+08:00
 	 * yyyy-MM-dd'T'HH:mm:ss.SSSZ		2020-05-23T17:06:30.272+0800
 	 * yyyy-MM-dd'T'HH:mm:ss.SSSxxx		2020-05-23T17:06:30.272+08:00
+	 * yyyy-MM-dd'T'HH:mm:ss.SSSXXX		2020-05-23T09:06:30.272Z
 	 * </pre>
 	 * @param text 待解析字符串
 	 * @return Date
