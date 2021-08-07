@@ -7,6 +7,8 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.OffsetTime;
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -15,13 +17,14 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import com.xkzhangsan.time.LunarDate;
 import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
 
 /**
  * 日期转换工具类<br>
  * 包含：<br>
  * 
- * 1.Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime、YearMonth、Timestamp和long等互相转换<br>
+ * 1.Date、LocalDate、LocalDateTime、LocalTime、Instant、ZonedDateTime、YearMonth、Timestamp、时间戳和TemporalAccessor等互相转换<br>
  * 
  * 2.天、小时、分钟、秒和毫秒等时间单位相互转换，支持小单位到大单位的精确转换比如，minuteToHourPrecise(long num) 90分钟转换为小时，为1.5小时。<br>
  * 
@@ -95,6 +98,15 @@ public class DateTimeConverterUtil {
 	public static Date toDate(ZonedDateTime zonedDateTime) {
 		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
 		return Date.from(zonedDateTime.toInstant());
+	}
+	
+	/**
+	 * temporal转Date
+	 * @param temporal TemporalAccessor
+	 * @return Date
+	 */
+	public static Date toDate(TemporalAccessor temporal) {
+		return toDate(toZonedDateTime(temporal));
 	}
 	
 	/**
@@ -195,7 +207,7 @@ public class DateTimeConverterUtil {
 	 * @return LocalDateTime
 	 */
 	public static LocalDateTime toLocalDateTime(TemporalAccessor temporal) {
-		return LocalDateTime.from(temporal);
+		return toLocalDateTime(toZonedDateTime(temporal));
 	}
 	
 	/**
@@ -253,7 +265,7 @@ public class DateTimeConverterUtil {
 	 * @return LocalDate
 	 */
 	public static LocalDate toLocalDate(TemporalAccessor temporal) {
-		return LocalDate.from(temporal);
+		return toLocalDate(toZonedDateTime(temporal));
 	}
 	
 	/**
@@ -333,7 +345,7 @@ public class DateTimeConverterUtil {
 	 * @return LocalTime
 	 */
 	public static LocalTime toLocalTime(TemporalAccessor temporal) {
-		return LocalTime.from(temporal);
+		return toLocalTime(toZonedDateTime(temporal));
 	}
 	
 	/**
@@ -412,7 +424,7 @@ public class DateTimeConverterUtil {
 	 * @return Instant
 	 */
 	public static Instant toInstant(TemporalAccessor temporal) {
-		return Instant.from(temporal);
+		return toInstant(toZonedDateTime(temporal));
 	}
 	
 	/**
@@ -489,6 +501,15 @@ public class DateTimeConverterUtil {
 		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
 		return zonedDateTime.toInstant().toEpochMilli();
 	}
+	
+	/**
+	 * temporal转时间戳
+	 * @param temporal TemporalAccessor
+	 * @return 时间戳
+	 */
+	public static long toEpochMilli(TemporalAccessor temporal) {
+		return toEpochMilli(toZonedDateTime(temporal));
+	}	
 	
 	/**
 	 * Date转ZonedDateTime，时区为系统默认时区
@@ -608,7 +629,29 @@ public class DateTimeConverterUtil {
 	 * @return ZonedDateTime
 	 */
 	public static ZonedDateTime toZonedDateTime(TemporalAccessor temporal) {
-		return LocalDateTime.from(temporal).atZone(ZoneId.systemDefault());
+		Objects.requireNonNull(temporal, "temporal");
+		
+		if (temporal instanceof Instant) {
+            return toZonedDateTime((Instant) temporal);
+        } else if (temporal instanceof LocalDate){
+        	return toZonedDateTime((LocalDate) temporal);
+        } else if (temporal instanceof LocalDateTime){
+        	return toZonedDateTime((LocalDateTime) temporal);
+        } else if (temporal instanceof LocalTime){
+        	return toZonedDateTime((LocalTime) temporal);
+        } else if (temporal instanceof ZonedDateTime){
+        	return (ZonedDateTime) temporal;
+        } else if (temporal instanceof YearMonth){
+        	return toZonedDateTime((YearMonth) temporal);
+        } else if (temporal instanceof OffsetDateTime){
+        	return ((OffsetDateTime) temporal).toZonedDateTime();
+        } else if (temporal instanceof OffsetTime){
+        	return ((OffsetTime) temporal).atDate(LocalDate.now()).toZonedDateTime();
+        } else if (temporal instanceof LunarDate){
+        	return toZonedDateTime(((LunarDate) temporal).getLocalDate());
+        } else{
+        	return ZonedDateTime.from(temporal);
+        }
 	}
 	
 	/**
@@ -662,6 +705,15 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
+	 * temporal转YearMonth
+	 * @param temporal TemporalAccessor
+	 * @return YearMonth
+	 */
+	public static YearMonth toYearMonth(TemporalAccessor temporal) {
+		return toYearMonth(toZonedDateTime(temporal));
+	}
+	
+	/**
 	 * Date转Timestamp
 	 * @param date Date
 	 * @return Timestamp
@@ -698,6 +750,25 @@ public class DateTimeConverterUtil {
 	 */
 	public static Timestamp toTimestamp(long epochMilli){
 		return new Timestamp(epochMilli);
+	}
+	
+	/**
+	 * ZonedDateTime转Timestamp
+	 * @param zonedDateTime ZonedDateTime
+	 * @return Timestamp
+	 */
+	public static Timestamp toTimestamp(ZonedDateTime zonedDateTime){
+		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
+		return toTimestamp(toLocalDateTime(zonedDateTime));
+	}	
+	
+	/**
+	 * temporal转Timestamp
+	 * @param temporal TemporalAccessor
+	 * @return Timestamp
+	 */
+	public static Timestamp toTimestamp(TemporalAccessor temporal) {
+		return toTimestamp(toZonedDateTime(temporal));
 	}
 	
 	/**
