@@ -16,3 +16,20 @@
 ## 2 修复bug
   无
 ---
+
+#3.2.1
+
+## 1 新功能
+（1）DateTimeConverterUtil增加TemporalAccessor相关转换方法，比如: TemporalAccessor转Date    
+  
+（2）DateTimeCalculatorUtil获取指定区间的格式化时间列表方法  
+  
+（3）DateTimeCalculatorUtil计算2个时间段的重叠（交集）时间方法  
+  
+（4）DateTimeCalculatorUtil计算倒计时支持传入时间对象和指定格式方法  
+  
+（5）DateTimeFormatterUtil增加对带Z格式的解析方法，如：2020-05-23T17:06:30.272Z。  
+  
+## 2 修复bug
+  无
+---
