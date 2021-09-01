@@ -22,7 +22,18 @@ public class TimeNLPUtilTest {
      */
     @Test
     public void timeNLPTest() {
-        List<TimeNLP> timeNLPList = TimeNLPUtil.parse("昨天10点去公司开会");
+
+        List<TimeNLP> timeNLPList = TimeNLPUtil.parse("去年5月");
+        System.out.println("去年5月");
+        System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+                + timeNLPList.get(0).getIsAllDayTime());
+
+        timeNLPList = TimeNLPUtil.parse("前年3月21日");
+        System.out.println("前年3月21日");
+        System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+                + timeNLPList.get(0).getIsAllDayTime());
+
+        timeNLPList = TimeNLPUtil.parse("昨天10点去公司开会");
         System.out.println("昨天10点去公司开会");
         System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
                 + timeNLPList.get(0).getIsAllDayTime());

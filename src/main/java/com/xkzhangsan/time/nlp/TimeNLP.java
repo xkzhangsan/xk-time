@@ -738,14 +738,14 @@ public class TimeNLP {
         Matcher match = pattern.matcher(timeExpression);
         if (match.find()) {
             flag[0] = true;
-            localDateTime = localDateTime.minusYears(-2);
+            localDateTime = localDateTime.minusYears(2);
         }
 
         pattern = RegexEnum.NormCurRelatedYearBefore.getPattern();
         match = pattern.matcher(timeExpression);
         if (match.find()) {
             flag[0] = true;
-            localDateTime = localDateTime.minusYears(-1);
+            localDateTime = localDateTime.minusYears(1);
         }
 
         pattern = RegexEnum.NormCurRelatedYear.getPattern();
