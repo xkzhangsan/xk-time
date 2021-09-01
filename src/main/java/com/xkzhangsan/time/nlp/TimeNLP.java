@@ -773,7 +773,7 @@ public class TimeNLP {
         match = pattern.matcher(timeExpression);
         if (match.find()) {
             flag[1] = true;
-            localDateTime = localDateTime.minusMonths(-1);
+            localDateTime = localDateTime.minusMonths(1);
 
         }
 

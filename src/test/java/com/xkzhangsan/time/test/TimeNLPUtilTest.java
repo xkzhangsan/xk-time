@@ -27,6 +27,11 @@ public class TimeNLPUtilTest {
         System.out.println("去年5月");
         System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
                 + timeNLPList.get(0).getIsAllDayTime());
+        
+        timeNLPList = TimeNLPUtil.parse("上月21日");
+        System.out.println("上月21日");
+        System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+                + timeNLPList.get(0).getIsAllDayTime());
 
         timeNLPList = TimeNLPUtil.parse("前年3月21日");
         System.out.println("前年3月21日");
