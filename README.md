@@ -60,6 +60,15 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
  
 ### 2.3 为了将与时间紧密相关的节假日、农历、二十四节气、十二星座、十二生肖、十二时辰和日历等功能集中起来开发成工具，方便使用。  
   
+### 2.4 xk-time、joda-time和Java8 time包的关系  
+
+2.4.1 joda-time和Java8 time包实现基本相同，都是Stephen Colebourne主导的，从Java8开始，推荐使用java8 time包替换joda-time。   
+  
+2.4.2 xk-time是基于Java8日期api的，是一个补充工具，和以前的dateutil类似。  
+（1）Java8的类库是层级实现纵向的，xk-time则是按照通用功能横向的，比如转换，计算，格式化解析分为3个类等。  
+（2）Java8 Date转换成新类，需要查看api文档，xk-time则在内部转换好，使Date可以直接使用Java8的新功能。  
+（3）xk-time把dateutil的常用功能重新按照Java8的Api实现，同时做了一些扩展，使用更方便。  
+  
   
   
   
