@@ -395,9 +395,6 @@ public class TimeNLP {
         if (match.find()) {
             return;
         }
-
-//        timeContext.getTunit()[5] = 0;
-
         /*
          * 添加了省略“分”说法的时间
          * 如17点15分32

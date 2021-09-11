@@ -5,7 +5,9 @@ import static com.xkzhangsan.time.enums.ZoneIdEnum.CTT;
 import com.xkzhangsan.time.calculator.DateTimeCalculatorUtil;
 import com.xkzhangsan.time.constants.Constant;
 import com.xkzhangsan.time.converter.DateTimeConverterUtil;
+import com.xkzhangsan.time.enums.ChineseDateDigitEnum;
 import com.xkzhangsan.time.enums.CommonTimeEnum;
+import com.xkzhangsan.time.enums.RegexEnum;
 import com.xkzhangsan.time.utils.ArrayUtil;
 import com.xkzhangsan.time.utils.CollectionUtil;
 import com.xkzhangsan.time.utils.StringUtil;
@@ -25,6 +27,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 日期格式化和解析<br>
@@ -69,6 +73,10 @@ import java.util.Objects;
  * 14.解析自然语言时间，今天，明天，下周，下月，明年，昨天，上周，上月，去年等， 比如parseNaturalLanguageToDate(String text), <br>
  * {@code parseNaturalLanguageToDate(String text, Map<String, String> naturalLanguageMap)} 支持自定义解析自然语言时间map <br>
  *
+ * 15.中文日期格式化方法，比如formatToChineseDateStr(Date date, boolean isUpperCase)，isUpperCase false：2021年09月11日 true： 二〇二一年九月十一日<br>
+ * 
+ * 16.中文日期解析方法，比如parseChineseDateStrToDate(String text)，支持：2021年09月11日 和 二〇二一年九月十一日格式日期解析<br>
+ * 
  * 注意：格式化和解析与系统时区不同的时间时，使用自定义时区格式化方法，或可以使用withZone方法重新设置时区，比如：<br>
  * YYYY_MM_DD_HH_MM_SS_SSS_FMT.withZone(ZoneId.of("Europe/Paris")<br>
  *
@@ -611,6 +619,45 @@ public class DateTimeFormatterUtil {
     }
     
     /**
+     * 中文日期格式化，isUpperCase false：2021年09月11日 true： 二〇二一年九月十一日
+     * @param date Date
+     * @param isUpperCase 是否大写，false：2021年09月11日 true： 二〇二一年九月十一日
+     * @return String
+     */
+    public static String formatToChineseDateStr(Date date, boolean isUpperCase){
+    	return formatToChineseDateStr(DateTimeConverterUtil.toLocalDateTime(date), isUpperCase);
+    }
+    
+    /**
+     * 中文日期格式化，isUpperCase false：2021年09月11日 true： 二〇二一年九月十一日
+     * @param localDateTime LocalDateTime
+     * @param isUpperCase 是否大写，false：2021年09月11日 true： 二〇二一年九月十一日
+     * @return String
+     */
+    public static String formatToChineseDateStr(LocalDateTime localDateTime, boolean isUpperCase){
+    	Objects.requireNonNull(localDateTime, "localDateTime");
+    	if(isUpperCase){
+    		StringBuilder buf = new StringBuilder();
+        	//年
+        	String year = String.valueOf(localDateTime.getYear());
+        	int yearLength = year.length();
+        	for(int i=0; i<yearLength; i++){
+        		buf.append(ChineseDateDigitEnum.ENUMS[year.charAt(i)-48].getChineseDigit());
+        	}
+        	buf.append("年");
+        	//月
+        	buf.append(ChineseDateDigitEnum.ENUMS[localDateTime.getMonthValue()].getChineseDigit());
+        	buf.append("月");
+        	//日
+        	buf.append(ChineseDateDigitEnum.ENUMS[localDateTime.getDayOfMonth()].getChineseDigit());
+        	buf.append("日");
+        	return buf.toString();
+    	}else{
+    		return format(localDateTime, YYYY_MM_DD_CN_FMT);
+    	}
+    }    
+    
+    /**
      * 格式化，返回日期部分，如：yyyy-MM-dd 指定时区
      * @param date Date
      * @param zoneId 时区
@@ -953,6 +1000,49 @@ public class DateTimeFormatterUtil {
      */
     public static Date parseDateStrToDate(String text){
     	return DateTimeConverterUtil.toDate(LocalDate.parse(text, YYYY_MM_DD_FMT));
+    }
+    
+    /**
+     * 中文日期解析  2021年09月11日 或 二〇二一年九月十一日，返回Date
+     * @param text 2021年09月11日 或 二〇二一年九月十一日
+     * @return Date
+     */
+    public static Date parseChineseDateStrToDate(String text){
+    	return DateTimeConverterUtil.toDate(parseChineseDateStrToLocalDateTime(text));
+    }
+    
+    /**
+     * 中文日期解析  2021年09月11日 或 二〇二一年九月十一日，返回LocalDateTime
+     * @param text 2021年09月11日 或 二〇二一年九月十一日
+     * @return LocalDateTime
+     */
+    public static LocalDateTime parseChineseDateStrToLocalDateTime(String text){
+    	if(StringUtil.isEmpty(text)){
+    		throw new NullPointerException("text");
+    	}
+    	text = text.trim();
+    	Pattern pattern = RegexEnum.NormYearFour.getPattern();
+    	Matcher match = pattern.matcher(text);
+        if (match.find()){
+        	return parseToLocalDateTime(text, YYYY_MM_DD_CN_FMT);
+        } else {
+			StringBuilder buf = new StringBuilder();
+	    	//年
+			String[] yearStrArr = text.split("年");
+	    	String yearStr = yearStrArr[0];
+	    	int yearStrLength = yearStr.length();
+	    	for(int i=0; i<yearStrLength; i++){
+	    		buf.append(ChineseDateDigitEnum.getIndexUseCache(String.valueOf(yearStr.charAt(i))));
+	    	}
+	    	int year = Integer.parseInt(buf.toString());
+	    	//月
+	    	String[] monthStrArr = yearStrArr[1].split("月");
+	    	int month = ChineseDateDigitEnum.getIndexUseCache(monthStrArr[0]);
+	    	//日
+	    	String[] dayStrArr = monthStrArr[1].split("日");
+	    	int day = ChineseDateDigitEnum.getIndexUseCache(dayStrArr[0]);
+	    	return LocalDateTime.of(year, month, day, 0, 0);
+    	}
     }
     
     /**
