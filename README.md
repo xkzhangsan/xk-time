@@ -87,7 +87,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
   
 （4）获取时间修改属性方法，with* 比如withYear(Date date, long newValue) 修改当前时间年值为newValue。  
   
-（5）获取比较2个时间方法，between* 比如betweenYears(Date startInclusive, Date endExclusive) 比较2个时间，获取年部分。  
+（5）获取比较2个时间方法，between* 比如betweenTotalDays(Date startInclusive, Date endExclusive) 比较2个时间，返回总天数。  
   
 （6）其他常用方法，比如isLeapYear(Date date) 判断是否闰年，isWeekend(Date date) 判断是否周末，isExpiry(String yearMonthStr) 是否过期等  
   

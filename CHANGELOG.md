@@ -33,3 +33,18 @@
 ## 2 修复bug
   无
 ---
+
+#3.2.2
+
+## 1 新功能
+（1）DateTimeFormatterUtil中增加文日期格式化和解析方法，如：2021年09月11日 和 二〇二一年九月十一日  
+  
+（2）DateTimeConverterUtil中betweenTotalDays等方法，增加对LocalDate的支持  
+  
+
+## 2 修复bug
+（1）修复TimeNLPUtil识别昨天、上月、去年等解析问题  
+  
+（2）DateTimeConverterUtil中between方法中和Period相关的方法名称调整，比如betweenPeriodDays仅返回相差年月日中天数；计算相差总天数需使用betweenTotalDays方法   
+
+---
