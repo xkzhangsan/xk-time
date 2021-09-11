@@ -32,19 +32,19 @@ xk-time is a tool for time conversion, time calculation, time formatting, time p
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>3.2.1</version>    
+      <version>3.2.2</version>    
     </dependency>    
       
       Mini版本不包含 time nlp 功能，更简洁。  
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>3.2.1.Mini</version>    
+      <version>3.2.2.Mini</version>    
     </dependency>    
             
         
 ### 1.2 Gradle        
-    compile group: 'com.github.xkzhangsan', name: 'xk-time', version: '3.2.1'  
+    compile group: 'com.github.xkzhangsan', name: 'xk-time', version: '3.2.2'  
       
 ### 注意：Android谨慎使用，Android端因为需要兼容低版本而不支持Java8，建议继续使用其他工具，如果有需要本项目相关的功能，可以参考源码实现，或留言给我。感谢支持！  
     
@@ -59,6 +59,15 @@ xk-time工具包，使用java8 api，其中Instant、LocalDate、LocalDateTime�
 xk-time工具包，将上面功能按照时间转换，时间计算，时间格式化解析分成3个工具类：DateTimeConverterUtil，DateTimeCalculatorUtil，DateTimeFormatterUtil，每个类只做一个种功能，方便使用。  
  
 ### 2.3 为了将与时间紧密相关的节假日、农历、二十四节气、十二星座、十二生肖、十二时辰和日历等功能集中起来开发成工具，方便使用。  
+  
+### 2.4 xk-time、joda-time和Java8 time包的关系  
+
+2.4.1 joda-time和Java8 time包实现基本相同，都是Stephen Colebourne主导的，从Java8开始，推荐使用java8 time包替换joda-time。   
+  
+2.4.2 xk-time是基于Java8日期api的，是一个补充工具，和以前的dateutil类似。  
+（1）Java8的类库是层级实现纵向的，xk-time则是按照通用功能横向的，比如转换，计算，格式化解析分为3个类等。  
+（2）Java8 Date转换成新类，需要查看api文档，xk-time则在内部转换好，使Date可以直接使用Java8的新功能。  
+（3）xk-time把dateutil的常用功能重新按照Java8的Api实现，同时做了一些扩展，使用更方便。  
   
   
   
@@ -87,7 +96,7 @@ xk-time工具包，将上面功能按照时间转换，时间计算，时间格�
   
 （4）获取时间修改属性方法，with* 比如withYear(Date date, long newValue) 修改当前时间年值为newValue。  
   
-（5）获取比较2个时间方法，between* 比如betweenYears(Date startInclusive, Date endExclusive) 比较2个时间，获取年部分。  
+（5）获取比较2个时间方法，between* 比如betweenTotalDays(Date startInclusive, Date endExclusive) 比较2个时间，返回总天数。  
   
 （6）其他常用方法，比如isLeapYear(Date date) 判断是否闰年，isWeekend(Date date) 判断是否周末，isExpiry(String yearMonthStr) 是否过期等  
   
