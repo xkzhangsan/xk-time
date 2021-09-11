@@ -222,6 +222,9 @@ public class DateTimeCalculatorUtilTest {
 		Assert.assertEquals(0,DateTimeCalculatorUtil.betweenYears(localDate, localDate2));
 		Assert.assertEquals(10,DateTimeCalculatorUtil.betweenMonths(localDate, localDate2));
 		Assert.assertEquals(7,DateTimeCalculatorUtil.betweenDays(localDate, localDate2));
+		Assert.assertEquals(0,DateTimeCalculatorUtil.betweenPeriodYears(localDate, localDate2));
+		Assert.assertEquals(10,DateTimeCalculatorUtil.betweenPeriodMonths(localDate, localDate2));
+		Assert.assertEquals(7,DateTimeCalculatorUtil.betweenPeriodDays(localDate, localDate2));
 	}
 	
 	/**
@@ -235,6 +238,9 @@ public class DateTimeCalculatorUtilTest {
 		Assert.assertEquals(0,DateTimeCalculatorUtil.betweenYears(date, date2));
 		Assert.assertEquals(10,DateTimeCalculatorUtil.betweenMonths(date, date2));
 		Assert.assertEquals(7,DateTimeCalculatorUtil.betweenDays(date, date2));
+		Assert.assertEquals(0,DateTimeCalculatorUtil.betweenPeriodYears(date, date2));
+		Assert.assertEquals(10,DateTimeCalculatorUtil.betweenPeriodMonths(date, date2));
+		Assert.assertEquals(7,DateTimeCalculatorUtil.betweenPeriodDays(date, date2));
 	}
 	
 
@@ -252,6 +258,32 @@ public class DateTimeCalculatorUtilTest {
 		Assert.assertEquals(191105,DateTimeCalculatorUtil.betweenTotalSeconds(date, date2));
 		Assert.assertEquals(191105000,DateTimeCalculatorUtil.betweenTotalMillis(date, date2));
 		Assert.assertEquals(191105000000000L,DateTimeCalculatorUtil.betweenTotalNanos(date, date2));
+		
+		LocalDateTime localDateTime = LocalDateTime.of(2020, 4, 29, 10, 10,10);
+		LocalDateTime localDateTime2 = LocalDateTime.of(2020, 5, 1, 15, 15,15);
+		Assert.assertEquals(2,DateTimeCalculatorUtil.betweenTotalDays(localDateTime, localDateTime2));
+		Assert.assertEquals(53,DateTimeCalculatorUtil.betweenTotalHours(localDateTime, localDateTime2));
+		Assert.assertEquals(3185,DateTimeCalculatorUtil.betweenTotalMinutes(localDateTime, localDateTime2));
+		Assert.assertEquals(191105,DateTimeCalculatorUtil.betweenTotalSeconds(localDateTime, localDateTime2));
+		Assert.assertEquals(191105000,DateTimeCalculatorUtil.betweenTotalMillis(localDateTime, localDateTime2));
+		Assert.assertEquals(191105000000000L,DateTimeCalculatorUtil.betweenTotalNanos(localDateTime, localDateTime2));
+		
+		LocalDate localDate = LocalDate.of(2020, 4, 29);
+		LocalDate localDate2 = LocalDate.of(2020, 5, 1);
+		Assert.assertEquals(2,DateTimeCalculatorUtil.betweenTotalDays(localDate, localDate2));
+		Assert.assertEquals(48,DateTimeCalculatorUtil.betweenTotalHours(localDate, localDate2));
+		Assert.assertEquals(2880,DateTimeCalculatorUtil.betweenTotalMinutes(localDate, localDate2));
+		Assert.assertEquals(172800,DateTimeCalculatorUtil.betweenTotalSeconds(localDate, localDate2));
+		Assert.assertEquals(172800000,DateTimeCalculatorUtil.betweenTotalMillis(localDate, localDate2));
+		Assert.assertEquals(172800000000000L,DateTimeCalculatorUtil.betweenTotalNanos(localDate, localDate2));
+		
+		LocalTime localTime = LocalTime.of(10, 10,10);
+		LocalTime localTime2 = LocalTime.of(15, 15,15);
+		Assert.assertEquals(5,DateTimeCalculatorUtil.betweenTotalHours(localTime, localTime2));
+		Assert.assertEquals(305,DateTimeCalculatorUtil.betweenTotalMinutes(localTime, localTime2));
+		Assert.assertEquals(18305,DateTimeCalculatorUtil.betweenTotalSeconds(localTime, localTime2));
+		Assert.assertEquals(18305000,DateTimeCalculatorUtil.betweenTotalMillis(localTime, localTime2));
+		Assert.assertEquals(18305000000000L,DateTimeCalculatorUtil.betweenTotalNanos(localTime, localTime2));
 	}
 	
 	

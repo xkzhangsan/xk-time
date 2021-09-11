@@ -603,4 +603,32 @@ public class DateTimeFormatterUtilTest {
 
 	}
 	
+	/**
+	 * 中文日期格式化测试
+	 */
+	@Test
+	public void formatToChineseDateStrTest(){
+		Date date = DateTimeCalculatorUtil.getDate(2021, 9, 11);
+		Assert.assertEquals("2021年09月11日",DateTimeFormatterUtil.formatToChineseDateStr(date, false));
+		Assert.assertEquals("二〇二一年九月十一日",DateTimeFormatterUtil.formatToChineseDateStr(date, true));
+		
+		LocalDateTime localDateTime = LocalDateTime.of(2021, 9, 11, 0, 0);
+		Assert.assertEquals("2021年09月11日",DateTimeFormatterUtil.formatToChineseDateStr(localDateTime, false));
+		Assert.assertEquals("二〇二一年九月十一日",DateTimeFormatterUtil.formatToChineseDateStr(localDateTime, true));
+	}
+	
+	/**
+	 * 中文日期解析测试
+	 */
+	@Test
+	public void parseChineseDateStrToDateTest(){
+		Date date = DateTimeCalculatorUtil.getDate(2021, 8, 31);
+		Assert.assertEquals(date, DateTimeFormatterUtil.parseChineseDateStrToDate("2021年08月31日"));
+		Assert.assertEquals(date, DateTimeFormatterUtil.parseChineseDateStrToDate("二〇二一年八月三十一日"));
+		
+		LocalDateTime localDateTime = LocalDateTime.of(2021, 8, 31, 0, 0);
+		Assert.assertEquals(localDateTime, DateTimeFormatterUtil.parseChineseDateStrToLocalDateTime("2021年08月31日"));
+		Assert.assertEquals(localDateTime, DateTimeFormatterUtil.parseChineseDateStrToLocalDateTime("二〇二一年八月三十一日"));
+	}
+	
 }

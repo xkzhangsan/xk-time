@@ -53,7 +53,7 @@ import com.xkzhangsan.time.utils.StringUtil;
  * 2.获取时间加操作方法，plus* 比如plusYears(Date date, long amountToAdd) 当前时间年增加amountToAdd值<br>
  * 3.获取时间减操作方法，minus* 比如minusYears(Date date, long amountToSubtract) 当前时间年减少amountToSubtract值<br>
  * 4.获取时间修改属性方法，with* 比如withYear(Date date, long newValue) 修改当前时间年值为newValue<br>
- * 5.获取比较2个时间方法，between* 比如betweenYears(Date startInclusive, Date endExclusive) 比较2个时间，获取年部分<br>
+ * 5.获取比较2个时间方法，between* 比如betweenTotalDays(Date startInclusive, Date endExclusive) 比较2个时间，获取相差总天数<br>
  * 6.其他常用方法，比如isLeapYear(Date date) 判断是否闰年，isWeekend(Date date) 判断是否周末，isExpiry(String yearMonthStr) 是否过期等<br>
  * 7.时区转换计算方法，transform*，比如transform(ZonedDateTime zonedDateTime, String zoneId)<br>
  * 8.比较2个时间大小和相等方法，compare*，比如compare(Date date1, Date date2)<br>
@@ -1628,6 +1628,7 @@ public class DateTimeCalculatorUtil {
 	 * @param endExclusive 结束时间
 	 * @return long
 	 */
+	@Deprecated
 	public static long betweenYears(LocalDateTime startInclusive, LocalDateTime endExclusive){
 		Objects.requireNonNull(startInclusive, "startInclusive");
 		Objects.requireNonNull(endExclusive, "endExclusive");
@@ -1642,6 +1643,7 @@ public class DateTimeCalculatorUtil {
 	 * @param endExclusive 结束时间
 	 * @return long
 	 */
+	@Deprecated
 	public static long betweenYears(Date startInclusive, Date endExclusive){
 		Objects.requireNonNull(startInclusive, "startInclusive");
 		Objects.requireNonNull(endExclusive, "endExclusive");
@@ -1656,9 +1658,49 @@ public class DateTimeCalculatorUtil {
 	 * @param endExclusive 结束时间
 	 * @return long
 	 */
+	@Deprecated
 	public static long betweenYears(LocalDate startInclusive, LocalDate endExclusive){
 		return Period.between(startInclusive, endExclusive).getYears();
 	}
+	
+	/**
+	 * 获取2个日期的相差年月天的年数部分，不是相差总年数，
+	 * 比如2020-02-29 2021-03-07，返回1
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
+	public static long betweenPeriodYears(LocalDateTime startInclusive, LocalDateTime endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return Period.between(DateTimeConverterUtil.toLocalDate(startInclusive),
+				DateTimeConverterUtil.toLocalDate(endExclusive)).getYears();
+	}
+	
+	/**
+	 * 获取2个日期的相差年月天的年数部分，不是相差总年数，
+	 * 比如2020-02-29 2021-03-07，返回1
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
+	public static long betweenPeriodYears(Date startInclusive, Date endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return Period.between(DateTimeConverterUtil.toLocalDate(startInclusive),
+				DateTimeConverterUtil.toLocalDate(endExclusive)).getYears();
+	}
+	
+	/**
+	 * 获取2个日期的相差年月天的年数部分，不是相差总年数，
+	 * 比如2020-02-29 2021-03-07，返回1
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
+	public static long betweenPeriodYears(LocalDate startInclusive, LocalDate endExclusive){
+		return Period.between(startInclusive, endExclusive).getYears();
+	}	
 	
 	/**
 	 * 获取2个日期的相差年月天的月数部分，不是相差总月数，
@@ -1667,6 +1709,7 @@ public class DateTimeCalculatorUtil {
 	 * @param endExclusive 结束时间
 	 * @return long
 	 */
+	@Deprecated
 	public static long betweenMonths(LocalDateTime startInclusive, LocalDateTime endExclusive){
 		Objects.requireNonNull(startInclusive, "startInclusive");
 		Objects.requireNonNull(endExclusive, "endExclusive");
@@ -1681,6 +1724,7 @@ public class DateTimeCalculatorUtil {
 	 * @param endExclusive 结束时间
 	 * @return long
 	 */
+	@Deprecated
 	public static long betweenMonths(Date startInclusive, Date endExclusive){
 		Objects.requireNonNull(startInclusive, "startInclusive");
 		Objects.requireNonNull(endExclusive, "endExclusive");
@@ -1695,9 +1739,49 @@ public class DateTimeCalculatorUtil {
 	 * @param endExclusive 结束时间
 	 * @return long
 	 */
+	@Deprecated
 	public static long betweenMonths(LocalDate startInclusive, LocalDate endExclusive){
 		return Period.between(startInclusive, endExclusive).getMonths();
 	}
+	
+	/**
+	 * 获取2个日期的相差年月天的月数部分，不是相差总月数，
+	 * 比如2020-02-29 2021-03-07，返回0
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
+	public static long betweenPeriodMonths(LocalDateTime startInclusive, LocalDateTime endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return Period.between(DateTimeConverterUtil.toLocalDate(startInclusive),
+				DateTimeConverterUtil.toLocalDate(endExclusive)).getMonths();
+	}
+	
+	/**
+	 * 获取2个日期的相差年月天的月数部分，不是相差总月数，
+	 * 比如2020-02-29 2021-03-07，返回0
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
+	public static long betweenPeriodMonths(Date startInclusive, Date endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return Period.between(DateTimeConverterUtil.toLocalDate(startInclusive),
+				DateTimeConverterUtil.toLocalDate(endExclusive)).getMonths();
+	}
+	
+	/**
+	 * 获取2个日期的相差年月天的月数部分，不是相差总月数，
+	 * 比如2020-02-29 2021-03-07，返回0
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
+	public static long betweenPeriodMonths(LocalDate startInclusive, LocalDate endExclusive){
+		return Period.between(startInclusive, endExclusive).getMonths();
+	}	
 	
 	/**
 	 * 获取2个日期的相差年月天的天数部分，不是相差总天数，
@@ -1706,6 +1790,7 @@ public class DateTimeCalculatorUtil {
 	 * @param endExclusive 结束时间
 	 * @return long
 	 */
+	@Deprecated
 	public static long betweenDays(LocalDateTime startInclusive, LocalDateTime endExclusive){
 		Objects.requireNonNull(startInclusive, "startInclusive");
 		Objects.requireNonNull(endExclusive, "endExclusive");
@@ -1720,6 +1805,7 @@ public class DateTimeCalculatorUtil {
 	 * @param endExclusive 结束时间
 	 * @return long
 	 */
+	@Deprecated
 	public static long betweenDays(Date startInclusive, Date endExclusive){
 		Objects.requireNonNull(startInclusive, "startInclusive");
 		Objects.requireNonNull(endExclusive, "endExclusive");
@@ -1734,7 +1820,47 @@ public class DateTimeCalculatorUtil {
 	 * @param endExclusive 结束时间
 	 * @return long
 	 */
+	@Deprecated
 	public static long betweenDays(LocalDate startInclusive, LocalDate endExclusive){
+		return Period.between(startInclusive, endExclusive).getDays();
+	}
+	
+	/**
+	 * 获取2个日期的相差年月天的天数部分，不是相差总天数，
+	 * 比如2020-02-29 2021-03-07，返回7
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
+	public static long betweenPeriodDays(LocalDateTime startInclusive, LocalDateTime endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return Period.between(DateTimeConverterUtil.toLocalDate(startInclusive),
+				DateTimeConverterUtil.toLocalDate(endExclusive)).getDays();
+	}
+	
+	/**
+	 * 获取2个日期的相差年月天的天数部分，不是相差总天数，
+	 * 比如2020-02-29 2021-03-07，返回7
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
+	public static long betweenPeriodDays(Date startInclusive, Date endExclusive){
+		Objects.requireNonNull(startInclusive, "startInclusive");
+		Objects.requireNonNull(endExclusive, "endExclusive");
+		return Period.between(DateTimeConverterUtil.toLocalDate(startInclusive),
+				DateTimeConverterUtil.toLocalDate(endExclusive)).getDays();
+	}
+	
+	/**
+	 * 获取2个日期的相差年月天的天数部分，不是相差总天数，
+	 * 比如2020-02-29 2021-03-07，返回7
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
+	public static long betweenPeriodDays(LocalDate startInclusive, LocalDate endExclusive){
 		return Period.between(startInclusive, endExclusive).getDays();
 	}
 	
@@ -1747,6 +1873,16 @@ public class DateTimeCalculatorUtil {
 	public static long betweenTotalDays(LocalDateTime startInclusive, LocalDateTime endExclusive){
 		return Duration.between(startInclusive, endExclusive).toDays();
 	}
+	
+	/**
+	 * 获取2个日期的相差总天数
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
+	public static long betweenTotalDays(LocalDate startInclusive, LocalDate endExclusive){
+		return Duration.between(DateTimeConverterUtil.toLocalDateTime(startInclusive), DateTimeConverterUtil.toLocalDateTime(endExclusive)).toDays();
+	}	
 	
 	/**
 	 * 获取2个日期的相差总天数
@@ -1768,6 +1904,16 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static long betweenTotalHours(LocalDateTime startInclusive, LocalDateTime endExclusive){
 		return Duration.between(startInclusive, endExclusive).toHours();
+	}
+	
+	/**
+	 * 获取2个日期的相差总小时数
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
+	public static long betweenTotalHours(LocalDate startInclusive, LocalDate endExclusive){
+		return Duration.between(DateTimeConverterUtil.toLocalDateTime(startInclusive), DateTimeConverterUtil.toLocalDateTime(endExclusive)).toHours();
 	}
 	
 	/**
@@ -1808,6 +1954,16 @@ public class DateTimeCalculatorUtil {
 	 * @param endExclusive 结束时间
 	 * @return long
 	 */
+	public static long betweenTotalMinutes(LocalDate startInclusive, LocalDate endExclusive){
+		return Duration.between(DateTimeConverterUtil.toLocalDateTime(startInclusive), DateTimeConverterUtil.toLocalDateTime(endExclusive)).toMinutes();
+	}
+	
+	/**
+	 * 获取2个日期的相差总分钟数
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
 	public static long betweenTotalMinutes(LocalTime startInclusive, LocalTime endExclusive){
 		return Duration.between(startInclusive, endExclusive).toMinutes();
 	}
@@ -1832,6 +1988,16 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static long betweenTotalSeconds(LocalDateTime startInclusive, LocalDateTime endExclusive){
 		return Duration.between(startInclusive, endExclusive).getSeconds();
+	}
+	
+	/**
+	 * 获取2个日期的相差总秒数
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
+	public static long betweenTotalSeconds(LocalDate startInclusive, LocalDate endExclusive){
+		return Duration.between(DateTimeConverterUtil.toLocalDateTime(startInclusive), DateTimeConverterUtil.toLocalDateTime(endExclusive)).getSeconds();
 	}
 	
 	/**
@@ -1872,6 +2038,16 @@ public class DateTimeCalculatorUtil {
 	 * @param endExclusive 结束时间
 	 * @return long
 	 */
+	public static long betweenTotalMillis(LocalDate startInclusive, LocalDate endExclusive){
+		return Duration.between(DateTimeConverterUtil.toLocalDateTime(startInclusive), DateTimeConverterUtil.toLocalDateTime(endExclusive)).toMillis();
+	}
+	
+	/**
+	 * 获取2个日期的相差总毫秒数
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
 	public static long betweenTotalMillis(LocalTime startInclusive, LocalTime endExclusive){
 		return Duration.between(startInclusive, endExclusive).toMillis();
 	}
@@ -1896,6 +2072,16 @@ public class DateTimeCalculatorUtil {
 	 */
 	public static long betweenTotalNanos(LocalDateTime startInclusive, LocalDateTime endExclusive){
 		return Duration.between(startInclusive, endExclusive).toNanos();
+	}
+	
+	/**
+	 * 获取2个日期的相差总纳秒数
+	 * @param startInclusive 开始时间
+	 * @param endExclusive 结束时间
+	 * @return long
+	 */
+	public static long betweenTotalNanos(LocalDate startInclusive, LocalDate endExclusive){
+		return Duration.between(DateTimeConverterUtil.toLocalDateTime(startInclusive), DateTimeConverterUtil.toLocalDateTime(endExclusive)).toNanos();
 	}
 	
 	/**
