@@ -638,24 +638,28 @@ public class TimeNLP {
             localDateTime = localDateTime.plusMinutes(30);
         }
 
+        boolean matchMinuteBeforeFlag = false;
         pattern = RegexEnum.NormBaseTimeRelatedMinuteBefore.getPattern();
         Matcher matchMinuteBefore = pattern.matcher(timeExpression);
         if (matchMinuteBefore.find()) {
             flag = true;
+            matchMinuteBeforeFlag = true;
             int minute = Integer.parseInt(matchMinuteBefore.group());
             localDateTime = localDateTime.minusMinutes(minute);
         }
 
+        boolean matchMinuteAfterFlag = false;
         pattern = RegexEnum.NormBaseTimeRelatedMinuteAfter.getPattern();
         Matcher matchMinuteAfter = pattern.matcher(timeExpression);
         if (matchMinuteAfter.find()) {
             flag = true;
+            matchMinuteAfterFlag = true;
             int minute = Integer.parseInt(matchMinuteAfter.group());
             localDateTime = localDateTime.plusMinutes(minute);
         }
 
         //1个小时10分钟前，组合处理
-        if (matchMinuteBefore.find()) {
+        if (matchMinuteBeforeFlag) {
             pattern = RegexEnum.NormBaseTimeRelatedHour.getPattern();
             match = pattern.matcher(timeExpression);
             if (match.find()) {
@@ -665,7 +669,7 @@ public class TimeNLP {
             }
         }
 
-        if (matchMinuteAfter.find()) {
+        if (matchMinuteAfterFlag) {
             pattern = RegexEnum.NormBaseTimeRelatedHour.getPattern();
             match = pattern.matcher(timeExpression);
             if (match.find()) {
@@ -675,23 +679,27 @@ public class TimeNLP {
             }
         }
 
+        boolean matchSecondBeforeFlag = false;
         pattern = RegexEnum.NormBaseTimeRelatedSecondBefore.getPattern();
         Matcher matchSecondBefore = pattern.matcher(timeExpression);
         if (matchSecondBefore.find()) {
             flag = true;
+            matchSecondBeforeFlag = true;
             int second = Integer.parseInt(matchSecondBefore.group());
             localDateTime = localDateTime.minusSeconds(second);
         }
 
+        boolean matchSecondAfterFlag = false;
         pattern = RegexEnum.NormBaseTimeRelatedSecondAfter.getPattern();
         Matcher matchSecondAfter = pattern.matcher(timeExpression);
         if (matchSecondAfter.find()) {
             flag = true;
+            matchSecondAfterFlag = true;
             int second = Integer.parseInt(matchSecondAfter.group());
             localDateTime = localDateTime.plusSeconds(second);
         }
 
-        if (matchSecondBefore.find()) {
+        if (matchSecondBeforeFlag) {
             pattern = RegexEnum.NormBaseTimeRelatedMinute.getPattern();
             match = pattern.matcher(timeExpression);
             if (match.find()) {
@@ -701,7 +709,7 @@ public class TimeNLP {
             }
         }
 
-        if (matchSecondAfter.find()) {
+        if (matchSecondAfterFlag) {
             pattern = RegexEnum.NormBaseTimeRelatedMinute.getPattern();
             match = pattern.matcher(timeExpression);
             if (match.find()) {

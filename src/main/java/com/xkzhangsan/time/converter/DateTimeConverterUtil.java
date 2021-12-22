@@ -511,6 +511,7 @@ public class DateTimeConverterUtil {
 	/**
 	 * LocalTime转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
+	 * 转换时会加上当天日期部分组成localDateTime再转换
 	 * @param localDateTime LocalDateTime
 	 * @return 时间戳
 	 */

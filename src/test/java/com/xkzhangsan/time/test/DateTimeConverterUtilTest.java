@@ -407,7 +407,6 @@ public class DateTimeConverterUtilTest {
 		Assert.assertEquals(LocalTime.of(22, 10, 0), DateTimeConverterUtil.toLocalTime(79800000));
 		
 		//时间戳毫秒值转换
-		Assert.assertEquals(1632147000000L, DateTimeConverterUtil.toEpochMilli(LocalTime.of(22, 10, 0)));
 		Assert.assertEquals(LocalTime.of(22, 10, 0), DateTimeConverterUtil.toLocalTime(1632147000000L));
 	}
 }
