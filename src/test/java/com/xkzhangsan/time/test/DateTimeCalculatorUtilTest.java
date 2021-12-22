@@ -691,6 +691,8 @@ public class DateTimeCalculatorUtilTest {
 		
 		//下一个工作日
 		Assert.assertEquals("2021-02-20",DateTimeCalculatorUtil.nextChineseWorkDay(LocalDate.of(2021, 2, 19), holidayData).toString());
+		//工作日计数
+		Assert.assertEquals(1,DateTimeCalculatorUtil.chineseWorkDay(LocalDate.of(2021, 9, 18), LocalDate.of(2021, 9, 18), holidayData).size());
 	}
 	
 	/**

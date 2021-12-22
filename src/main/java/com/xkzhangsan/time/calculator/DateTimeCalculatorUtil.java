@@ -2572,6 +2572,128 @@ public class DateTimeCalculatorUtil {
 	}
 	
 	/**
+	 * 判断时间段是否包含工作日，节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。
+	 * @param start 开始 时间戳
+	 * @param end 结束 时间戳
+	 * @param holidayData 放假信息0表示放假，1表示工作日，如：2021-01-01:0,2021-02-07:1
+	 * @return boolean true 包含工作日 false 不包含 
+	 */
+	public static boolean hasChineseWorkDay(long start, long end, String holidayData){
+		Objects.requireNonNull(holidayData, "holidayData");
+		LocalDateTime startDate = DateTimeConverterUtil.toLocalDateTime(start);
+		LocalDateTime endDate = DateTimeConverterUtil.toLocalDateTime(end);
+		List<LocalDateTime> dateList = getLocalDateTimeList(startDate, endDate, ChronoUnit.DAYS);
+		Map<String, Integer> dateTypeMap = StringUtil.convertHolidayDataToMapUseCache(holidayData);
+		for(LocalDateTime date : dateList){
+			String dateStr = DateTimeFormatterUtil.formatToDateStr(date);
+			Integer dateType = dateTypeMap.get(dateStr);
+			if(dateType != null){
+				if(dateType == 1){
+					return true;
+				}
+			}else{
+				if(isWorkDay(date)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * 判断时间段是否包含工作日，节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。
+	 * @param start 开始 时间戳
+	 * @param end 结束 时间戳
+	 * @param holidayData 放假信息0表示放假，1表示工作日，如：2021-01-01:0,2021-02-07:1
+	 * @return boolean true 包含工作日 false 不包含 
+	 */
+	public static boolean hasChineseWorkDay(String start, String end, String holidayData){
+		Objects.requireNonNull(start, "start");
+		Objects.requireNonNull(end, "end");
+		Objects.requireNonNull(holidayData, "holidayData");
+		return hasChineseWorkDay(Long.parseLong(start), Long.parseLong(end), holidayData);
+	}
+	
+	/**
+	 * 判断时间段是否包含工作日，节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。
+	 * @param start 开始 Date
+	 * @param end 结束 Date
+	 * @param holidayData 放假信息0表示放假，1表示工作日，如：2021-01-01:0,2021-02-07:1
+	 * @return boolean true 包含工作日 false 不包含 
+	 */
+	public static boolean hasChineseWorkDay(Date start, Date end, String holidayData){
+		Objects.requireNonNull(start, "start");
+		Objects.requireNonNull(end, "end");
+		Objects.requireNonNull(holidayData, "holidayData");
+		return hasChineseWorkDay(DateTimeConverterUtil.toEpochMilli(start), DateTimeConverterUtil.toEpochMilli(end), holidayData);
+	}
+	
+	/**
+	 * 判断时间段是否包含工作日，节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。
+	 * @param start 开始 LocalDate
+	 * @param end 结束 LocalDate
+	 * @param holidayData 放假信息0表示放假，1表示工作日，如：2021-01-01:0,2021-02-07:1
+	 * @return boolean true 包含工作日 false 不包含 
+	 */
+	public static boolean hasChineseWorkDay(LocalDate start, LocalDate end, String holidayData){
+		Objects.requireNonNull(start, "start");
+		Objects.requireNonNull(end, "end");
+		Objects.requireNonNull(holidayData, "holidayData");
+		return hasChineseWorkDay(DateTimeConverterUtil.toEpochMilli(start), DateTimeConverterUtil.toEpochMilli(end), holidayData);
+	}	
+	
+	/**
+	 * 时间段内中国工作日，节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。
+	 * @param start 开始 时间戳
+	 * @param end 结束 时间戳
+	 * @param holidayData 放假信息0表示放假，1表示工作日，如：2021-01-01:0,2021-02-07:1
+	 * @return 返回 工作日， yyyy-MM-dd 英文逗号分隔
+	 */
+	public static List<String> chineseWorkDay(long start, long end, String holidayData){
+		Objects.requireNonNull(holidayData, "holidayData");
+		List<String> result = new ArrayList<>();
+		LocalDate startDate = DateTimeConverterUtil.toLocalDate(start);
+		LocalDate endDate = DateTimeConverterUtil.toLocalDate(end);
+		List<LocalDate> dateList = getLocalDateList(startDate, endDate, ChronoUnit.DAYS);
+		Map<String, Integer> dateTypeMap = StringUtil.convertHolidayDataToMapUseCache(holidayData);
+		dateList.stream().forEach(date->{
+			String dateStr = date.toString();
+			Integer dateType = dateTypeMap.get(dateStr);
+			if(dateType != null){
+				if(dateType == 1){
+					result.add(dateStr);
+				}
+			}else{
+				if(isWorkDay(date)){
+					result.add(dateStr);
+				}
+			}
+		});
+		return result;
+	}
+
+	/**
+	 * 时间段内中国工作日，节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。
+	 * @param start 开始 时间戳
+	 * @param end 结束 时间戳
+	 * @param holidayData 放假信息0表示放假，1表示工作日，如：2021-01-01:0,2021-02-07:1
+	 * @return 返回 工作日， yyyy-MM-dd 英文逗号分隔
+	 */
+	public static List<String> chineseWorkDay(LocalDate start, LocalDate end, String holidayData){
+		return chineseWorkDay(DateTimeConverterUtil.toEpochMilli(start), DateTimeConverterUtil.toEpochMilli(end), holidayData);
+	}
+	/**
+	 * 时间段内中国工作日天数，节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。
+	 * @param start 开始 时间戳
+	 * @param end 结束 时间戳
+	 * @param holidayData 放假信息0表示放假，1表示工作日，如：2021-01-01:0,2021-02-07:1
+	 * @return 返回 工作日， yyyy-MM-dd 英文逗号分隔
+	 */
+	public static int chineseWorkDayCount(long start, long end, String holidayData){
+		return chineseWorkDay(start, end, holidayData).size();
+	}
+	
+	/**
 	 * 判断是否中国工作日，包含法定节假日调整日期，节假日数据holidayData，如果节假日数据不支持年份，将使用周一到周五为工作日来判断。
 	 * @param localDate LocalDate
 	 * @param holidayData 放假信息0表示放假，1表示工作日，如：2021-01-01:0,2021-02-07:1
@@ -3554,9 +3676,12 @@ public class DateTimeCalculatorUtil {
 		if(start.isAfter(end)){
 			throw new DateTimeException("start must before or equal end!");
 		}
-		
-		int i = 1;
 		List<LocalDateTime> localDateTimeList = new ArrayList<LocalDateTime>();
+		if(start.equals(end)){
+			localDateTimeList.add(start);
+			return localDateTimeList;
+		}
+		int i = 1;
 		LocalDateTime localDateTime = start;
 		localDateTimeList.add(localDateTime);
 		while(localDateTime.isBefore(end)){
@@ -3594,6 +3719,40 @@ public class DateTimeCalculatorUtil {
 		return getLocalDateTimeList(DateTimeConverterUtil.toLocalDateTime(start),
 				DateTimeConverterUtil.toLocalDateTime(end)).stream()
 						.map(localDateTime -> localDateTime.toLocalDate()).collect(Collectors.toList());
+	}
+	
+	/**
+	 * 获取指定区间的时间列表，包含起始，间隔指定单位的相同时间
+	 * @param start 开始时间
+	 * @param end 结束时间
+	 * @param unit 单位
+	 * @return 时间列表
+	 */
+	public static List<LocalDate> getLocalDateList(LocalDate start, LocalDate end, ChronoUnit unit){
+		Objects.requireNonNull(start, "start");
+		Objects.requireNonNull(end, "end");
+		Objects.requireNonNull(unit, "unit");
+		if(start.isAfter(end)){
+			throw new DateTimeException("start must before or equal end!");
+		}
+		List<LocalDate> localDateList = new ArrayList<LocalDate>();
+		if(start.equals(end)){
+			localDateList.add(start);
+			return localDateList;
+		}
+		int i = 1;
+		LocalDate localDate = start;
+		localDateList.add(localDate);
+		while(localDate.isBefore(end)){
+			localDate = (LocalDate) plus(start, unit, i);
+			if(localDate.isAfter(end) || localDate.equals(end)){
+				break;
+			}
+			localDateList.add(localDate);
+			i++;
+		}
+		localDateList.add(end);
+		return localDateList;
 	}
 	
 	/**

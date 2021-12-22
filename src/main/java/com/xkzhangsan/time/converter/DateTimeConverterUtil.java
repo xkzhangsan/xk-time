@@ -358,6 +358,34 @@ public class DateTimeConverterUtil {
 		Objects.requireNonNull(zonedDateTime, "zonedDateTime");
 		return zonedDateTime.toLocalTime();
 	}
+	
+	/**
+	 * 时间戳的毫秒转LocalTime
+	 * @param epochMilli 时间戳的毫秒
+	 * @return LocalTime
+	 */
+	public static LocalTime toLocalTime(long epochMilli) {
+		return toLocalDateTime(epochMilli).toLocalTime();
+	}	
+	
+	/**
+	 * 时间部分的毫秒转LocalTime
+	 * @param timeMilli 时间部分的毫秒
+	 * @return LocalTime
+	 */
+	public static LocalTime toLocalTime(int timeMilli) {
+		return LocalTime.ofNanoOfDay((long)timeMilli * 1000_000);
+	}
+	
+	/**
+	 * localTime转时间部分的毫秒
+	 * @param localTime localTime
+	 * @return 时间部分的毫秒
+	 */
+	public static int toTimeMilli(LocalTime localTime) {
+		Objects.requireNonNull(localTime, "localTime");
+		return (int) (localTime.toNanoOfDay() / 1000_000);
+	}
 
 	/**
 	 * Date转Instant
@@ -479,6 +507,17 @@ public class DateTimeConverterUtil {
 	public static long toEpochMilli(LocalDate localDate){
 		return toInstant(localDate).toEpochMilli();
 	}
+	
+	/**
+	 * LocalTime转时间戳
+	 * 从1970-01-01T00:00:00Z开始的毫秒值
+	 * 转换时会加上当天日期部分组成localDateTime再转换
+	 * @param localDateTime LocalDateTime
+	 * @return 时间戳
+	 */
+	public static long toEpochMilli(LocalTime localTime){
+		return toInstant(localTime).toEpochMilli();
+	}	
 	
 	/**
 	 * Instant转时间戳

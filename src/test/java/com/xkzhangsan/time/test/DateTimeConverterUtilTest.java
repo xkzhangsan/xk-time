@@ -395,5 +395,18 @@ public class DateTimeConverterUtilTest {
 		
 		long tpochMilli = DateTimeConverterUtil.toEpochMilli(temporal);
 		Assert.assertTrue(tpochMilli >0);
-	}	
+	}
+	
+	/**
+	 * LocalTime转时间毫秒测试
+	 */
+	@Test
+	public void timeMilliTest(){
+		//时间部分毫秒值转换
+		Assert.assertEquals(79800000, DateTimeConverterUtil.toTimeMilli(LocalTime.of(22, 10, 0)));
+		Assert.assertEquals(LocalTime.of(22, 10, 0), DateTimeConverterUtil.toLocalTime(79800000));
+		
+		//时间戳毫秒值转换
+		Assert.assertEquals(LocalTime.of(22, 10, 0), DateTimeConverterUtil.toLocalTime(1632147000000L));
+	}
 }
