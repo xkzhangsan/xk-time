@@ -700,6 +700,13 @@ public class TimeNLP {
         }
 
         if (matchSecondBeforeFlag) {
+            pattern = RegexEnum.NormBaseTimeRelatedHour.getPattern();
+            match = pattern.matcher(timeExpression);
+            if (match.find()) {
+                flag = true;
+                int hour = Integer.parseInt(match.group());
+                localDateTime = localDateTime.minusHours(hour);
+            }
             pattern = RegexEnum.NormBaseTimeRelatedMinute.getPattern();
             match = pattern.matcher(timeExpression);
             if (match.find()) {
@@ -710,6 +717,13 @@ public class TimeNLP {
         }
 
         if (matchSecondAfterFlag) {
+            pattern = RegexEnum.NormBaseTimeRelatedHour.getPattern();
+            match = pattern.matcher(timeExpression);
+            if (match.find()) {
+                flag = true;
+                int hour = Integer.parseInt(match.group());
+                localDateTime = localDateTime.plusHours(hour);
+            }
             pattern = RegexEnum.NormBaseTimeRelatedMinute.getPattern();
             match = pattern.matcher(timeExpression);
             if (match.find()) {
