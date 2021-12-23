@@ -193,6 +193,11 @@ public class TimeNLPUtilTest {
         System.out.println("1个半小时前对应时间");
         System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
                 + timeNLPList.get(0).getIsAllDayTime());
+        
+        timeNLPList = TimeNLPUtil.parse("1小时50分钟10秒后对应时间");
+        System.out.println("1小时50分钟10秒后对应时间");
+        System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+                + timeNLPList.get(0).getIsAllDayTime());        
     }
 
     /**
