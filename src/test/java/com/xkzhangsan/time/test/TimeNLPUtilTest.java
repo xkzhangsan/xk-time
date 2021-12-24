@@ -135,6 +135,21 @@ public class TimeNLPUtilTest {
         System.out.println("2016-07-19 15:30对应时间");
         System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
                 + timeNLPList.get(0).getIsAllDayTime());
+        
+        timeNLPList = TimeNLPUtil.parse("2016年07月19日对应时间");
+        System.out.println("2016年07月19日对应时间");
+        System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+                + timeNLPList.get(0).getIsAllDayTime());
+
+        timeNLPList = TimeNLPUtil.parse("2016年07月19日 15:30:10对应时间");
+        System.out.println("2016年07月19日 15:30:10对应时间");
+        System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+                + timeNLPList.get(0).getIsAllDayTime());
+
+        timeNLPList = TimeNLPUtil.parse("2016年07月19日 15:30对应时间");
+        System.out.println("2016年07月19日 15:30对应时间");
+        System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+                + timeNLPList.get(0).getIsAllDayTime());
 
     }
 
