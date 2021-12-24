@@ -124,7 +124,9 @@ public class TimeNLP {
         LocalDateTime localDateTime = null;
         Pattern pattern = RegexEnum.NormStandard.getPattern();
         Matcher match = pattern.matcher(timeExpression);
-        if (match.find()) {
+        Pattern patternCn = RegexEnum.NormStandardCn.getPattern();
+        Matcher matchCn = patternCn.matcher(timeExpression);
+        if (match.find() || matchCn.find()) {
             try {
                 localDateTime = DateTimeFormatterUtil.smartParseToLocalDateTime(timeExpression);
                 int[] tunit = timeContext.getTunit();
