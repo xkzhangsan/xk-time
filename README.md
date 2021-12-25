@@ -7,9 +7,6 @@
 	<a target="_blank" href="https://search.maven.org/search?q=g:%22com.github.xkzhangsan%22%20AND%20a:%22xk-time%22">
 		<img src="https://img.shields.io/maven-central/v/com.github.xkzhangsan/xk-time.svg?label=Maven%20Central" />
 	</a>
-	<a href="https://www.codacy.com/app/xkzhangsan/xk-time?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xkzhangsan/xk-time&amp;utm_campaign=Badge_Grade">
-		<img src="https://api.codacy.com/project/badge/Grade/3e1b8a70248c46579b7b0d01d60c6377"/>
-	</a>
 	<a target="_blank" href="https://gitee.com/xkzhangsan/xk-time/stargazers">
 		<img src="https://gitee.com/xkzhangsan/xk-time/badge/star.svg?theme=dark" alt='gitee star'/>
 	</a>
@@ -32,19 +29,19 @@ xk-time is a tool for time conversion, time calculation, time formatting, time p
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>3.2.2</version>    
+      <version>3.2.3</version>    
     </dependency>    
       
       Mini版本不包含 time nlp 功能，更简洁。  
     <dependency>  
       <groupId>com.github.xkzhangsan</groupId>    
       <artifactId>xk-time</artifactId>       
-      <version>3.2.2.Mini</version>    
+      <version>3.2.3.Mini</version>    
     </dependency>    
             
         
 ### 1.2 Gradle        
-    compile group: 'com.github.xkzhangsan', name: 'xk-time', version: '3.2.2'  
+    compile group: 'com.github.xkzhangsan', name: 'xk-time', version: '3.2.3'  
       
 ### 注意：Android谨慎使用，Android端因为需要兼容低版本而不支持Java8，建议继续使用其他工具，如果有需要本项目相关的功能，可以参考源码实现，或留言给我。感谢支持！  
     

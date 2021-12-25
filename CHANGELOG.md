@@ -1,4 +1,4 @@
-#3.2.0
+# 3.2.0
 
 ## 1 新功能
 （1）TimeNLPUtil增加多种调用方式，比如parseConcurrent 并发执行，可设置超时时间和自定义线程池等，提高执行效率。（Mini版无TimeNLPUtil功能）  
@@ -17,7 +17,7 @@
   无
 ---
 
-#3.2.1
+# 3.2.1
 
 ## 1 新功能
 （1）DateTimeConverterUtil增加TemporalAccessor相关转换方法，比如: TemporalAccessor转Date    
@@ -34,7 +34,7 @@
   无
 ---
 
-#3.2.2
+# 3.2.2
 
 ## 1 新功能
 （1）DateTimeFormatterUtil中增加文日期格式化和解析方法，如：2021年09月11日 和 二〇二一年九月十一日  
@@ -46,5 +46,18 @@
 （1）修复TimeNLPUtil识别昨天、上月、去年等解析问题  
   
 （2）DateTimeConverterUtil中between方法中和Period相关的方法名称调整，比如betweenPeriodDays仅返回相差年月日中天数；计算相差总天数需使用betweenTotalDays方法   
+
+---
+
+# 3.2.3
+
+## 1 新功能
+（1）DateTimeConverterUtil中新增单位转换直接返回字符串方法，同时去掉末尾的0    
+  
+
+## 2 修复bug
+（1）修复TimeNLPUtil解析中文时间问题，比如：yyyy年MM月dd日 HH:mm:ss  
+  
+（2）修复TimeNLPUtil解析同时包含时分秒问题，比如：1小时50分钟10秒后  
 
 ---
