@@ -840,6 +840,19 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
+	 * 单位转换，精确计算，返回字符串，去掉尾部多余0
+	 * @param sourceDuration 数量
+	 * @param sourceUnit 原单位
+	 * @param targetUnit 新单位
+	 * @param scale 小数位数
+	 * @param roundingMode 舍入模式
+	 * @return 返回结果
+	 */
+	public static String unitConversionPreciseString(long sourceDuration, TimeUnit sourceUnit, TimeUnit targetUnit, int scale, RoundingMode roundingMode) {
+		return unitConversionPrecise(sourceDuration, sourceUnit, targetUnit, scale, roundingMode).stripTrailingZeros().toPlainString();
+	}
+	
+	/**
 	 * 单位转换，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数
 	 * @param sourceDuration 数量
 	 * @param sourceUnit 原单位
@@ -932,6 +945,15 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
+	 * 小时转天，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数 ，返回字符串，去掉尾部多余0
+	 * @param num 待转换值
+	 * @return 天数，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 */
+	public static String hourToDayPreciseString(long num){
+		return hourToDayPrecise(num).stripTrailingZeros().toPlainString();
+	}	
+	
+	/**
 	 * 单位转换，分钟转秒
 	 * @param num 待转换值
 	 * @return 秒数
@@ -968,6 +990,15 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
+	 * 分钟转小时，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 * @param num 待转换值
+	 * @return 小时数，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 */
+	public static String minuteToHourPreciseString(long num){
+		return minuteToHourPrecise(num).stripTrailingZeros().toPlainString();
+	}	
+	
+	/**
 	 * 单位转换，分钟转天
 	 * @param num 待转换值
 	 * @return 天数
@@ -983,6 +1014,15 @@ public class DateTimeConverterUtil {
 	 */
 	public static BigDecimal minuteToDayPrecise(long num){
 		return unitConversionPrecise(num, TimeUnit.MINUTES, TimeUnit.DAYS);
+	}
+	
+	/**
+	 * 分钟转天，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 * @param num 待转换值
+	 * @return 天数，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 */
+	public static String minuteToDayPreciseString(long num){
+		return minuteToDayPrecise(num).stripTrailingZeros().toPlainString();
 	}
 	
 	/**
@@ -1013,6 +1053,15 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
+	 * 秒转分钟，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 * @param num 待转换值
+	 * @return 分钟数，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 */
+	public static String secondToMinutePreciseString(long num){
+		return secondToMinutePrecise(num).stripTrailingZeros().toPlainString();
+	}	
+	
+	/**
 	 * 单位转换，秒转小时
 	 * @param num 待转换值
 	 * @return 小时数
@@ -1029,6 +1078,15 @@ public class DateTimeConverterUtil {
 	public static BigDecimal secondToHourPrecise(long num){
 		return unitConversionPrecise(num, TimeUnit.SECONDS, TimeUnit.HOURS);
 	}
+	
+	/**
+	 * 秒转小时，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 * @param num 待转换值
+	 * @return 小时数，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 */
+	public static String secondToHourPreciseString(long num){
+		return secondToHourPrecise(num).stripTrailingZeros().toPlainString();
+	}	
 	
 	/**
 	 * 单位转换，秒转天
@@ -1049,6 +1107,15 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
+	 * 秒转天，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 * @param num 待转换值
+	 * @return 天数，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 */
+	public static String secondToDayPreciseString(long num){
+		return secondToDayPrecise(num).stripTrailingZeros().toPlainString();
+	}	
+	
+	/**
 	 * 单位转换，毫秒转秒
 	 * @param num 待转换值
 	 * @return 秒数
@@ -1067,12 +1134,39 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
+	 * 毫秒转秒，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 * @param num 待转换值
+	 * @return 秒数，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 */	
+	public static String millisecondToSecondPreciseString(long num){
+		return millisecondToSecondPrecise(num).stripTrailingZeros().toPlainString();
+	}
+	
+	/**
 	 * 毫秒转秒，精确计算，保留3位小数，ROUND_DOWN 舍去多余小数
 	 * @param num 待转换值
 	 * @return 秒数，保留3位小数，ROUND_DOWN 舍去多余小数
 	 */	
 	public static BigDecimal millisecondToSecondPreciseThree(long num){
 		return unitConversionPrecise(num, TimeUnit.MILLISECONDS, TimeUnit.SECONDS, 3, RoundingMode.DOWN);
+	}
+	
+	/**
+	 * 毫秒转秒，精确计算，保留3位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 * @param num 待转换值
+	 * @return 秒数，保留3位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0 比如 0.11
+	 */	
+	public static String millisecondToSecondPreciseThreeString(long num){
+		return millisecondToSecondPreciseThree(num).stripTrailingZeros().toPlainString();
+	}	
+	
+	/**
+	 * 毫秒转秒，精确计算，保留3位小数，ROUND_DOWN 舍去多余小数，返回原始字符串
+	 * @param num 待转换值
+	 * @return 秒数，保留3位小数，ROUND_DOWN 舍去多余小数，返回原始字符串 比如 0.110
+	 */	
+	public static String millisecondToSecondPreciseThreePlainString(long num){
+		return millisecondToSecondPreciseThree(num).toPlainString();
 	}	
 	
 	/**
@@ -1094,6 +1188,15 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
+	 * 毫秒转分钟，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数
+	 * @param num 待转换值
+	 * @return 分钟数，保留1位小数，ROUND_DOWN 舍去多余小数
+	 */	
+	public static String millisecondToMinutePreciseString(long num){
+		return millisecondToMinutePrecise(num).stripTrailingZeros().toPlainString();
+	}
+	
+	/**
 	 * 单位转换，毫秒转小时
 	 * @param num 待转换值
 	 * @return 小时数
@@ -1112,6 +1215,15 @@ public class DateTimeConverterUtil {
 	}
 	
 	/**
+	 * 毫秒转小时，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 * @param num 待转换值
+	 * @return 小时数，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 */	
+	public static String millisecondToHourPreciseString(long num){
+		return millisecondToHourPrecise(num).stripTrailingZeros().toPlainString();
+	}	
+	
+	/**
 	 * 单位转换，毫秒转天
 	 * @param num 待转换值
 	 * @return 天数
@@ -1128,5 +1240,14 @@ public class DateTimeConverterUtil {
 	public static BigDecimal millisecondToDayPrecise(long num){
 		return unitConversionPrecise(num, TimeUnit.MILLISECONDS, TimeUnit.DAYS);
 	}
+	
+	/**
+	 * 毫秒转天，精确计算，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 * @param num 待转换值
+	 * @return 天数，保留1位小数，ROUND_DOWN 舍去多余小数，返回字符串，去掉尾部多余0
+	 */	
+	public static String millisecondToDayPreciseString(long num){
+		return millisecondToDayPrecise(num).stripTrailingZeros().toPlainString();
+	}	
 	
 }
