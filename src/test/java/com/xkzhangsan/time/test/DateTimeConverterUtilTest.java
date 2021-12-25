@@ -274,6 +274,8 @@ public class DateTimeConverterUtilTest {
 		Assert.assertEquals(TimeUnit.HOURS.toDays(12), DateTimeConverterUtil.hourToDay(12));
 		//精确计算，带1位小数
 		Assert.assertEquals(0.5, DateTimeConverterUtil.hourToDayPrecise(12).doubleValue(), 0);
+		Assert.assertEquals("0.5", DateTimeConverterUtil.hourToDayPreciseString(12));
+		Assert.assertEquals("0", DateTimeConverterUtil.hourToDayPreciseString(1));
 	}
 	
 	/**
@@ -287,10 +289,12 @@ public class DateTimeConverterUtilTest {
 		Assert.assertEquals(TimeUnit.MINUTES.toHours(30), DateTimeConverterUtil.minuteToHour(30));
 		//精确计算，带1位小数
 		Assert.assertEquals(0.5, DateTimeConverterUtil.minuteToHourPrecise(30).doubleValue(), 0);
+		Assert.assertEquals("0.5", DateTimeConverterUtil.minuteToHourPreciseString(30));
 		
 		Assert.assertEquals(TimeUnit.MINUTES.toDays(12*60), DateTimeConverterUtil.minuteToDay(12*60));
 		//精确计算，带1位小数
 		Assert.assertEquals(0.5, DateTimeConverterUtil.minuteToDayPrecise(12*60).doubleValue(), 0);
+		Assert.assertEquals("0.5", DateTimeConverterUtil.minuteToDayPreciseString(12*60));
 	}
 	
 	/**
@@ -303,14 +307,18 @@ public class DateTimeConverterUtilTest {
 		Assert.assertEquals(TimeUnit.SECONDS.toMinutes(1), DateTimeConverterUtil.secondToMinute(30));
 		//精确计算，带1位小数
 		Assert.assertEquals(0.5, DateTimeConverterUtil.secondToMinutePrecise(30).doubleValue(), 0);
+		Assert.assertEquals("0.5", DateTimeConverterUtil.secondToMinutePreciseString(30));
 		
 		Assert.assertEquals(TimeUnit.SECONDS.toHours(1), DateTimeConverterUtil.secondToHour(30*60));
 		//精确计算，带1位小数
 		Assert.assertEquals(0.5, DateTimeConverterUtil.secondToHourPrecise(30*60).doubleValue(), 0);
+		Assert.assertEquals("0.5", DateTimeConverterUtil.secondToHourPreciseString(30*60));
 		
 		Assert.assertEquals(TimeUnit.SECONDS.toDays(1), DateTimeConverterUtil.secondToDay(12*60*60));
 		//精确计算，带1位小数
 		Assert.assertEquals(0.5, DateTimeConverterUtil.secondToDayPrecise(12*60*60).doubleValue(), 0);
+		Assert.assertEquals("0.5", DateTimeConverterUtil.secondToDayPreciseString(12*60*60));
+		Assert.assertEquals("0", DateTimeConverterUtil.secondToDayPreciseString(10));
 	}
 	
 	/**
@@ -321,20 +329,26 @@ public class DateTimeConverterUtilTest {
 		Assert.assertEquals(TimeUnit.MILLISECONDS.toSeconds(500), DateTimeConverterUtil.millisecondToSecond(500));
 		//精确计算，带1位小数
 		Assert.assertEquals(0.5, DateTimeConverterUtil.millisecondToSecondPrecise(500).doubleValue(), 0);
+		Assert.assertEquals("0.5", DateTimeConverterUtil.millisecondToSecondPreciseString(500));
 		//精确计算，带3位小数
 		Assert.assertEquals(0.123, DateTimeConverterUtil.millisecondToSecondPreciseThree(123).doubleValue(), 0);
+		Assert.assertEquals("0.11", DateTimeConverterUtil.millisecondToSecondPreciseThreeString(110));
+		Assert.assertEquals("0.110", DateTimeConverterUtil.millisecondToSecondPreciseThreePlainString(110));
 		
 		Assert.assertEquals(TimeUnit.MILLISECONDS.toMinutes(30*1000), DateTimeConverterUtil.millisecondToMinute(30*1000));
 		//精确计算，带1位小数
 		Assert.assertEquals(0.5, DateTimeConverterUtil.millisecondToMinutePrecise(30*1000).doubleValue(), 0);
+		Assert.assertEquals("0.5", DateTimeConverterUtil.millisecondToMinutePreciseString(30*1000));
 		
 		Assert.assertEquals(TimeUnit.MILLISECONDS.toHours(30*60*1000), DateTimeConverterUtil.millisecondToHour(30*60*1000));
 		//精确计算，带1位小数
 		Assert.assertEquals(0.5, DateTimeConverterUtil.millisecondToHourPrecise(30*60*1000).doubleValue(), 0);
+		Assert.assertEquals("0.5", DateTimeConverterUtil.millisecondToHourPreciseString(30*60*1000));
 		
 		Assert.assertEquals(TimeUnit.MILLISECONDS.toDays(12*60*60*1000), DateTimeConverterUtil.millisecondToDay(12*60*60*1000));
 		//精确计算，带1位小数
 		Assert.assertEquals(0.5, DateTimeConverterUtil.millisecondToDayPrecise(12*60*60*1000).doubleValue(), 0);
+		Assert.assertEquals("0.5", DateTimeConverterUtil.millisecondToDayPreciseString(12*60*60*1000));
 	}
 	
 	@Test
