@@ -512,7 +512,7 @@ public class DateTimeConverterUtil {
 	 * LocalTime转时间戳
 	 * 从1970-01-01T00:00:00Z开始的毫秒值
 	 * 转换时会加上当天日期部分组成localDateTime再转换
-	 * @param localDateTime LocalDateTime
+	 * @param localTime localTime
 	 * @return 时间戳
 	 */
 	public static long toEpochMilli(LocalTime localTime){
