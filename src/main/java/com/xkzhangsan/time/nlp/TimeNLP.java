@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
  * 修改自 https://github.com/shinyke/Time-NLP
  *
  * @author xkzhangsan
+ * @author buhuaqi
  */
 public class TimeNLP {
 
@@ -531,6 +532,8 @@ public class TimeNLP {
 
     /**
      * 设置以上文时间为基准的时间偏移计算，日期部分
+     *
+     * @DESC 2022-01-28 新增 ”几周前“ 偏移计算
      */
     private void normBaseRelated() {
         String[] timeGrid = new String[6];
@@ -543,8 +546,16 @@ public class TimeNLP {
 
         boolean flag = false;//观察时间表达式是否因当前相关时间表达式而改变时间
 
-        Pattern pattern = RegexEnum.NormBaseRelatedDayBefore.getPattern();
+        Pattern pattern = RegexEnum.NormBaseRelatedWeekBefore.getPattern();
         Matcher match = pattern.matcher(timeExpression);
+        if (match.find()) {
+            flag = true;
+            int week = Integer.parseInt(match.group());
+            localDateTime = localDateTime.minusWeeks(week);
+        }
+
+        pattern = RegexEnum.NormBaseRelatedDayBefore.getPattern();
+        match = pattern.matcher(timeExpression);
         if (match.find()) {
             flag = true;
             int day = Integer.parseInt(match.group());
@@ -919,18 +930,18 @@ public class TimeNLP {
 
         pattern = RegexEnum.NormCurRelatedWeek.getPattern();
         match = pattern.matcher(timeExpression);
-        if (match.find()) {
-            flag[2] = true;
-            int week;
-            try {
-                week = Integer.parseInt(match.group());
-            } catch (NumberFormatException e) {
-                week = 1;
+
+        try {
+            if (match.find()) {
+                int week = Integer.parseInt(match.group());
+                localDateTime = localDateTime.plusWeeks(0);
+                localDateTime = DateTimeCalculatorUtil.withDayOfWeek(localDateTime, week);
+                /**处理未来时间倾向 @author kexm*/
+                localDateTime = preferFutureWeek(week, localDateTime);
+                flag[2] = true;
             }
-            localDateTime = localDateTime.plusWeeks(0);
-            localDateTime = DateTimeCalculatorUtil.withDayOfWeek(localDateTime, week);
-            /**处理未来时间倾向 @author kexm*/
-            localDateTime = preferFutureWeek(week, localDateTime);
+        } catch (Exception e) {
+            //
         }
 
         String s = DateTimeFormatterUtil.format(localDateTime, "yyyy-MM-dd-HH-mm-ss");

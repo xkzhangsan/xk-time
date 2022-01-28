@@ -14,6 +14,7 @@ import java.util.concurrent.*;
  * 时间自然语言解析工具类测试
  *
  * @author xkzhangsan
+ * @author buhuaqi
  */
 public class TimeNLPUtilTest {
 
@@ -23,11 +24,26 @@ public class TimeNLPUtilTest {
     @Test
     public void timeNLPTest() {
 
-        List<TimeNLP> timeNLPList = TimeNLPUtil.parse("去年5月");
+        List<TimeNLP> timeNLPList = TimeNLPUtil.parse("记得3周前的下午5点我们一起去郊游");
+        System.out.println("记得3周前的下午5点我们一起去郊游");
+        System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+                + timeNLPList.get(0).getIsAllDayTime());
+
+        timeNLPList = TimeNLPUtil.parse("记得四周前我们一起去郊游");
+        System.out.println("记得四周前我们一起去郊游");
+        System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+                + timeNLPList.get(0).getIsAllDayTime());
+
+        timeNLPList = TimeNLPUtil.parse("记得上周三下午3点我们一起去郊游");
+        System.out.println("记得上周三下午3点我们一起去郊游");
+        System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
+                + timeNLPList.get(0).getIsAllDayTime());
+
+        timeNLPList = TimeNLPUtil.parse("去年5月");
         System.out.println("去年5月");
         System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
                 + timeNLPList.get(0).getIsAllDayTime());
-        
+
         timeNLPList = TimeNLPUtil.parse("上月21日");
         System.out.println("上月21日");
         System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
@@ -135,7 +151,7 @@ public class TimeNLPUtilTest {
         System.out.println("2016-07-19 15:30对应时间");
         System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
                 + timeNLPList.get(0).getIsAllDayTime());
-        
+
         timeNLPList = TimeNLPUtil.parse("2016年07月19日对应时间");
         System.out.println("2016年07月19日对应时间");
         System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
@@ -208,11 +224,11 @@ public class TimeNLPUtilTest {
         System.out.println("1个半小时前对应时间");
         System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
                 + timeNLPList.get(0).getIsAllDayTime());
-        
+
         timeNLPList = TimeNLPUtil.parse("1小时50分钟10秒后对应时间");
         System.out.println("1小时50分钟10秒后对应时间");
         System.out.println(DateTimeFormatterUtil.formatToDateTimeStr(timeNLPList.get(0).getTime()) + "-"
-                + timeNLPList.get(0).getIsAllDayTime());        
+                + timeNLPList.get(0).getIsAllDayTime());
     }
 
     /**
