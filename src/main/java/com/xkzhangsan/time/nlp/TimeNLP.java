@@ -1128,10 +1128,19 @@ public class TimeNLP {
         }
 
         int curTime = localDateTime.get((TemporalField) TUNIT_MAP.get(checkTimeIndex));
-        //下午时间特殊处理，修复当前时间是上午10点，那么下午三点 会识别为明天下午三点问题
+
         if (checkTimeIndex == 3 && timeContext.getTunit()[3] >= 0 && timeContext.getTunit()[3] <= 11) {
+            //下午时间特殊处理，修复当前时间是上午10点，那么下午三点 会识别为明天下午三点问题
             Pattern pattern = RegexEnum.NormHourAfternoon.getPattern();
             Matcher match = pattern.matcher(timeExpression);
+            if (match.find()) {
+                if (curTime < (timeContext.getTunit()[3] + 12)) {
+                    return;
+                }
+            }
+            //晚上时间特殊处理，修复当前时间是下午3点，那么晚上9点 会识别为明天晚上9点的问题
+            pattern = RegexEnum.NormHourNight.getPattern();
+            match = pattern.matcher(timeExpression);
             if (match.find()) {
                 if (curTime < (timeContext.getTunit()[3] + 12)) {
                     return;
