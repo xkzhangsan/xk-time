@@ -64,6 +64,7 @@ public class TimeNLP {
      * 解析结果时间
      */
     private Date time;
+    private LocalDateTime localDateTime;
 
     private Boolean isAllDayTime = true;
     private boolean isFirstTimeSolveContext = true;
@@ -133,7 +134,7 @@ public class TimeNLP {
                 tunit[0] = localDateTime.getYear();
                 tunit[1] = localDateTime.getMonthValue();
                 tunit[2] = localDateTime.getDayOfMonth();
-                if (localDateTime.getHour() > 0) {
+                if (localDateTime.getHour() >= 0) {
                     tunit[3] = localDateTime.getHour();
                 }
                 if (localDateTime.getMinute() > 0) {
@@ -1078,6 +1079,7 @@ public class TimeNLP {
         timeContext.setTimeBase(timeContextOrigin.getTimeBase());
         timeContext.setOldTimeBase(timeContextOrigin.getOldTimeBase());
         time = DateTimeConverterUtil.toDate(localDateTime);
+        this.localDateTime = localDateTime;
         timeNormFormat = DateTimeFormatterUtil.format(localDateTime, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT);
     }
 
@@ -1248,5 +1250,13 @@ public class TimeNLP {
     public void setTime(Date time) {
         this.time = time;
     }
+
+	public LocalDateTime getLocalDateTime() {
+		return localDateTime;
+	}
+
+	public void setLocalDateTime(LocalDateTime localDateTime) {
+		this.localDateTime = localDateTime;
+	}
 
 }
