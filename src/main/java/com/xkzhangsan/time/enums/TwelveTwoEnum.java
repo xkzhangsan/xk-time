@@ -100,7 +100,7 @@ public enum TwelveTwoEnum {
 			return true;
 		}
 		//23-0点
-		if(localTime.isAfter(Constant.TWENTYTHREECLOCK) && localTime.isBefore(LocalTime.MIDNIGHT)){
+		if(localTime.isAfter(Constant.TWENTYTHREECLOCK)){
 			return true;
 		}
 		//0-1点

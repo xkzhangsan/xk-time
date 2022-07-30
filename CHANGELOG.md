@@ -61,3 +61,19 @@
 （2）修复TimeNLPUtil解析同时包含时分秒问题，比如：1小时50分钟10秒后  
 
 ---
+
+# 3.2.4
+
+## 1 修复bug
+（1）修改DateTimeCalculatorUtil十二时辰子时计算问题  
+  
+（2）修复TimeNLPUtil本月解析为明年问题   
+  
+（3）修复TimeNLPUtil晚上9点解析为明天晚上9点问题  
+  
+（4）修复TimeNLPUtil标准格式时间解析0点问题  
+  
+（5）修复TimeNLPUtil1小时后解析问题   
+  
+
+---

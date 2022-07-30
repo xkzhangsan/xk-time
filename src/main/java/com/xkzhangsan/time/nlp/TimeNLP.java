@@ -64,6 +64,7 @@ public class TimeNLP {
      * 解析结果时间
      */
     private Date time;
+    private LocalDateTime localDateTime;
 
     private Boolean isAllDayTime = true;
     private boolean isFirstTimeSolveContext = true;
@@ -133,7 +134,7 @@ public class TimeNLP {
                 tunit[0] = localDateTime.getYear();
                 tunit[1] = localDateTime.getMonthValue();
                 tunit[2] = localDateTime.getDayOfMonth();
-                if (localDateTime.getHour() > 0) {
+                if (localDateTime.getHour() >= 0) {
                     tunit[3] = localDateTime.getHour();
                 }
                 if (localDateTime.getMinute() > 0) {
@@ -1078,6 +1079,7 @@ public class TimeNLP {
         timeContext.setTimeBase(timeContextOrigin.getTimeBase());
         timeContext.setOldTimeBase(timeContextOrigin.getOldTimeBase());
         time = DateTimeConverterUtil.toDate(localDateTime);
+        this.localDateTime = localDateTime;
         timeNormFormat = DateTimeFormatterUtil.format(localDateTime, DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT);
     }
 
@@ -1128,11 +1130,19 @@ public class TimeNLP {
         }
 
         int curTime = localDateTime.get((TemporalField) TUNIT_MAP.get(checkTimeIndex));
-        //下午时间特殊处理，修复当前时间是上午10点，那么下午三点 会识别为明天下午三点问题
+        
+        //月，月份小于等于当前月，年不用加
+        if (checkTimeIndex == 1 && timeContext.getTunit()[1] <= curTime) {
+        	return;
+        }
+        
+        //小时，下午时间特殊处理，修复当前时间是上午10点，那么下午三点 会识别为明天下午三点问题
         if (checkTimeIndex == 3 && timeContext.getTunit()[3] >= 0 && timeContext.getTunit()[3] <= 11) {
-            Pattern pattern = RegexEnum.NormHourAfternoon.getPattern();
-            Matcher match = pattern.matcher(timeExpression);
-            if (match.find()) {
+            Pattern afternoonPattern = RegexEnum.NormHourAfternoon.getPattern();
+            Matcher afternoonMatch = afternoonPattern.matcher(timeExpression);
+            Pattern nightPattern = RegexEnum.NormHourNight.getPattern();
+            Matcher nightMatch = nightPattern.matcher(timeExpression);
+            if (afternoonMatch.find() || nightMatch.find()) {
                 if (curTime < (timeContext.getTunit()[3] + 12)) {
                     return;
                 }
@@ -1240,5 +1250,13 @@ public class TimeNLP {
     public void setTime(Date time) {
         this.time = time;
     }
+
+	public LocalDateTime getLocalDateTime() {
+		return localDateTime;
+	}
+
+	public void setLocalDateTime(LocalDateTime localDateTime) {
+		this.localDateTime = localDateTime;
+	}
 
 }

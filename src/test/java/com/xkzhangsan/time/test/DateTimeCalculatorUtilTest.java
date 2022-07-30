@@ -579,10 +579,10 @@ public class DateTimeCalculatorUtilTest {
 	 */	
 	@Test
 	public void getTwelveHoursTest(){
-		LocalTime localTime = LocalTime.of(23,0,0);
+		LocalTime localTime = LocalTime.of(23,15,0);
 		Assert.assertEquals("子时", DateTimeCalculatorUtil.getTwelveTwo(localTime));
 		
-		Date date = DateTimeCalculatorUtil.getDate(2020, 8, 1, 0,30,0);
+		Date date = DateTimeCalculatorUtil.getDate(2020, 8, 1, 0,15,0);
 		Assert.assertEquals("子时", DateTimeCalculatorUtil.getTwelveTwo(date));
 		
 		Date date2 = DateTimeCalculatorUtil.getDate(2020, 8, 1, 20,30,0);
