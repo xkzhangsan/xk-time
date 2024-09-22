@@ -853,5 +853,41 @@ public class DateTimeCalculatorUtilTest {
 		//只考虑日期部分，不关心时间部分
         Assert.assertEquals(1,p.getDays());
 	}
+
+	@Test
+	public void isBetweenStrict(){
+		LocalDate date1 = DateTimeFormatterUtil.parseToLocalDateTime("2024-09-22 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT).toLocalDate();
+		LocalDate startDate1 = DateTimeFormatterUtil.parseToLocalDateTime("2024-09-21 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT).toLocalDate();
+		LocalDate endDate1 = DateTimeFormatterUtil.parseToLocalDateTime("2024-09-25 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT).toLocalDate();
+		//在范围内
+		boolean result1 = DateTimeCalculatorUtil.isBetween(date1, startDate1, endDate1, true);
+        Assert.assertTrue(result1);
+		//在范围外
+		LocalDate date2 = DateTimeFormatterUtil.parseToLocalDateTime("2024-09-20 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT).toLocalDate();
+		boolean result2 = DateTimeCalculatorUtil.isBetween(date2, startDate1, endDate1, true);
+        Assert.assertFalse(result2);
+		//边界值上
+		LocalDate date3 = DateTimeFormatterUtil.parseToLocalDateTime("2024-09-21 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT).toLocalDate();
+		boolean result3 = DateTimeCalculatorUtil.isBetween(date3, startDate1, endDate1, true);
+        Assert.assertTrue(result3);
+	}
+
+	@Test
+	public void isBetweenNotStrict(){
+		LocalDate date1 = DateTimeFormatterUtil.parseToLocalDateTime("2024-09-22 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT).toLocalDate();
+		LocalDate startDate1 = DateTimeFormatterUtil.parseToLocalDateTime("2024-09-21 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT).toLocalDate();
+		LocalDate endDate1 = DateTimeFormatterUtil.parseToLocalDateTime("2024-09-25 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT).toLocalDate();
+		//在范围内
+		boolean result1 = DateTimeCalculatorUtil.isBetween(date1, startDate1, endDate1, false);
+        Assert.assertTrue(result1);
+		//在范围外
+		LocalDate date2 = DateTimeFormatterUtil.parseToLocalDateTime("2024-09-20 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT).toLocalDate();
+		boolean result2 = DateTimeCalculatorUtil.isBetween(date2, startDate1, endDate1, false);
+        Assert.assertFalse(result2);
+		//边界值上
+		LocalDate date3 = DateTimeFormatterUtil.parseToLocalDateTime("2024-09-21 17:03:03", DateTimeFormatterUtil.YYYY_MM_DD_HH_MM_SS_FMT).toLocalDate();
+		boolean result3 = DateTimeCalculatorUtil.isBetween(date3, startDate1, endDate1, false);
+        Assert.assertFalse(result3);
+	}
 	
 }
