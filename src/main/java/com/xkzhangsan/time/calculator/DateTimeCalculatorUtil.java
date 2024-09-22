@@ -4639,7 +4639,58 @@ public class DateTimeCalculatorUtil {
 		Objects.requireNonNull(end, "end");
 		return countdownWithDay(end.getTime()-start.getTime(), unitNames);
 	}
-	
+
+	/**
+	 * 判断时间是否在时间段内
+	 *
+	 * @param date      待对比时间
+	 * @param startDate 时间段开始时间
+	 * @param endDate   时间段结束时间
+	 * @param isStrict  是否严格，true 严格，包括边界值；false 不严格，不包括边界值。
+	 * @return 返回是在内
+	 */
+	public static boolean isBetween(Date date, Date startDate, Date endDate, boolean isStrict) {
+		if (isStrict) {
+			return !(date.before(startDate) || date.after(endDate));
+		} else {
+			return date.after(startDate) && date.before(endDate);
+		}
+	}
+
+	/**
+	 * 判断时间是否在时间段内
+	 *
+	 * @param date      待对比时间
+	 * @param startDate 时间段开始时间
+	 * @param endDate   时间段结束时间
+	 * @param isStrict  是否严格，true 严格，包括边界值；false 不严格，不包括边界值。
+	 * @return 返回是在内
+	 */
+	public static boolean isBetween(LocalDate date, LocalDate startDate, LocalDate endDate, boolean isStrict) {
+		if (isStrict) {
+			return !(date.isBefore(startDate) || date.isAfter(endDate));
+		} else {
+			return date.isAfter(startDate) && date.isBefore(endDate);
+		}
+	}
+
+	/**
+	 * 判断时间是否在时间段内
+	 *
+	 * @param date      待对比时间
+	 * @param startDate 时间段开始时间
+	 * @param endDate   时间段结束时间
+	 * @param isStrict  是否严格，true 严格，包括边界值；false 不严格，不包括边界值。
+	 * @return 返回是在内
+	 */
+	public static boolean isBetween(LocalDateTime date, LocalDateTime startDate, LocalDateTime endDate, boolean isStrict) {
+		if (isStrict) {
+			return !(date.isBefore(startDate) || date.isAfter(endDate));
+		} else {
+			return date.isAfter(startDate) && date.isBefore(endDate);
+		}
+	}
+
 	//====================private======================
 	
 	/**
